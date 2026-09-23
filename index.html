@@ -68,7 +68,7 @@ a{color:#a9c7ff}
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const links=urls=>(urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">источник</a>').join(' · ');
-const j=v=>JSON.stringify(v,null,2);
+const j=v=>JSON.stringify(v,null,2); const profileCache=new Map();
 function practiceBlock(items){
  if(!items?.length)return '<div class="empty">Для этой Буковы отдельная практическая запись пока не связана.</div>';
  return items.map(x=>'<div class="block"><h3>'+esc(x.name)+'</h3><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div>').join('');
@@ -82,20 +82,20 @@ function card(p){
  return '<article class="card" id="'+esc(p.entry_id)+'">'+img+'<div class="cardbody">'+
  '<div class="num">Источник #'+esc(b.identity.source_image_number)+' · '+esc(p.entry_id)+'</div>'+
  '<div class="name">'+esc(p.name)+'</div>'+
- '<div class="muted">'+esc(p.data_status.practice)+' · истории: '+esc(p.data_status.stories)+'</div>'+
+ '<div class="muted">'+'практика: '+esc(p.counts.practical_applications)+' · истории: '+esc(p.counts.practitioner_stories)+'</div>'+
  '<div class="block"><h3>Знак и происхождение</h3><p>Статус изображения: '+esc(b.glyph.image_status||'нет')+'</p><p><a href="'+esc(b.glyph.source_image_url||b.source.source_url)+'" target="_blank" rel="noopener noreferrer">Открыть источник</a></p></div>'+
  '<div class="block"><h3>Заявляемое описание</h3><p class="claim">'+esc(b.claimed_description.text)+'</p></div>'+
- '<details open><summary>Практические применения ('+(b.practical_applications||[]).length+')</summary>'+practiceBlock(b.practical_applications)+'</details>'+
- '<details><summary>Истории практиков ('+(b.practitioner_stories||[]).length+')</summary>'+storyBlock(b.practitioner_stories)+'</details>'+
- '<details><summary>Доказательность и ограничения</summary><p>'+esc(b.evidence_and_limits.catalog_note)+'</p><p>'+esc(b.evidence_and_limits.practice_note)+'</p><p>'+esc(b.evidence_and_limits.story_note)+'</p></details>'+
- '<details><summary>Восстановление 147-позиционного массива</summary><p>Заявлено источником: '+esc(b.recovery.claimed_total)+'; описано в текущем каноническом каталоге: '+esc(b.recovery.described_in_canonical_catalog)+'; незаполнено: '+esc(b.recovery.unfilled_claimed_slots)+'.</p></details>'+
+ '<details open class="lazy-details" data-kind="practice" data-entry="'+esc(p.entry_id)+'"><summary>Практические применения ('+esc(p.counts.practical_applications)+')</summary><div class="detail-body"><div class="empty">Загрузка…</div></div></details>'+
+ '<details class="lazy-details" data-kind="stories" data-entry="'+esc(p.entry_id)+'"><summary>Истории практиков ('+esc(p.counts.practitioner_stories)+')</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
+ '<details class="lazy-details" data-kind="evidence" data-entry="'+esc(p.entry_id)+'"><summary>Доказательность и ограничения</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
+ '<details class="lazy-details" data-kind="recovery" data-entry="'+esc(p.entry_id)+'"><summary>Восстановление 147-позиционного массива</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<p class="api"><a href="api/v1/bukovy/'+esc(p.entry_id)+'.json">JSON этой Буковы</a></p>'+
  '</div></article>';
 }
 async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(url+' HTTP '+r.status);return r.json();}
 async function start(){
- const profileDoc=await fetchJson('api/v1/bukovy-profiles.json');
- const profiles=profileDoc.entries||[];
+ const summaryDoc=await fetchJson('api/v1/bukovy-summary.json');
+ const profiles=summaryDoc.entries||[];
  document.getElementById('count').textContent='Буков в каноническом каталоге: '+profiles.length;
  const practiceCount=profiles.filter(p=>p.data_status.practice==='linked').length;
  const storyCount=profiles.filter(p=>p.data_status.stories==='linked').length;
@@ -106,7 +106,9 @@ async function start(){
    document.getElementById('grid').innerHTML=list.map(card).join('')||'<div class="empty">Ничего не найдено.</div>';
  };
  document.getElementById('q').oninput=render; render();
- const allStories=[].concat(...profiles.map(p=>p.blocks.practitioner_stories||[]));
+ document.getElementById('grid').addEventListener('toggle',async ev=>{const d=ev.target.closest('details.lazy-details');if(!d||!d.open||d.dataset.loaded)return;d.dataset.loaded='1';try{const id=d.dataset.entry;let p=profileCache.get(id);if(!p){p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');profileCache.set(id,p)}const b=p.blocks,body=d.querySelector('.detail-body');if(d.dataset.kind==='practice')body.innerHTML=practiceBlock(b.practical_applications);else if(d.dataset.kind==='stories')body.innerHTML=storyBlock(b.practitioner_stories);else if(d.dataset.kind==='evidence')body.innerHTML='<p>'+esc(b.evidence_and_limits.catalog_note)+'</p><p>'+esc(b.evidence_and_limits.practice_note)+'</p><p>'+esc(b.evidence_and_limits.story_note)+'</p>';else body.innerHTML='<p>Заявлено источником: '+esc(b.recovery.claimed_total)+'; описано в текущем каноническом каталоге: '+esc(b.recovery.described_in_canonical_catalog)+'; незаполнено: '+esc(b.recovery.unfilled_claimed_slots)+'.</p>';}catch(e){d.querySelector('.detail-body').innerHTML='<div class="empty">Не удалось загрузить детали: '+esc(e.message)+'</div>';}});
+ const storyProfiles=await Promise.all(profiles.filter(p=>p.counts.practitioner_stories).map(async p=>{try{const x=await fetchJson('api/v1/bukovy/'+encodeURIComponent(p.entry_id)+'.json');profileCache.set(p.entry_id,x);return x}catch(_){return null}}));
+ const allStories=[].concat(...storyProfiles.filter(Boolean).map(p=>p.blocks.practitioner_stories||[]));
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practices=[].concat(...profiles.map(p=>p.blocks.practical_applications||[]));
  const unique=new Map(practices.map(x=>[x.name+'|'+(x.source_urls||[]).join('|'),x]));
