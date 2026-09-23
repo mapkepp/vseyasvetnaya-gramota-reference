@@ -1,0 +1,62 @@
+{
+  "api_version": "v1",
+  "recovery_version": "v1",
+  "status": "research-only",
+  "canonical_count": 147,
+  "canonical_described_count": 68,
+  "canonical_unfilled_count": 79,
+  "candidate_count": 110,
+  "secondary_evidence_count": 12,
+  "historical_visual_pages": [
+    {
+      "page_id": 1,
+      "label": "Та-Ё",
+      "historical_url": "http://gramota.org/alfavit01.html",
+      "status": "direct-unavailable"
+    },
+    {
+      "page_id": 2,
+      "label": "Ёк-Ио",
+      "historical_url": "http://gramota.org/alfavit02.html",
+      "status": "direct-unavailable"
+    },
+    {
+      "page_id": 3,
+      "label": "Йо-Пи",
+      "historical_url": "http://gramota.org/alfavit03.html",
+      "status": "direct-unavailable"
+    },
+    {
+      "page_id": 4,
+      "label": "Па-Ер",
+      "historical_url": "http://gramota.org/alfavit04.html",
+      "status": "direct-unavailable"
+    },
+    {
+      "page_id": 5,
+      "label": "Еры-Исто",
+      "historical_url": "http://gramota.org/alfavit05.html",
+      "status": "direct-unavailable"
+    },
+    {
+      "page_id": 6,
+      "label": "Ису-Ятый",
+      "historical_url": "http://gramota.org/alfavit06.html",
+      "status": "direct-unavailable"
+    }
+  ],
+  "rules": {
+    "canonical_inclusion": false,
+    "promotion_requires": [
+      "recoverable visual evidence",
+      "glyph-to-name linkage",
+      "source context",
+      "description linkage when available"
+    ],
+    "do_not_promote_from": [
+      "name-only secondary lists",
+      "unverified OCR",
+      "AI-redrawn glyphs"
+    ]
+  }
+}
