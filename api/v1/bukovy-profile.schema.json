@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bukova profile v1",
+  "type": "object",
+  "required": [
+    "api_version",
+    "profile_version",
+    "entry_id",
+    "name",
+    "data_status",
+    "blocks"
+  ],
+  "properties": {
+    "api_version": {
+      "const": "v1"
+    },
+    "profile_version": {
+      "const": "v1"
+    },
+    "entry_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_status": {
+      "type": "object",
+      "required": [
+        "catalog",
+        "practice",
+        "stories"
+      ]
+    },
+    "blocks": {
+      "type": "object",
+      "required": [
+        "identity",
+        "glyph",
+        "source",
+        "claimed_description",
+        "practical_applications",
+        "practitioner_stories",
+        "evidence_and_limits",
+        "recovery"
+      ],
+      "properties": {
+        "identity": {
+          "type": "object"
+        },
+        "glyph": {
+          "type": "object"
+        },
+        "source": {
+          "type": "object"
+        },
+        "claimed_description": {
+          "type": "object"
+        },
+        "practical_applications": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "practitioner_stories": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "evidence_and_limits": {
+          "type": "object"
+        },
+        "recovery": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
