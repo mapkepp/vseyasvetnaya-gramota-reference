@@ -16,7 +16,8 @@ assert recovery_candidates["status"]=="research-only" and recovery_candidates["c
 assert len({r["evidence_id"] for r in recovery_evidence["records"]})==len(recovery_evidence["records"])
 assert all(r.get("canonical_entry_id") is None for r in recovery_evidence["records"])
 assert len({c["name"] for c in recovery_candidates["candidates"]})==len(recovery_candidates["candidates"])
-assert all(c.get("status")=="candidate" for c in recovery_candidates["candidates"])
+canonical_names={e.get("name") for e in entries}
+assert all(c.get("status")=="candidate" and c.get("name") not in canonical_names for c in recovery_candidates["candidates"])
 expected_pages=[
  ("Та-Ё","http://gramota.org/alfavit01.html"),
  ("Ёк-Ио","http://gramota.org/alfavit02.html"),
