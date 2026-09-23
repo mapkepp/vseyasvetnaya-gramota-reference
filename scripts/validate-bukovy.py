@@ -25,8 +25,15 @@ for i,p in enumerate(profiles["entries"]):
  assert p["entry_id"]==s["entry_id"] and p.get("name")==s["name"]
  assert len(p["blocks"].get("practical_applications",[]))==s["counts"]["practical_applications"]
  assert len(p["blocks"].get("practitioner_stories",[]))==s["counts"]["practitioner_stories"]
- assert p["blocks"]["claimed_description"]["text"]==s["claimed_description"]["text"] and p["blocks"]["claimed_description"].get("display_text",p["blocks"]["claimed_description"]["text"])
- assert len(p["blocks"]["claimed_description"].get("display_text",p["blocks"]["claimed_description"]["text"]))<=1000
+ assert p["blocks"]["claimed_description"]["text"]==s["claimed_description"]["text"]
+ if e.get("description_display") is not None:
+  assert p["blocks"]["claimed_description"].get("display_text")==e["description_display"], f"display_text mismatch: {p["entry_id"]}"
+  assert s["claimed_description"].get("display_text")==e["description_display"], f"summary display_text mismatch: {p["entry_id"]}"
+ else:
+  assert "display_text" not in p["blocks"]["claimed_description"], f"unexpected display_text: {p["entry_id"]}"
+  assert "display_text" not in s["claimed_description"], f"unexpected summary display_text: {p["entry_id"]}"
+ if p["blocks"]["claimed_description"].get("display_text") is not None:
+  assert len(p["blocks"]["claimed_description"]["display_text"])<=1000
  individual=load(Path("api/v1/bukovy")/f"{p['entry_id']}.json")
  assert individual==p
 story_ids=[s.get("story_id") for s in histories.get("stories",[])]; assert all(story_ids) and len(story_ids)==len(set(story_ids))
