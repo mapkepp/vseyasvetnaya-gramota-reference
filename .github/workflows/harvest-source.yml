@@ -146,6 +146,66 @@ jobs:
           print("downloaded",len(list(out.iterdir())))
           PY
 
+      - name: Build catalog from published descriptions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, re
+          src=json.loads(pathlib.Path("data/source-harvest/source-structure.json").read_text("utf-8"))
+          entries=[]
+          for rec in src["image_records"]:
+              texts=rec.get("text",[])
+              if not texts:
+                  continue
+              first=texts[0].strip()
+              m=re.match(r'^["«]?(.+?)[»"]?\\s*-\\s*(.*)        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source-harvest images/source-sheets/dm80
+          if git diff --cached --quiet; then
+            echo "No harvest changes"
+          else
+            git commit -m "Harvest source glyphs and descriptions"
+            git push
+          fi
+,first)
+              if not m:
+                  continue
+              name=m.group(1).strip(' "«»')
+              desc=" ".join(texts).strip()
+              image_url=rec["image_url"]
+              filename=pathlib.PurePosixPath(image_url.split("?",1)[0]).name
+              local=None
+              if image_url.startswith("https://gramota.dm80.ru/prayazik/"):
+                  p=pathlib.Path("images/source-sheets/dm80")/filename
+                  if p.exists():
+                      local=str(p).replace("\\","/")
+              entry={
+                  "source_id": len(entries)+1,
+                  "name": name,
+                  "status": "source-described",
+                  "description_claim": desc,
+                  "source_url": src["source_url"],
+                  "source_image_url": image_url
+              }
+              if local:
+                  entry["image"]=local
+              entries.append(entry)
+
+          out={
+              "title":"ВсеЯСветная Грамота — Буковник",
+              "claimed_count":147,
+              "catalog_status":"partial-primary-web-source",
+              "note":"The published source page currently yields 68 image-linked descriptions. The remaining claimed entries are not filled with invented names or effects.",
+              "entries":entries
+          }
+          pathlib.Path("data/bukovy.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),"utf-8")
+          print("catalog entries:",len(entries))
+          PY
+
       - name: Commit harvest
         shell: bash
         run: |
