@@ -1,4 +1,4 @@
-name: Fetch source images
+name: Fetch source image
 
 on:
   workflow_dispatch:
@@ -13,37 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Download published source tables
+      - name: Download published source table
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p images/source-sheets
-          urls=(
-            "https://ic.pics.livejournal.com/art_afrodiziak/24988835/1980686/1980686_original.jpg"
-            "https://gramota.org/bukovi/buk1.jpg"
-            "https://gramota.org/bukovi/buk2.jpg"
-            "https://gramota.org/bukovi/buk3.jpg"
-            "https://gramota.org/bukovi/buk4.jpg"
-            "https://gramota.org/bukovi/buk5.jpg"
-            "https://gramota.org/bukovi/buk6.jpg"
-          )
-          names=(
-            "livejournal-primary.jpg"
-            "buk1.jpg"
-            "buk2.jpg"
-            "buk3.jpg"
-            "buk4.jpg"
-            "buk5.jpg"
-            "buk6.jpg"
-          )
-          for i in ${!urls[@]}; do
-            echo "Downloading ${names[$i]}"
-            curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0" "${urls[$i]}" -o "images/source-sheets/${names[$i]}"
-            file "images/source-sheets/${names[$i]}"
-          done
-
-      - name: Commit downloaded source images
+          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://ic.pics.livejournal.com/art_afrodiziak/24988835/1980686/1980686_original.jpg"             -o images/source-sheets/livejournal-primary.jpg
+          file images/source-sheets/livejournal-primary.jpg
+      - name: Commit downloaded source image
         shell: bash
         run: |
           set -euo pipefail
@@ -53,6 +30,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No image changes"
           else
-            git commit -m "Add published source table images"
+            git commit -m "Add published source table image"
             git push
           fi
