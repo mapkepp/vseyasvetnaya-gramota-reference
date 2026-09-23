@@ -56,7 +56,24 @@
           "type": "object"
         },
         "claimed_description": {
-          "type": "object"
+          "type": "object",
+          "required": [
+            "text",
+            "status"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "display_text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "status": {
+              "type": "string"
+            }
+          }
         },
         "practical_applications": {
           "type": "array",
