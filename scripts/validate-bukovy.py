@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def load(r): return json.loads((ROOT/r).read_text("utf-8"))
-data=load("data/bukovy.json"); api=load("api/v1/bukovy.json"); profiles=load("api/v1/bukovy-profiles.json"); histories=load("data/practice/practitioner-histories.json"); api_histories=load("api/v1/practitioner-histories.json"); index=load("api/v1/index.json"); recovery_pages=load("data/recovery/historical-six-pages.json")
+data=load("data/bukovy.json"); api=load("api/v1/bukovy.json"); profiles=load("api/v1/bukovy-profiles.json"); histories=load("data/practice/practitioner-histories.json"); api_histories=load("api/v1/practitioner-histories.json"); index=load("api/v1/index.json"); recovery_pages=load("data/recovery/historical-six-pages.json"); recovery_evidence=load("data/recovery/secondary-evidence.json"); recovery_candidates=load("data/recovery/147-candidates.json")
 entries=data.get("entries",[]); assert data.get("claimed_count")==147 and data.get("api_version")=="v1"; assert len(entries)==data["coverage"]["described_entries"]; assert sum(e.get("image_status")=="local-copy" for e in entries)==data["coverage"]["entries_with_local_image"]; assert data["coverage"]["unfilled_claimed_slots"]==data["claimed_count"]-len(entries)
 ids=[e.get("entry_id") for e in entries]; assert all(ids) and len(ids)==len(set(ids)); nums=[e.get("source_image_number") for e in entries if e.get("source_image_number") is not None]; assert len(nums)==len(set(nums))
 for e in entries:
@@ -11,6 +11,12 @@ for e in entries:
  if e.get("image_status")=="local-copy": assert e.get("image") and (ROOT/e["image"]).is_file()
 assert api==data and api_histories==histories
 assert recovery_pages["status"]=="research-only" and recovery_pages["canonical_inclusion"] is False
+assert recovery_evidence["status"]=="research-only" and recovery_evidence["purpose"].startswith("Evidence records")
+assert recovery_candidates["status"]=="research-only" and recovery_candidates["canonical_inclusion"] is False
+assert len({r["evidence_id"] for r in recovery_evidence["records"]})==len(recovery_evidence["records"])
+assert all(r.get("canonical_entry_id") is None for r in recovery_evidence["records"])
+assert len({c["name"] for c in recovery_candidates["candidates"]})==len(recovery_candidates["candidates"])
+assert all(c.get("status")=="candidate" for c in recovery_candidates["candidates"])
 expected_pages=[
  ("Та-Ё","http://gramota.org/alfavit01.html"),
  ("Ёк-Ио","http://gramota.org/alfavit02.html"),
