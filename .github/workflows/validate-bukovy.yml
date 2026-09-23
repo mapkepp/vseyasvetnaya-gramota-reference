@@ -21,7 +21,8 @@ jobs:
         run: python3 scripts/build-api.py
 
       - name: Reject stale generated API
-        run: git diff --exit-code -- api/v1
+        run: |
+          git diff --exit-code -- api/v1
           test -z "$(git ls-files --others --exclude-standard -- api/v1)"
 
       - name: Validate canonical catalog and API
