@@ -88,3 +88,10 @@ https://www.liveinternet.ru/users/5255616/rubric/4632436/
 ## Historical full-list lead: gramota.org/fr.bukov.html
 
 Several secondary references point to the former page `http://gramota.org/fr.bukov.html` as a historical online copy of a substantially fuller ВсеЯСветной Буковник. A 2011 discussion explicitly describes it as a variant containing approximately 147 letters, and a 2013 text says that the page included an additional alphabet view. The current `gramota.org` domain is no longer serving that page, so this is retained only as a recovery lead, not as canonical evidence. No missing Bukova is added from this lead without a recoverable primary image/text linkage.
+
+
+## Шесть исторических листов алфавита
+
+Репост «Буковника ВсеЯСветной Грамоты» на LiveInternet от 24.11.2011 сохраняет шесть ссылок на визуальные страницы алфавита: `Та–Ё`, `Ёк–Ио`, `Йо–Пи`, `Па–Ер`, `Еры–Исто`, `Ису–Ятый`. Ссылки ведут на исторические страницы `gramota.org/alfavit01.html`–`alfavit06.html`; непосредственно домен сейчас припаркован и страницы недоступны. Поэтому ссылки рассматриваются как **исторический recovery lead**, а не как уже извлечённые данные.
+
+LiveInternet также сохраняет отдельную ссылку изображения «Алфавит» с адресом `gramota.org/bukovi/buk1.jpg`. Сам файл сейчас недоступен из действующего домена, поэтому он не заменяет оригинальные изображения, уже сохранённые из `gramota.dm80.ru`.
