@@ -31,6 +31,7 @@ assert all(p.get("status")=="direct-unavailable" for p in recovery_pages["pages"
 for k,v in {"bukovy":"/api/v1/bukovy.json","bukovy_profiles":"/api/v1/bukovy-profiles.json","bukovy_profile_template":"/api/v1/bukovy/{entry_id}.json","practices":"/api/v1/practices.json","practitioner_histories":"/api/v1/practitioner-histories.json","index":"/api/v1/index.json","schema":"/api/v1/bukovy.schema.json","bukovy_profile_schema":"/api/v1/bukovy-profile.schema.json","profile_manifest":"/api/v1/bukovy-manifest.json","bukovy_summary":"/api/v1/bukovy-summary.json"}.items(): assert index["endpoints"][k]==v
 assert profiles["profile_count"]==len(entries)
 summary=load("api/v1/bukovy-summary.json")
+assert summary["api_version"]=="v1" and summary["summary_version"]=="v1"
 assert summary["profile_count"]==len(entries) and [x["entry_id"] for x in summary["entries"]]==ids
 manifest=load("api/v1/bukovy-manifest.json")
 assert manifest["profile_count"]==len(entries) and manifest["entries"]==ids and manifest["summary"]=="/api/v1/bukovy-summary.json" and [p["entry_id"] for p in profiles["entries"]]==ids
