@@ -33,20 +33,20 @@ a{color:#a9c7ff}
 <div id="grid" class="grid"></div>
 </main>
 <footer>
-<p><a href="sources/sources.md">Источники и методика</a></p>
+<p><a href="sources/sources.md">Источники и методика</a> · <a href="api/v1/index.json">API v1</a></p>
 <p>В текущей базе автоматически извлечены только те карточки, для которых найдено опубликованное описание и привязанное изображение. Незаполненные позиции не заменяются выдуманными данными.</p>
 </footer>
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 async function start(){
- const d=await fetch('data/bukovy.json').then(r=>r.json());
+ const d=await fetch('api/v1/bukovy.json').then(r=>r.json());
  const entries=d.entries||[];
- const p=await fetch('data/practices.json').then(r=>r.json()).catch(()=>({entries:[]}));
+ const p=await fetch('api/v1/practices.json').then(r=>r.json()).catch(()=>({entries:[]}));
  document.getElementById('practices').innerHTML='<h2>Заявляемые практические применения</h2><div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">Источник: '+(x.source_urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">публикация</a>').join(' · ')+'</p></div></article>').join('')+'</div>';
- document.getElementById('count').textContent='Найдено карточек: '+entries.length+' / заявлено: '+d.claimed_count;
+ document.getElementById('count').textContent='Каталог: '+entries.length+' / заявлено системой: '+d.claimed_count+' / локальные изображения: '+(d.coverage?.entries_with_local_image??entries.filter(x=>x.image).length);
  const render=()=>{
    const q=document.getElementById('q').value.toLowerCase().trim();
-   const list=entries.filter(x=>(x.name+' '+x.description_claim).toLowerCase().includes(q));
+   const list=entries.filter(x=>(x.name+' '+x.description_claim+' '+x.source_image_number).toLowerCase().includes(q));
    document.getElementById('grid').innerHTML=list.map(x=>{
      const img=x.image?'<img class="source-img" loading="lazy" src="'+esc(x.image)+'" alt="Исходное начертание '+esc(x.name)+'">':'';
      return '<article class="card">'+img+'<div class="cardbody"><div class="num">Карточка источника #'+x.source_id+'</div><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.claim_status||x.status)+'</div><p class="claim">'+esc(x.description_claim)+'</p><p><a href="'+esc(x.source_image_url)+'" target="_blank" rel="noopener">Открыть исходное изображение</a></p></div></article>';
