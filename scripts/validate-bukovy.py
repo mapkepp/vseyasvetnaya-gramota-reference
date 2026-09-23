@@ -10,10 +10,12 @@ for e in entries:
  for k in ("name","source_url","claim_status","entry_id"): assert e.get(k),f"missing {k}"
  if e.get("image_status")=="local-copy": assert e.get("image") and (ROOT/e["image"]).is_file()
 assert api==data and api_histories==histories
-for k,v in {"bukovy":"/api/v1/bukovy.json","bukovy_profiles":"/api/v1/bukovy-profiles.json","bukovy_profile_template":"/api/v1/bukovy/{entry_id}.json","practices":"/api/v1/practices.json","practitioner_histories":"/api/v1/practitioner-histories.json","index":"/api/v1/index.json","schema":"/api/v1/bukovy.schema.json","bukovy_profile_schema":"/api/v1/bukovy-profile.schema.json","profile_manifest":"/api/v1/bukovy-manifest.json"}.items(): assert index["endpoints"][k]==v
+for k,v in {"bukovy":"/api/v1/bukovy.json","bukovy_profiles":"/api/v1/bukovy-profiles.json","bukovy_profile_template":"/api/v1/bukovy/{entry_id}.json","practices":"/api/v1/practices.json","practitioner_histories":"/api/v1/practitioner-histories.json","index":"/api/v1/index.json","schema":"/api/v1/bukovy.schema.json","bukovy_profile_schema":"/api/v1/bukovy-profile.schema.json","profile_manifest":"/api/v1/bukovy-manifest.json","bukovy_summary":"/api/v1/bukovy-summary.json"}.items(): assert index["endpoints"][k]==v
 assert profiles["profile_count"]==len(entries)
+summary=load("api/v1/bukovy-summary.json")
+assert summary["profile_count"]==len(entries) and [x["entry_id"] for x in summary["entries"]]==ids
 manifest=load("api/v1/bukovy-manifest.json")
-assert manifest["profile_count"]==len(entries) and manifest["entries"]==ids and [p["entry_id"] for p in profiles["entries"]]==ids
+assert manifest["profile_count"]==len(entries) and manifest["entries"]==ids and manifest["summary"]=="/api/v1/bukovy-summary.json" and [p["entry_id"] for p in profiles["entries"]]==ids
 required={"identity","glyph","source","claimed_description","practical_applications","practitioner_stories","evidence_and_limits","recovery"}
 for p in profiles["entries"]: assert required<=set(p["blocks"]) and (ROOT/"api/v1/bukovy"/f"{p['entry_id']}.json").is_file()
 story_ids=[s.get("story_id") for s in histories.get("stories",[])]; assert all(story_ids) and len(story_ids)==len(set(story_ids))
