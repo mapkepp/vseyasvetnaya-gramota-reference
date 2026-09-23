@@ -1,0 +1,25 @@
+name: Recover Fita Image61
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Recover archived Image61.gif
+        run: python3 scripts/recover-fita-image.py --output fita-recovery-output
+
+      - name: Upload recovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fita-image61-recovery
+          path: fita-recovery-output/
+          if-no-files-found: error
+          retention-days: 14
