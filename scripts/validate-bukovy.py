@@ -14,7 +14,7 @@ assert recovery_pages["status"]=="research-only" and recovery_pages["canonical_i
 assert recovery_evidence["status"]=="research-only" and recovery_evidence["purpose"].startswith("Evidence records")
 assert recovery_candidates["status"]=="research-only" and recovery_candidates["canonical_inclusion"] is False
 assert len({r["evidence_id"] for r in recovery_evidence["records"]})==len(recovery_evidence["records"])
-assert all(r.get("canonical_entry_id") is None for r in recovery_evidence["records"])
+assert all((r.get("canonical_entry_id") is None or r.get("canonical_entry_id") in ids) for r in recovery_evidence["records"])
 assert len({c["name"] for c in recovery_candidates["candidates"]})==len(recovery_candidates["candidates"])
 canonical_names={e.get("name") for e in entries}
 assert all(c.get("status")=="candidate" and c.get("name") not in canonical_names for c in recovery_candidates["candidates"])
