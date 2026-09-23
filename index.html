@@ -78,7 +78,7 @@ function storyBlock(items){
  return items.map(x=>'<div class="block story"><h3>'+esc(x.practitioner_alias||'Практик')+'</h3><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><div class="muted">Уровень: '+esc(x.evidence_level)+'</div><p class="muted">'+links(x.source_urls)+'</p></div>').join('');
 }
 function card(p){
- const b=p.blocks, img=b.glyph.image?'<img class="source-img" loading="lazy" src="'+esc(b.glyph.image)+'" alt="Исходное начертание '+esc(p.name)+'">':'';
+ const b=p, img=b.glyph.image?'<img class="source-img" loading="lazy" src="'+esc(b.glyph.image)+'" alt="Исходное начертание '+esc(p.name)+'">':'';
  return '<article class="card" id="'+esc(p.entry_id)+'">'+img+'<div class="cardbody">'+
  '<div class="num">Источник #'+esc(b.identity.source_image_number)+' · '+esc(p.entry_id)+'</div>'+
  '<div class="name">'+esc(p.name)+'</div>'+
@@ -107,10 +107,9 @@ async function start(){
  };
  document.getElementById('q').oninput=render; render();
  document.getElementById('grid').addEventListener('toggle',async ev=>{const d=ev.target.closest('details.lazy-details');if(!d||!d.open||d.dataset.loaded)return;d.dataset.loaded='1';try{const id=d.dataset.entry;let p=profileCache.get(id);if(!p){p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');profileCache.set(id,p)}const b=p.blocks,body=d.querySelector('.detail-body');if(d.dataset.kind==='practice')body.innerHTML=practiceBlock(b.practical_applications);else if(d.dataset.kind==='stories')body.innerHTML=storyBlock(b.practitioner_stories);else if(d.dataset.kind==='evidence')body.innerHTML='<p>'+esc(b.evidence_and_limits.catalog_note)+'</p><p>'+esc(b.evidence_and_limits.practice_note)+'</p><p>'+esc(b.evidence_and_limits.story_note)+'</p>';else body.innerHTML='<p>Заявлено источником: '+esc(b.recovery.claimed_total)+'; описано в текущем каноническом каталоге: '+esc(b.recovery.described_in_canonical_catalog)+'; незаполнено: '+esc(b.recovery.unfilled_claimed_slots)+'.</p>';}catch(e){d.querySelector('.detail-body').innerHTML='<div class="empty">Не удалось загрузить детали: '+esc(e.message)+'</div>';}});
- const storyProfiles=await Promise.all(profiles.filter(p=>p.counts.practitioner_stories).map(async p=>{try{const x=await fetchJson('api/v1/bukovy/'+encodeURIComponent(p.entry_id)+'.json');profileCache.set(p.entry_id,x);return x}catch(_){return null}}));
- const allStories=[].concat(...storyProfiles.filter(Boolean).map(p=>p.blocks.practitioner_stories||[]));
+ const historiesDoc=await fetchJson('api/v1/practitioner-histories.json'); const allStories=historiesDoc.stories||[];
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
- const practices=[].concat(...profiles.map(p=>p.blocks.practical_applications||[]));
+ const practicesDoc=await fetchJson('api/v1/practices.json'); const practices=practicesDoc.entries||[];
  const unique=new Map(practices.map(x=>[x.name+'|'+(x.source_urls||[]).join('|'),x]));
  document.getElementById('practices-list').innerHTML=[...unique.values()].map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('')||'<div class="empty">Практических записей пока нет.</div>';
 }
