@@ -17,7 +17,17 @@ assert summary["profile_count"]==len(entries) and [x["entry_id"] for x in summar
 manifest=load("api/v1/bukovy-manifest.json")
 assert manifest["profile_count"]==len(entries) and manifest["entries"]==ids and manifest["summary"]=="/api/v1/bukovy-summary.json" and [p["entry_id"] for p in profiles["entries"]]==ids
 required={"identity","glyph","source","claimed_description","practical_applications","practitioner_stories","evidence_and_limits","recovery"}
-for p in profiles["entries"]: assert required<=set(p["blocks"]) and (ROOT/"api/v1/bukovy"/f"{p['entry_id']}.json").is_file()
+for e in entries:
+ assert len(e.get("description_claim","")) <= 1000, f"description unexpectedly long: {e.get('entry_id')}"
+for i,p in enumerate(profiles["entries"]):
+ assert required<=set(p["blocks"]) and (ROOT/"api/v1/bukovy"/f"{p['entry_id']}.json").is_file()
+ s=summary["entries"][i]
+ assert p["entry_id"]==s["entry_id"] and p.get("name")==s["name"]
+ assert len(p["blocks"].get("practical_applications",[]))==s["counts"]["practical_applications"]
+ assert len(p["blocks"].get("practitioner_stories",[]))==s["counts"]["practitioner_stories"]
+ assert p["blocks"]["claimed_description"]["text"]==s["claimed_description"]["text"]
+ individual=load(Path("api/v1/bukovy")/f"{p['entry_id']}.json")
+ assert individual==p
 story_ids=[s.get("story_id") for s in histories.get("stories",[])]; assert all(story_ids) and len(story_ids)==len(set(story_ids))
 for s in histories.get("stories",[]): assert s.get("action") and s.get("reported_result") and s.get("source_urls")
 print(f"PASS: {len(entries)} canonical Bukovy, {len(profiles['entries'])} per-Bukova profiles, {len(story_ids)} practitioner histories; {data['coverage']['unfilled_claimed_slots']} claimed slots still unfilled.")
