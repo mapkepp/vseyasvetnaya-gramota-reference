@@ -15,6 +15,8 @@
 - `api/v1/bukovy-profiles.json` — полный bulk API.
 - `api/v1/bukovy/{entry_id}.json` — профиль одной Буковы.
 - `api/v1/bukovy-manifest.json` — стабильный список профилей.
+- `api/v1/recovery.json` — исследовательское состояние восстановления 147-позиционного массива; кандидаты не являются каноническими позициями.
+- `api/v1/recovery.schema.json` — схема recovery API.
 - `data/practice/*` — практические записи и истории.
 - `index.html` — клиент API; подробные блоки загружаются по требованию.
 
@@ -31,7 +33,7 @@
 
 `scripts/validate-bukovy.py` проверяет IDs, порядок и количество карточек, source-image numbers, coverage, API-синхронизацию, профили, manifest и быстрый summary.
 
-GitHub Actions автоматически запускает валидацию и публикацию GitHub Pages.
+GitHub Actions автоматически запускает валидацию и публикацию GitHub Pages. Валидация сначала пересобирает производный API и отклоняет как устаревшие, так и неотслеживаемые файлы в `api/v1`.
 
 ## Публикация
 
@@ -51,4 +53,4 @@ https://mapkepp.github.io/vseyasvetnaya-gramota-reference/api/v1/index.json
 
 Кандидаты и вторичные свидетельства: `data/recovery/147-candidates.json`, `data/recovery/secondary-evidence.json`.
 
-Основной приоритет следующего этапа — получить первичную графику/факсимиле для недостающих позиций и связывать **изображение → название → описание → источник**, не подменяя отсутствие данных предположением.
+Основной приоритет следующего этапа — получить первичную графику/факсимиле для недостающих позиций и связывать **изображение → название → описание → источник**, не подменяя отсутствие данных предположением. Для автоматического сбора исторических листов добавлен `scripts/recover-historical-six-pages.py` и ручной workflow `.github/workflows/harvest-historical-bukovnik.yml`; эти инструменты сохраняют материал как recovery artifact и не изменяют canonical catalog.
