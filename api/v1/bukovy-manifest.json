@@ -75,5 +75,6 @@
   ],
   "template": "/api/v1/bukovy/{entry_id}.json",
   "collection": "/api/v1/bukovy-profiles.json",
-  "cache_policy": "Immutable profile URLs by entry_id; clients may cache individual profiles aggressively. Collection and index are refreshable."
+  "cache_policy": "Immutable profile URLs by entry_id; clients may cache individual profiles aggressively. Summary, collection and index are refreshable.",
+  "summary": "/api/v1/bukovy-summary.json"
 }
