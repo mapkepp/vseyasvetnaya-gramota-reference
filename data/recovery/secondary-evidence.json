@@ -46,12 +46,95 @@
       "evidence_level": "secondary-description",
       "description": "Source describes УХ as a sign of concentration of male and female beginnings.",
       "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "proza-2026-dza",
+      "candidate_name": "Дза",
+      "source_id": "proza-2026-graf-seq",
+      "location": "sec. around pp. 101–102",
+      "evidence_level": "secondary-description",
+      "description": "Secondary educational text names Дза as a Bukova and gives a textual description of its function.",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "salsa-secondary-aga",
+      "candidate_name": "Ага",
+      "source_id": "chernyymag-salsa",
+      "location": "dictionary/practice section",
+      "evidence_level": "secondary-practice-description",
+      "description": "Secondary practitioner material records a claimed description and use of АГА; this is testimony/practice material, not primary glyph proof.",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "salsa-secondary-aktiv",
+      "candidate_name": "Актив",
+      "source_id": "chernyymag-salsa",
+      "location": "dictionary/practice section",
+      "evidence_level": "secondary-practice-description",
+      "description": "Secondary practitioner material records a claimed description and use of АКТИВ; this is testimony/practice material, not primary glyph proof.",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "book-2009-vanished-hard-sign",
+      "candidate_name": "особый твёрдый знак",
+      "source_id": "proza-2026-book-text",
+      "location": "p. 112, riddle 1",
+      "evidence_level": "secondary-book-text",
+      "description": "The reproduced 2009-book text gives the riddle answer as «Букова особый твёрдый знак».",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "book-2009-i-desyatirichnoe",
+      "candidate_name": "И десятикратное",
+      "source_id": "proza-2026-book-text",
+      "location": "p. 112, riddle 2",
+      "evidence_level": "secondary-book-text",
+      "description": "The reproduced 2009-book text gives the riddle answer as «Букова и десятикратное – ї».",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "book-2009-yat",
+      "candidate_name": "Ять",
+      "source_id": "proza-2026-book-text",
+      "location": "p. 112, riddle 3",
+      "evidence_level": "secondary-book-text",
+      "description": "The reproduced 2009-book text gives the riddle answer «Букова ять».",
+      "canonical_entry_id": null
+    },
+    {
+      "evidence_id": "book-2009-izhitsa",
+      "candidate_name": "Ижица",
+      "source_id": "proza-2026-book-text",
+      "location": "p. 113, riddle 4",
+      "evidence_level": "secondary-book-text",
+      "description": "The reproduced 2009-book text gives the riddle answer «Букова ижица».",
+      "canonical_entry_id": null
     }
   ],
   "source": {
     "source_id": "proza-ermakov-2026",
     "url": "https://proza.ru/2026/07/27/1769",
     "type": "secondary-text-copy",
-    "note": "Not a primary facsimile; candidate evidence only."
+    "note": "Not a primary facsimile; candidate evidence only.",
+    "extra_sources": [
+      {
+        "source_id": "proza-2026-book-text",
+        "url": "https://proza.ru/2026/07/27/1769",
+        "type": "secondary-text-copy",
+        "note": "Reproduced 2009-book text; page references are internal page numbers in the reproduced material."
+      },
+      {
+        "source_id": "chernyymag-salsa",
+        "url": "https://chernyymag.5bb.ru/viewtopic.php?id=7704",
+        "type": "secondary-practitioner-material",
+        "note": "Practitioner/testimony material; never sufficient by itself for canonical glyph recovery."
+      },
+      {
+        "source_id": "proza-2026-graf-seq",
+        "url": "https://proza.ru/2026/07/27/1769",
+        "type": "secondary-text-copy",
+        "note": "Same reproduced educational text; used for candidate descriptions only."
+      }
+    ]
   }
 }
