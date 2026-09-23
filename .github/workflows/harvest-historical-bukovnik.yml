@@ -1,0 +1,37 @@
+name: Harvest historical Bukovnik sheets
+
+on:
+  workflow_dispatch:
+    inputs:
+      page:
+        description: "Optional page id (01-06); empty means all six"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Harvest archived sheets
+        env:
+          PAGE: ${{ inputs.page }}
+        run: |
+          if [ -n "$PAGE" ]; then
+            python3 scripts/recover-historical-six-pages.py --page "$PAGE" --output recovery-output
+          else
+            python3 scripts/recover-historical-six-pages.py --output recovery-output
+          fi
+
+      - name: Upload recovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-bukovnik-recovery
+          path: recovery-output/
+          if-no-files-found: error
+          retention-days: 14
