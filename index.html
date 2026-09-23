@@ -28,7 +28,7 @@ a{color:#a9c7ff}
 <div class="note"><b>Важно:</b> карточки ниже передают формулировки опубликованного источника как <b>утверждения системы</b>. Это не означает научного подтверждения описываемых энергетических, лечебных, биологических или иных эффектов.</div>
 </header>
 <main>
-<h2>Карточки</h2>
+<h2>Карточки буков</h2><div id="practices"></div>
 <input id="q" placeholder="Поиск по имени или описанию…">
 <div id="grid" class="grid"></div>
 </main>
@@ -41,6 +41,8 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 async function start(){
  const d=await fetch('data/bukovy.json').then(r=>r.json());
  const entries=d.entries||[];
+ const p=await fetch('data/practices.json').then(r=>r.json()).catch(()=>({entries:[]}));
+ document.getElementById('practices').innerHTML='<h2>Заявляемые практические применения</h2><div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">Источник: '+(x.source_urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">публикация</a>').join(' · ')+'</p></div></article>').join('')+'</div>';
  document.getElementById('count').textContent='Найдено карточек: '+entries.length+' / заявлено: '+d.claimed_count;
  const render=()=>{
    const q=document.getElementById('q').value.toLowerCase().trim();
