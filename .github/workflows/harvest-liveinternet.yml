@@ -1,0 +1,81 @@
+name: Harvest LiveInternet bukovnik tables
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch published LiveInternet pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/liveinternet
+          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://www.liveinternet.ru/users/4316166/page1.html"             -o data/liveinternet/page1.html
+          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://www.liveinternet.ru/users/3469412/post155208294"             -o data/liveinternet/original-post.html
+          wc -c data/liveinternet/*.html
+
+      - name: Extract and download table images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin
+          import pathlib, json, urllib.request, re
+
+          root=pathlib.Path("data/liveinternet")
+          urls=[]
+          for hp in root.glob("*.html"):
+              raw=hp.read_bytes()
+              text=raw.decode("utf-8",errors="replace")
+              class P(HTMLParser):
+                  def __init__(self): super().__init__(); self.img=[]
+                  def handle_starttag(self,tag,attrs):
+                      if tag.lower()=="img":
+                          a=dict(attrs)
+                          if a.get("src"): self.img.append(urljoin(hp.name,a["src"]))
+              p=P(); p.feed(text)
+              urls += p.img
+
+          urls=list(dict.fromkeys(urls))
+          pathlib.Path("data/liveinternet/image-urls.json").write_text(
+              json.dumps(urls,ensure_ascii=False,indent=2),"utf-8"
+          )
+          out=pathlib.Path("images/source-sheets/liveinternet"); out.mkdir(parents=True,exist_ok=True)
+          for i,u in enumerate(urls,1):
+              if not re.search(r'\.(?:jpg|jpeg|png|gif)(?:[?#].*)?$',u,re.I):
+                  continue
+              name=pathlib.Path(u.split("?",1)[0].split("#",1)[0]).name or f"image-{i}.jpg"
+              if len(name)>180: name=f"image-{i}.jpg"
+              dst=out/name
+              print("Downloading",u,"->",name)
+              try:
+                  req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req,timeout=30) as r: dst.write_bytes(r.read())
+              except Exception as e:
+                  print("FAILED",u,repr(e))
+          print("downloaded",len(list(out.iterdir())))
+          PY
+
+      - name: Commit LiveInternet source material
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/liveinternet images/source-sheets/liveinternet
+          if git diff --cached --quiet; then
+            echo "No LiveInternet changes"
+          else
+            git commit -m "Add published LiveInternet table sources"
+            git push
+          fi
