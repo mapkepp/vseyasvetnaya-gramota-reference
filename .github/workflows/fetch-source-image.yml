@@ -1,0 +1,26 @@
+name: Fetch source image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download published source image
+        run: |
+          mkdir -p images
+          curl -L --fail --retry 3 --connect-timeout 20 -o images/primary-table.jpg "https://ic.pics.livejournal.com/art_afrodiziak/24988835/1980686/1980686_original.jpg"
+      - name: Commit image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/primary-table.jpg
+          git diff --cached --quiet || git commit -m "Add published source table image"
+          git diff --cached --quiet || git push
