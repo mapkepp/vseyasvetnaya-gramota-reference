@@ -10,7 +10,19 @@
     "practitioner_histories": "/api/v1/practitioner-histories.json",
     "index": "/api/v1/index.json",
     "schema": "/api/v1/bukovy.schema.json",
-    "bukovy_profile_schema": "/api/v1/bukovy-profile.schema.json"
+    "bukovy_profile_schema": "/api/v1/bukovy-profile.schema.json",
+    "profile_manifest": "/api/v1/bukovy-manifest.json",
+    "profile_schema": "/api/v1/bukovy-profile.schema.json"
   },
-  "source_policy": "Catalog claims are attributed to their sources; missing claimed entries are not invented. Practitioner histories preserve reported actions and outcomes as unverified testimony. Per-Bukova profiles are derived joins and never replace the canonical catalog."
+  "source_policy": "Catalog claims are attributed to their sources; missing claimed entries are not invented. Practitioner histories preserve reported actions and outcomes as unverified testimony. Per-Bukova profiles are derived joins and never replace the canonical catalog.",
+  "architecture": {
+    "canonical": "/data/bukovy.json",
+    "derived_profile_collection": "/api/v1/bukovy-profiles.json",
+    "derived_profile": "/api/v1/bukovy/{entry_id}.json",
+    "join_sources": [
+      "/data/practices.json",
+      "/data/practice/practitioner-histories.json"
+    ],
+    "design": "Bukova-first; every other block is linked to a canonical Bukova when source evidence permits."
+  }
 }
