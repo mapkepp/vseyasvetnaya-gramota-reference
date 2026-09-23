@@ -47,3 +47,18 @@
 - Secondary references describe it as an approximately 147-entry Буковник / fuller alphabet source.
 - Current domain status: page unavailable; `gramota.org` currently resolves to a parked domain.
 - Policy: lead only; do not promote names, glyphs, or descriptions into canonical data until the actual source material is recovered and linked.
+
+
+## Six-page visual alphabet recovery lead
+
+LiveInternet сохраняет репост «Буковника ВсеЯСветной Грамоты» со ссылками на шесть исторических листов:
+- стр. №1: Та–Ё;
+- стр. №2: Ёк–Ио;
+- стр. №3: Йо–Пи;
+- стр. №4: Па–Ер;
+- стр. №5: Еры–Исто;
+- стр. №6: Ису–Ятый.
+
+Ссылки в репосте ведут на исторические страницы gramota.org/alfavit01.html–alfavit06.html. Эти страницы сейчас недоступны напрямую, поэтому данный материал используется как **наводка на факсимильный источник**, а не как основание для автоматического добавления 79 позиций.
+
+Целевой следующий шаг: получить сохранённые изображения этих шести листов из доступного архива/репоста, извлечь из каждого листа пары «графема ↔ подпись», затем связать их с описаниями и только после этого повышать статус записи до canonical.
