@@ -15,6 +15,7 @@ input{width:100%;box-sizing:border-box;padding:14px;border-radius:10px;border:1p
 .cardbody{padding:18px}.num{color:#d7b86e;font-size:13px}.name{font-size:25px;font-weight:700;margin:3px 0}.muted{color:#9da8b7;font-size:13px}
 .source-img{display:block;width:100%;max-height:300px;object-fit:contain;background:#fff}
 .claim{border-left:3px solid #777;padding-left:12px}
+.story{border-left:3px solid #8aa9d6}.story .result{border-left:3px solid #7c9b79;padding-left:12px}
 a{color:#a9c7ff}
 </style></head>
 <body>
@@ -23,26 +24,36 @@ a{color:#a9c7ff}
 <p>Исследовательский справочник по заявляемой системе 147 буков.</p>
 <div class="stats">
 <span class="pill" id="count">Загрузка…</span>
+<span class="pill" id="storycount">Истории: загрузка…</span>
 <span class="pill">Оригинальные знаки не перерисовываются</span>
 </div>
-<div class="note"><b>Важно:</b> карточки ниже передают формулировки опубликованного источника как <b>утверждения системы</b>. Это не означает научного подтверждения описываемых энергетических, лечебных, биологических или иных эффектов.</div>
+<div class="note"><b>Важно:</b> карточки передают формулировки опубликованных источников как <b>утверждения системы</b>. Истории практиков ниже также являются свидетельствами авторов. Это не означает научного подтверждения описываемых энергетических, лечебных, биологических или иных эффектов.</div>
 </header>
 <main>
-<h2>Карточки буков</h2><div id="practices"></div>
+<h2>Истории практического применения</h2>
+<p class="muted">Здесь фиксируется именно <b>что человек сделал</b> с Буковой или ставом и <b>что он сообщил после этого</b>. Это отдельный слой свидетельств, не смешиваемый с каноническим каталогом.</p>
+<div id="histories" class="grid"></div>
+
+<h2>Заявляемые практические применения</h2><div id="practices"></div>
+<h2>Карточки буков</h2>
 <input id="q" placeholder="Поиск по имени или описанию…">
 <div id="grid" class="grid"></div>
 </main>
 <footer>
-<p><a href="sources/sources.md">Источники и методика</a> · <a href="api/v1/index.json">API v1</a></p>
+<p><a href="sources/sources.md">Источники и методика</a> · <a href="api/v1/index.json">API v1</a> · <a href="api/v1/practitioner-histories.json">API историй</a></p>
 <p>В текущей базе автоматически извлечены только те карточки, для которых найдено опубликованное описание и привязанное изображение. Незаполненные позиции не заменяются выдуманными данными.</p>
 </footer>
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const links=urls=>(urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">источник</a>').join(' · ');
 async function start(){
  const d=await fetch('api/v1/bukovy.json').then(r=>r.json());
  const entries=d.entries||[];
  const p=await fetch('api/v1/practices.json').then(r=>r.json()).catch(()=>({entries:[]}));
- document.getElementById('practices').innerHTML='<h2>Заявляемые практические применения</h2><div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">Источник: '+(x.source_urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">публикация</a>').join(' · ')+'</p></div></article>').join('')+'</div>';
+ const h=await fetch('api/v1/practitioner-histories.json').then(r=>r.json()).catch(()=>({stories:[]}));
+ document.getElementById('storycount').textContent='Истории: '+(h.stories||[]).length;
+ document.getElementById('histories').innerHTML=(h.stories||[]).map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><div class="muted">Связанные Буковы: '+esc((x.related_bukovy||[]).join(', '))+'</div><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><div class="muted">Уровень свидетельства: '+esc(x.evidence_level)+'</div><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('');
+ document.getElementById('practices').innerHTML='<div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('')+'</div>';
  document.getElementById('count').textContent='Каталог: '+entries.length+' / заявлено системой: '+d.claimed_count+' / локальные изображения: '+(d.coverage?.entries_with_local_image??entries.filter(x=>x.image).length);
  const render=()=>{
    const q=document.getElementById('q').value.toLowerCase().trim();
@@ -53,6 +64,7 @@ async function start(){
    }).join('')||'<p>Ничего не найдено.</p>';
  };
  document.getElementById('q').oninput=render; render();
-}start().catch(e=>{document.getElementById('grid').innerHTML='<p>Не удалось загрузить базу: '+esc(e.message)+'</p>'});
+}
+start().catch(e=>{document.getElementById('grid').innerHTML='<p>Не удалось загрузить базу: '+esc(e.message)+'</p>'});
 </script>
 </body></html>
