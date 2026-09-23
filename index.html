@@ -106,7 +106,35 @@ async function start(){
    document.getElementById('grid').innerHTML=list.map(card).join('')||'<div class="empty">Ничего не найдено.</div>';
  };
  document.getElementById('q').oninput=render; render();
- document.getElementById('grid').addEventListener('toggle',async ev=>{const d=ev.target.closest('details.lazy-details');if(!d||!d.open||d.dataset.loaded)return;d.dataset.loaded='1';try{const id=d.dataset.entry;let p=profileCache.get(id);if(!p){p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');profileCache.set(id,p)}const b=p.blocks,body=d.querySelector('.detail-body');if(d.dataset.kind==='practice')body.innerHTML=practiceBlock(b.practical_applications);else if(d.dataset.kind==='stories')body.innerHTML=storyBlock(b.practitioner_stories);else if(d.dataset.kind==='evidence')body.innerHTML='<p>'+esc(b.evidence_and_limits.catalog_note)+'</p><p>'+esc(b.evidence_and_limits.practice_note)+'</p><p>'+esc(b.evidence_and_limits.story_note)+'</p>';else body.innerHTML='<p>Заявлено источником: '+esc(b.recovery.claimed_total)+'; описано в текущем каноническом каталоге: '+esc(b.recovery.described_in_canonical_catalog)+'; незаполнено: '+esc(b.recovery.unfilled_claimed_slots)+'.</p>';}catch(e){d.querySelector('.detail-body').innerHTML='<div class="empty">Не удалось загрузить детали: '+esc(e.message)+'</div>';}});
+ async function loadDetails(d){
+   if(!d||!d.open||d.dataset.loaded)return;
+   d.dataset.loaded='1';
+   const body=d.querySelector('.detail-body');
+   try{
+     const id=d.dataset.entry;
+     let p=profileCache.get(id);
+     if(!p){p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');profileCache.set(id,p)}
+     const b=p.blocks;
+     if(d.dataset.kind==='practice')body.innerHTML=practiceBlock(b.practical_applications);
+     else if(d.dataset.kind==='stories')body.innerHTML=storyBlock(b.practitioner_stories);
+     else if(d.dataset.kind==='evidence')body.innerHTML='<p>'+esc(b.evidence_and_limits.catalog_note)+'</p><p>'+esc(b.evidence_and_limits.practice_note)+'</p><p>'+esc(b.evidence_and_limits.story_note)+'</p>';
+     else body.innerHTML='<p>Заявлено источником: '+esc(b.recovery.claimed_total)+'; описано в текущем каноническом каталоге: '+esc(b.recovery.described_in_canonical_catalog)+'; незаполнено: '+esc(b.recovery.unfilled_claimed_slots)+'.</p>';
+   }catch(e){
+     d.dataset.loaded='';
+     body.innerHTML='<div class="empty">Не удалось загрузить детали: '+esc(e.message)+'</div>';
+   }
+ }
+ document.getElementById('q').oninput=render; render();
+ const grid=document.getElementById('grid');
+ grid.addEventListener('click',ev=>{
+   const summary=ev.target.closest('summary');
+   if(!summary)return;
+   const d=summary.closest('details.lazy-details');
+   if(!d)return;
+   setTimeout(()=>loadDetails(d),0);
+ });
+ grid.addEventListener('toggle',ev=>loadDetails(ev.target));
+ setTimeout(()=>grid.querySelectorAll('details.lazy-details[open]').forEach(loadDetails),0);
  const historiesDoc=await fetchJson('api/v1/practitioner-histories.json'); const allStories=historiesDoc.stories||[];
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practicesDoc=await fetchJson('api/v1/practices.json'); const practices=practicesDoc.entries||[];
