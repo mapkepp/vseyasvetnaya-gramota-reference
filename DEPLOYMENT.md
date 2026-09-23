@@ -32,3 +32,9 @@ The canonical catalog is `data/bukovy.json`. The public API is generated from it
 - API endpoint declarations.
 
 The validator runs automatically in `.github/workflows/validate-bukovy.yml`.
+
+## Recovery artifact workflow
+
+`.github/workflows/harvest-historical-bukovnik.yml` is a manual, read-only workflow. It runs `scripts/recover-historical-six-pages.py`, stores archived HTML/images plus SHA-256 hashes as a 14-day Actions artifact, and does **not** write to `data/bukovy.json` or promote recovery candidates into the canonical catalog.
+
+The recovery API is published separately at `api/v1/recovery.json`; its candidate count is intentionally not interpreted as a one-to-one count of the 79 unfilled canonical positions.
