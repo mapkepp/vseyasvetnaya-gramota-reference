@@ -7,7 +7,7 @@ import sys
 import time
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote, urljoin
+from urllib.parse import quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 
 PAGES = [
@@ -71,28 +71,22 @@ def wayback_captures(url):
     return rows
 
 
-def arquivo_captures(url):
-    api = (
-        "https://arquivo.pt/wayback/cdx?"
-        f"url={quote(url, safe=':/')}&output=json&filter=statuscode:200"
-    )
-    raw, _ = fetch(api)
-    try:
-        rows = json.loads(raw.decode("utf-8"))
-    except json.JSONDecodeError:
-        return []
-    if isinstance(rows, dict):
-        return rows.get("captures") or rows.get("results") or []
-    if isinstance(rows, list):
-        return rows[1:] if rows and isinstance(rows[0], list) else rows
-    return []
-
 
 def choose_wayback(rows):
     rows = [r for r in rows if r.get("timestamp") and r.get("original")]
     rows.sort(key=lambda r: r["timestamp"])
     return rows[-1] if rows else None
 
+
+
+def archived_asset_url(raw_url, page_original, timestamp, page_archived_url):
+    absolute = urljoin(page_original, raw_url)
+    parsed = urlparse(absolute)
+    if parsed.netloc.lower().endswith("gramota.org"):
+        return f"https://web.archive.org/web/{timestamp}id_/{absolute}"
+    if absolute.startswith("https://web.archive.org/") or absolute.startswith("http://web.archive.org/"):
+        return absolute
+    return absolute
 
 def safe_name(url, index):
     tail = url.rstrip("/").split("/")[-1] or f"image-{index:03d}"
@@ -140,7 +134,7 @@ def main():
                 image_urls = []
                 seen = set()
                 for raw_url in parser.urls:
-                    absolute = urljoin(archived, raw_url)
+                    absolute = archived_asset_url(raw_url, original, timestamp, archived)
                     if absolute not in seen:
                         seen.add(absolute)
                         image_urls.append(absolute)
