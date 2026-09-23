@@ -39,3 +39,11 @@
 ## Машинный реестр кандидатов
 
 Добавлен `data/recovery/147-candidates.json`. Он содержит имена/формы, встреченные в вторичных текстовых копиях. Все записи имеют `status: candidate` и `evidence: name-only`: они намеренно не попадают в `data/bukovy.json` и не увеличивают canonical coverage. Это рабочий индекс для следующего этапа сопоставления «имя → графема → фрагмент/страница».
+
+
+## New recovery lead
+
+- Historical online page: `http://gramota.org/fr.bukov.html`.
+- Secondary references describe it as an approximately 147-entry Буковник / fuller alphabet source.
+- Current domain status: page unavailable; `gramota.org` currently resolves to a parked domain.
+- Policy: lead only; do not promote names, glyphs, or descriptions into canonical data until the actual source material is recovered and linked.
