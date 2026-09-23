@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bukovy recovery API v1",
+  "type": "object",
+  "required": [
+    "api_version",
+    "recovery_version",
+    "status",
+    "canonical_count",
+    "canonical_described_count",
+    "canonical_unfilled_count",
+    "candidate_count",
+    "secondary_evidence_count",
+    "historical_visual_pages",
+    "rules"
+  ],
+  "properties": {
+    "api_version": {
+      "const": "v1"
+    },
+    "recovery_version": {
+      "const": "v1"
+    },
+    "status": {
+      "const": "research-only"
+    },
+    "canonical_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "canonical_described_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "canonical_unfilled_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "candidate_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "candidate_count_note": {
+      "type": "string"
+    },
+    "secondary_evidence_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "historical_visual_pages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "rules": {
+      "type": "object",
+      "required": [
+        "canonical_inclusion",
+        "promotion_requires",
+        "do_not_promote_from"
+      ]
+    }
+  }
+}
