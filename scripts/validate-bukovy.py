@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def load(r): return json.loads((ROOT/r).read_text("utf-8"))
-data=load("data/bukovy.json"); api=load("api/v1/bukovy.json"); profiles=load("api/v1/bukovy-profiles.json"); histories=load("data/practice/practitioner-histories.json"); api_histories=load("api/v1/practitioner-histories.json"); index=load("api/v1/index.json"); recovery_pages=load("data/recovery/historical-six-pages.json"); recovery_evidence=load("data/recovery/secondary-evidence.json"); recovery_candidates=load("data/recovery/147-candidates.json")
+data=load("data/bukovy.json"); api=load("api/v1/bukovy.json"); profiles=load("api/v1/bukovy-profiles.json"); histories=load("data/practice/practitioner-histories.json"); api_histories=load("api/v1/practitioner-histories.json"); index=load("api/v1/index.json"); recovery_pages=load("data/recovery/historical-six-pages.json"); recovery_evidence=load("data/recovery/secondary-evidence.json"); recovery_candidates=load("data/recovery/147-candidates.json"); recovery_api=load("api/v1/recovery.json")
 entries=data.get("entries",[]); assert data.get("claimed_count")==147 and data.get("api_version")=="v1"; assert len(entries)==data["coverage"]["described_entries"]; assert sum(e.get("image_status")=="local-copy" for e in entries)==data["coverage"]["entries_with_local_image"]; assert data["coverage"]["unfilled_claimed_slots"]==data["claimed_count"]-len(entries)
 ids=[e.get("entry_id") for e in entries]; assert all(ids) and len(ids)==len(set(ids)); nums=[e.get("source_image_number") for e in entries if e.get("source_image_number") is not None]; assert len(nums)==len(set(nums))
 for e in entries:
@@ -28,6 +28,12 @@ expected_pages=[
 ]
 assert [(p["label"],p["historical_url"]) for p in recovery_pages["pages"]]==expected_pages
 assert all(p.get("status")=="direct-unavailable" for p in recovery_pages["pages"])
+assert index["endpoints"]["recovery"]=="/api/v1/recovery.json"
+assert recovery_api["api_version"]=="v1" and recovery_api["recovery_version"]=="v1" and recovery_api["status"]=="research-only"
+assert recovery_api["canonical_count"]==data["claimed_count"] and recovery_api["canonical_described_count"]==len(entries) and recovery_api["canonical_unfilled_count"]==data["coverage"]["unfilled_claimed_slots"]
+assert recovery_api["candidate_count"]==len(recovery_candidates["candidates"]) and recovery_api["secondary_evidence_count"]==len(recovery_evidence["records"])
+assert recovery_api["historical_visual_pages"]==recovery_pages["pages"]
+assert recovery_api["rules"]["canonical_inclusion"] is False
 for k,v in {"bukovy":"/api/v1/bukovy.json","bukovy_profiles":"/api/v1/bukovy-profiles.json","bukovy_profile_template":"/api/v1/bukovy/{entry_id}.json","practices":"/api/v1/practices.json","practitioner_histories":"/api/v1/practitioner-histories.json","index":"/api/v1/index.json","schema":"/api/v1/bukovy.schema.json","bukovy_profile_schema":"/api/v1/bukovy-profile.schema.json","profile_manifest":"/api/v1/bukovy-manifest.json","bukovy_summary":"/api/v1/bukovy-summary.json"}.items(): assert index["endpoints"][k]==v
 assert profiles["profile_count"]==len(entries)
 summary=load("api/v1/bukovy-summary.json")
