@@ -49,6 +49,10 @@
 - Policy: lead only; do not promote names, glyphs, or descriptions into canonical data until the actual source material is recovered and linked.
 
 
+## Candidate-count semantics
+
+В реестре сейчас больше кандидатных имён, чем 79 незаполненных canonical-позиций. Это нормально: кандидаты включают варианты написания, составные формы и вторичные упоминания и **не являются нумерованными слотами 1:1**. Поле `canonical_unfilled_count` в recovery API остаётся единственным счётчиком незаполненных заявленных позиций.
+
 ## Six-page visual alphabet recovery lead
 
 LiveInternet сохраняет репост «Буковника ВсеЯСветной Грамоты» со ссылками на шесть исторических листов:
