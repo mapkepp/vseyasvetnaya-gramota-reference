@@ -18,11 +18,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p data/source-harvest
+          mkdir -p data/source-harvest images/source-sheets/dm80
           curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://gramota.dm80.ru/prayazik/" -o data/source-harvest/prayazik.html
           wc -c data/source-harvest/prayazik.html
 
-      - name: Extract source metadata
+      - name: Extract source structure
         shell: bash
         run: |
           set -euo pipefail
@@ -32,44 +32,118 @@ jobs:
           import json, pathlib, re
 
           html_path = pathlib.Path("data/source-harvest/prayazik.html")
-          html = html_path.read_text("utf-8", errors="replace")
+          raw = html_path.read_bytes()
+          m = re.search(br'charset\s*=\s*["\']?([A-Za-z0-9_-]+)', raw[:10000], re.I)
+          enc = m.group(1).decode("ascii", "ignore") if m else "cp1251"
+          try:
+              html = raw.decode(enc, errors="replace")
+          except LookupError:
+              html = raw.decode("cp1251", errors="replace")
 
           class P(HTMLParser):
               def __init__(self):
                   super().__init__()
-                  self.images=[]
-                  self.text=[]
-                  self._in_script=False
-                  self._in_style=False
+                  self.blocks=[]
+                  self.cur=[]
+                  self.in_skip=0
+              def flush(self):
+                  s=" ".join(" ".join(self.cur).split())
+                  if s:
+                      self.blocks.append({"type":"text","text":s})
+                  self.cur=[]
               def handle_starttag(self, tag, attrs):
                   a=dict(attrs)
-                  if tag.lower()=="img" and a.get("src"):
-                      self.images.append(urljoin("https://gramota.dm80.ru/prayazik/", a["src"]))
-                  if tag.lower() in ("script","style"):
-                      self._in_script=True
+                  t=tag.lower()
+                  if t=="img":
+                      self.flush()
+                      src=a.get("src")
+                      if src:
+                          self.blocks.append({
+                              "type":"image",
+                              "src":urljoin("https://gramota.dm80.ru/prayazik/",src)
+                          })
+                  elif t in ("script","style"):
+                      self.in_skip += 1
+                  elif t in ("p","div","br","h1","h2","h3","h4","li","tr","td"):
+                      self.flush()
               def handle_endtag(self, tag):
-                  if tag.lower() in ("script","style"):
-                      self._in_script=False
+                  t=tag.lower()
+                  if t in ("p","div","br","h1","h2","h3","h4","li","tr","td"):
+                      self.flush()
+                  elif t in ("script","style") and self.in_skip:
+                      self.in_skip -= 1
               def handle_data(self, data):
-                  if not self._in_script:
+                  if not self.in_skip:
                       s=" ".join(data.split())
                       if s:
-                          self.text.append(s)
+                          self.cur.append(s)
+              def close(self):
+                  super().close()
+                  self.flush()
 
-          p=P(); p.feed(html)
-          payload={
+          p=P(); p.feed(html); p.close()
+
+          imgs=[]
+          for b in p.blocks:
+              if b["type"]=="image":
+                  imgs.append(b["src"])
+
+          # Build image-centered records: each image gets the text until the next image.
+          records=[]
+          current=None
+          for b in p.blocks:
+              if b["type"]=="image":
+                  if current:
+                      records.append(current)
+                  current={"image_url":b["src"],"text":[]}
+              elif current:
+                  current["text"].append(b["text"])
+          if current:
+              records.append(current)
+
+          out={
               "source_url":"https://gramota.dm80.ru/prayazik/",
-              "image_urls":list(dict.fromkeys(p.images)),
-              "text_excerpt":p.text[:5000]
+              "encoding_detected":enc,
+              "image_count":len(imgs),
+              "image_urls":list(dict.fromkeys(imgs)),
+              "image_records":records
           }
-          pathlib.Path("data/source-harvest/source-page.json").write_text(
-              json.dumps(payload,ensure_ascii=False,indent=2),
-              "utf-8"
+          pathlib.Path("data/source-harvest/source-structure.json").write_text(
+              json.dumps(out,ensure_ascii=False,indent=2),"utf-8"
           )
-          print("images:", len(payload["image_urls"]))
-          print("text tokens:", len(payload["text_excerpt"]))
-          for u in payload["image_urls"]:
-              print(u)
+          print("encoding:",enc)
+          print("images:",len(imgs))
+          print("image-centered records:",len(records))
+          for i,r in enumerate(records[:90],1):
+              print(i, r["image_url"], "TEXT:", " ".join(r["text"])[:220])
+          PY
+
+      - name: Download published source images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, urllib.request, re, time
+          p=json.loads(pathlib.Path("data/source-harvest/source-structure.json").read_text("utf-8"))
+          out=pathlib.Path("images/source-sheets/dm80"); out.mkdir(parents=True,exist_ok=True)
+          seen=set()
+          for idx,u in enumerate(p["image_urls"],1):
+              if not u.startswith("https://gramota.dm80.ru/prayazik/"):
+                  continue
+              name=pathlib.Path(u.split("?",1)[0]).name
+              if not re.match(r"^Image\d+\.(gif|jpg|jpeg|png)$",name,re.I):
+                  continue
+              if name in seen: continue
+              seen.add(name)
+              dst=out/name
+              print("Downloading",name)
+              try:
+                  req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0"})
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      dst.write_bytes(r.read())
+              except Exception as e:
+                  print("FAILED",name,repr(e))
+          print("downloaded",len(list(out.iterdir())))
           PY
 
       - name: Commit harvest
@@ -78,10 +152,10 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source-harvest/prayazik.html data/source-harvest/source-page.json
+          git add data/source-harvest images/source-sheets/dm80
           if git diff --cached --quiet; then
             echo "No harvest changes"
           else
-            git commit -m "Harvest published source page metadata"
+            git commit -m "Harvest source glyphs and descriptions"
             git push
           fi
