@@ -1,0 +1,87 @@
+name: Harvest published source page
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch source page
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/source-harvest
+          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://gramota.dm80.ru/prayazik/" -o data/source-harvest/prayazik.html
+          wc -c data/source-harvest/prayazik.html
+
+      - name: Extract source metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin
+          import json, pathlib, re
+
+          html_path = pathlib.Path("data/source-harvest/prayazik.html")
+          html = html_path.read_text("utf-8", errors="replace")
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.images=[]
+                  self.text=[]
+                  self._in_script=False
+                  self._in_style=False
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if tag.lower()=="img" and a.get("src"):
+                      self.images.append(urljoin("https://gramota.dm80.ru/prayazik/", a["src"]))
+                  if tag.lower() in ("script","style"):
+                      self._in_script=True
+              def handle_endtag(self, tag):
+                  if tag.lower() in ("script","style"):
+                      self._in_script=False
+              def handle_data(self, data):
+                  if not self._in_script:
+                      s=" ".join(data.split())
+                      if s:
+                          self.text.append(s)
+
+          p=P(); p.feed(html)
+          payload={
+              "source_url":"https://gramota.dm80.ru/prayazik/",
+              "image_urls":list(dict.fromkeys(p.images)),
+              "text_excerpt":p.text[:5000]
+          }
+          pathlib.Path("data/source-harvest/source-page.json").write_text(
+              json.dumps(payload,ensure_ascii=False,indent=2),
+              "utf-8"
+          )
+          print("images:", len(payload["image_urls"]))
+          print("text tokens:", len(payload["text_excerpt"]))
+          for u in payload["image_urls"]:
+              print(u)
+          PY
+
+      - name: Commit harvest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source-harvest/prayazik.html data/source-harvest/source-page.json
+          if git diff --cached --quiet; then
+            echo "No harvest changes"
+          else
+            git commit -m "Harvest published source page metadata"
+            git push
+          fi
