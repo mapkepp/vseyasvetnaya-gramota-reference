@@ -71,19 +71,22 @@ def wayback_captures(url):
     return rows
 
 
-
 def choose_wayback(rows):
     rows = [r for r in rows if r.get("timestamp") and r.get("original")]
     rows.sort(key=lambda r: r["timestamp"])
     return rows[-1] if rows else None
 
-
-
-def archived_asset_url(raw_url, page_original, timestamp, page_archived_url):
-    absolute = urljoin(page_original, raw_url)
+def archived_asset_url(raw_url, page_original, timestamp):
+    raw = raw_url.strip()
+    raw_parsed = urlparse(raw)
+    if raw_parsed.netloc.lower().endswith("web.archive.org"):
+        return raw
+    absolute = urljoin(page_original, raw)
     parsed = urlparse(absolute)
     if parsed.netloc.lower().endswith("gramota.org"):
         return f"https://web.archive.org/web/{timestamp}id_/{absolute}"
+    if parsed.scheme not in ("http", "https"):
+        return ""
     if absolute.startswith("https://web.archive.org/") or absolute.startswith("http://web.archive.org/"):
         return absolute
     return absolute
@@ -134,8 +137,8 @@ def main():
                 image_urls = []
                 seen = set()
                 for raw_url in parser.urls:
-                    absolute = archived_asset_url(raw_url, original, timestamp, archived)
-                    if absolute not in seen:
+                    absolute = archived_asset_url(raw_url, original, timestamp)
+                    if absolute and absolute not in seen:
                         seen.add(absolute)
                         image_urls.append(absolute)
                 image_urls = image_urls[: args.max_images]
