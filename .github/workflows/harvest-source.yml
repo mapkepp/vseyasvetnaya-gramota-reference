@@ -170,13 +170,19 @@ jobs:
           print("catalog entries:",len(entries))
           PY
 
+      - name: Rebuild public JSON API
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/build-api.py
+
       - name: Commit harvest
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source-harvest data/bukovy.json images/source-sheets/dm80
+          git add data/source-harvest data/bukovy.json api/v1 images/source-sheets/dm80
           if git diff --cached --quiet; then
             echo "No harvest changes"
           else
