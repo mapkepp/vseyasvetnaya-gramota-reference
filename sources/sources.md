@@ -83,3 +83,8 @@ https://www.liveinternet.ru/users/5255616/rubric/4632436/
 - Источник: https://proza.ru/2026/07/27/1769
 - В проекте: `data/recovery/secondary-evidence.json`
 - Правило: кандидат остаётся кандидатом до подтверждения графики и привязки к первичному источнику.
+
+
+## Historical full-list lead: gramota.org/fr.bukov.html
+
+Several secondary references point to the former page `http://gramota.org/fr.bukov.html` as a historical online copy of a substantially fuller ВсеЯСветной Буковник. A 2011 discussion explicitly describes it as a variant containing approximately 147 letters, and a 2013 text says that the page included an additional alphabet view. The current `gramota.org` domain is no longer serving that page, so this is retained only as a recovery lead, not as canonical evidence. No missing Bukova is added from this lead without a recoverable primary image/text linkage.
