@@ -32,12 +32,8 @@ jobs:
           import json, pathlib, re
 
           raw = pathlib.Path("data/source-harvest/prayazik.html").read_bytes()
-          m = re.search(br'charset[[:space:]]*=[[:space:]]*["'\''']?([A-Za-z0-9_-]+)', raw[:10000], re.I)
-          enc = m.group(1).decode("ascii", "ignore") if m else "cp1251"
-          try:
-              html = raw.decode(enc, errors="replace")
-          except LookupError:
-              html = raw.decode("cp1251", errors="replace")
+          enc = "cp1251"
+          html = raw.decode(enc, errors="replace")
 
           class P(HTMLParser):
               def __init__(self):
