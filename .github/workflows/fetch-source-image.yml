@@ -1,4 +1,4 @@
-name: Fetch source image
+name: Fetch source images
 
 on:
   workflow_dispatch:
@@ -13,14 +13,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download published source image
+
+      - name: Download published source tables
+        shell: bash
         run: |
-          mkdir -p images
-          curl -L --fail --retry 3 --connect-timeout 20 -o images/primary-table.jpg "https://ic.pics.livejournal.com/art_afrodiziak/24988835/1980686/1980686_original.jpg"
-      - name: Commit image
+          set -euo pipefail
+          mkdir -p images/source-sheets
+          urls=(
+            "https://ic.pics.livejournal.com/art_afrodiziak/24988835/1980686/1980686_original.jpg"
+            "https://gramota.org/bukovi/buk1.jpg"
+            "https://gramota.org/bukovi/buk2.jpg"
+            "https://gramota.org/bukovi/buk3.jpg"
+            "https://gramota.org/bukovi/buk4.jpg"
+            "https://gramota.org/bukovi/buk5.jpg"
+            "https://gramota.org/bukovi/buk6.jpg"
+          )
+          names=(
+            "livejournal-primary.jpg"
+            "buk1.jpg"
+            "buk2.jpg"
+            "buk3.jpg"
+            "buk4.jpg"
+            "buk5.jpg"
+            "buk6.jpg"
+          )
+          for i in ${!urls[@]}; do
+            echo "Downloading ${names[$i]}"
+            curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0" "${urls[$i]}" -o "images/source-sheets/${names[$i]}"
+            file "images/source-sheets/${names[$i]}"
+          done
+
+      - name: Commit downloaded source images
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add images/primary-table.jpg
-          git diff --cached --quiet || git commit -m "Add published source table image"
-          git diff --cached --quiet || git push
+          git add images/source-sheets
+          if git diff --cached --quiet; then
+            echo "No image changes"
+          else
+            git commit -m "Add published source table images"
+            git push
+          fi
