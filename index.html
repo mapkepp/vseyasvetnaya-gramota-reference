@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ВсеЯСветная Грамота — Буковник</title>
+<style>
+body{margin:0;background:#0b0d10;color:#edf1f7;font:16px/1.55 system-ui,sans-serif}
+header,main,footer{max-width:1100px;margin:auto;padding:24px}
+h1{font-size:42px}.note{padding:16px;background:#17140e;border-left:3px solid #d7b86e}
+input{width:100%;padding:14px;border-radius:10px;border:1px solid #303744;background:#151922;color:white;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:20px}
+.card{padding:18px;border:1px solid #29303c;border-radius:14px;background:#151922}
+.num{color:#d7b86e}.name{font-size:26px;font-weight:700}
+.muted{color:#9da8b7;font-size:13px}
+</style></head>
+<body>
+<header><h1>ВсеЯСветная Грамота</h1>
+<p>Буковник — справочник по заявляемым 147 буковам.</p></header>
+<main>
+<div class="note"><b>Методика:</b> оригинальные начертания не генерируются и не перерисовываются. Описания эзотерических эффектов отделяются от проверяемых библиографических сведений.</div>
+<h2>Поиск</h2><input id="q" placeholder="Название или описание">
+<div id="grid" class="grid"></div>
+</main>
+<footer><a href="sources/sources.md">Источники и методика</a></footer>
+<script>
+const fallback=Array.from({length:147},(_,i)=>({id:i+1,name:'№'+(i+1),status:'not-yet-verified',description:'Нет проверенной карточки в текущей редакции.'}));
+async function start(){
+ let entries=fallback;
+ try{const d=await fetch('data/bukovy.json').then(r=>r.json());const m=new Map(d.entries.map(x=>[x.id,x]));entries=entries.map(x=>m.get(x.id)||x)}catch(e){}
+ const render=()=>{const q=document.getElementById('q').value.toLowerCase();document.getElementById('grid').innerHTML=entries.filter(x=>(x.name+' '+x.description).toLowerCase().includes(q)).map(x=>'<article class="card"><div class="num">№'+x.id+'</div><div class="name">'+x.name+'</div><div class="muted">'+x.status+'</div><p>'+x.description+'</p></article>').join('')};
+ document.getElementById('q').oninput=render;render();
+}start();
+</script></body></html>
