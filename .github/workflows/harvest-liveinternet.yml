@@ -72,11 +72,14 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Rebase BEFORE creating the commit, so a concurrent push cannot
+          # make the new local commit immediately non-fast-forward.
+          git fetch origin main
+          git rebase origin/main
           git add data/liveinternet images/source-sheets/liveinternet
           if git diff --cached --quiet; then
             echo "No LiveInternet changes"
           else
             git commit -m "Add published LiveInternet table sources"
-            git pull --rebase origin main
-            git push
+            git push origin HEAD:main
           fi
