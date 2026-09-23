@@ -1,0 +1,11 @@
+{
+  "api_version": "v1",
+  "service": "bukovy-reference",
+  "description": "Static JSON API for the research reference catalog.",
+  "endpoints": {
+    "bukovy": "/api/v1/bukovy.json",
+    "practices": "/api/v1/practices.json",
+    "index": "/api/v1/index.json"
+  },
+  "source_policy": "Catalog claims are attributed to their sources; missing claimed entries are not invented."
+}
