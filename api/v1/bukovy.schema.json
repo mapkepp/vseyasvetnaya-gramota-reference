@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bukovy API v1",
+  "type": "object",
+  "required": [
+    "api_version",
+    "claimed_count",
+    "entries"
+  ],
+  "properties": {
+    "api_version": {
+      "const": "v1"
+    },
+    "claimed_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entry_id",
+          "name",
+          "claim_status",
+          "source_url"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_image_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "claim_status": {
+            "type": "string"
+          },
+          "description_claim": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "source_image_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "image": {
+            "type": "string"
+          },
+          "image_status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
