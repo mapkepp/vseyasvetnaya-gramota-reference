@@ -85,7 +85,7 @@ function card(p){
  '<div class="muted">'+'практика: '+esc(p.counts.practical_applications)+' · истории: '+esc(p.counts.practitioner_stories)+'</div>'+
  '<div class="block"><h3>Знак и происхождение</h3><p>Статус изображения: '+esc(b.glyph.image_status||'нет')+'</p><p><a href="'+esc(b.glyph.source_image_url||b.source.source_url)+'" target="_blank" rel="noopener noreferrer">Открыть источник</a></p></div>'+
  '<div class="block"><h3>Заявляемое описание</h3><p class="claim">'+esc(b.claimed_description.text)+'</p></div>'+
- '<details open class="lazy-details" data-kind="practice" data-entry="'+esc(p.entry_id)+'"><summary>Практические применения ('+esc(p.counts.practical_applications)+')</summary><div class="detail-body"><div class="empty">Загрузка…</div></div></details>'+
+ '<details class="lazy-details" data-kind="practice" data-entry="'+esc(p.entry_id)+'"><summary>Практические применения ('+esc(p.counts.practical_applications)+')</summary><div class="detail-body"><div class="empty">Загрузка…</div></div></details>'+
  '<details class="lazy-details" data-kind="stories" data-entry="'+esc(p.entry_id)+'"><summary>Истории практиков ('+esc(p.counts.practitioner_stories)+')</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<details class="lazy-details" data-kind="evidence" data-entry="'+esc(p.entry_id)+'"><summary>Доказательность и ограничения</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<details class="lazy-details" data-kind="recovery" data-entry="'+esc(p.entry_id)+'"><summary>Восстановление 147-позиционного массива</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
@@ -134,7 +134,7 @@ async function start(){
    setTimeout(()=>loadDetails(d),0);
  });
  grid.addEventListener('toggle',ev=>loadDetails(ev.target));
- setTimeout(()=>grid.querySelectorAll('details.lazy-details[open]').forEach(loadDetails),0);
+
  const historiesDoc=await fetchJson('api/v1/practitioner-histories.json'); const allStories=historiesDoc.stories||[];
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practicesDoc=await fetchJson('api/v1/practices.json'); const practices=practicesDoc.entries||[];
