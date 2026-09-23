@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ВсеЯСветная Грамота — Буковник 147</title>
 <style>
-body{margin:0;background:#0b0d10;color:#edf1f7;font:16px/1.55 system-ui,sans-serif}
+body{margin:0;background:#0b0d10;color:#edf1f7;font:16px/1.55 system-ui,sans-serif;scroll-behavior:smooth}
 header,main,footer{max-width:1200px;margin:auto;padding:24px}
 h1{font-size:42px;margin-bottom:8px}.note{padding:16px;background:#17140e;border-left:3px solid #d7b86e;margin:14px 0}
 .stats{display:flex;gap:10px;flex-wrap:wrap}.pill{padding:8px 12px;border:1px solid #303744;border-radius:999px;background:#151922}
+.toc{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0}.toc ol{margin:8px 0 0;padding-left:24px}.toc li{margin:7px 0}
+section{scroll-margin-top:20px}
 input{width:100%;box-sizing:border-box;padding:14px;border-radius:10px;border:1px solid #303744;background:#151922;color:white;font-size:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:20px}
 .card{overflow:hidden;border:1px solid #29303c;border-radius:14px;background:#151922}
@@ -22,24 +24,44 @@ a{color:#a9c7ff}
 <header>
 <h1>ВсеЯСветная Грамота — Буковник</h1>
 <p>Исследовательский справочник по заявляемой системе 147 буков.</p>
+
+<nav class="toc" aria-label="Оглавление">
+<strong>Оглавление</strong>
+<ol>
+<li><a href="#stories">Истории практического применения</a></li>
+<li><a href="#practices">Заявляемые практические применения</a></li>
+<li><a href="#catalog">Каталог Буков</a></li>
+<li><a href="#sources">Источники и API</a></li>
+</ol>
+</nav>
+
 <div class="stats">
 <span class="pill" id="count">Загрузка…</span>
 <span class="pill" id="storycount">Истории: загрузка…</span>
 <span class="pill">Оригинальные знаки не перерисовываются</span>
 </div>
-<div class="note"><b>Важно:</b> карточки передают формулировки опубликованных источников как <b>утверждения системы</b>. Истории практиков ниже также являются свидетельствами авторов. Это не означает научного подтверждения описываемых энергетических, лечебных, биологических или иных эффектов.</div>
+<div class="note"><b>Важно:</b> карточки передают формулировки опубликованных источников как <b>утверждения системы</b>. Истории практиков также являются свидетельствами авторов. Это не означает научного подтверждения описываемых энергетических, лечебных, биологических или иных эффектов.</div>
 </header>
 <main>
-<h2>Истории практического применения</h2>
+<section id="stories">
+<h2>1. Истории практического применения</h2>
 <p class="muted">Здесь фиксируется именно <b>что человек сделал</b> с Буковой или ставом и <b>что он сообщил после этого</b>. Это отдельный слой свидетельств, не смешиваемый с каноническим каталогом.</p>
 <div id="histories" class="grid"></div>
+</section>
 
-<h2>Заявляемые практические применения</h2><div id="practices"></div>
-<h2>Карточки буков</h2>
+<section id="practices">
+<h2>2. Заявляемые практические применения</h2>
+<div id="practices-list"></div>
+</section>
+
+<section id="catalog">
+<h2>3. Каталог Буков</h2>
 <input id="q" placeholder="Поиск по имени или описанию…">
 <div id="grid" class="grid"></div>
+</section>
 </main>
-<footer>
+<footer id="sources">
+<h2>4. Источники и API</h2>
 <p><a href="sources/sources.md">Источники и методика</a> · <a href="api/v1/index.json">API v1</a> · <a href="api/v1/practitioner-histories.json">API историй</a></p>
 <p>В текущей базе автоматически извлечены только те карточки, для которых найдено опубликованное описание и привязанное изображение. Незаполненные позиции не заменяются выдуманными данными.</p>
 </footer>
@@ -53,7 +75,7 @@ async function start(){
  const h=await fetch('api/v1/practitioner-histories.json').then(r=>r.json()).catch(()=>({stories:[]}));
  document.getElementById('storycount').textContent='Истории: '+(h.stories||[]).length;
  document.getElementById('histories').innerHTML=(h.stories||[]).map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><div class="muted">Связанные Буковы: '+esc((x.related_bukovy||[]).join(', '))+'</div><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><div class="muted">Уровень свидетельства: '+esc(x.evidence_level)+'</div><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('');
- document.getElementById('practices').innerHTML='<div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('')+'</div>';
+ document.getElementById('practices-list').innerHTML='<div class="grid">'+(p.entries||[]).map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('')+'</div>';
  document.getElementById('count').textContent='Каталог: '+entries.length+' / заявлено системой: '+d.claimed_count+' / локальные изображения: '+(d.coverage?.entries_with_local_image??entries.filter(x=>x.image).length);
  const render=()=>{
    const q=document.getElementById('q').value.toLowerCase().trim();
