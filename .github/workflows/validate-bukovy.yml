@@ -16,5 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Rebuild generated API
+        run: python3 scripts/build-api.py
+
+      - name: Reject stale generated API
+        run: git diff --exit-code -- api/v1
+
       - name: Validate canonical catalog and API
         run: python3 scripts/validate-bukovy.py
