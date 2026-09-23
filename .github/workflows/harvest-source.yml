@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p data/source-harvest images/source-sheets/dm80
-          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0"             "https://gramota.dm80.ru/prayazik/" -o data/source-harvest/prayazik.html
+          curl -L --fail --retry 3 --connect-timeout 20 -A "Mozilla/5.0" "https://gramota.dm80.ru/prayazik/" -o data/source-harvest/prayazik.html
           wc -c data/source-harvest/prayazik.html
 
       - name: Extract source structure
@@ -31,9 +31,8 @@ jobs:
           from urllib.parse import urljoin
           import json, pathlib, re
 
-          html_path = pathlib.Path("data/source-harvest/prayazik.html")
-          raw = html_path.read_bytes()
-          m = re.search(br'charset\s*=\s*["\']?([A-Za-z0-9_-]+)', raw[:10000], re.I)
+          raw = pathlib.Path("data/source-harvest/prayazik.html").read_bytes()
+          m = re.search(br'charset[[:space:]]*=[[:space:]]*["'\''']?([A-Za-z0-9_-]+)', raw[:10000], re.I)
           enc = m.group(1).decode("ascii", "ignore") if m else "cp1251"
           try:
               html = raw.decode(enc, errors="replace")
@@ -43,56 +42,43 @@ jobs:
           class P(HTMLParser):
               def __init__(self):
                   super().__init__()
-                  self.blocks=[]
-                  self.cur=[]
-                  self.in_skip=0
+                  self.blocks = []
+                  self.cur = []
+                  self.skip = 0
               def flush(self):
-                  s=" ".join(" ".join(self.cur).split())
+                  s = " ".join(" ".join(self.cur).split())
                   if s:
                       self.blocks.append({"type":"text","text":s})
-                  self.cur=[]
+                  self.cur = []
               def handle_starttag(self, tag, attrs):
-                  a=dict(attrs)
-                  t=tag.lower()
-                  if t=="img":
+                  t = tag.lower()
+                  a = dict(attrs)
+                  if t == "img":
                       self.flush()
-                      src=a.get("src")
+                      src = a.get("src")
                       if src:
-                          self.blocks.append({
-                              "type":"image",
-                              "src":urljoin("https://gramota.dm80.ru/prayazik/",src)
-                          })
+                          self.blocks.append({"type":"image","src":urljoin("https://gramota.dm80.ru/prayazik/",src)})
                   elif t in ("script","style"):
-                      self.in_skip += 1
+                      self.skip += 1
                   elif t in ("p","div","br","h1","h2","h3","h4","li","tr","td"):
                       self.flush()
               def handle_endtag(self, tag):
-                  t=tag.lower()
+                  t = tag.lower()
                   if t in ("p","div","br","h1","h2","h3","h4","li","tr","td"):
                       self.flush()
-                  elif t in ("script","style") and self.in_skip:
-                      self.in_skip -= 1
+                  elif t in ("script","style") and self.skip:
+                      self.skip -= 1
               def handle_data(self, data):
-                  if not self.in_skip:
-                      s=" ".join(data.split())
+                  if not self.skip:
+                      s = " ".join(data.split())
                       if s:
                           self.cur.append(s)
-              def close(self):
-                  super().close()
-                  self.flush()
 
-          p=P(); p.feed(html); p.close()
-
-          imgs=[]
-          for b in p.blocks:
-              if b["type"]=="image":
-                  imgs.append(b["src"])
-
-          # Build image-centered records: each image gets the text until the next image.
+          p=P(); p.feed(html); p.flush()
           records=[]
           current=None
           for b in p.blocks:
-              if b["type"]=="image":
+              if b["type"] == "image":
                   if current:
                       records.append(current)
                   current={"image_url":b["src"],"text":[]}
@@ -104,18 +90,12 @@ jobs:
           out={
               "source_url":"https://gramota.dm80.ru/prayazik/",
               "encoding_detected":enc,
-              "image_count":len(imgs),
-              "image_urls":list(dict.fromkeys(imgs)),
+              "image_count":len([b for b in p.blocks if b["type"]=="image"]),
+              "image_urls":[b["src"] for b in p.blocks if b["type"]=="image"],
               "image_records":records
           }
-          pathlib.Path("data/source-harvest/source-structure.json").write_text(
-              json.dumps(out,ensure_ascii=False,indent=2),"utf-8"
-          )
-          print("encoding:",enc)
-          print("images:",len(imgs))
-          print("image-centered records:",len(records))
-          for i,r in enumerate(records[:90],1):
-              print(i, r["image_url"], "TEXT:", " ".join(r["text"])[:220])
+          pathlib.Path("data/source-harvest/source-structure.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),"utf-8")
+          print("encoding:",enc,"records:",len(records))
           PY
 
       - name: Download published source images
@@ -123,19 +103,19 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json, pathlib, urllib.request, re, time
-          p=json.loads(pathlib.Path("data/source-harvest/source-structure.json").read_text("utf-8"))
-          out=pathlib.Path("images/source-sheets/dm80"); out.mkdir(parents=True,exist_ok=True)
-          seen=set()
-          for idx,u in enumerate(p["image_urls"],1):
+          import json, pathlib, urllib.request, re
+          src=json.loads(pathlib.Path("data/source-harvest/source-structure.json").read_text("utf-8"))
+          out=pathlib.Path("images/source-sheets/dm80")
+          out.mkdir(parents=True,exist_ok=True)
+          for u in src["image_urls"]:
               if not u.startswith("https://gramota.dm80.ru/prayazik/"):
                   continue
-              name=pathlib.Path(u.split("?",1)[0]).name
-              if not re.match(r"^Image\d+\.(gif|jpg|jpeg|png)$",name,re.I):
+              name=pathlib.PurePosixPath(u.split("?",1)[0]).name
+              if not re.match(r"^Image[0-9]+[.](gif|jpg|jpeg|png)$",name,re.I):
                   continue
-              if name in seen: continue
-              seen.add(name)
               dst=out/name
+              if dst.exists():
+                  continue
               print("Downloading",name)
               try:
                   req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0"})
@@ -143,7 +123,7 @@ jobs:
                       dst.write_bytes(r.read())
               except Exception as e:
                   print("FAILED",name,repr(e))
-          print("downloaded",len(list(out.iterdir())))
+          print("downloaded:",len(list(out.iterdir())))
           PY
 
       - name: Build catalog from published descriptions
@@ -151,7 +131,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json, pathlib, re
+          import json, pathlib
           src=json.loads(pathlib.Path("data/source-harvest/source-structure.json").read_text("utf-8"))
           entries=[]
           for rec in src["image_records"]:
@@ -159,37 +139,27 @@ jobs:
               if not texts:
                   continue
               first=texts[0].strip()
-              m=re.match(r'^["«]?(.+?)[»"]?\\s*-\\s*(.*)        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source-harvest images/source-sheets/dm80
-          if git diff --cached --quiet; then
-            echo "No harvest changes"
-          else
-            git commit -m "Harvest source glyphs and descriptions"
-            git push
-          fi
-,first)
-              if not m:
+              if " - " not in first:
                   continue
-              name=m.group(1).strip(' "«»')
+              left, right = first.split(" - ", 1)
+              name=left.strip(' "«»')
+              if not name or len(name)>100:
+                  continue
               desc=" ".join(texts).strip()
-              image_url=rec["image_url"]
-              filename=pathlib.PurePosixPath(image_url.split("?",1)[0]).name
+              url=rec["image_url"]
+              filename=pathlib.PurePosixPath(url.split("?",1)[0]).name
               local=None
-              if image_url.startswith("https://gramota.dm80.ru/prayazik/"):
+              if url.startswith("https://gramota.dm80.ru/prayazik/"):
                   p=pathlib.Path("images/source-sheets/dm80")/filename
                   if p.exists():
                       local=str(p).replace("\\","/")
               entry={
-                  "source_id": len(entries)+1,
-                  "name": name,
-                  "status": "source-described",
-                  "description_claim": desc,
-                  "source_url": src["source_url"],
-                  "source_image_url": image_url
+                  "source_id":len(entries)+1,
+                  "name":name,
+                  "status":"source-described",
+                  "description_claim":desc,
+                  "source_url":src["source_url"],
+                  "source_image_url":url
               }
               if local:
                   entry["image"]=local
@@ -199,7 +169,7 @@ jobs:
               "title":"ВсеЯСветная Грамота — Буковник",
               "claimed_count":147,
               "catalog_status":"partial-primary-web-source",
-              "note":"The published source page currently yields 68 image-linked descriptions. The remaining claimed entries are not filled with invented names or effects.",
+              "note":"Published source page currently yields the image-linked descriptions available here. Remaining claimed entries are not invented.",
               "entries":entries
           }
           pathlib.Path("data/bukovy.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),"utf-8")
@@ -212,10 +182,10 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/source-harvest images/source-sheets/dm80
+          git add data/source-harvest data/bukovy.json images/source-sheets/dm80
           if git diff --cached --quiet; then
             echo "No harvest changes"
           else
-            git commit -m "Harvest source glyphs and descriptions"
+            git commit -m "Harvest source glyphs and build catalog"
             git push
           fi
