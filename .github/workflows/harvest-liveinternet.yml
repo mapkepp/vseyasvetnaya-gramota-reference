@@ -42,7 +42,7 @@ jobs:
                           a=dict(attrs)
                           if a.get("src"): self.img.append(urljoin(hp.name,a["src"]))
               p=P(); p.feed(text)
-              urls += p.img
+              urls += [u if u.startswith("http") else ("https:" + u if u.startswith("//") else urljoin("https://www.liveinternet.ru/", u)) for u in p.img]
 
           urls=list(dict.fromkeys(urls))
           pathlib.Path("data/liveinternet/image-urls.json").write_text(
@@ -50,6 +50,8 @@ jobs:
           )
           out=pathlib.Path("images/source-sheets/liveinternet"); out.mkdir(parents=True,exist_ok=True)
           for i,u in enumerate(urls,1):
+              if not re.match(r"^https?://",u,re.I):
+                  continue
               if not re.search(r'\.(?:jpg|jpeg|png|gif)(?:[?#].*)?$',u,re.I):
                   continue
               name=pathlib.Path(u.split("?",1)[0].split("#",1)[0]).name or f"image-{i}.jpg"
@@ -71,9 +73,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/liveinternet images/source-sheets/liveinternet
-          if git diff --cached --quiet; then
+          if git diff --cached --quiet; then then
             echo "No LiveInternet changes"
           else
             git commit -m "Add published LiveInternet table sources"
+            git pull --rebase origin main
             git push
           fi
