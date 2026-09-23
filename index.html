@@ -105,7 +105,6 @@ async function start(){
    const list=profiles.filter(p=>JSON.stringify(p).toLowerCase().includes(q));
    document.getElementById('grid').innerHTML=list.map(card).join('')||'<div class="empty">Ничего не найдено.</div>';
  };
- document.getElementById('q').oninput=render; render();
  async function loadDetails(d){
    if(!d||!d.open||d.dataset.loaded)return;
    d.dataset.loaded='1';
