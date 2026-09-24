@@ -6,7 +6,7 @@
   "data_status": {
     "catalog": "canonical-entry",
     "practice": "no-linked-practice-record",
-    "stories": "no-linked-story-record"
+    "stories": "linked"
   },
   "blocks": {
     "identity": {
@@ -29,7 +29,36 @@
       "status": "source-published-claim"
     },
     "practical_applications": [],
-    "practitioner_stories": [],
+    "practitioner_stories": [
+      {
+        "story_id": "salsa-relative-head-injury",
+        "practitioner_alias": "Salsa",
+        "related_bukovy": [
+          "Хв",
+          "ДЭЗА"
+        ],
+        "action": "Практик рассказывает, что после травмы родственника, который отказался от обращения в больницу, приложила к его голове вышивку со знаком/комбинацией «Посох Хв Деза», а затем родственник оставил эту вышивку на ночь.",
+        "reported_result": "По её рассказу, примерно через пять минут родственнику стало хорошо; позднее он продолжал хранить браслет/вышивку дома.",
+        "evidence_level": "anecdotal-practitioner-report",
+        "source_urls": [
+          "https://chernyymag.5bb.ru/viewtopic.php?id=7704"
+        ]
+      },
+      {
+        "story_id": "izbavlenie-user-adverse-household",
+        "practitioner_alias": "Marina_tot",
+        "related_bukovy": [
+          "Грамотный став «Избавление»"
+        ],
+        "action": "Пользователь описала повторное применение буквенного става после предыдущих чисток.",
+        "reported_result": "Она сообщила о выраженных субъективных ощущениях во время прежних чисток и о намерении повторить применение; в соседнем отзыве другой пользователь описывал острые недомогания у членов семьи и связывал их со ставом. История важна как пример заявленного нежелательного опыта.",
+        "evidence_level": "anecdotal-practitioner-report",
+        "source_urls": [
+          "https://chernayamagiya.com/forum/index.php?topic=19438.135"
+        ],
+        "source_note": "Сообщения содержат медицинские симптомы, но не устанавливают их связь со ставом; это не медицинское свидетельство."
+      }
+    ],
     "evidence_and_limits": {
       "catalog_note": "The description is preserved as a source-attributed claim.",
       "practice_note": "Practical applications are secondary-source claims unless the linked record says otherwise.",
