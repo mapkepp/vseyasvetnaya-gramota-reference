@@ -148,13 +148,16 @@ async function start(){
  });
  grid.addEventListener('toggle',ev=>loadDetails(ev.target),true);
 
- const [profilesDoc,historiesDoc,practicesDoc]=await Promise.all([
+ const [profilesDoc,historiesDoc,practicesDoc,catalogDoc]=await Promise.all([
    fetchJson('api/v1/bukovy-profiles.json'),
    fetchJson('api/v1/practitioner-histories.json'),
-   fetchJson('api/v1/practices.json')
+   fetchJson('api/v1/practices.json'),
+   fetchJson('data/bukovy.json')
  ]);
  bulkProfiles=profilesDoc.entries||[];
- bulkProfiles.forEach(x=>profileCache.set(x.entry_id,x));
+ const catalogEntries=catalogDoc.entries||[];
+ const practicalById=new Map(catalogEntries.map(x=>[x.entry_id,x]));
+ bulkProfiles.forEach(x=>{const c=practicalById.get(x.entry_id);if(c){x.practical_application={text:c.practical_application,status:c.practical_application_status,note:c.practical_application_note};}profileCache.set(x.entry_id,x);});
  const allStories=historiesDoc.stories||[];
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practices=practicesDoc.entries||[];
