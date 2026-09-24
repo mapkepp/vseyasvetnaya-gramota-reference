@@ -69,6 +69,7 @@ a{color:#a9c7ff}
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const links=urls=>(urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">источник</a>').join(' · ');
 const j=v=>JSON.stringify(v,null,2); const profileCache=new Map();
+let bulkProfiles=null;
 function practiceBlock(items){
  if(!items?.length)return '<div class="empty">Для этой Буковы отдельная практическая запись пока не связана.</div>';
  return items.map(x=>'<div class="block"><h3>'+esc(x.name)+'</h3><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div>').join('');
@@ -112,7 +113,11 @@ async function start(){
    try{
      const id=d.dataset.entry;
      let p=profileCache.get(id);
-     if(!p){p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');profileCache.set(id,p)}
+     if(!p){
+       p=(bulkProfiles||[]).find(x=>x.entry_id===id);
+       if(!p)p=await fetchJson('api/v1/bukovy/'+encodeURIComponent(id)+'.json');
+       if(p)profileCache.set(id,p);
+     }
      const b=p.blocks;
      if(d.dataset.kind==='practice')body.innerHTML=practiceBlock(b.practical_applications);
      else if(d.dataset.kind==='stories')body.innerHTML=storyBlock(b.practitioner_stories);
@@ -132,9 +137,15 @@ async function start(){
    if(!d)return;
    setTimeout(()=>loadDetails(d),0);
  });
- grid.addEventListener('toggle',ev=>loadDetails(ev.target));
+ grid.addEventListener('toggle',ev=>loadDetails(ev.target),true);
 
- const [historiesDoc,practicesDoc]=await Promise.all([fetchJson('api/v1/practitioner-histories.json'),fetchJson('api/v1/practices.json')]);
+ const [profilesDoc,historiesDoc,practicesDoc]=await Promise.all([
+   fetchJson('api/v1/bukovy-profiles.json'),
+   fetchJson('api/v1/practitioner-histories.json'),
+   fetchJson('api/v1/practices.json')
+ ]);
+ bulkProfiles=profilesDoc.entries||[];
+ bulkProfiles.forEach(x=>profileCache.set(x.entry_id,x));
  const allStories=historiesDoc.stories||[];
  document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practices=practicesDoc.entries||[];
