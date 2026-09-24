@@ -10,7 +10,7 @@ header,main,footer{max-width:1280px;margin:auto;padding:24px}
 h1{font-size:42px;margin-bottom:8px}.note{padding:16px;background:#17140e;border-left:3px solid #d7b86e;margin:14px 0}
 .stats{display:flex;gap:10px;flex-wrap:wrap}.pill{padding:8px 12px;border:1px solid #303744;border-radius:999px;background:#151922}
 .toc{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0}.toc ol{margin:8px 0 0;padding-left:24px}.toc li{margin:7px 0}
-.bukovy-index{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0;scroll-margin-top:20px}.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;margin-top:12px}.index-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #29303c;border-radius:9px;background:#151922;text-decoration:none}.index-item:hover{border-color:#71809a;background:#1a202b}.index-num{color:#d7b86e;font-size:12px;min-width:30px}.back-top{display:inline-block;margin-top:14px;padding:7px 10px;border:1px solid #303744;border-radius:8px;text-decoration:none;font-size:13px}.back-top:hover{background:#1b222d}
+.bukovy-index{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0;scroll-margin-top:20px}.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;margin-top:12px}.index-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #29303c;border-radius:9px;background:#151922;text-decoration:none;min-height:54px}.index-item:hover{border-color:#71809a;background:#1a202b}.index-num{color:#d7b86e;font-size:12px;min-width:30px}.index-glyph{width:42px;height:42px;object-fit:contain;background:#fff;border-radius:6px;flex:0 0 42px}.index-name{min-width:0}.back-top{display:inline-block;margin-top:14px;padding:7px 10px;border:1px solid #303744;border-radius:8px;text-decoration:none;font-size:13px}.back-top:hover{background:#1b222d}
 section{scroll-margin-top:20px}
 input{width:100%;box-sizing:border-box;padding:14px;border-radius:10px;border:1px solid #303744;background:#151922;color:white;font-size:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:20px}
@@ -106,7 +106,7 @@ async function start(){
  const profiles=summaryDoc.entries||[];
  document.getElementById('count').textContent='Буков в каноническом каталоге: '+profiles.length;
  const indexList=document.getElementById('bukovy-index-list');
- indexList.innerHTML=profiles.map((p,i)=>'<a class="index-item" href="#'+esc(p.entry_id)+'"><span class="index-num">'+esc(p.identity?.source_image_number||i+1)+'</span><span>'+esc(p.name)+'</span></a>').join('');
+ indexList.innerHTML=profiles.map((p,i)=>{const img=p.glyph?.image?'<img class="index-glyph" loading="lazy" src="'+esc(p.glyph.image)+'" alt="Букова '+esc(p.name)+'">':'<span class="index-glyph" aria-hidden="true"></span>';return '<a class="index-item" href="#'+esc(p.entry_id)+'">'+img+'<span class="index-num">'+esc(p.identity?.source_image_number||i+1)+'</span><span class="index-name">'+esc(p.name)+'</span></a>';}).join('');
  const practiceCount=profiles.filter(p=>p.data_status.practice==='linked').length;
  const storyCount=profiles.filter(p=>p.data_status.stories==='linked').length;
  document.getElementById('linked').textContent='Связано с практикой: '+practiceCount+' · с историями: '+storyCount;
