@@ -170,7 +170,7 @@ async function start(){
  bulkProfiles=profilesDoc.entries||[];
  bulkProfiles.forEach(x=>profileCache.set(x.entry_id,x));
  const allStories=historiesDoc.stories||[];
- document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div><p><b>Связанные Буковы:</b> '+esc((x.related_bukovy||[]).join(', '))+'</p><p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
+ document.getElementById('histories').innerHTML=allStories.length?allStories.map(x=>'<article class="card story"><div class="cardbody"><div class="name">'+esc(x.practitioner_alias||'Практик')+'</div>'+storyBukovy([x])+'<p><b>Действие:</b> '+esc(x.action)+'</p><p class="result"><b>Заявленный результат:</b> '+esc(x.reported_result)+'</p><div class="muted">Уровень: '+esc(x.evidence_level||'не указан')+'</div><p class="muted">'+links(x.source_urls)+'</p></div></article>').join(''):'<div class="empty">Историй пока нет.</div>';
  const practices=practicesDoc.entries||[];
  const unique=new Map(practices.map(x=>[x.name+'|'+(x.source_urls||[]).join('|'),x]));
  document.getElementById('practices-list').innerHTML=[...unique.values()].map(x=>'<article class="card"><div class="cardbody"><div class="name">'+esc(x.name)+'</div><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div></article>').join('')||'<div class="empty">Практических записей пока нет.</div>';
