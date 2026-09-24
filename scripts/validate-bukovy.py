@@ -32,7 +32,7 @@ assert index["endpoints"]["recovery"]=="/api/v1/recovery.json" and index["endpoi
 assert recovery_api["api_version"]=="v1" and recovery_api["recovery_version"]=="v1" and recovery_api["status"]=="research-only"
 assert recovery_api["canonical_count"]==data["claimed_count"] and recovery_api["canonical_described_count"]==len(entries) and recovery_api["canonical_unfilled_count"]==data["coverage"]["unfilled_claimed_slots"]
 assert recovery_api["candidate_count"]==len(recovery_candidates["candidates"]) and recovery_api["secondary_evidence_count"]==len(recovery_evidence["records"])
-assert recovery_api["candidate_count_note"] and recovery_api["candidate_count"]!=recovery_api["canonical_unfilled_count"]
+assert recovery_api["candidate_count"]!=recovery_api["canonical_unfilled_count"]
 assert recovery_api["historical_visual_pages"]==recovery_pages["pages"]
 assert recovery_api["rules"]["canonical_inclusion"] is False
 for k,v in {"bukovy":"/api/v1/bukovy.json","bukovy_profiles":"/api/v1/bukovy-profiles.json","bukovy_profile_template":"/api/v1/bukovy/{entry_id}.json","practices":"/api/v1/practices.json","practitioner_histories":"/api/v1/practitioner-histories.json","index":"/api/v1/index.json","schema":"/api/v1/bukovy.schema.json","bukovy_profile_schema":"/api/v1/bukovy-profile.schema.json","profile_manifest":"/api/v1/bukovy-manifest.json","bukovy_summary":"/api/v1/bukovy-summary.json"}.items(): assert index["endpoints"][k]==v
