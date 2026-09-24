@@ -10,6 +10,7 @@ header,main,footer{max-width:1280px;margin:auto;padding:24px}
 h1{font-size:42px;margin-bottom:8px}.note{padding:16px;background:#17140e;border-left:3px solid #d7b86e;margin:14px 0}
 .stats{display:flex;gap:10px;flex-wrap:wrap}.pill{padding:8px 12px;border:1px solid #303744;border-radius:999px;background:#151922}
 .toc{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0}.toc ol{margin:8px 0 0;padding-left:24px}.toc li{margin:7px 0}
+.bukovy-index{padding:18px 20px;border:1px solid #303744;border-radius:14px;background:#11151c;margin:20px 0;scroll-margin-top:20px}.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;margin-top:12px}.index-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #29303c;border-radius:9px;background:#151922;text-decoration:none}.index-item:hover{border-color:#71809a;background:#1a202b}.index-num{color:#d7b86e;font-size:12px;min-width:30px}.back-top{display:inline-block;margin-top:14px;padding:7px 10px;border:1px solid #303744;border-radius:8px;text-decoration:none;font-size:13px}.back-top:hover{background:#1b222d}
 section{scroll-margin-top:20px}
 input{width:100%;box-sizing:border-box;padding:14px;border-radius:10px;border:1px solid #303744;background:#151922;color:white;font-size:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:20px}
@@ -22,7 +23,7 @@ details{margin-top:10px;border:1px solid #29303c;border-radius:10px;padding:9px 
 .empty{padding:18px;border:1px dashed #3a4351;border-radius:12px;color:#aab4c3}
 a{color:#a9c7ff}
 </style></head>
-<body>
+<body id="top">
 <header>
 <h1>ВсеЯСветная Грамота — Буковник</h1>
 <p>Букова — основной объект справочника. Все остальные сведения привязываются к конкретной Букове, если источник позволяет это сделать.</p>
@@ -43,6 +44,11 @@ a{color:#a9c7ff}
 <div class="note"><b>Важно:</b> описания и практические эффекты передаются как заявления источников. Истории практиков — свидетельства авторов. Это не означает независимого научного подтверждения заявляемых эффектов.</div>
 </header>
 <main>
+<section id="bukovy-index" class="bukovy-index">
+<h2>Указатель Буков</h2>
+<p class="muted">Нажмите на название — страница прокрутится прямо к подробному описанию. Это основной указатель справочника.</p>
+<div id="bukovy-index-list" class="index-grid"><div class="empty">Загрузка указателя…</div></div>
+</section>
 <section id="catalog">
 <h2>1. Каталог Буков</h2>
 <p class="muted">У каждой карточки одинаковая структура: <b>идентификация → знак → источник → заявляемое описание → практические применения → истории практиков → ограничения доказательности → состояние восстановления</b>.</p>
@@ -91,6 +97,7 @@ function card(p){
  '<details class="lazy-details" data-kind="evidence" data-entry="'+esc(p.entry_id)+'"><summary>Доказательность и ограничения</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<details class="lazy-details" data-kind="recovery" data-entry="'+esc(p.entry_id)+'"><summary>Восстановление 147-позиционного массива</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<p class="api"><a href="api/v1/bukovy/'+esc(p.entry_id)+'.json">JSON этой Буковы</a></p>'+
+ '<a class="back-top" href="#bukovy-index">↑ Вернуться к указателю Буков</a>'+
  '</div></article>';
 }
 async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(url+' HTTP '+r.status);return r.json();}
@@ -98,6 +105,8 @@ async function start(){
  const summaryDoc=await fetchJson('api/v1/bukovy-summary.json');
  const profiles=summaryDoc.entries||[];
  document.getElementById('count').textContent='Буков в каноническом каталоге: '+profiles.length;
+ const indexList=document.getElementById('bukovy-index-list');
+ indexList.innerHTML=profiles.map((p,i)=>'<a class="index-item" href="#'+esc(p.entry_id)+'"><span class="index-num">'+esc(p.identity?.source_image_number||i+1)+'</span><span>'+esc(p.name)+'</span></a>').join('');
  const practiceCount=profiles.filter(p=>p.data_status.practice==='linked').length;
  const storyCount=profiles.filter(p=>p.data_status.stories==='linked').length;
  document.getElementById('linked').textContent='Связано с практикой: '+practiceCount+' · с историями: '+storyCount;
