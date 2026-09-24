@@ -76,6 +76,7 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const links=urls=>(urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">источник</a>').join(' · ');
 const j=v=>JSON.stringify(v,null,2); const shortClaim=t=>{t=String(t||'').replace(/^\s*["«]|["»]\s*$/g,'').trim();if(!t)return 'Описание источника отсутствует.';const cut=t.search(/[.!?]\s/);const base=cut>80?t.slice(0,cut+1):t;return base.length>220?base.slice(0,217).trim()+'…':base;}; const profileCache=new Map();
 let bulkProfiles=null;
+let profileByName=new Map();
 function practiceBlock(items){
  if(!items?.length)return '<div class="empty">Для этой Буковы отдельная практическая запись пока не связана.</div>';
  return items.map(x=>'<div class="block"><h3>'+esc(x.name)+'</h3><div class="muted">'+esc(x.evidence)+'</div><p class="claim">'+esc(x.claimed_action)+'</p><p>'+esc(x.claimed_method||'')+'</p><p class="muted">'+links(x.source_urls)+'</p></div>').join('');
@@ -121,7 +122,7 @@ async function start(){
  const indexList=document.getElementById('bukovy-index-list');
  indexList.innerHTML=profiles.map((p,i)=>{const img=p.glyph?.image?'<img class="index-glyph" loading="lazy" src="'+esc(p.glyph.image)+'" alt="Букова '+esc(p.name)+'">':'<span class="index-glyph" aria-hidden="true"></span>';return '<a class="index-item" href="#'+esc(p.entry_id)+'">'+img+'<span class="index-num">'+esc(p.identity?.source_image_number||i+1)+'</span><span class="index-name">'+esc(p.name)+'</span></a>';}).join('');
  const practiceCount=profiles.filter(p=>p.data_status.practice==='linked').length;
- const profileByName=new Map(profiles.map(p=>[String(p.name||'').trim().toLocaleLowerCase('ru-RU'),p]));
+ profileByName=new Map(profiles.map(p=>[String(p.name||'').trim().toLocaleLowerCase('ru-RU'),p]));
  const storyCount=profiles.filter(p=>p.data_status.stories==='linked').length;
  document.getElementById('linked').textContent='Связано с практикой: '+practiceCount+' · с историями: '+storyCount;
  const render=()=>{
