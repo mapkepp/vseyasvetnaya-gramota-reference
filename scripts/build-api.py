@@ -5,6 +5,20 @@ ROOT=Path(__file__).resolve().parents[1]; api=ROOT/"api"/"v1"; profile_dir=api/"
 bukovy=json.loads((ROOT/"data"/"bukovy.json").read_text("utf-8")); practices=json.loads((ROOT/"data"/"practices.json").read_text("utf-8")); histories=json.loads((ROOT/"data"/"practice"/"practitioner-histories.json").read_text("utf-8")); recovery_pages=json.loads((ROOT/"data"/"recovery"/"historical-six-pages.json").read_text("utf-8")); recovery_candidates=json.loads((ROOT/"data"/"recovery"/"147-candidates.json").read_text("utf-8")); recovery_evidence=json.loads((ROOT/"data"/"recovery"/"secondary-evidence.json").read_text("utf-8")); practical_coverage=json.loads((ROOT/"data"/"practical-coverage.json").read_text("utf-8"))
 for old in profile_dir.glob("*.json"): old.unlink()
 def norm(v): return re.sub(r"\s+"," ",str(v or "").strip()).casefold()
+
+# Source spellings/short forms that refer to a canonical Bukova name.
+# Keep this explicit and conservative: generic names of composite staves are not
+# mapped to individual Bukovy unless the source gives an unambiguous name.
+BUKOVA_ALIASES={
+    "хв":"хвъ","юс":"юсъ","юсъ":"юсъ","юсь":"юсъ",
+    "ок":"окъ","от":"отъ","ол":"олъ","он":"онъ","тор":"тор",
+    "ра":"ра","ро":"ро","ас":"ас","еръ":"еръ","эсо":"эсo",
+    "слово":"слово","яя":"я, слово",
+}
+def canonical_alias(n):
+    k=norm(n)
+    return BUKOVA_ALIASES.get(k,k)
+
 def pm(n,pn):
  a,b=norm(n),norm(pn)
  if not a or not b:return False
@@ -12,8 +26,8 @@ def pm(n,pn):
  aliases=[norm(x) for x in re.split(r"\s*/\s*|\s*,\s*",pn) if norm(x)]
  return a in aliases or any(a in x.split(" ") for x in aliases)
 def sm(n,rel):
- a=norm(n)
- return any(a==norm(i) or (a and norm(i) and (a in norm(i) or norm(i) in a) and len(min(a,norm(i)))>=3) for i in (rel or []))
+ a=canonical_alias(n)
+ return any(a==canonical_alias(i) or (a and canonical_alias(i) and (a in canonical_alias(i) or canonical_alias(i) in a) and len(min(a,canonical_alias(i)))>=3) for i in (rel or []))
 profiles=[]
 for e in bukovy.get("entries",[]):
  lp=[p for p in practices.get("entries",[]) if pm(e.get("name"),p.get("name"))]; ls=[s for s in histories.get("stories",[]) if sm(e.get("name"),s.get("related_bukovy"))]
