@@ -46,6 +46,7 @@ required={"identity","glyph","source","claimed_description","practical_applicati
 for e in entries:
  assert len(e.get("description_claim","")) <= 1000, f"description unexpectedly long: {e.get('entry_id')}"
 for i,p in enumerate(profiles["entries"]):
+ e=entries[i]
  assert required<=set(p["blocks"]) and (ROOT/"api/v1/bukovy"/f"{p['entry_id']}.json").is_file()
  s=summary["entries"][i]
  assert p["entry_id"]==s["entry_id"] and p.get("name")==s["name"]
