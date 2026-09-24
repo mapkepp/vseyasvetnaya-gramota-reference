@@ -49,18 +49,17 @@ jobs:
       - name: Validate canonical catalog and generated API
         run: python3 scripts/validate-bukovy.py
 
-      - name: Cancel stale Pages deployments
+      - name: Clear legacy Pages deployment
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          deployments=$(curl -fsSL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2026-03-10" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments?per_page=20")
-          echo "$deployments" | jq -r ".[] | select(.status == \"in_progress\") | .id" | while read -r id; do
-            [ -z "$id" ] && continue
-            echo "Cancelling stale Pages deployment $id"
-            curl -fsSL -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2026-03-10" "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments/$id/cancel"
-          done
+          curl -fsSL -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/deployments/bc0552f0da3aff46d3d0b3cdf5d782783e6bc0ca/cancel" || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
