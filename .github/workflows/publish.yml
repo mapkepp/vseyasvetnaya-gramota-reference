@@ -1,0 +1,61 @@
+name: Validate and publish
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rebuild generated API
+        run: python3 scripts/build-api.py
+
+      - name: Commit generated API if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- api/v1 || test -n "$(git ls-files --others --exclude-standard -- api/v1)"; then
+            if git diff --name-only | grep -v '^api/v1/' >/dev/null; then
+              echo "Unexpected non-API changes produced by build"
+              git diff --name-only
+              exit 1
+            fi
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add api/v1
+            git commit -m "Sync generated API"
+          else
+            echo "Generated API already synchronized"
+          fi
+
+      - name: Validate canonical catalog and generated API
+        run: python3 scripts/validate-bukovy.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
