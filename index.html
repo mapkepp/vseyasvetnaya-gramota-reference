@@ -68,7 +68,7 @@ a{color:#a9c7ff}
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const links=urls=>(urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">источник</a>').join(' · ');
-const j=v=>JSON.stringify(v,null,2); const profileCache=new Map();
+const j=v=>JSON.stringify(v,null,2); const shortClaim=t=>{t=String(t||'').replace(/^\s*["«]|["»]\s*$/g,'').trim();if(!t)return 'Описание источника отсутствует.';const cut=t.search(/[.!?]\s/);const base=cut>80?t.slice(0,cut+1):t;return base.length>220?base.slice(0,217).trim()+'…':base;}; const profileCache=new Map();
 let bulkProfiles=null;
 function practiceBlock(items){
  if(!items?.length)return '<div class="empty">Для этой Буковы отдельная практическая запись пока не связана.</div>';
@@ -85,7 +85,7 @@ function card(p){
  '<div class="name">'+esc(p.name)+'</div>'+
  '<div class="muted">'+'практика: '+esc(p.counts.practical_applications)+' · истории: '+esc(p.counts.practitioner_stories)+'</div>'+
  '<div class="block"><h3>Знак и происхождение</h3><p>Статус изображения: '+esc(b.glyph.image_status||'нет')+'</p><p><a href="'+esc(b.glyph.source_image_url||b.source.source_url)+'" target="_blank" rel="noopener noreferrer">Открыть источник</a></p></div>'+
- '<div class="block"><h3>Заявляемое описание</h3><p class="claim">'+esc(b.claimed_description.display_text||b.claimed_description.text)+'</p></div>'+
+ '<div class="block"><h3>Коротко</h3><p class="claim">'+esc(b.claimed_description.display_text||shortClaim(b.claimed_description.text))+'</p><details><summary>Полное описание источника</summary><p class="claim">'+esc(b.claimed_description.text)+'</p></details></div>'+
  '<details class="lazy-details" data-kind="practice" data-entry="'+esc(p.entry_id)+'"><summary>Практические применения ('+esc(p.counts.practical_applications)+')</summary><div class="detail-body"><div class="empty">Загрузка…</div></div></details>'+
  '<details class="lazy-details" data-kind="stories" data-entry="'+esc(p.entry_id)+'"><summary>Истории практиков ('+esc(p.counts.practitioner_stories)+')</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
  '<details class="lazy-details" data-kind="evidence" data-entry="'+esc(p.entry_id)+'"><summary>Доказательность и ограничения</summary><div class="detail-body"><div class="empty">Откройте раздел для загрузки.</div></div></details>'+
