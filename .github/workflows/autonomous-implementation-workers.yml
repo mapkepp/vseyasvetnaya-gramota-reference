@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: autonomous-implementation-workers
+  group: dev-state-writers
   cancel-in-progress: false
 
 jobs:
