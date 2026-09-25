@@ -21,14 +21,17 @@
     "require_explicit_confirmation": true,
     "merge_through_pull_request": true,
     "never_force_push_main": true,
-    "create_immutable_snapshot_before_promotion": true,
+    "create_immutable_snapshot_before_promotion": false,
     "post_promotion_verification": true,
-    "rollback_via_pull_request": true
+    "rollback_via_pull_request": true,
+    "create_recovery_snapshot_before_promotion": true
   },
   "snapshot_policy": {
-    "immutable_snapshot_before_each_promotion": true,
+    "immutable_snapshot_before_each_promotion": false,
     "retain_history": true,
-    "never_delete_referenced_snapshot": true
+    "never_delete_referenced_snapshot": true,
+    "type": "recovery_branch_snapshot; never force-push main",
+    "note": "Ветки archive-main-* являются восстановительными снимками; до появления отдельного immutable-tag механизма не называем их технически неизменяемыми."
   },
   "roles": {
     "main": "production",
