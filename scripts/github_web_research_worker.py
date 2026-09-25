@@ -124,15 +124,17 @@ def main():
             found[url]["queries"].append(q)
             if provider and provider not in found[url]["providers"]:found[url]["providers"].append(provider)
         if len(found)>=20:break
-    # Optional external-AI escalation: only after ordinary discovery is weak.
-    # It is a no-op unless a free/local backend is configured (e.g. Ollama).
-    external_ai = {"provider":"none","status":"NOT_REQUESTED"}
+    # Conditional external-AI escalation. It is invoked only when discovery
+    # coverage is weak and never has authority to write files or canonical data.
+    external_ai = {"provider":"none","status":"NOT_NEEDED"}
     if len(found) < 5:
         try:
             import subprocess
             prompt = (
-                "Find better search strategies for a research task about the Bukova "
-                + b + ". Return concise query ideas and source types; do not invent evidence."
+                "For the research task about the Bukova " + b +
+                ", propose up to 8 highly specific web-search queries aimed at "
+                "first-person practitioner stories, concrete actions, dates, and "
+                "observable results. Output one query per line. Never invent evidence."
             )
             p = subprocess.run(
                 ["python3","scripts/external_ai_router.py",prompt],
@@ -140,10 +142,21 @@ def main():
             )
             if p.stdout.strip():
                 external_ai=json.loads(p.stdout)
-                extra = external_ai.get("text","")
-                if extra:
-                    queries.extend([x.strip() for x in re.findall(r'["“](.{5,180})["”]', extra) if x.strip()])
-                    queries=list(dict.fromkeys(queries))[:30]
+                extra=external_ai.get("text","")
+                ai_queries=[]
+                for line in extra.splitlines():
+                    line=re.sub(r'^\\s*[-*0-9.)]+\\s*',"",line).strip().strip('"“”')
+                    if 8 <= len(line) <= 220 and (" " in line):
+                        ai_queries.append(line)
+                ai_queries=list(dict.fromkeys(ai_queries))[:8]
+                for q2 in ai_queries:
+                    provider,rows=search_query(q2,diagnostics)
+                    for title,url in rows:
+                        found.setdefault(url,{"title":title,"queries":[],"providers":[]})
+                        found[url]["queries"].append(q2)
+                        if provider and provider not in found[url]["providers"]:
+                            found[url]["providers"].append(provider)
+                queries=list(dict.fromkeys(queries+ai_queries))[:38]
         except Exception as e:
             external_ai={"provider":"none","status":"ERROR","error":type(e).__name__}
 
