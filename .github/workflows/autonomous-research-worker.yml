@@ -1,54 +1,105 @@
 name: Autonomous research worker
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "27 * * * *"
-
 permissions:
   contents: write
+concurrency:
+  group: autonomous-research-worker
+  cancel-in-progress: false
 
 jobs:
-  research:
+  prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    outputs:
+      tasks: ${{ steps.tasks.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-      - name: Run queued research tasks
-        env:
-          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+      - id: tasks
+        shell: python
         run: |
-          python3 - <<'PY'
-          import json, subprocess, pathlib, datetime
+          import json, os
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
-          out=pathlib.Path("data/research/worker-results")
-          out.mkdir(parents=True,exist_ok=True)
-          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:4]
-          for t in tasks:
-              tf=out/(t["task_id"]+".task.json")
-              rf=out/(t["task_id"]+".result.json")
-              json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-              rc=subprocess.run(["python3","scripts/research_worker.py",str(tf),str(rf)],check=False).returncode
-              t["status"]="DONE" if rc==0 else ("BLOCKED" if rc==2 else "FAILED")
-              t["completed_at"]=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-          status={
-            "schema_version":"1.0",
-            "updated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "worker":"tavily",
-            "tasks_attempted":len(tasks),
-            "execution":"MEASURED"
-          }
-          json.dump(status,open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-          PY
-      - name: Commit research evidence
+          tasks=[t["task_id"] for t in q["tasks"] if t.get("status")=="PENDING"][:4]
+          print("matrix="+json.dumps({"task_id":tasks},ensure_ascii=False))
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f: f.write("matrix="+json.dumps({"task_id":tasks})+"\n")
+
+  research:
+    needs: prepare
+    if: ${{ needs.prepare.outputs.tasks != '{"task_id":[]}' }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.prepare.outputs.tasks) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run keyless public-web research
+        env:
+          TASK_ID: ${{ matrix.task_id }}
+        shell: python
+        run: |
+          import json, os, pathlib, re, urllib.parse, urllib.request, html
+          from html.parser import HTMLParser
+          from datetime import datetime, timezone
+
+          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
+          task=next(t for t in q["tasks"] if t["task_id"]==os.environ["TASK_ID"])
+          out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
+          results={}; errors=[]
+          class P(HTMLParser):
+            def __init__(self):
+              super().__init__(); self.a=False; self.h=""; self.b=[]; self.out=[]
+            def handle_starttag(self,t,a):
+              a=dict(a)
+              if t=="a" and "result__a" in a.get("class",""): self.a=True; self.h=a.get("href",""); self.b=[]
+            def handle_data(self,d):
+              if self.a:self.b.append(d)
+            def handle_endtag(self,t):
+              if t=="a" and self.a:
+                z=" ".join("".join(self.b).split())
+                if self.h and z:self.out.append((z,html.unescape(self.h)))
+                self.a=False
+          for query in task.get("queries",[]):
+            try:
+              u="https://html.duckduckgo.com/html/?"+urllib.parse.urlencode({"q":query,"kl":"ru-ru"})
+              req=urllib.request.Request(u,headers={"User-Agent":"ToolboxResearchBot/1.0"})
+              with urllib.request.urlopen(req,timeout=25) as r: body=r.read().decode("utf-8","replace")
+              p=P(); p.feed(body)
+              for title,url in p.out[:5]: results.setdefault(url,{"title":title,"queries":[]})["queries"].append(query)
+            except Exception as e: errors.append({"query":query,"error":str(e)})
+          findings=[]
+          for url,m in list(results.items())[:8]:
+            excerpt=""
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":"ToolboxResearchBot/1.0"})
+              with urllib.request.urlopen(req,timeout=25) as r: excerpt=re.sub(r"\s+"," ",r.read().decode("utf-8","replace"))[:3500]
+            except Exception as e: errors.append({"url":url,"error":str(e)})
+            findings.append({"claim":"Source excerpt; not independently validated: "+excerpt,"sources":[{"url":url,"title":m["title"]}],"evidence_type":"web_source_excerpt","confidence":"UNSPECIFIED","conflicts":[],"discovery_queries":m["queries"]})
+          result={"schema_version":"1.0","task_id":task["task_id"],"bukova":task.get("bukova"),"status":"PASS" if findings else "FAIL","evidence":"MEASURED","generated_at":datetime.now(timezone.utc).isoformat(),"queries":task.get("queries",[]),"search_engine":"github-actions-public-web","findings":findings,"errors":errors}
+          json.dump(result,open(out/(task["task_id"]+".result.json"),"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+
+  record:
+    needs: research
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record worker state
+        shell: python
+        run: |
+          import json, pathlib
+          from datetime import datetime, timezone
+          p=pathlib.Path("data/research/worker-status.json")
+          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"worker":"github-public-web","execution":"MEASURED","backend":"GitHub Actions","evidence":"MEASURED"},open(p,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Commit evidence to dev
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin dev
+          git checkout dev
           git add data/research/worker-results data/research/worker-status.json
-          git diff --cached --quiet || git commit -m "research: record autonomous worker results"
-          git push
+          git diff --cached --quiet || git commit -m "research: record autonomous public-web evidence"
+          git push origin dev
