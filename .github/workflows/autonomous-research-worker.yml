@@ -23,10 +23,10 @@ jobs:
           from datetime import datetime,timezone
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
-          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:4]
+          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:6]
           now=datetime.now(timezone.utc)
           json.dump({"schema_version":"1.0","cycle_id":now.strftime("%Y%m%dT%H%M%SZ"),"created_at":now.isoformat(),"task_ids":[t["task_id"] for t in tasks]},open(out/"cycle-task-manifest.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-      - name: Run four parallel discovery agents
+      - name: Run six parallel discovery agents
         shell: python
         run: |
           import json,pathlib,subprocess,concurrent.futures
@@ -38,27 +38,29 @@ jobs:
             tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
-          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex: results=list(zip(tasks,ex.map(run,tasks)))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: results=list(zip(tasks,ex.map(run,tasks)))
           for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
           json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-      - name: Verify discovered sources
+      - name: Verify discovered sources in parallel
         shell: python
         run: |
-          import pathlib,subprocess,json
+          import pathlib,subprocess,json,concurrent.futures
           out=pathlib.Path("data/research/worker-results")
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
-          for task_id in manifest["task_ids"]:
+          def verify(task_id):
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json"); vf=out/(task_id+".verified.json")
-            if rf.exists(): subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False)
-      - name: Normalize practitioner evidence
+            return subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False).returncode if rf.exists() else 0
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(verify,manifest["task_ids"]))
+      - name: Normalize practitioner evidence in parallel
         shell: python
         run: |
-          import pathlib,subprocess,json
+          import pathlib,subprocess,json,concurrent.futures
           out=pathlib.Path("data/research/worker-results")
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
-          for task_id in manifest["task_ids"]:
+          def normalize(task_id):
             tf=out/(task_id+".task.json"); vf=out/(task_id+".verified.json"); rf=out/(task_id+".result.json"); nf=out/(task_id+".normalized.json")
-            if vf.exists() and rf.exists(): subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False)
+            return subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False).returncode if vf.exists() and rf.exists() else 0
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(normalize,manifest["task_ids"]))
       - name: Apply practitioner evidence gate
         run: python3 scripts/practitioner_evidence_gate.py data/research/worker-results
       - name: Build human review queue
@@ -75,7 +77,7 @@ jobs:
           verified=sum(1 for x in manifest["task_ids"] if (out/(x+".verified.json")).exists())
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
-          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next hourly cycle"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"parallel_agents":6,"pipeline":["DISCOVERY","VERIFY","NORMALIZE","GATE","REPLAN"],"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next scheduled cycle; watchdog may recover stalled runs"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
