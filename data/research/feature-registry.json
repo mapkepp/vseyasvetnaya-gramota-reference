@@ -37,6 +37,16 @@
       "reversible": true,
       "disable_via": "отключить self-repair workflow",
       "recovery": "git history + generated state"
+    },
+    "bukovy_first_research_conveyor": {
+      "state": "active",
+      "maturity": "configured",
+      "evidence_status": "CONFIGURED_NOT_RUNTIME_VERIFIED",
+      "reversible": true,
+      "disable_via": "отключить шаг/расписание autonomous-research-worker; очередь и архив сохраняются",
+      "recovery": "data/research/autonomous-queue-history-20260926.json",
+      "scope": "68 canonical Bukovy; research-first; canonical mutation remains disabled"
     }
-  }
+  },
+  "notes": "До подтверждения реальных запусков GitHub Actions maturity не повышается до VERIFIED_RUNTIME/PROVEN_REPEATED."
 }
