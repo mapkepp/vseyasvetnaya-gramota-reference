@@ -1,0 +1,330 @@
+{
+  "version": 2,
+  "language": "ru",
+  "base_branch": "dev",
+  "protected": [
+    "dev",
+    "main"
+  ],
+  "policy": {
+    "auto_apply": "integration-candidate или partial-integration-candidate; максимум 20 коммитов; частичные ветки переносятся отдельным diff",
+    "never_auto_apply": [
+      "main",
+      "dev",
+      "legacy",
+      "review-required",
+      "scan-error"
+    ],
+    "next_step": "apply_branch_intake.py"
+  },
+  "summary": {
+    "branches": 19,
+    "integration_candidates": 7,
+    "review_required": 6,
+    "obsolete": 0
+  },
+  "branches": [
+    {
+      "branch": "main",
+      "class": "protected",
+      "ahead_of_dev": 0,
+      "behind_dev": 0,
+      "commits": 0,
+      "files": [],
+      "allowed_files": [],
+      "status": "diverged"
+    },
+    {
+      "branch": "dev",
+      "class": "protected",
+      "ahead_of_dev": 0,
+      "behind_dev": 0,
+      "commits": 0,
+      "files": [],
+      "allowed_files": [],
+      "status": "diverged"
+    },
+    {
+      "branch": "automation/launch-research-20260925b",
+      "class": "review-required",
+      "ahead_of_dev": 34,
+      "behind_dev": 144,
+      "commits": 34,
+      "files": [
+        "data/research/research-launch-2026-09-25-b.md"
+      ],
+      "allowed_files": [
+        "data/research/research-launch-2026-09-25-b.md"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "automation/launch-research-20260925c",
+      "class": "review-required",
+      "ahead_of_dev": 35,
+      "behind_dev": 145,
+      "commits": 35,
+      "files": [
+        "data/research/research-launch-2026-09-25-c.md"
+      ],
+      "allowed_files": [
+        "data/research/research-launch-2026-09-25-c.md"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "automation/launch-research-20260925",
+      "class": "review-required",
+      "ahead_of_dev": 35,
+      "behind_dev": 145,
+      "commits": 35,
+      "files": [
+        "data/research/research-launch-2026-09-25.md"
+      ],
+      "allowed_files": [
+        "data/research/research-launch-2026-09-25.md"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "automation/live-research-status-api",
+      "class": "review-required",
+      "ahead_of_dev": 44,
+      "behind_dev": 145,
+      "commits": 44,
+      "files": [
+        "api/v1/index.json",
+        "api/v1/research-queue.json",
+        "api/v1/research-status.json",
+        "research-status.html",
+        "scripts/build-api.py"
+      ],
+      "allowed_files": [
+        "api/v1/index.json",
+        "api/v1/research-queue.json",
+        "api/v1/research-status.json",
+        "research-status.html",
+        "scripts/build-api.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "backup",
+      "class": "legacy",
+      "ahead_of_dev": 3,
+      "behind_dev": 145,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "allowed_files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "development",
+      "class": "legacy",
+      "ahead_of_dev": 3,
+      "behind_dev": 145,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "allowed_files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "implementation/autonomous-loop",
+      "class": "review-required",
+      "ahead_of_dev": 40,
+      "behind_dev": 145,
+      "commits": 40,
+      "files": [
+        "api/v1/index.json",
+        "data/research/autonomous-queue.json",
+        "scripts/github_web_research_worker.py"
+      ],
+      "allowed_files": [
+        "api/v1/index.json",
+        "data/research/autonomous-queue.json",
+        "scripts/github_web_research_worker.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "implementation/autonomous-loop-clean",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 3,
+      "behind_dev": 120,
+      "commits": 3,
+      "files": [
+        "scripts/autonomous_implementation_workers.py"
+      ],
+      "allowed_files": [
+        "scripts/autonomous_implementation_workers.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "production",
+      "class": "legacy",
+      "ahead_of_dev": 4,
+      "behind_dev": 145,
+      "commits": 4,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "allowed_files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/evidence-normalizer",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 4,
+      "behind_dev": 142,
+      "commits": 4,
+      "files": [
+        "scripts/normalize_practitioner_evidence.py",
+        "scripts/practitioner_evidence_gate.py"
+      ],
+      "allowed_files": [
+        "scripts/normalize_practitioner_evidence.py",
+        "scripts/practitioner_evidence_gate.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/github-web-worker",
+      "class": "review-required",
+      "ahead_of_dev": 27,
+      "behind_dev": 145,
+      "commits": 27,
+      "files": [
+        "api/v1/index.json",
+        "scripts/github_web_research_worker.py"
+      ],
+      "allowed_files": [
+        "api/v1/index.json",
+        "scripts/github_web_research_worker.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/github-web-worker-clean",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 2,
+      "behind_dev": 144,
+      "commits": 2,
+      "files": [
+        "scripts/github_web_research_worker.py"
+      ],
+      "allowed_files": [
+        "scripts/github_web_research_worker.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/pipeline-dedup",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 4,
+      "behind_dev": 140,
+      "commits": 4,
+      "files": [
+        "scripts/build_practitioner_review_queue.py",
+        "scripts/replan_research_queue.py"
+      ],
+      "allowed_files": [
+        "scripts/build_practitioner_review_queue.py",
+        "scripts/replan_research_queue.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/review-queue",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 2,
+      "behind_dev": 141,
+      "commits": 2,
+      "files": [
+        "scripts/build_practitioner_review_queue.py"
+      ],
+      "allowed_files": [
+        "scripts/build_practitioner_review_queue.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/strict-evidence-gate",
+      "class": "integration-candidate",
+      "ahead_of_dev": 5,
+      "behind_dev": 121,
+      "commits": 5,
+      "files": [
+        "data/research/practitioner-review-queue.json",
+        "data/research/worker-results/practitioner-evidence-gate.json",
+        "data/research/worker-status.json",
+        "scripts/normalize_practitioner_evidence.py",
+        "scripts/practitioner_evidence_gate.py"
+      ],
+      "allowed_files": [
+        "data/research/practitioner-review-queue.json",
+        "data/research/worker-results/practitioner-evidence-gate.json",
+        "data/research/worker-status.json",
+        "scripts/normalize_practitioner_evidence.py",
+        "scripts/practitioner_evidence_gate.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "research/verification-loop",
+      "class": "partial-integration-candidate",
+      "ahead_of_dev": 3,
+      "behind_dev": 144,
+      "commits": 3,
+      "files": [
+        "scripts/replan_research_queue.py",
+        "scripts/verify_research_sources.py"
+      ],
+      "allowed_files": [
+        "scripts/replan_research_queue.py",
+        "scripts/verify_research_sources.py"
+      ],
+      "status": "diverged"
+    },
+    {
+      "branch": "reserve",
+      "class": "legacy",
+      "ahead_of_dev": 3,
+      "behind_dev": 146,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "allowed_files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ],
+      "status": "diverged"
+    }
+  ]
+}
