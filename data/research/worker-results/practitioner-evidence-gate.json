@@ -1,11 +1,11 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-25T21:10:27.464320+00:00",
+  "updated_at": "2026-09-25T21:10:55.947179+00:00",
   "evidence": "MEASURED",
   "status": "INCOMPLETE",
   "ready_for_human_review": 0,
   "incomplete": 0,
-  "rejected_by_strict_gate": 41,
+  "rejected_by_strict_gate": 42,
   "canonical_mutation": "DISABLED",
   "candidates": [],
   "rejections": [
@@ -525,6 +525,19 @@
       ],
       "source_url": "https://rutube.ru/video/9fb6f6313815f3dbce984b0c1e5d0f7f/",
       "bukova": "Веде"
+    },
+    {
+      "candidate_id": "rotation-dm80-image-24-1-replan-1-replan-1::1",
+      "reasons": [
+        "missing:action",
+        "missing:reported_result",
+        "action_equals_result",
+        "no_application_verb",
+        "no_result_marker",
+        "action_and_result_not_in_same_excerpt"
+      ],
+      "source_url": "https://chernayamagiya.com/forum/index.php?topic=18597.0",
+      "bukova": "И"
     }
   ],
   "gate_rules": [
