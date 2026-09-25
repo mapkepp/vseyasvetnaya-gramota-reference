@@ -45,12 +45,11 @@ jobs:
 
           printf '%s\n' "candidate=${candidate_sha}" "main_before=${main_sha}" "backup=${backup}" > /tmp/promotion.txt
 
+          git show "origin/dev:data/research/release-readiness.json" > /tmp/release-readiness.json
           python3 - "${candidate_sha}" <<'PY'
           import json,sys
           from pathlib import Path
-          p=Path("data/research/release-readiness.json")
-          if not p.exists():
-              raise SystemExit("release-readiness.json missing")
+          p=Path("/tmp/release-readiness.json")
           d=json.loads(p.read_text(encoding="utf-8"))
           if d.get("status")!="READY_FOR_PROMOTION":
               raise SystemExit("candidate is not READY_FOR_PROMOTION")
