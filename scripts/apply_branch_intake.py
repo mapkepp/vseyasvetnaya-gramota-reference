@@ -23,7 +23,7 @@ def main():
             run("git","merge","--abort",check=False)
             results.append({"branch":b,"status":"blocked-apply-conflict"})
             continue
-        results.append({"branch":b,"status":"merged"})
+        # Минимальная проверка результата перед публикацией в dev.\n        check=run("git","diff","--check",check=False)\n        compile_check=run("python3","-m","compileall","-q","scripts",check=False)\n        if check.returncode!=0 or compile_check.returncode!=0:\n            run("git","reset","--hard","HEAD^",check=False)\n            results.append({"branch":b,"status":"blocked-validation"})\n            continue\n        results.append({"branch":b,"status":"merged"})
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps({"version":1,"language":"ru","base_branch":"dev","results":results},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__": main()
