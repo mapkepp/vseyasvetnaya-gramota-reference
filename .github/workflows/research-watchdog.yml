@@ -66,5 +66,5 @@ jobs:
           fi
           if [ "$status" != "in_progress" ] && [ "$status" != "queued" ]; then
             echo "Нет выполняющегося worker — запускаем новый цикл."
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=main >/dev/null
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
           fi
