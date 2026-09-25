@@ -1,6 +1,8 @@
 name: Autonomous research worker
 on:
   workflow_dispatch:
+  push:
+    branches: [dev]
   schedule:
     - cron: "7,27,47 * * * *"
 permissions:
