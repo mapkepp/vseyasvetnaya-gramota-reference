@@ -10,109 +10,128 @@ SEARCH_PROVIDERS=[
  ("yahoo","https://search.yahoo.com/search?p={q}")
 ]
 
-class LinkParser(HTMLParser):
+class AnchorParser(HTMLParser):
     def __init__(self):
-        super().__init__(); self.links=[]; self.current=None
+        super().__init__(); self.a=None; self.out=[]
     def handle_starttag(self,t,a):
-        if t!="a": return
-        d=dict(a); h=d.get("href","")
-        if h.startswith("http"):
-            self.current=[h,[]]
+        if t=="a":
+            d=dict(a); self.a=[d.get("href",""),[]]
     def handle_data(self,d):
-        if self.current: self.current[1].append(d)
+        if self.a:self.a[1].append(d)
     def handle_endtag(self,t):
-        if t=="a" and self.current:
-            u=" ".join("".join(self.current[1]).split())
-            self.links.append((u,self.current[0])); self.current=None
+        if t=="a" and self.a:
+            self.out.append((" ".join("".join(self.a[1]).split()),self.a[0])); self.a=None
 
 def fetch(url,headers=None,timeout=20):
-    h={"User-Agent":"Mozilla/5.0 (compatible; ToolboxResearchBot/1.1; +https://github.com/mapkepp/vseyasvetnaya-gramota-reference)"}
-    if headers: h.update(headers)
+    h={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+       "Accept":"text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+       "Accept-Encoding":"identity","Accept-Language":"ru-RU,ru;q=0.9,en;q=0.7"}
+    if headers:h.update(headers)
     req=urllib.request.Request(url,headers=h)
     with urllib.request.urlopen(req,timeout=timeout) as r:
-        return r.read().decode("utf-8","replace")
+        body=r.read().decode("utf-8","replace")
+        return r.getcode(),r.geturl(),body
+
+def unwrap(url):
+    try:
+        p=urllib.parse.urlsplit(url)
+        qs=urllib.parse.parse_qs(p.query)
+        for key in ("uddg","url","q"):
+            if qs.get(key):
+                v=qs[key][0]
+                if v.startswith("http"): return urllib.parse.unquote(v)
+        if p.scheme in ("http","https") and p.netloc:
+            return url
+    except Exception: pass
+    return None
 
 def clean(u):
+    u=unwrap(u)
+    if not u:return None
     try:
         p=urllib.parse.urlsplit(u)
-        if p.scheme not in ("http","https") or not p.netloc: return None
         host=p.netloc.lower()
+        if p.scheme not in ("http","https") or not host:return None
         blocked=("bing.com","google.com","yahoo.com","duckduckgo.com","search.brave.com")
-        if any(host==x or host.endswith("."+x) for x in blocked): return None
-        return u
-    except Exception: return None
+        if any(host==x or host.endswith("."+x) for x in blocked):return None
+        return urllib.parse.urlunsplit((p.scheme,p.netloc,p.path,p.query,p.fragment))
+    except Exception:return None
 
-def parse_generic(body):
-    p=LinkParser(); p.feed(body); out=[]
-    seen=set()
-    for title,u in p.links:
-        u=clean(u)
-        if not u or u in seen or len(title)<4: continue
-        seen.add(u); out.append((title[:300],u))
-    return out
+def parse_provider(name,body):
+    p=AnchorParser(); p.feed(body); rows=[]
+    for title,href in p.out:
+        keep=False
+        if name=="bing":
+            keep=bool(re.search(r"<h2",body,re.I) and href)
+        elif name=="duckduckgo":
+            keep=("result__a" in title or True) and ("uddg=" in href or "http" in href)
+        elif name=="google":
+            keep=(href.startswith("/url?") or href.startswith("http"))
+        elif name=="yahoo":
+            keep=("search.yahoo" not in href and href.startswith("http"))
+        if not keep: continue
+        u=clean(href)
+        if not u or len(title)<3: continue
+        rows.append((html.unescape(title)[:300],u))
+    # generic fallback with provider-independent links
+    if not rows:
+        for title,href in p.out:
+            u=clean(href)
+            if u and len(title)>=3: rows.append((html.unescape(title)[:300],u))
+    out=[];seen=set()
+    for row in rows:
+        if row[1] not in seen:seen.add(row[1]);out.append(row)
+    return out[:12]
 
 def github_search(q):
     token=os.environ.get("GITHUB_TOKEN")
-    if not token: return []
+    if not token:return []
     url="https://api.github.com/search/code?"+urllib.parse.urlencode({"q":q,"per_page":10})
-    body=fetch(url,{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json"})
+    _,_,body=fetch(url,{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json"})
     data=json.loads(body)
     return [(x.get("name") or x.get("path",""),x.get("html_url","")) for x in data.get("items",[]) if x.get("html_url")]
 
-def search_query(q, diagnostics):
+def search_query(q,diagnostics):
     encoded=urllib.parse.quote_plus(q)
     for name,template in SEARCH_PROVIDERS:
         try:
-            body=fetch(template.format(q=encoded))
-            rows=parse_generic(body)
-            if rows:
-                diagnostics.append({"provider":name,"query":q,"status":"PASS","results":len(rows)})
-                return name,rows
-            diagnostics.append({"provider":name,"query":q,"status":"EMPTY","results":0})
+            code,final_url,body=fetch(template.format(q=encoded))
+            rows=parse_provider(name,body)
+            diagnostics.append({"provider":name,"query":q,"status":"PASS" if rows else "EMPTY",
+                                "http_status":code,"final_url":final_url,"results":len(rows),
+                                "body_chars":len(body)})
+            if rows:return name,rows
         except Exception as e:
             diagnostics.append({"provider":name,"query":q,"status":"FAIL","error":type(e).__name__})
     try:
         rows=github_search(q)
-        if rows:
-            diagnostics.append({"provider":"github-code","query":q,"status":"PASS","results":len(rows)})
-            return "github-code",rows
-        diagnostics.append({"provider":"github-code","query":q,"status":"EMPTY","results":0})
+        diagnostics.append({"provider":"github-code","query":q,"status":"PASS" if rows else "EMPTY","results":len(rows)})
+        if rows:return "github-code",rows
     except Exception as e:
         diagnostics.append({"provider":"github-code","query":q,"status":"FAIL","error":type(e).__name__})
     return None,[]
 
 def main():
     task=json.load(open(sys.argv[1],encoding="utf-8")); out=sys.argv[2]
-    found={}; diagnostics=[]
-    queries=list(task.get("queries",[]))
-    b=str(task.get("bukova","")).strip()
-    if b:
-        queries += [
-            f'"{b}" "став" Буков',
-            f'"{b}" "буквица" практика',
-            f'"{b}" "нанос" практика',
-            f'"{b}" "результат" практика'
-        ]
+    b=str(task.get("bukova","")).strip(); found={}; diagnostics=[]
+    queries=list(dict.fromkeys(task.get("queries",[])+[
+        f'"{b}" "став" Буков',f'"{b}" "буквица" практика',f'"{b}" "нанос" практика',f'"{b}" "результат" практика'
+    ]))
     for q in queries:
         provider,rows=search_query(q,diagnostics)
-        for title,url in rows[:10]:
+        for title,url in rows:
             found.setdefault(url,{"title":title,"queries":[],"providers":[]})
             found[url]["queries"].append(q)
-            if provider and provider not in found[url]["providers"]: found[url]["providers"].append(provider)
-        if len(found)>=12: break
-    findings=[{
-        "claim":"Discovered public-web source; requires human-readable verification before use.",
-        "sources":[{"url":u,"title":m["title"]}],
-        "evidence_type":"web_discovery","confidence":"UNSPECIFIED","conflicts":[],
-        "discovery_queries":m["queries"],"providers":m["providers"]
-    } for u,m in list(found.items())[:12]]
-    status="PASS" if findings else "FAIL"
-    json.dump({
-        "schema_version":"1.1","task_id":task["task_id"],"bukova":b,"status":status,
-        "evidence":"MEASURED","generated_at":datetime.now(timezone.utc).isoformat(),
-        "queries":queries,"search_engine":"github-actions-public-web-multi-provider",
-        "findings":findings,"diagnostics":diagnostics,
-        "canonical_mutation":"DISABLED"
-    },open(out,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+            if provider and provider not in found[url]["providers"]:found[url]["providers"].append(provider)
+        if len(found)>=12:break
+    findings=[{"claim":"Discovered public-web source; requires human-readable verification before use.",
+                "sources":[{"url":u,"title":m["title"]}],"evidence_type":"web_discovery",
+                "confidence":"UNSPECIFIED","conflicts":[],"discovery_queries":m["queries"],"providers":m["providers"]}
+               for u,m in list(found.items())[:12]]
+    payload={"schema_version":"1.2","task_id":task["task_id"],"bukova":b,"status":"PASS" if findings else "FAIL",
+             "evidence":"MEASURED","generated_at":datetime.now(timezone.utc).isoformat(),
+             "queries":queries,"search_engine":"github-actions-public-web-multi-provider",
+             "findings":findings,"diagnostics":diagnostics,"canonical_mutation":"DISABLED"}
+    json.dump(payload,open(out,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
     return 0 if findings else 1
-if __name__=="__main__": raise SystemExit(main())
+if __name__=="__main__":raise SystemExit(main())
