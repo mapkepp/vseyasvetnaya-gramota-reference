@@ -2,7 +2,7 @@ name: Autonomous research worker
 on:
   workflow_dispatch:
   schedule:
-    - cron: "27 * * * *"
+    - cron: "7,27,47 * * * *"
 permissions:
   contents: write
 concurrency:
@@ -23,7 +23,9 @@ jobs:
           from datetime import datetime,timezone
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
-          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:6]
+          rank={"critical":0,"high":1,"replan":2,"normal":3,"low":4}
+          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"]
+          tasks=sorted(tasks,key=lambda t:(rank.get(t.get("priority"),9),t.get("created_at","")))[:6]
           now=datetime.now(timezone.utc)
           json.dump({"schema_version":"1.0","cycle_id":now.strftime("%Y%m%dT%H%M%SZ"),"created_at":now.isoformat(),"task_ids":[t["task_id"] for t in tasks]},open(out/"cycle-task-manifest.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Run six parallel discovery agents
@@ -39,8 +41,12 @@ jobs:
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: results=list(zip(tasks,ex.map(run,tasks)))
-          for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
+          for t,rc in results:
+            t["attempt"]=int(t.get("attempt",0))+1
+            t["status"]="DONE" if rc==0 else "FAILED"
           json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Update Bukovy-first completion gate
+        run: python3 scripts/bukovy_completion_gate.py
       - name: Build bounded specialist agent plan
         run: python3 scripts/agent_factory.py data/research/worker-results
       - name: Execute bounded specialist stages in parallel
@@ -100,6 +106,6 @@ jobs:
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/agent-manifest.json data/research/self-improvement-application.json
+          git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/agent-manifest.json data/research/self-improvement-application.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git push origin HEAD:dev
