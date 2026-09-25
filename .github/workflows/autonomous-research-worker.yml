@@ -22,7 +22,7 @@ jobs:
         with:
           ref: dev
       - name: Repair research queue
-        shell: python
+        shell: bash
         run: python3 scripts/repair_research_queue.py data/research/autonomous-queue.json
       - name: Select four research tasks
         shell: python
