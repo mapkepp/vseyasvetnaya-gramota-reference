@@ -50,24 +50,9 @@ jobs:
               break
           now=datetime.now(timezone.utc)
           json.dump({"schema_version":"1.0","cycle_id":now.strftime("%Y%m%dT%H%M%SZ"),"created_at":now.isoformat(),"task_ids":[t["task_id"] for t in tasks]},open(out/"cycle-task-manifest.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-      - name: Publish live work plan
-        shell: python
-        run: |
-          import json,pathlib
-          from datetime import datetime,timezone
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
-          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
-          by_id={t["task_id"]:t for t in q["tasks"]}
-          now=datetime.now(timezone.utc).isoformat()
-          active=[]
-          for tid in manifest["task_ids"]:
-            t=by_id[tid]
-            active.append({"task_id":tid,"bukova":t.get("bukova"),"canonical_entry_id":t.get("canonical_entry_id"),"status":"RUNNING","phase":"поиск источников","started_at":now,"finished_at":None,"expected":"Найти независимые свидетельства практического применения этой Буковы, зафиксировать источник, действие практика и наблюдаемый результат.","queries":t.get("queries",[])})
-          json.dump({"schema_version":"1.1","cycle_id":manifest["cycle_id"],"updated_at":now,"active_tasks":active},open(out/"active-tasks.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-          json.dump({"schema_version":"1.1","updated_at":now,"cycle_id":manifest["cycle_id"],"worker":"github-public-web","worker_status":"RUNNING","phase":"SEARCH","selected_tasks":len(active),"active_tasks":active,"execution":"MEASURED"},open(out.parent/"worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Publish live worker status
+        run: python3 scripts/publish_live_research_status.py data/research/autonomous-queue.json data/research/worker-results/cycle-task-manifest.json data/research/worker-results/active-tasks.json data/research/worker-status.json
       - name: Publish live status to dev
-        shell: bash
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -75,13 +60,22 @@ jobs:
           git commit -m "research: publish live worker start status" || true
           git fetch origin dev
           git rebase --autostash origin/dev
-          for attempt in 1 2 3; do
-            if git push origin HEAD:dev; then exit 0; fi
-            git fetch origin dev
-            git rebase origin/dev
-          done
-          exit 1
+          git push origin HEAD:dev
       - name: Run four parallel discovery agents
+        shell: python
+        run: |
+          import json,pathlib,subprocess,concurrent.futures
+          out=pathlib.Path("data/research/worker-results")
+          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
+          by_id={t["task_id"]:t for t in q["tasks"]}; tasks=[by_id[x] for x in manifest["task_ids"]]
+          def run(t):
+            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
+            json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+            return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex: results=list(zip(tasks,ex.map(run,tasks)))
+          for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
+          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Verify discovered sources
         shell: python
         run: |
