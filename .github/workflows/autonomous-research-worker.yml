@@ -82,47 +82,6 @@ jobs:
           done
           exit 1
       - name: Run four parallel discovery agents
-        shell: python
-        run: |
-          import json,pathlib,subprocess,concurrent.futures,threading
-          from datetime import datetime,timezone
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
-          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
-          by_id={t["task_id"]:t for t in q["tasks"]}; tasks=[by_id[x] for x in manifest["task_ids"]]
-          lock=threading.Lock(); active_path=out/"active-tasks.json"
-          def mark(t,status,finished=None,rc=None):
-            with lock:
-              a=json.load(open(active_path,encoding="utf-8"))
-              for x in a["active_tasks"]:
-                if x["task_id"]==t["task_id"]:
-                  x["status"]=status; x["phase"]="поиск завершён" if status=="DONE" else "ошибка поиска" if status=="FAILED" else x.get("phase")
-                  if finished: x["finished_at"]=finished
-                  if rc is not None: x["return_code"]=rc
-              a["updated_at"]=datetime.now(timezone.utc).isoformat()
-              json.dump(a,open(active_path,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-          def run(t):
-            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
-            json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-            rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
-            mark(t,"DONE" if rc==0 else "FAILED",datetime.now(timezone.utc).isoformat(),rc); return rc
-          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex: results=list(zip(tasks,ex.map(run,tasks)))
-          for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
-          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
-        shell: python
-        run: |
-          import json,pathlib,subprocess,concurrent.futures
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
-          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
-          by_id={t["task_id"]:t for t in q["tasks"]}; tasks=[by_id[x] for x in manifest["task_ids"]]
-          def run(t):
-            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
-            json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-            return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
-          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex: results=list(zip(tasks,ex.map(run,tasks)))
-          for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
-          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Verify discovered sources
         shell: python
         run: |
