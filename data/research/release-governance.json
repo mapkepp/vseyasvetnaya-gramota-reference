@@ -11,17 +11,32 @@
     "main_before_rebuild": "archive-main-pre-rebuild-20260926",
     "dev_before_rebuild": "archive-dev-pre-rebuild-20260926"
   },
-  "candidate": "rebuild/main-candidate-20260926",
+  "candidate": "rebuild-main-candidate",
   "promotion_policy": {
     "never_replace_main_by_copying_dev": true,
     "preserve_all_history": true,
     "fail_closed_on_conflict": true,
     "require_validation_before_promotion": true,
-    "automatic_rollback_target": "archive-main-pre-rebuild-20260926"
+    "automatic_rollback_target": "archive-main-pre-rebuild-20260926",
+    "require_explicit_confirmation": true,
+    "merge_through_pull_request": true,
+    "never_force_push_main": true,
+    "create_immutable_snapshot_before_promotion": true,
+    "post_promotion_verification": true,
+    "rollback_via_pull_request": true
   },
   "snapshot_policy": {
     "immutable_snapshot_before_each_promotion": true,
     "retain_history": true,
     "never_delete_referenced_snapshot": true
-  }
+  },
+  "roles": {
+    "main": "production",
+    "dev": "active integration/autonomous development",
+    "main_backup": "rolling last-known-good safety copy",
+    "immutable_snapshots": "pre-promotion recovery points"
+  },
+  "backup_branch": "main-backup",
+  "promotion_workflow": ".github/workflows/promote-main-candidate.yml",
+  "rollback_workflow": ".github/workflows/rollback-main.yml"
 }
