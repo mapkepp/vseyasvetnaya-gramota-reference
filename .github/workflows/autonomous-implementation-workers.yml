@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
+  push:
+    branches: [dev]
   schedule:
     - cron: "47 * * * *"
 permissions:
@@ -18,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'dev' }}
       - name: Run implementation workers
         run: python3 scripts/autonomous_implementation_workers.py
       - name: Validate canonical invariants
@@ -37,6 +39,7 @@ jobs:
           print("PASS: implementation write-zone invariant")
           PY
       - name: Publish implementation state to dev
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "toolbox-implementation-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
