@@ -46,6 +46,8 @@ manifest={"api_version":"v1","manifest_version":"v1","generated_from":"data/buko
 recovery={"api_version":"v1","recovery_version":"v1","status":"research-only","canonical_count":bukovy.get("claimed_count"),"canonical_described_count":len(profiles),"canonical_unfilled_count":bukovy.get("coverage",{}).get("unfilled_claimed_slots"),"candidate_count":len(recovery_candidates.get("candidates",[])),"secondary_evidence_count":len(recovery_evidence.get("records",[])),"historical_visual_pages":recovery_pages.get("pages",[]),"rules":{"canonical_inclusion":False,"promotion_requires":["recoverable visual evidence","glyph-to-name linkage","source context","description linkage when available"],"do_not_promote_from":["name-only secondary lists","unverified OCR","AI-redrawn glyphs"]}}
 index["endpoints"]["recovery"]="/api/v1/recovery.json"
 index["endpoints"]["recovery_schema"]="/api/v1/recovery.schema.json"
-index["endpoints"]["practical_coverage"]="/api/v1/practical-coverage.json"\nindex["endpoints"]["research_status"]="/api/v1/research-status.json"\nindex["endpoints"]["research_queue"]="/api/v1/research-queue.json"
+index["endpoints"]["practical_coverage"]="/api/v1/practical-coverage.json"
+index["endpoints"]["research_status"]="/api/v1/research-status.json"
+index["endpoints"]["research_queue"]="/api/v1/research-queue.json"
 for n,o in [("bukovy.json",bukovy),("practices.json",practices),("practitioner-histories.json",histories),("practical-coverage.json",practical_coverage),("research-status.json",research_status),("research-queue.json",research_queue),("index.json",index),("bukovy-manifest.json",manifest),("recovery.json",recovery)]: (api/n).write_text(json.dumps(o,ensure_ascii=False,indent=2)+"\n","utf-8")
 print(f"API generated: {len(profiles)} per-Bukova profiles; {len(histories.get('stories',[]))} practitioner histories")
