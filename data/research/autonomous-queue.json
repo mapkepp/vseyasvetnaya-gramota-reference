@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T21:17:44.605913+00:00",
+  "updated_at": "2026-09-25T21:31:25.101453+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 119,
+  "replanned_count": 123,
   "tasks": [
     {
       "task_id": "research-er",
@@ -2707,7 +2707,7 @@
       "task_id": "rotation-dm80-image-32-1-replan-1",
       "canonical_entry_id": "dm80-image-32",
       "bukova": "Моси",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T21:17:44.605913+00:00",
       "queries": [
@@ -2724,7 +2724,7 @@
       "task_id": "rotation-dm80-image-33-1-replan-1",
       "canonical_entry_id": "dm80-image-33",
       "bukova": "Вси",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T21:17:44.605913+00:00",
       "queries": [
@@ -2741,7 +2741,7 @@
       "task_id": "rotation-dm80-image-34-1-replan-1",
       "canonical_entry_id": "dm80-image-34",
       "bukova": "Овоси",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T21:17:44.605913+00:00",
       "queries": [
@@ -2758,7 +2758,7 @@
       "task_id": "rotation-dm80-image-35-1-replan-1",
       "canonical_entry_id": "dm80-image-35",
       "bukova": "Ороси",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T21:17:44.605913+00:00",
       "queries": [
@@ -2770,6 +2770,74 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-35-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-32-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-32",
+      "bukova": "Моси",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:31:25.101453+00:00",
+      "queries": [
+        "\"Моси\" практика Букова форум",
+        "\"Моси\" \"нанес\" Букова",
+        "\"Моси\" \"получил результат\"",
+        "\"Моси\" \"применял\" практика",
+        "\"Моси\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-32-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-33-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-33",
+      "bukova": "Вси",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:31:25.101453+00:00",
+      "queries": [
+        "\"Вси\" практика Букова форум",
+        "\"Вси\" \"нанес\" Букова",
+        "\"Вси\" \"получил результат\"",
+        "\"Вси\" \"применял\" практика",
+        "\"Вси\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-33-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-34-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-34",
+      "bukova": "Овоси",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:31:25.101453+00:00",
+      "queries": [
+        "\"Овоси\" практика Букова форум",
+        "\"Овоси\" \"нанес\" Букова",
+        "\"Овоси\" \"получил результат\"",
+        "\"Овоси\" \"применял\" практика",
+        "\"Овоси\" \"получила результат\" Буков"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-34-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-35-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-35",
+      "bukova": "Ороси",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:31:25.101453+00:00",
+      "queries": [
+        "\"Ороси\" практика Букова форум",
+        "\"Ороси\" \"нанес\" Букова",
+        "\"Ороси\" \"получил результат\"",
+        "\"Ороси\" \"применял\" практика",
+        "\"Ороси\" \"получила результат\" Буков"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-35-1-replan-1"
     }
   ],
   "rules": [
@@ -2784,7 +2852,7 @@
   "queue_health": {
     "policy": "bounded-replan-with-entry-id-rotation",
     "max_replan_depth": 3,
-    "updated_at": "2026-09-25T21:17:44.605913+00:00",
+    "updated_at": "2026-09-25T21:31:25.101453+00:00",
     "new_replans": 4
   }
 }
