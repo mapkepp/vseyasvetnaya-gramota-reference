@@ -42,14 +42,20 @@ def main():
         if nid not in existing:
             b=t.get("bukova","")
             additions.append({
-              "task_id":nid,"bukova":b,"status":"PENDING","priority":"replan","created_at":now,
+              "task_id":nid,
+              "canonical_entry_id":t.get("canonical_entry_id"),
+              "bukova":b,
+              "status":"PENDING",
+              "priority":"replan",
+              "created_at":now,
               "queries":[f'"{b}" практика Букова форум',f'"{b}" "нанес" Букова',f'"{b}" "получил результат"',f'"{b}" "применял" практика',f'"{b}" "получила результат" Буков'],
-              "reason":reason,"parent_task_id":rid
+              "reason":reason,
+              "parent_task_id":rid
             })
             existing.add(nid)
     q["tasks"].extend(additions)
     q["updated_at"]=now
     q["replanned_count"]=q.get("replanned_count",0)+len(additions)
-    q["queue_health"]={"policy":"bounded-replan","max_replan_depth":MAX_REPLAN_DEPTH,"updated_at":now,"new_replans":len(additions)}
+    q["queue_health"]={"policy":"bounded-replan-with-entry-id-rotation","max_replan_depth":MAX_REPLAN_DEPTH,"updated_at":now,"new_replans":len(additions)}
     json.dump(q,open(queue_path,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
 if __name__=="__main__": raise SystemExit(main())
