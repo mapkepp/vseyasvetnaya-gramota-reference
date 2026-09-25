@@ -7,6 +7,7 @@ TOKEN=os.environ["GITHUB_TOKEN"]; API="https://api.github.com"
 PRIMARY={"main","dev"}; LEGACY={"development","production","reserve","backup"}
 PREFIXES=("automation/","implementation/","research/")
 ALLOWED=("scripts/","data/research/","data/toolbox/","api/","research-status.html")
+ARCHIVE_WORTHY=ALLOWED+(".github/workflows/","tests/","config/","docs/","README.md","CHANGELOG.md")
 ARCH=Path("data/research/branch-archive"); INDEX=ARCH/"index.json"
 def sh(*a): return subprocess.run(a,text=True,capture_output=True,check=False)
 def api(path,method="DELETE"):
@@ -14,7 +15,7 @@ def api(path,method="DELETE"):
     with urllib.request.urlopen(req,timeout=20) as r: return r.read()
 def useful_commit(commit):
     p=sh("git","diff-tree","--no-commit-id","--name-only","-r",commit).stdout.splitlines()
-    return [x for x in p if any(x.startswith(a) for a in ALLOWED)]
+    return [x for x in p if any(x.startswith(a) for a in ARCHIVE_WORTHY)]
 def main():
     ARCH.mkdir(parents=True,exist_ok=True)
     idx=json.loads(INDEX.read_text(encoding="utf-8")) if INDEX.exists() else {"version":1,"commits":{},"patches":{}}
