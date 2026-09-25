@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   promote:
-    if: ${{ inputs.confirm == 'OK' }}
+    if: \${{ inputs.confirm == 'OK' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,54 +27,78 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Verify candidate and create immutable backup
+      - name: Verify candidate and create recovery snapshot
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: \${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main rebuild-main-candidate
-
-          candidate_sha="$(git rev-parse origin/rebuild-main-candidate)"
-          main_sha="$(git rev-parse origin/main)"
-          backup="archive-main-pre-promotion-${GITHUB_RUN_ID}"
-
-          gh api -X POST "repos/${GITHUB_REPOSITORY}/git/refs"             -f ref="refs/heads/${backup}"             -f sha="${main_sha}"
-
-          printf '%s\n' "candidate=${candidate_sha}" "main_before=${main_sha}" "backup=${backup}" > /tmp/promotion.txt
+          candidate_sha="\$(git rev-parse origin/rebuild-main-candidate)"
+          main_sha="\$(git rev-parse origin/main)"
+          backup="archive-main-pre-promotion-\${GITHUB_RUN_ID}"
 
           git show "origin/dev:data/research/release-readiness.json" > /tmp/release-readiness.json
-          python3 - "${candidate_sha}" <<'PY'
+          python3 - "\${candidate_sha}" "\${main_sha}" <<'PY'
           import json,sys
-          from pathlib import Path
-          p=Path("/tmp/release-readiness.json")
-          d=json.loads(p.read_text(encoding="utf-8"))
+          d=json.load(open("/tmp/release-readiness.json",encoding="utf-8"))
           if d.get("status")!="READY_FOR_PROMOTION":
               raise SystemExit("candidate is not READY_FOR_PROMOTION")
           if d.get("candidate_sha")!=sys.argv[1]:
               raise SystemExit("candidate SHA does not match readiness record")
+          if d.get("main_sha")!=sys.argv[2]:
+              raise SystemExit("candidate was built from an older main; rebuild required")
           PY
+
+          gh api -X POST "repos/\${GITHUB_REPOSITORY}/git/refs" -f ref="refs/heads/\${backup}" -f sha="\${main_sha}"
+          echo "PROMOTION_SNAPSHOT=\${backup}" >> "\$GITHUB_ENV"
+          printf '%s\n' "candidate=\${candidate_sha}" "main_before=\${main_sha}" "backup=\${backup}" > /tmp/promotion.txt
 
       - name: Merge promotion pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: \${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          pr="$(gh pr list --base main --head rebuild-main-candidate --state open --json number --jq '.[0].number // empty')"
-          test -n "$pr"
-          gh pr merge "$pr" --merge --delete-branch=false
+          pr="\$(gh pr list --base main --head rebuild-main-candidate --state open --json number --jq '.[0].number // empty')"
+          test -n "\$pr"
+          gh pr merge "\$pr" --merge --delete-branch=false
+          echo "PROMOTION_MERGED=true" >> "\$GITHUB_ENV"
 
-      - name: Verify promoted main
+      - name: Verify promoted main and update rolling backup
+        env:
+          GH_TOKEN: \${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           git fetch origin main rebuild-main-candidate
-          main_sha="$(git rev-parse origin/main)"
-          candidate_sha="$(git rev-parse origin/rebuild-main-candidate)"
-          git merge-base --is-ancestor "$candidate_sha" "$main_sha"
-          git diff --check "$candidate_sha" "$main_sha"
+          main_sha="\$(git rev-parse origin/main)"
+          candidate_sha="\$(git rev-parse origin/rebuild-main-candidate)"
+          git merge-base --is-ancestor "\$candidate_sha" "\$main_sha"
+          git diff --check "\$candidate_sha" "\$main_sha"
           python3 -m compileall -q scripts
-          printf '%s\n' "PROMOTION VERIFIED" "$main_sha"
+
+          # main-backup always points to the latest successfully verified main.
+          if gh api "repos/\${GITHUB_REPOSITORY}/git/ref/heads/main-backup" >/dev/null 2>&1; then
+            gh api -X PATCH "repos/\${GITHUB_REPOSITORY}/git/refs/heads/main-backup" -f sha="\$main_sha" -F force=false
+          else
+            gh api -X POST "repos/\${GITHUB_REPOSITORY}/git/refs" -f ref="refs/heads/main-backup" -f sha="\$main_sha"
+          fi
+          printf '%s\n' "PROMOTION VERIFIED" "\$main_sha" "ROLLBACK SNAPSHOT=\${PROMOTION_SNAPSHOT}"
+
+      - name: Prepare automatic recovery after post-promotion failure
+        if: \${{ failure() && env.PROMOTION_MERGED == 'true' }}
+        env:
+          GH_TOKEN: \${{ github.token }}
+          SNAPSHOT: \${{ env.PROMOTION_SNAPSHOT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "\${SNAPSHOT}"
+          rollback_branch="auto-rollback-main-\${GITHUB_RUN_ID}"
+          snapshot_sha="\$(git rev-parse "origin/\${SNAPSHOT}")"
+          git switch -c "\${rollback_branch}" "origin/\${SNAPSHOT}"
+          git push origin "\${rollback_branch}"
+          gh pr create --base main --head "\${rollback_branch}" --title "Automatic recovery: rollback main after failed promotion" --body "Пост-проверка продвижения main завершилась ошибкой. Создан безопасный rollback PR к snapshot \${SNAPSHOT} (\${snapshot_sha}). main не переписывается принудительно."
