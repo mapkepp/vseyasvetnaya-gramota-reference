@@ -20,6 +20,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/discover_capabilities.py
+      - name: Evaluate discovered capabilities
+        run: python3 scripts/evaluate_capabilities.py
       - name: Measure self-improvement
         run: python3 scripts/self_improvement_cycle.py
       - name: Record evolution state
@@ -39,6 +41,6 @@ jobs:
         run: |
           git config user.name "toolbox-evolution-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/toolbox/discovered-capabilities.json data/research/self-improvement.json
+          git add data/toolbox/discovered-capabilities.json data/toolbox/capability-evaluations.json data/research/self-improvement.json
           git diff --cached --quiet || git commit -m "toolbox: record capability discovery and evolution"
           git push origin HEAD:dev
