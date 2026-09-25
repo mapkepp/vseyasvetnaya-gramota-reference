@@ -4,7 +4,7 @@ import json, subprocess
 from pathlib import Path
 SCAN=Path("data/research/branch-scan.json")
 OUT=Path("data/research/branch-intake.json")
-def run(*a,check=True): return subprocess.run(a,text=True,capture_output=True,check=check)
+def run(*a,check=True,**kw): return subprocess.run(a,text=True,capture_output=True,check=check,**kw)
 def main():
     d=json.loads(SCAN.read_text(encoding="utf-8")) if SCAN.exists() else {}
     results=[]
