@@ -40,7 +40,8 @@ def main():
             unarchived_useful+=1
         # Never delete branches needing review; legacy branches may be removed after unique useful commits are archived.
         safe_legacy=name in LEGACY
-        if safe_legacy and all(not useful_commit(c) or c in idx["commits"] for c in unique):
+        safe_trash=name not in PRIMARY and name not in LEGACY and not any(useful_commit(c) for c in unique)
+        if safe_legacy or safe_trash and all(not useful_commit(c) or c in idx["commits"] for c in unique):
             try:
                 api(f"/repos/{REPO}/git/refs/heads/{name}")
                 deleted.append({"branch":name,"reason":"историческая ветка: полезные уникальные коммиты сохранены в архиве"})
