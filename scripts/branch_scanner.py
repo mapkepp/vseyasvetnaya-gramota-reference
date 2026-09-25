@@ -23,8 +23,13 @@ def classify(name, ahead, behind, files):
     if not name.startswith(PREFIXES): return "unclassified"
     if ahead==0: return "obsolete"
     if not files: return "obsolete"
-    allowed=all(any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS) for f in files)
-    return "integration-candidate" if allowed and ahead<=20 else "review-required"
+    allowed_files=[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
+    blocked_files=[f for f in files if f not in allowed_files]
+    if allowed_files and not blocked_files and ahead<=20:
+        return "integration-candidate"
+    if allowed_files and len(allowed_files)<=10 and ahead<=20:
+        return "partial-integration-candidate"
+    return "review-required"
 def main():
     branches=api(f"/repos/{REPO}/branches?per_page=100") 
     rows=[]
@@ -35,7 +40,7 @@ def main():
             files=[x["filename"] for x in c.get("files",[])]
             row={"branch":name,"class":classify(name,c.get("ahead_by",0),c.get("behind_by",0),files),
                  "ahead_of_dev":c.get("ahead_by",0),"behind_dev":c.get("behind_by",0),
-                 "commits":c.get("total_commits",0),"files":files[:100],
+                 "commits":c.get("total_commits",0),"files":files[:100],"allowed_files":[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)],
                  "merge_base":(c.get("merge_base_commit") or {}).get("sha"),
                  "status":c.get("status")}
         except Exception as e:
