@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-26",
+  "policy": {
+    "free_first": true,
+    "paid_calls": false,
+    "external_escalation": "only_when_coverage_is_low",
+    "github_actions_jobs": 1,
+    "internal_parallel_agents": 6
+  },
+  "providers": [
+    {
+      "id": "parallel-search",
+      "kind": "external-search",
+      "status": "connected-in-chat",
+      "use": "fresh multi-query discovery and tool scouting",
+      "runtime": "chat-connector"
+    },
+    {
+      "id": "ollama",
+      "kind": "local-ai",
+      "status": "optional",
+      "use": "free local reasoning, query expansion, extraction, agent planning",
+      "env": ["OLLAMA_HOST", "OLLAMA_MODEL"]
+    },
+    {
+      "id": "huggingface",
+      "kind": "optional-cloud-ai",
+      "status": "optional",
+      "use": "free-tier/model access when credentials are configured",
+      "env": ["HF_TOKEN", "HF_MODEL"]
+    },
+    {
+      "id": "openai-compatible",
+      "kind": "external-ai",
+      "status": "optional",
+      "use": "any compatible endpoint; never required",
+      "env": ["EXTERNAL_AI_BASE_URL", "EXTERNAL_AI_API_KEY", "EXTERNAL_AI_MODEL"]
+    }
+  ],
+  "candidate_open_source_agent_tools": [
+    {"id":"ollama","role":"local-model-runtime","integration":"external_ai_router.py"},
+    {"id":"pydantic-ai","role":"typed-agent-orchestration","integration":"candidate"},
+    {"id":"nanobot","role":"lightweight-multi-agent-runtime","integration":"candidate"},
+    {"id":"opencode","role":"open-source-coding-agent","integration":"candidate"},
+    {"id":"aider","role":"git-centric-coding-agent","integration":"candidate"}
+  ],
+  "autonomy_loop": [
+    "MEASURE",
+    "DISCOVER",
+    "SPECIALIZE",
+    "VERIFY",
+    "EXTRACT",
+    "CROSSCHECK",
+    "QUALITY_GATE",
+    "REPLAN",
+    "SELF_IMPROVE",
+    "REPEAT"
+  ]
+}
