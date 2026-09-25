@@ -12,6 +12,7 @@ PRIMARY={"main","dev"}
 LEGACY={"development","production","reserve","backup"}
 PREFIXES=("automation/","implementation/","research/")
 ALLOWED_PREFIXES=("scripts/","data/research/","data/toolbox/","api/","research-status.html")
+ARCHIVE_WORTHY_PREFIXES=ALLOWED_PREFIXES+(".github/workflows/","tests/","config/","docs/","README.md","CHANGELOG.md")
 BLOCKED_PATHS=("secrets","credentials",".env")
 def api(path):
     req=urllib.request.Request(API+path,headers={"Accept":"application/vnd.github+json","Authorization":f"Bearer {TOKEN}","X-GitHub-Api-Version":"2022-11-28"})
@@ -25,8 +26,9 @@ def classify(name, ahead, behind, files):
     if ahead==0: return "obsolete"
     if not files: return "obsolete"
     allowed_files=[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
+    archive_worthy=[f for f in files if any(f.startswith(p) for p in ARCHIVE_WORTHY_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
     blocked_files=[f for f in files if f not in allowed_files]
-    if not allowed_files and ahead<=20:
+    if not archive_worthy and ahead<=20:
         return "trash-candidate"
     if allowed_files and not blocked_files and ahead<=20:
         return "integration-candidate"
@@ -45,6 +47,7 @@ def main():
             row={"branch":name,"class":classify(name,c.get("ahead_by",0),c.get("behind_by",0),files),
                  "ahead_of_dev":c.get("ahead_by",0),"behind_dev":c.get("behind_by",0),
                  "commits":c.get("total_commits",0),"files":files[:100],"allowed_files":[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)],
+                 "archive_worthy_files":archive_worthy,
                  "merge_base":(c.get("merge_base_commit") or {}).get("sha"),
                  "status":c.get("status")}
         except Exception as e:
@@ -63,6 +66,7 @@ def main():
     OUT.write_text(json.dumps({"version":2,"language":"ru","base_branch":"dev","protected":sorted(PRIMARY),
       "policy":{"auto_apply":"integration-candidate или partial-integration-candidate; максимум 20 коммитов; только разрешённые пути; частичные ветки переносятся только как отдельный diff",
                 "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
+      "archive_worthy_paths":list(ARCHIVE_WORTHY_PREFIXES),
                 "next_step":"apply_branch_intake.py"},
       "summary":{"branches":len(rows),"integration_candidates":len(candidates),"review_required":sum(r["class"]=="review-required" for r in rows),
                  "obsolete":sum(r["class"] in ("obsolete","trash-candidate") for r in rows)},
