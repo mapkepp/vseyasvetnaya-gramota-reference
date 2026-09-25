@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev
-      - name: Select four research tasks
+      - name: Select six research tasks
         shell: python
         run: |
           import json,pathlib
@@ -41,6 +41,12 @@ jobs:
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: results=list(zip(tasks,ex.map(run,tasks)))
           for t,rc in results: t["status"]="DONE" if rc==0 else "FAILED"
           json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Build bounded specialist agent plan
+        run: python3 scripts/agent_factory.py data/research/worker-results
+      - name: Measure and plan self-improvement
+        run: python3 scripts/self_improvement_cycle.py
+      - name: Apply safe self-improvement
+        run: python3 scripts/self_improvement_apply.py
       - name: Verify discovered sources in parallel
         shell: python
         run: |
@@ -77,11 +83,11 @@ jobs:
           verified=sum(1 for x in manifest["task_ids"] if (out/(x+".verified.json")).exists())
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
-          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"parallel_agents":6,"pipeline":["DISCOVERY","VERIFY","NORMALIZE","GATE","REPLAN"],"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next scheduled cycle; watchdog may recover stalled runs"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"parallel_agents":6,"specialist_agent_roles":5,"pipeline":["DISCOVERY","SPECIALIZE","MEASURE","SELF_IMPROVE","VERIFY","NORMALIZE","GATE","REPLAN"],"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next scheduled cycle; watchdog may recover stalled runs"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json
+          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/agent-manifest.json data/research/self-improvement-application.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git push origin HEAD:dev
