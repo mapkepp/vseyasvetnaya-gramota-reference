@@ -1,0 +1,105 @@
+name: Rebuild main candidate safely
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dev-state-writers
+  cancel-in-progress: false
+
+jobs:
+  rebuild-candidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout integration branch
+        uses: actions/checkout@v6
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - name: Rebuild candidate without touching main
+        shell: bash
+        env:
+          CANDIDATE: rebuild/main-candidate-20260926
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main dev "$CANDIDATE"
+
+          rm -rf /tmp/main-candidate
+          git worktree add /tmp/main-candidate origin/main
+          cd /tmp/main-candidate
+
+          if ! git merge --no-edit --no-ff origin/dev; then
+            git merge --abort || true
+            conflicts=$(git -C /tmp/main-candidate diff --name-only --diff-filter=U | python3 -c 'import sys,json; print(json.dumps([x.strip() for x in sys.stdin if x.strip()], ensure_ascii=False))')
+            cd "$GITHUB_WORKSPACE"
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/research/release-readiness.json")
+          old=json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+          old.update({
+              "schema_version":"1.0",
+              "status":"BLOCKED_CONFLICT",
+              "candidate":"rebuild/main-candidate-20260926",
+              "main":"origin/main",
+              "dev":"origin/dev",
+              "conflicts": json.loads("""$conflicts"""),
+              "policy":"main_is_not_modified_until_candidate_is_clean_and_verified",
+          })
+          p.parent.mkdir(parents=True, exist_ok=True)
+          p.write_text(json.dumps(old,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+            git add data/research/release-readiness.json
+            git commit -m "chore: record main rebuild conflict"
+            git push origin HEAD:dev
+            exit 0
+          fi
+
+          python3 -m compileall -q scripts
+          git diff --check
+
+          if [ -f research-status.html ]; then
+            node --check <(python3 - <<'PY'
+          import re
+          from pathlib import Path
+          s=Path("research-status.html").read_text(encoding="utf-8")
+          m=re.search(r"<script[^>]*>(.*?)</script>",s,re.S)
+          print(m.group(1) if m else "")
+          PY
+            )
+          fi
+
+          git rev-parse HEAD > /tmp/candidate_sha
+          candidate_sha=$(cat /tmp/candidate_sha)
+          cd "$GITHUB_WORKSPACE"
+          git push origin "$candidate_sha:refs/heads/$CANDIDATE" --force-with-lease
+          python3 - <<PY
+          import json
+          from pathlib import Path
+          p=Path("data/research/release-readiness.json")
+          old=json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+          old.update({
+              "schema_version":"1.0",
+              "status":"READY_FOR_PROMOTION",
+              "candidate":"rebuild/main-candidate-20260926",
+              "candidate_sha":"$candidate_sha",
+              "main":"origin/main",
+              "dev":"origin/dev",
+              "conflicts":[],
+              "verification":["python compileall","git diff --check","status javascript check"],
+              "policy":"promotion_requires_candidate_verification; main remains unchanged until promotion",
+          })
+          p.parent.mkdir(parents=True, exist_ok=True)
+          p.write_text(json.dumps(old,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+          git add data/research/release-readiness.json
+          git commit -m "chore: record verified main rebuild candidate"
+          git push origin HEAD:dev
