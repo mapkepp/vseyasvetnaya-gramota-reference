@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-24-1",
+  "canonical_entry_id": "dm80-image-24",
+  "bukova": "И",
+  "status": "PASS",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T21:09:44.828595+00:00",
+  "verification": [
+    {
+      "url": "https://rusneb.ru/",
+      "title": "НЭБ — Национальная электронная библиотека — скачать и читать онлайн ...",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "HTTPError"
+    },
+    {
+      "url": "https://scholar.sfu.ru/author/3372967",
+      "title": "Публикации: Букова М. И. | Researcher Support",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков",
+        "став",
+        "примен",
+        "практик",
+        "заметил"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://sud-praktika.ru/",
+      "title": "Судебная практика — Архив судебных документов и понятные справки по ...",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став",
+        "практик",
+        "результат"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://journal.sfu-kras.ru/sites/journal.sfu-kras.ru/files/fulltexts/J_HUM_2025_07_total.pdf",
+      "title": "PDF Журнал Сибирского Гуманитарные науки Journ",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://cyberleninka.ru/",
+      "title": "КиберЛенинка предоставляет возможность читать тексты научных статей ...",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став",
+        "результат"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "http://google.scholar.ru/",
+      "title": "Российские электронные научные публикации, статьи и авторефераты",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://www.dissercat.com/",
+      "title": "disserCat — электронная библиотека диссертаций и авторефератов ...",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://vk.com/wall-197591127_8085",
+      "title": "Букова ИО - это баланс души и гармония с самим собой, а также с высшими ...",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://bik.sfu-kras.ru/elib/view?id=TR-66335873&from=similar",
+      "title": "Библиотечно-издательский комплекс СФУ",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": true,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков",
+        "став",
+        "примен",
+        "практик"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://www.jurisdikciya.ru/",
+      "title": "Судебная практика и решения судов РФ | Юрисдикция",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став",
+        "практик",
+        "результат"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
