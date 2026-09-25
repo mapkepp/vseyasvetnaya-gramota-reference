@@ -1,0 +1,44 @@
+name: Toolbox evolution worker
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: toolbox-evolution
+  cancel-in-progress: true
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - name: Discover new capabilities
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/discover_capabilities.py
+      - name: Measure self-improvement
+        run: python3 scripts/self_improvement_cycle.py
+      - name: Record evolution state
+        shell: python
+        run: |
+          import json, pathlib
+          p=pathlib.Path("data/toolbox/discovered-capabilities.json")
+          d=json.load(open(p,encoding="utf-8")) if p.exists() else {}
+          d["evolution_policy"]={
+            "free_first":True,
+            "auto_install":False,
+            "auto_execute_untrusted_code":False,
+            "integration_requires_bounded_adapter":True
+          }
+          json.dump(d,open(p,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Commit evolution telemetry
+        run: |
+          git config user.name "toolbox-evolution-worker"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/toolbox/discovered-capabilities.json data/research/self-improvement.json
+          git diff --cached --quiet || git commit -m "toolbox: record capability discovery and evolution"
+          git push origin HEAD:dev
