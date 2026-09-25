@@ -38,17 +38,18 @@ jobs:
           import pathlib,subprocess
           out=pathlib.Path("data/research/worker-results")
           for tf in out.glob("*.task.json"):
-            rf=out/(tf.stem+".result.json"); vf=out/(tf.stem+".verified.json")
+            task_id=tf.name[:-len(".task.json")]
+            rf=out/(task_id+".result.json"); vf=out/(task_id+".verified.json")
             if rf.exists(): subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False)
       - name: Normalize practitioner evidence
         shell: python
         run: |
-          import pathlib,subprocess,json
+          import pathlib,subprocess
           out=pathlib.Path("data/research/worker-results")
           for tf in out.glob("*.task.json"):
-            vf=out/(tf.stem+".verified.json"); rf=out/(tf.stem+".result.json"); nf=out/(tf.stem+".normalized.json")
-            if vf.exists() and rf.exists():
-              subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False)
+            task_id=tf.name[:-len(".task.json")]
+            vf=out/(task_id+".verified.json"); rf=out/(task_id+".result.json"); nf=out/(task_id+".normalized.json")
+            if vf.exists() and rf.exists(): subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False)
       - name: Apply practitioner evidence gate
         run: python3 scripts/practitioner_evidence_gate.py data/research/worker-results
       - name: Replan unresolved research
