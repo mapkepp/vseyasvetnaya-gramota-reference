@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-import json,sys,pathlib
+import json,sys,pathlib,re
 from datetime import datetime,timezone
+
+MAX_REPLAN_DEPTH=3
+
+def depth(task_id):
+    return len(re.findall(r"-replan-1", str(task_id)))
 
 def main():
     queue_path=pathlib.Path(sys.argv[1]); results_dir=pathlib.Path(sys.argv[2])
@@ -26,17 +31,25 @@ def main():
                 reason="verification_incomplete"
             elif n.get("status")!="PASS" or not any(c.get("status")=="READY_FOR_REVIEW" for c in n.get("candidates",[])):
                 reason="normalization_incomplete"
-        if reason:
-            nid=rid+"-replan-1"
-            if nid not in existing:
-                b=t.get("bukova","")
-                additions.append({
-                  "task_id":nid,"bukova":b,"status":"PENDING","priority":"replan","created_at":now,
-                  "queries":[f'"{b}" практика Букова форум',f'"{b}" "нанес" Букова',f'"{b}" "получил результат"',f'"{b}" "применял" практика',f'"{b}" "получила результат" Буков'],
-                  "reason":reason,"parent_task_id":rid
-                })
-                existing.add(nid)
-    q["tasks"].extend(additions); q["updated_at"]=now
+        if not reason: continue
+        d=depth(rid)
+        if d>=MAX_REPLAN_DEPTH:
+            t["status"]="EXHAUSTED"
+            t["exhausted_at"]=now
+            t["exhausted_reason"]="max_replan_depth_reached"
+            continue
+        nid=rid+"-replan-1"
+        if nid not in existing:
+            b=t.get("bukova","")
+            additions.append({
+              "task_id":nid,"bukova":b,"status":"PENDING","priority":"replan","created_at":now,
+              "queries":[f'"{b}" практика Букова форум',f'"{b}" "нанес" Букова',f'"{b}" "получил результат"',f'"{b}" "применял" практика',f'"{b}" "получила результат" Буков'],
+              "reason":reason,"parent_task_id":rid
+            })
+            existing.add(nid)
+    q["tasks"].extend(additions)
+    q["updated_at"]=now
     q["replanned_count"]=q.get("replanned_count",0)+len(additions)
+    q["queue_health"]={"policy":"bounded-replan","max_replan_depth":MAX_REPLAN_DEPTH,"updated_at":now,"new_replans":len(additions)}
     json.dump(q,open(queue_path,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
 if __name__=="__main__": raise SystemExit(main())
