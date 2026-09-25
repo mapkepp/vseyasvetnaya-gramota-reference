@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "development_branch":"dev",
+  "production_branch":"main",
+  "backup_strategy":"snapshot-tag-and-branch",
+  "publication":{
+    "enabled":true,
+    "provider":"github-pages",
+    "source_branch":"main",
+    "verification_required":true
+  },
+  "promotion":{
+    "require_clean_validation":true,
+    "require_snapshot_before_production":true,
+    "allow_rollback":true
+  }
+}
