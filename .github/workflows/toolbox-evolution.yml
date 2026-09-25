@@ -28,13 +28,6 @@ jobs:
         run: python3 scripts/sync_status_surfaces.py
       - name: Record branch governance
         run: python3 scripts/branch_governance.py
-      - name: Scan all branches and prepare intake
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python3 scripts/branch_scanner.py
-      - name: Apply safe branch intake
-        run: python3 scripts/apply_branch_intake.py
       - name: Record evolution state
         shell: python
         run: |
