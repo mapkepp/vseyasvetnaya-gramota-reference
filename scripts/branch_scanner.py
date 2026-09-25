@@ -26,6 +26,8 @@ def classify(name, ahead, behind, files):
     if not files: return "obsolete"
     allowed_files=[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
     blocked_files=[f for f in files if f not in allowed_files]
+    if not allowed_files and ahead<=20:
+        return "trash-candidate"
     if allowed_files and not blocked_files and ahead<=20:
         return "integration-candidate"
     if allowed_files and len(allowed_files)<=10 and ahead<=20:
@@ -63,6 +65,6 @@ def main():
                 "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
                 "next_step":"apply_branch_intake.py"},
       "summary":{"branches":len(rows),"integration_candidates":len(candidates),"review_required":sum(r["class"]=="review-required" for r in rows),
-                 "obsolete":sum(r["class"]=="obsolete" for r in rows)},
+                 "obsolete":sum(r["class"] in ("obsolete","trash-candidate") for r in rows)},
       "branches":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__": main()
