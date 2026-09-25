@@ -29,6 +29,7 @@ def main():
                 m=run("git","commit","-m",f"automation: extract useful changes from {b}",check=False)
         if m.returncode!=0:
             run("git","merge","--abort",check=False)
+            run("git","reset","--hard","HEAD",check=False)
             results.append({"branch":b,"status":"blocked-apply-conflict"}); continue
         check=run("git","diff","--check",check=False)
         compile_check=run("python3","-m","compileall","-q","scripts",check=False)
