@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "name":"autonomous-toolbox-system-contract",
+  "updated_at":"2026-09-26T00:00:00Z",
+  "default_timezone":"UTC+3",
+  "protected_branches":["main","dev"],
+  "state_writer_concurrency_group":"dev-state-writers",
+  "principles":["single_writer_serialization_for_shared_dev_state","parallelism_inside_research_cycles_is_allowed","generated_surfaces_are_reproducible","status_page_has_a_static_recovery_surface","safe_repairs_are_automatic","ambiguous_or_destructive_repairs_fail_closed","every_repair_and_failure_becomes_operational_experience","new_state_surfaces_are_registered_automatically","no_duplicate_archived_history"],
+  "required_for_new_automation":["implementation","trigger","state","verification","documentation","repair_policy","experience_record"]
+}
