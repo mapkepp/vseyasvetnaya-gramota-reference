@@ -6,12 +6,13 @@ on:
   push:
     branches: [dev]
   schedule:
-    - cron: "37 * * * *"
+    - cron: "*/5 * * * *"
 permissions:
   contents: write
 concurrency:
   group: autonomous-implementation-workers
   cancel-in-progress: false
+# cadence_policy: every-5-minutes; queue repair + immediate implementation handoff
 
 jobs:
   implement:
