@@ -119,7 +119,7 @@ jobs:
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json
+          git add api data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git fetch origin dev
           git rebase origin/dev
