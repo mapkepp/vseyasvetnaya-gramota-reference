@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0",
+  "strategy":"verified-main-promotion",
+  "stable_branch":"main",
+  "development_branch":"dev",
+  "protected_branches":["main","dev"],
+  "snapshots":{
+    "main_before_rebuild":"archive/main-pre-rebuild-20260926",
+    "dev_before_rebuild":"archive/dev-pre-rebuild-20260926"
+  },
+  "candidate":"rebuild/main-candidate-20260926",
+  "promotion_policy":{
+    "never_replace_main_by_copying_dev":true,
+    "preserve_all_history":true,
+    "fail_closed_on_conflict":true,
+    "require_validation_before_promotion":true,
+    "automatic_rollback_target":"archive/main-pre-rebuild-20260926"
+  }
+}
