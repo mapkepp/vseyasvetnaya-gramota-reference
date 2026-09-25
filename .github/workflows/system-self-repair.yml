@@ -1,0 +1,30 @@
+name: System integrity and self-repair
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: dev-state-writers
+  cancel-in-progress: false
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+      - name: Fetch main for status validation
+        run: git fetch origin main:refs/remotes/origin/main
+      - name: Run integrity checks and bounded repairs
+        run: python3 scripts/system_self_check.py
+      - name: Publish health and experience
+        run: |
+          git config user.name "toolbox-self-repair"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
+          git diff --cached --quiet || git commit -m "automation: record system health and experience"
+          git push origin HEAD:dev
