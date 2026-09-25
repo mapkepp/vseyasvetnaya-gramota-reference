@@ -1,0 +1,81 @@
+name: Promote verified main candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Введите OK для продвижения кандидата в main'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: main-promotion
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    if: ${{ inputs.confirm == 'OK' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify candidate and create immutable backup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main rebuild-main-candidate
+
+          candidate_sha="$(git rev-parse origin/rebuild-main-candidate)"
+          main_sha="$(git rev-parse origin/main)"
+          backup="archive-main-pre-promotion-${GITHUB_RUN_ID}"
+
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/git/refs"             -f ref="refs/heads/${backup}"             -f sha="${main_sha}"
+
+          printf '%s\n' "candidate=${candidate_sha}" "main_before=${main_sha}" "backup=${backup}" > /tmp/promotion.txt
+
+          python3 - "${candidate_sha}" <<'PY'
+          import json,sys
+          from pathlib import Path
+          p=Path("data/research/release-readiness.json")
+          if not p.exists():
+              raise SystemExit("release-readiness.json missing")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          if d.get("status")!="READY_FOR_PROMOTION":
+              raise SystemExit("candidate is not READY_FOR_PROMOTION")
+          if d.get("candidate_sha")!=sys.argv[1]:
+              raise SystemExit("candidate SHA does not match readiness record")
+          PY
+
+      - name: Merge promotion pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr="$(gh pr list --base main --head rebuild-main-candidate --state open --json number --jq '.[0].number // empty')"
+          test -n "$pr"
+          gh pr merge "$pr" --merge --delete-branch=false
+
+      - name: Verify promoted main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main rebuild-main-candidate
+          main_sha="$(git rev-parse origin/main)"
+          candidate_sha="$(git rev-parse origin/rebuild-main-candidate)"
+          git merge-base --is-ancestor "$candidate_sha" "$main_sha"
+          git diff --check "$candidate_sha" "$main_sha"
+          python3 -m compileall -q scripts
+          printf '%s\n' "PROMOTION VERIFIED" "$main_sha"
