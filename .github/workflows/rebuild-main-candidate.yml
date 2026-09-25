@@ -58,6 +58,9 @@ jobs:
           p.parent.mkdir(parents=True, exist_ok=True)
           p.write_text(json.dumps(old,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           PY
+            cd /tmp/main-candidate
+            git merge --abort || true
+            cd "$GITHUB_WORKSPACE"
             git add data/research/release-readiness.json
             git commit -m "chore: record main rebuild conflict"
             git push origin HEAD:dev
