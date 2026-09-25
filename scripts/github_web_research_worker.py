@@ -123,7 +123,7 @@ def main():
             found.setdefault(url,{"title":title,"queries":[],"providers":[]})
             found[url]["queries"].append(q)
             if provider and provider not in found[url]["providers"]:found[url]["providers"].append(provider)
-        if len(found)>=12:break
+        if len(found)>=20:break
     findings=[{"claim":"Discovered public-web source; requires human-readable verification before use.",
                 "sources":[{"url":u,"title":m["title"]}],"evidence_type":"web_discovery",
                 "confidence":"UNSPECIFIED","conflicts":[],"discovery_queries":m["queries"],"providers":m["providers"]}
