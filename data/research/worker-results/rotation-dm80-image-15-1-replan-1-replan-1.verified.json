@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-15-1-replan-1-replan-1",
+  "canonical_entry_id": "dm80-image-15",
+  "bukova": "Е",
+  "status": "INCOMPLETE",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T14:12:42.084800+00:00",
+  "verification": [
+    {
+      "url": "https://chitanka.info/",
+      "title": "Моята библиотека",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://www.e-prosveta.bg/",
+      "title": "Начало 2026-2027 - е-просвета",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://vkvideo.ru/video-151469882_456239501",
+      "title": "Букова Естье Е.Н. Астафьева — Видео от ВсеЯСветная Грамота 퓐кадемия",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "HTTPError"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
