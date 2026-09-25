@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T08:20:33.984106+00:00",
+  "updated_at": "2026-09-25T08:21:26.955660+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 53,
+  "replanned_count": 57,
   "tasks": [
     {
       "task_id": "research-er",
@@ -903,7 +903,7 @@
     {
       "task_id": "research-nash-replan-1-replan-1-replan-1",
       "bukova": "Нашъ",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T08:11:56.354574+00:00",
       "queries": [
@@ -919,7 +919,7 @@
     {
       "task_id": "research-ot-replan-1-replan-1-replan-1",
       "bukova": "Отъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:19:32.747242+00:00",
       "queries": [
@@ -935,7 +935,7 @@
     {
       "task_id": "research-ro-replan-1-replan-1-replan-1",
       "bukova": "Ро",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:19:32.747242+00:00",
       "queries": [
@@ -951,7 +951,7 @@
     {
       "task_id": "research-erh-replan-1-replan-1-replan-1-replan-1",
       "bukova": "Ерь",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T08:19:32.747242+00:00",
       "queries": [
@@ -1107,6 +1107,70 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "research-kolo-replan-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "research-nash-replan-1-replan-1-replan-1-replan-1",
+      "bukova": "Нашъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:21:26.955660+00:00",
+      "queries": [
+        "\"Нашъ\" практика Букова форум",
+        "\"Нашъ\" \"нанес\" Букова",
+        "\"Нашъ\" \"получил результат\"",
+        "\"Нашъ\" \"применял\" практика",
+        "\"Нашъ\" \"получила результат\" Буков"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "research-nash-replan-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "research-ot-replan-1-replan-1-replan-1-replan-1",
+      "bukova": "Отъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:21:26.955660+00:00",
+      "queries": [
+        "\"Отъ\" практика Букова форум",
+        "\"Отъ\" \"нанес\" Букова",
+        "\"Отъ\" \"получил результат\"",
+        "\"Отъ\" \"применял\" практика",
+        "\"Отъ\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-ot-replan-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "research-ro-replan-1-replan-1-replan-1-replan-1",
+      "bukova": "Ро",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:21:26.955660+00:00",
+      "queries": [
+        "\"Ро\" практика Букова форум",
+        "\"Ро\" \"нанес\" Букова",
+        "\"Ро\" \"получил результат\"",
+        "\"Ро\" \"применял\" практика",
+        "\"Ро\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-ro-replan-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "research-erh-replan-1-replan-1-replan-1-replan-1-replan-1",
+      "bukova": "Ерь",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:21:26.955660+00:00",
+      "queries": [
+        "\"Ерь\" практика Букова форум",
+        "\"Ерь\" \"нанес\" Букова",
+        "\"Ерь\" \"получил результат\"",
+        "\"Ерь\" \"применял\" практика",
+        "\"Ерь\" \"получила результат\" Буков"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "research-erh-replan-1-replan-1-replan-1-replan-1"
     }
   ],
   "rules": [
