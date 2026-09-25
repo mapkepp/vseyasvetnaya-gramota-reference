@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T08:42:33.456961+00:00",
+  "updated_at": "2026-09-25T08:49:16.825283+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 79,
+  "replanned_count": 83,
   "tasks": [
     {
       "task_id": "research-er",
@@ -1723,7 +1723,7 @@
       "task_id": "rotation-dm80-image-26-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-26",
       "bukova": "I",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "created_at": "2026-09-25T08:42:33.456961+00:00",
       "queries": [
@@ -1734,13 +1734,15 @@
         "\"I\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-dm80-image-26-1-replan-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-26-1-replan-1-replan-1",
+      "exhausted_at": "2026-09-25T08:49:04.228760+00:00",
+      "exhausted_reason": "max_replan_depth_reached"
     },
     {
       "task_id": "rotation-dm80-image-10-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-10",
       "bukova": "Веде",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "created_at": "2026-09-25T08:42:33.456961+00:00",
       "queries": [
@@ -1751,13 +1753,15 @@
         "\"Веде\" \"получила результат\" Буков"
       ],
       "reason": "normalization_incomplete",
-      "parent_task_id": "rotation-dm80-image-10-1-replan-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-10-1-replan-1-replan-1",
+      "exhausted_at": "2026-09-25T08:49:04.228760+00:00",
+      "exhausted_reason": "max_replan_depth_reached"
     },
     {
       "task_id": "rotation-dm80-image-11-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-11",
       "bukova": "Вита",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "created_at": "2026-09-25T08:42:33.456961+00:00",
       "queries": [
@@ -1768,13 +1772,15 @@
         "\"Вита\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-dm80-image-11-1-replan-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-11-1-replan-1-replan-1",
+      "exhausted_at": "2026-09-25T08:49:04.228760+00:00",
+      "exhausted_reason": "max_replan_depth_reached"
     },
     {
       "task_id": "rotation-dm80-image-13-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-13",
       "bukova": "Герьвь",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "created_at": "2026-09-25T08:42:33.456961+00:00",
       "queries": [
@@ -1785,7 +1791,145 @@
         "\"Герьвь\" \"получила результат\" Буков"
       ],
       "reason": "verification_incomplete",
-      "parent_task_id": "rotation-dm80-image-13-1-replan-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-13-1-replan-1-replan-1",
+      "exhausted_at": "2026-09-25T08:49:04.228760+00:00",
+      "exhausted_reason": "max_replan_depth_reached"
+    },
+    {
+      "task_id": "rotation-dm80-image-14-1",
+      "canonical_entry_id": "dm80-image-14",
+      "bukova": "Д",
+      "status": "DONE",
+      "priority": "rotation",
+      "created_at": "2026-09-25T08:49:04.228760+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Д\" Букова практика источник",
+        "\"Д\" Букова \"нанес\" опыт",
+        "\"Д\" Букова \"результат\" опыт",
+        "\"Д\" Букова \"применял\" опыт",
+        "\"Д\" Букова отзыв практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-15-1",
+      "canonical_entry_id": "dm80-image-15",
+      "bukova": "Е",
+      "status": "DONE",
+      "priority": "rotation",
+      "created_at": "2026-09-25T08:49:04.228760+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Е\" Букова практика источник",
+        "\"Е\" Букова \"нанес\" опыт",
+        "\"Е\" Букова \"результат\" опыт",
+        "\"Е\" Букова \"применял\" опыт",
+        "\"Е\" Букова отзыв практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-16-1",
+      "canonical_entry_id": "dm80-image-16",
+      "bukova": "Е\"-ять",
+      "status": "FAILED",
+      "priority": "rotation",
+      "created_at": "2026-09-25T08:49:04.228760+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Е\"-ять\" Букова практика источник",
+        "\"Е\"-ять\" Букова \"нанес\" опыт",
+        "\"Е\"-ять\" Букова \"результат\" опыт",
+        "\"Е\"-ять\" Букова \"применял\" опыт",
+        "\"Е\"-ять\" Букова отзыв практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-17-1",
+      "canonical_entry_id": "dm80-image-17",
+      "bukova": "Ё",
+      "status": "FAILED",
+      "priority": "rotation",
+      "created_at": "2026-09-25T08:49:04.228760+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Ё\" Букова практика источник",
+        "\"Ё\" Букова \"нанес\" опыт",
+        "\"Ё\" Букова \"результат\" опыт",
+        "\"Ё\" Букова \"применял\" опыт",
+        "\"Ё\" Букова отзыв практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-14-1-replan-1",
+      "canonical_entry_id": "dm80-image-14",
+      "bukova": "Д",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:49:16.825283+00:00",
+      "queries": [
+        "\"Д\" практика Букова форум",
+        "\"Д\" \"нанес\" Букова",
+        "\"Д\" \"получил результат\"",
+        "\"Д\" \"применял\" практика",
+        "\"Д\" \"получила результат\" Буков"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-14-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-15-1-replan-1",
+      "canonical_entry_id": "dm80-image-15",
+      "bukova": "Е",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:49:16.825283+00:00",
+      "queries": [
+        "\"Е\" практика Букова форум",
+        "\"Е\" \"нанес\" Букова",
+        "\"Е\" \"получил результат\"",
+        "\"Е\" \"применял\" практика",
+        "\"Е\" \"получила результат\" Буков"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-15-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-16-1-replan-1",
+      "canonical_entry_id": "dm80-image-16",
+      "bukova": "Е\"-ять",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:49:16.825283+00:00",
+      "queries": [
+        "\"Е\"-ять\" практика Букова форум",
+        "\"Е\"-ять\" \"нанес\" Букова",
+        "\"Е\"-ять\" \"получил результат\"",
+        "\"Е\"-ять\" \"применял\" практика",
+        "\"Е\"-ять\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-16-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-17-1-replan-1",
+      "canonical_entry_id": "dm80-image-17",
+      "bukova": "Ё",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:49:16.825283+00:00",
+      "queries": [
+        "\"Ё\" практика Букова форум",
+        "\"Ё\" \"нанес\" Букова",
+        "\"Ё\" \"получил результат\"",
+        "\"Ё\" \"применял\" практика",
+        "\"Ё\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-17-1"
     }
   ],
   "rules": [
@@ -1800,7 +1944,7 @@
   "queue_health": {
     "policy": "bounded-replan-with-entry-id-rotation",
     "max_replan_depth": 3,
-    "updated_at": "2026-09-25T08:42:33.456961+00:00",
+    "updated_at": "2026-09-25T08:49:16.825283+00:00",
     "new_replans": 4
   }
 }

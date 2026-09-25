@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-15-1",
+  "canonical_entry_id": "dm80-image-15",
+  "bukova": "Е",
+  "status": "INCOMPLETE",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T08:49:16.060214+00:00",
+  "verification": [
+    {
+      "url": "https://rucont.ru/",
+      "title": "Электронная библиотека (эбс) Руконт - купить, скачать бесплатно или ...",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став",
+        "результат",
+        "эффект"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://www.semanticscholar.org/author/В.-Е.-Букова/2344636352",
+      "title": "В. Е. Букова | Semantic Scholar",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "UnicodeEncodeError"
+    },
+    {
+      "url": "https://www.klex.ru/c83",
+      "title": "Психотерапия. Теория и практика — Соколова Е.Т.",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
