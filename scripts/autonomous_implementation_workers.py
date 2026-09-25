@@ -46,7 +46,8 @@ def agent_research_handoff():
         r=load(rp,{})
         n=load(np,{})
         results.append({
-          "task_id":tid,"bukova":r.get("bukova",n.get("bukova")),"discovery_status":r.get("status","NOT_FOUND"),
+          "task_id":tid,"canonical_entry_id":r.get("canonical_entry_id",n.get("canonical_entry_id")),
+          "bukova":r.get("bukova",n.get("bukova")),"discovery_status":r.get("status","NOT_FOUND"),
           "source_count":len(r.get("findings",[])),"normalized_status":n.get("status","NOT_FOUND"),
           "candidate_count":n.get("candidate_count",0)
         })
@@ -60,7 +61,7 @@ def agent_research_handoff():
         for x in results:
             if x["discovery_status"]=="PASS" and x["normalized_status"]=="INCOMPLETE":
                 impl.append({"implementation_id":"evidence-gap-"+x["task_id"],"type":"research-followup",
-                             "status":"PENDING","bukova":x["bukova"],
+                             "status":"PENDING","canonical_entry_id":x["canonical_entry_id"],"bukova":x["bukova"],
                              "safe_rule":"research artifact only; no canonical mutation"})
     queue={"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),
            "cycle_id":manifest.get("cycle_id"),"source":"autonomous-research-worker",
