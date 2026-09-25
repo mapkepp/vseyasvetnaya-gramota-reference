@@ -1,0 +1,68 @@
+name: Autonomous research watchdog
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: autonomous-research-watchdog
+  cancel-in-progress: true
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout control branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and repair worker installation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin dev
+          git worktree add /tmp/dev origin/dev
+          repaired=0
+          for f in scripts/repair_research_queue.py scripts/verify_research_sources.py scripts/replan_research_queue.py scripts/practitioner_evidence_gate.py scripts/build_practitioner_review_queue.py scripts/normalize_practitioner_evidence.py scripts/github_web_research_worker.py; do
+            if ! test -f "/tmp/dev/$f"; then
+              if git cat-file -e "origin/main:$f" 2>/dev/null; then
+                mkdir -p "/tmp/dev/$(dirname "$f")"
+                git show "origin/main:$f" > "/tmp/dev/$f"
+                repaired=1
+                echo "REPAIRED $f"
+              else
+                echo "::error::Missing worker component in dev and main: $f"
+                exit 1
+              fi
+            fi
+          done
+          python3 -m py_compile /tmp/dev/scripts/*.py
+          if [ "$repaired" = "1" ]; then
+            cd /tmp/dev
+            git config user.name "research-watchdog"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add scripts
+            git commit -m "fix(research): watchdog restore worker components"
+            git push origin HEAD:dev
+          fi
+      - name: Check latest worker runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?per_page=10")"
+          latest="$(echo "$runs" | jq -r '.workflow_runs[0].id // empty')"
+          status="$(echo "$runs" | jq -r '.workflow_runs[0].status // empty')"
+          conclusion="$(echo "$runs" | jq -r '.workflow_runs[0].conclusion // empty')"
+          echo "latest=$latest status=$status conclusion=$conclusion"
+          if [ -n "$latest" ] && [ "$status" = "completed" ] && [ "$conclusion" != "success" ]; then
+            echo "Последний worker завершился с ошибкой — запускаем повтор."
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${latest}/rerun" >/dev/null
+            exit 0
+          fi
+          if [ "$status" != "in_progress" ] && [ "$status" != "queued" ]; then
+            echo "Нет выполняющегося worker — запускаем новый цикл."
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=main >/dev/null
+          fi
