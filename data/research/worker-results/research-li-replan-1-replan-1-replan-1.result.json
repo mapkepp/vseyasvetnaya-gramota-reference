@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.2",
+  "task_id": "research-li-replan-1-replan-1-replan-1",
+  "bukova": "Ли",
+  "status": "PASS",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T08:19:45.057729+00:00",
+  "queries": [
+    "\"Ли\" практика Букова форум",
+    "\"Ли\" \"нанес\" Букова",
+    "\"Ли\" \"получил результат\"",
+    "\"Ли\" \"применял\" практика",
+    "\"Ли\" \"получила результат\" Буков",
+    "\"Ли\" \"став\" Буков",
+    "\"Ли\" \"буквица\" практика",
+    "\"Ли\" \"нанос\" практика",
+    "\"Ли\" \"результат\" практика"
+  ],
+  "search_engine": "github-actions-public-web-multi-provider",
+  "findings": [
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://vk.com/wall-197591127_9721",
+          "title": "Букова ЛИ - это сила преодоления препятствий, восстановления порядка и ..."
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"Ли\" практика Букова форум"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    },
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://magicgrimoire.com/viewtopic.php?f=380&t=9664",
+          "title": "Просмотр темы - Чистка негатива с активной защитой- букова ЛИ"
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"Ли\" практика Букова форум"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    },
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://vk.com/wall-160078535_97180",
+          "title": "Букова Ли. Автор: (с) Сорока 2018 @#Валькирия@#Практическая магия@#Руны ..."
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"Ли\" практика Букова форум"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "provider": "bing",
+      "query": "\"Ли\" практика Букова форум",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&count=10",
+      "results": 0,
+      "body_chars": 97656
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" практика Букова форум",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&kl=ru-ru",
+      "results": 3,
+      "body_chars": 16196
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"нанес\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96521
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"нанес\" Букова",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14216
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"нанес\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91730
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"нанес\" Букова",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"нанес\" Букова",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"получил результат\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 96511
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"получил результат\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14208
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"получил результат\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91937
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"получил результат\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"получил результат\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"применял\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 130718
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"применял\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14202
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"применял\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92309
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"применял\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"применял\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"получила результат\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 142527
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"получила результат\" Буков",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14216
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"получила результат\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 91826
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"получила результат\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"получила результат\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 136658
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14194
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 91593
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"став\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"став\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 130173
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14212
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92079
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"буквица\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 136747
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14208
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91836
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"нанос\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ли\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 99810
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ли\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14210
+    },
+    {
+      "provider": "google",
+      "query": "\"Ли\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92135
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ли\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ли\" \"результат\" практика",
+      "status": "EMPTY",
+      "results": 0
+    }
+  ],
+  "canonical_mutation": "DISABLED"
+}
