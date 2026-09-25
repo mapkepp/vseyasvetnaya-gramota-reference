@@ -32,7 +32,10 @@ jobs:
               tf=out/(t["task_id"]+".task.json")
               rf=out/(t["task_id"]+".result.json")
               json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-              subprocess.run(["python3","scripts/research_worker.py",str(tf),str(rf)],check=False)
+              rc=subprocess.run(["python3","scripts/research_worker.py",str(tf),str(rf)],check=False).returncode
+              t["status"]="DONE" if rc==0 else ("BLOCKED" if rc==2 else "FAILED")
+              t["completed_at"]=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
           status={
             "schema_version":"1.0",
             "updated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),
