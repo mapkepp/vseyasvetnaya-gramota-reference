@@ -1,0 +1,41 @@
+name: Prepare main rollback safely
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot:
+        description: 'Имя archive-main-* snapshot, к которому нужно подготовить возврат'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: main-promotion
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create rollback branch and pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SNAPSHOT: ${{ inputs.snapshot }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main "${SNAPSHOT}"
+          snapshot_sha="$(git rev-parse "origin/${SNAPSHOT}")"
+          rollback_branch="rollback-main-${GITHUB_RUN_ID}"
+          git switch -c "${rollback_branch}" "origin/${SNAPSHOT}"
+          git push origin "${rollback_branch}"
+          gh pr create             --base main             --head "${rollback_branch}"             --title "Rollback main to verified snapshot ${SNAPSHOT}"             --body "Подготовлен безопасный rollback main к заранее сохранённому snapshot. main не переписывается принудительно; возврат проходит через обычную проверку и защиту ветки. Snapshot SHA: ${snapshot_sha}."
