@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T20:52:26.102689+00:00",
+  "updated_at": "2026-09-25T21:01:59.529870+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 99,
+  "replanned_count": 103,
   "tasks": [
     {
       "task_id": "research-er",
@@ -2215,7 +2215,7 @@
       "task_id": "rotation-dm80-image-18-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-18",
       "bukova": "Ё\"-Ёкъ, Иръ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T20:52:26.102689+00:00",
       "queries": [
@@ -2232,7 +2232,7 @@
       "task_id": "rotation-dm80-image-19-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-19",
       "bukova": "Ж",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T20:52:26.102689+00:00",
       "queries": [
@@ -2249,7 +2249,7 @@
       "task_id": "rotation-dm80-image-21-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-21",
       "bukova": "З",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T20:52:26.102689+00:00",
       "queries": [
@@ -2266,7 +2266,7 @@
       "task_id": "rotation-dm80-image-22-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-22",
       "bukova": "Зга",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T20:52:26.102689+00:00",
       "queries": [
@@ -2278,6 +2278,74 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-22-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-18-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-18",
+      "bukova": "Ё\"-Ёкъ, Иръ",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:01:59.529870+00:00",
+      "queries": [
+        "\"Ё\"-Ёкъ, Иръ\" практика Букова форум",
+        "\"Ё\"-Ёкъ, Иръ\" \"нанес\" Букова",
+        "\"Ё\"-Ёкъ, Иръ\" \"получил результат\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"применял\" практика",
+        "\"Ё\"-Ёкъ, Иръ\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-18-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-19-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-19",
+      "bukova": "Ж",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:01:59.529870+00:00",
+      "queries": [
+        "\"Ж\" практика Букова форум",
+        "\"Ж\" \"нанес\" Букова",
+        "\"Ж\" \"получил результат\"",
+        "\"Ж\" \"применял\" практика",
+        "\"Ж\" \"получила результат\" Буков"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-19-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-21-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-21",
+      "bukova": "З",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:01:59.529870+00:00",
+      "queries": [
+        "\"З\" практика Букова форум",
+        "\"З\" \"нанес\" Букова",
+        "\"З\" \"получил результат\"",
+        "\"З\" \"применял\" практика",
+        "\"З\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-21-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-22-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-22",
+      "bukova": "Зга",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T21:01:59.529870+00:00",
+      "queries": [
+        "\"Зга\" практика Букова форум",
+        "\"Зга\" \"нанес\" Букова",
+        "\"Зга\" \"получил результат\"",
+        "\"Зга\" \"применял\" практика",
+        "\"Зга\" \"получила результат\" Буков"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-22-1-replan-1-replan-1"
     }
   ],
   "rules": [
@@ -2292,7 +2360,7 @@
   "queue_health": {
     "policy": "bounded-replan-with-entry-id-rotation",
     "max_replan_depth": 3,
-    "updated_at": "2026-09-25T20:52:26.102689+00:00",
+    "updated_at": "2026-09-25T21:01:59.529870+00:00",
     "new_replans": 4
   }
 }
