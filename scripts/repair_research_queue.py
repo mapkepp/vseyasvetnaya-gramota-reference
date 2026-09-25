@@ -33,6 +33,79 @@ def hydrate_entry_ids(tasks, canonical_entries):
             t["canonical_entry_id"] = pick
             used.add(pick)
 
+def desired_id(task, used_ids):
+    old = str(task.get("task_id") or "")
+    eid = task.get("canonical_entry_id")
+    if not eid:
+        base = old or "task"
+    elif old.startswith("rotation-"):
+        generation = int(task.get("generation") or 1)
+        base = f"rotation-{slug(eid)}-{generation}" + "-replan-1" * depth(old)
+    else:
+        # Preserve legacy non-rotation identifiers unless they collide.
+        base = old
+
+    candidate = base
+    n = 2
+    while candidate in used_ids:
+        candidate = f"{base}--{slug(eid or old)}-{n}"
+        n += 1
+    return candidate
+
+def normalize_task_ids(tasks):
+    used = set()
+    mapping = []
+    for t in tasks:
+        old = t.get("task_id")
+        new = desired_id(t, used)
+        if new != old:
+            mapping.append((old, new, t.get("canonical_entry_id")))
+            t["legacy_task_id"] = old
+            t["task_id"] = new
+        used.add(new)
+
+    for t in tasks:
+        parent = t.get("parent_task_id")
+        if not parent:
+            continue
+        eid = t.get("canonical_entry_id")
+        match = next((new for old,new,peid in mapping if old == parent and peid == eid), None)
+        if match:
+            t["parent_task_id"] = match
+        else:
+            # Safe fallback if the parent identifier was not duplicated.
+            match = next((new for old,new,peid in mapping if old == parent), None)
+            if match:
+                t["parent_task_id"] = match
+    return mapping
+
+def supersede_pending_duplicates(tasks, now):
+    groups = {}
+    for t in tasks:
+        if t.get("status") == "PENDING":
+            key = t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id")
+            groups.setdefault(key, []).append(t)
+
+    superseded = []
+    priority = {"replan": 3, "rotation": 2, "normal": 1}
+    for key, rows in groups.items():
+        if len(rows) <= 1:
+            continue
+        keep = max(rows, key=lambda t: (
+            priority.get(str(t.get("priority") or "normal"), 0),
+            depth(t.get("task_id")),
+            str(t.get("created_at") or "")
+        ))
+        for t in rows:
+            if t is keep:
+                continue
+            t["status"] = "SUPERSEDED"
+            t["superseded_at"] = now
+            t["superseded_by"] = keep.get("task_id")
+            t["superseded_reason"] = "duplicate_pending_canonical_entry"
+            superseded.append(t.get("task_id"))
+    return superseded
+
 def main():
     queue_path = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "data/research/autonomous-queue.json")
     canonical_path = pathlib.Path(sys.argv[2] if len(sys.argv) > 2 else "data/bukovy.json")
@@ -42,6 +115,7 @@ def main():
     now = datetime.now(timezone.utc).isoformat()
 
     hydrate_entry_ids(q.get("tasks", []), entries)
+    migrated = normalize_task_ids(q.get("tasks", []))
 
     exhausted = []
     for t in q.get("tasks", []):
@@ -50,6 +124,8 @@ def main():
             t["exhausted_at"] = now
             t["exhausted_reason"] = "max_replan_depth_reached"
             exhausted.append(t.get("task_id"))
+
+    superseded = supersede_pending_duplicates(q.get("tasks", []), now)
 
     pending_tasks = [t for t in q.get("tasks", []) if t.get("status") == "PENDING"]
     pending_entries = set(t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id") for t in pending_tasks)
@@ -78,8 +154,10 @@ def main():
         for rotation_count, total_count, latest, eid, name in candidates[:needed]:
             gen = rotation_count + 1
             tid = f"rotation-{slug(eid)}-{gen}"
-            if any(t.get("task_id") == tid for t in q.get("tasks", [])):
-                continue
+            suffix = 2
+            while any(t.get("task_id") == tid for t in q.get("tasks", [])) or any(x.get("task_id") == tid for x in additions):
+                tid = f"rotation-{slug(eid)}-{gen}--{suffix}"
+                suffix += 1
             additions.append({
                 "task_id": tid,
                 "canonical_entry_id": eid,
@@ -100,27 +178,35 @@ def main():
             pending_entries.add(eid)
 
     q["tasks"].extend(additions)
-    pending_after = sum(1 for t in q.get("tasks", []) if t.get("status") == "PENDING")
-    distinct_after = len(set(t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id") for t in q.get("tasks", []) if t.get("status") == "PENDING"))
+    pending_after = [t for t in q.get("tasks", []) if t.get("status") == "PENDING"]
+    distinct_after = len(set(t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id") for t in pending_after))
+    duplicate_pending = len(pending_after) - distinct_after
+
     q["queue_health"] = {
         "policy": "bounded-replan-with-entry-id-rotation",
         "max_replan_depth": MAX_REPLAN_DEPTH,
         "max_rotation_generations": MAX_ROTATION_GENERATIONS,
         "target_distinct_pending": REPLENISH_PER_CYCLE,
         "repaired_at": now,
+        "task_ids_migrated": len(migrated),
         "exhausted_this_run": len(exhausted),
+        "superseded_this_run": len(superseded),
         "replenished_this_run": len(additions),
-        "pending_after": pending_after,
-        "distinct_pending_entries_after": distinct_after
+        "pending_after": len(pending_after),
+        "distinct_pending_entries_after": distinct_after,
+        "duplicate_pending_after": duplicate_pending
     }
     q["updated_at"] = now
     queue_path.write_text(json.dumps(q, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({
-        "status":"PASS","evidence":"MEASURED","exhausted":len(exhausted),
+        "status":"PASS","evidence":"MEASURED",
+        "task_ids_migrated":len(migrated),
+        "exhausted":len(exhausted),
+        "superseded":len(superseded),
         "replenished":len(additions),
-        "replenished_entries":[{"entry_id":x["canonical_entry_id"],"bukova":x["bukova"]} for x in additions],
-        "pending_after":pending_after,
-        "distinct_pending_entries_after":distinct_after
+        "pending_after":len(pending_after),
+        "distinct_pending_entries_after":distinct_after,
+        "duplicate_pending_after":duplicate_pending
     },ensure_ascii=False,indent=2))
 
 if __name__=="__main__":
