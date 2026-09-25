@@ -15,7 +15,7 @@ REGISTRY=ROOT/"data/research/status-surface-registry.json"
 WATCHED_JSON=(ROOT/"data/research", ROOT/"data/toolbox")
 WRITER_WORKFLOWS={
     "autonomous-research-worker.yml","toolbox-evolution.yml",
-    "branch-intake.yml","branch-archive-cleanup.yml"
+    "autonomous-implementation-workers.yml","branch-intake.yml","branch-archive-cleanup.yml"
 }
 def now(): return datetime.now(timezone.utc).isoformat()
 def run(cmd):
