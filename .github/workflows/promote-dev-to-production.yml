@@ -1,0 +1,60 @@
+name: Promote verified dev to production
+
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bukovy-production-promotion
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch branches
+        run: git fetch origin main dev --prune
+
+      - name: Validate dev without changing it
+        run: |
+          git checkout --detach origin/dev
+          python3 scripts/build-api.py
+          python3 scripts/validate-bukovy.py
+          if ! git diff --quiet -- api; then
+            echo "::error::dev API is not committed/generated consistently."
+            git diff --stat -- api
+            exit 1
+          fi
+
+      - name: Snapshot production
+        run: |
+          git checkout --detach origin/main
+          stamp=$(date -u +%Y%m%d-%H%M%S)
+          backup="backup/$stamp"
+          git push origin "HEAD:refs/heads/$backup"
+          echo "BACKUP_BRANCH=$backup" >> "$GITHUB_ENV"
+
+      - name: Promote dev
+        run: |
+          git checkout --detach origin/main
+          git merge --no-ff --no-edit origin/dev
+          git push origin HEAD:main
+
+      - name: Report promotion
+        run: |
+          echo "PASS: dev promoted to main."
+          echo "Backup snapshot: $BACKUP_BRANCH"

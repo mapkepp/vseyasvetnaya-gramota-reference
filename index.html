@@ -39,6 +39,7 @@ a{color:#a9c7ff}
 <div class="stats">
 <span class="pill" id="count">Загрузка…</span>
 <span class="pill" id="linked">Связи: загрузка…</span>
+<span class="pill" id="research-status">Исследование: загрузка…</span>
 <span class="pill">Оригинальные знаки не перерисовываются</span>
 </div>
 <div class="note"><b>Важно:</b> описания и практические эффекты передаются как заявления источников. Истории практиков — свидетельства авторов. Это не означает независимого научного подтверждения заявляемых эффектов.</div>
@@ -125,6 +126,7 @@ async function start(){
  profileByName=new Map(profiles.map(p=>[String(p.name||'').trim().toLocaleLowerCase('ru-RU'),p]));
  const storyCount=profiles.filter(p=>p.data_status.stories==='linked').length;
  document.getElementById('linked').textContent='Связано с практикой: '+practiceCount+' · с историями: '+storyCount;
+ try { const rs=await fetchJson('api/v1/research-status.json'); document.getElementById('research-status').textContent='Исследование: '+String(rs.state||rs.status||'UNKNOWN')+' · очередь: '+String(rs.research_queue_count??'?')+' · историй: '+String(rs.practitioner_history_count??'?'); } catch(e) { document.getElementById('research-status').textContent='Исследование: статус недоступен'; }
  const render=()=>{
    const q=document.getElementById('q').value.toLowerCase().trim();
    const list=profiles.filter(p=>JSON.stringify(p).toLowerCase().includes(q));
