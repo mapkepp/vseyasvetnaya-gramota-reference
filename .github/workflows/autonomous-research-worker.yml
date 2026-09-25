@@ -11,12 +11,13 @@ on:
   pull_request:
     types: [opened, synchronize]
   schedule:
-    - cron: "27 * * * *"
+    - cron: "*/5 * * * *"
 permissions:
   contents: write
 concurrency:
   group: autonomous-research-worker
   cancel-in-progress: false
+# cadence_policy: every-5-minutes; queue repair + immediate implementation handoff
 jobs:
   research:
     runs-on: ubuntu-latest
