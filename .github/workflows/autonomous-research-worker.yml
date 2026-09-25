@@ -98,6 +98,23 @@ jobs:
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
           json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next hourly cycle"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Run implementation handoff
+        run: |
+          python3 scripts/autonomous_implementation_workers.py
+          python3 scripts/validate-bukovy.py
+          python3 - <<'PY'
+          import pathlib, subprocess, sys
+          root=pathlib.Path(".")
+          forbidden=[]
+          for p in subprocess.check_output(["git","diff","--name-only"],text=True).splitlines():
+              if p and not (p.startswith("api/") or p.startswith("data/research/") or p=="research-status.html"):
+                  forbidden.append(p)
+          if forbidden:
+              print("::error::Implementation handoff touched forbidden paths: "+", ".join(forbidden))
+              sys.exit(1)
+          print("PASS: implementation handoff write-zone invariant")
+          PY
+
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
