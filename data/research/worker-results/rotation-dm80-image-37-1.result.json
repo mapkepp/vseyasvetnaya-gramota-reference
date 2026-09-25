@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.2",
+  "task_id": "rotation-dm80-image-37-1",
+  "canonical_entry_id": "dm80-image-37",
+  "bukova": "Люди",
+  "status": "FAIL",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T22:17:40.448231+00:00",
+  "queries": [
+    "\"Люди\" \"Букова\" практика",
+    "\"Люди\" \"Буковы\" применение",
+    "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+    "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+    "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+    "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+    "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+    "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+    "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+    "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+    "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+    "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+    "\"Люди\" \"применение\" -описание -определение",
+    "\"Люди\" \"Букова\" источник свидетельство практика",
+    "\"Люди\" \"став\" Буков",
+    "\"Люди\" \"буквица\" практика",
+    "\"Люди\" \"нанос\" практика",
+    "\"Люди\" \"результат\" практика"
+  ],
+  "search_engine": "github-actions-public-web-multi-provider",
+  "findings": [],
+  "diagnostics": [
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"Букова\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96013
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"Букова\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14202
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"Букова\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91443
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"Букова\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"Букова\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"Буковы\" применение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+      "results": 0,
+      "body_chars": 98312
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"Буковы\" применение",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14212
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"Буковы\" применение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+      "results": 0,
+      "body_chars": 91645
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"Буковы\" применение",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"Буковы\" применение",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
+      "results": 0,
+      "body_chars": 101307
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14310
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
+      "results": 0,
+      "body_chars": 91622
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"применял\" OR \"использовал\" OR \"использовали\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
+      "results": 0,
+      "body_chars": 100902
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14324
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
+      "results": 0,
+      "body_chars": 91715
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 101112
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14338
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 92116
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&count=10",
+      "results": 0,
+      "body_chars": 100221
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14330
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&num=10",
+      "results": 0,
+      "body_chars": 91484
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&count=10",
+      "results": 0,
+      "body_chars": 100602
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14296
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&num=10",
+      "results": 0,
+      "body_chars": 91691
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 96725
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14325
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91777
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&count=10",
+      "results": 0,
+      "body_chars": 101204
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14288
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&num=10",
+      "results": 0,
+      "body_chars": 91497
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&count=10",
+      "results": 0,
+      "body_chars": 99652
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14316
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&num=10",
+      "results": 0,
+      "body_chars": 91596
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 101300
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14314
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91548
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&count=10",
+      "results": 0,
+      "body_chars": 100362
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14322
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&num=10",
+      "results": 0,
+      "body_chars": 91817
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+      "results": 0,
+      "body_chars": 98676
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14250
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+      "results": 0,
+      "body_chars": 91655
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"применение\" -описание -определение",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 98591
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14272
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91693
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"Букова\" источник свидетельство практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 128568
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"став\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 91403
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"став\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"став\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96040
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91716
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"буквица\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 133868
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91623
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"нанос\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Люди\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 99046
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Люди\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"Люди\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9B%D1%8E%D0%B4%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 91497
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Люди\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Люди\" \"результат\" практика",
+      "status": "EMPTY",
+      "results": 0
+    }
+  ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
+  "canonical_mutation": "DISABLED"
+}
