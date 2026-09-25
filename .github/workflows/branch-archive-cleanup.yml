@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: branch-cleanup
-  cancel-in-progress: true
+  group: dev-state-writers
+  cancel-in-progress: false
 jobs:
   archive-cleanup:
     runs-on: ubuntu-latest
