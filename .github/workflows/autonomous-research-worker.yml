@@ -40,6 +40,17 @@ jobs:
           for tf in out.glob("*.task.json"):
             rf=out/(tf.stem+".result.json"); vf=out/(tf.stem+".verified.json")
             if rf.exists(): subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False)
+      - name: Normalize practitioner evidence
+        shell: python
+        run: |
+          import pathlib,subprocess,json
+          out=pathlib.Path("data/research/worker-results")
+          for tf in out.glob("*.task.json"):
+            vf=out/(tf.stem+".verified.json"); rf=out/(tf.stem+".result.json"); nf=out/(tf.stem+".normalized.json")
+            if vf.exists() and rf.exists():
+              subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False)
+      - name: Apply practitioner evidence gate
+        run: python3 scripts/practitioner_evidence_gate.py data/research/worker-results
       - name: Replan unresolved research
         run: python3 scripts/replan_research_queue.py data/research/autonomous-queue.json data/research/worker-results
       - name: Write autonomous status
@@ -47,13 +58,15 @@ jobs:
         run: |
           import json,pathlib
           from datetime import datetime,timezone
-          out=pathlib.Path("data/research/worker-results"); vs=list(out.glob("*.verified.json"))
+          out=pathlib.Path("data/research/worker-results")
+          vs=list(out.glob("*.verified.json")); ns=list(out.glob("*.normalized.json"))
           passed=sum(json.load(open(x,encoding="utf-8")).get("status")=="PASS" for x in vs)
-          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"worker":"github-public-web","phase":"VERIFY_REPLAN","execution":"MEASURED","verified_tasks":len(vs),"verification_pass":passed,"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next hourly cycle"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+          ready=sum(sum(1 for c in json.load(open(x,encoding="utf-8")).get("candidates",[]) if c.get("status")=="READY_FOR_REVIEW") for x in ns)
+          json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_REPLAN","execution":"MEASURED","verified_tasks":len(vs),"verification_pass":passed,"normalized_tasks":len(ns),"ready_for_human_review":ready,"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next hourly cycle"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json
-          git diff --cached --quiet || git commit -m "research: verify sources and replan gaps"
+          git diff --cached --quiet || git commit -m "research: normalize evidence and replan gaps"
           git push origin HEAD:dev
