@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-25T00:00:00Z",
+  "project": "vseyasvetnaya-gramota-reference",
+  "state": "ARMED",
+  "evidence": "MEASURED",
+  "catalog_count": 68,
+  "practitioner_history_count": 44,
+  "research_queue_count": 16,
+  "research_execution": "hourly-coordinator-enabled",
+  "worker_execution": "toolbox-supervisor-required",
+  "note": "The GitHub coordinator generates and records the next research queue hourly. Evidence-producing workers are deliberately kept outside GitHub Actions until an authorized toolbox worker is attached.",
+  "next_cycle": "hourly"
+}
