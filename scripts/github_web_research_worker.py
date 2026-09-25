@@ -124,6 +124,29 @@ def main():
             found[url]["queries"].append(q)
             if provider and provider not in found[url]["providers"]:found[url]["providers"].append(provider)
         if len(found)>=20:break
+    # Optional external-AI escalation: only after ordinary discovery is weak.
+    # It is a no-op unless a free/local backend is configured (e.g. Ollama).
+    external_ai = {"provider":"none","status":"NOT_REQUESTED"}
+    if len(found) < 5:
+        try:
+            import subprocess
+            prompt = (
+                "Find better search strategies for a research task about the Bukova "
+                + b + ". Return concise query ideas and source types; do not invent evidence."
+            )
+            p = subprocess.run(
+                ["python3","scripts/external_ai_router.py",prompt],
+                capture_output=True,text=True,timeout=50,check=False
+            )
+            if p.stdout.strip():
+                external_ai=json.loads(p.stdout)
+                extra = external_ai.get("text","")
+                if extra:
+                    queries.extend([x.strip() for x in re.findall(r'["“](.{5,180})["”]', extra) if x.strip()])
+                    queries=list(dict.fromkeys(queries))[:30]
+        except Exception as e:
+            external_ai={"provider":"none","status":"ERROR","error":type(e).__name__}
+
     findings=[{"claim":"Discovered public-web source; requires human-readable verification before use.",
                 "sources":[{"url":u,"title":m["title"]}],"evidence_type":"web_discovery",
                 "confidence":"UNSPECIFIED","conflicts":[],"discovery_queries":m["queries"],"providers":m["providers"]}
@@ -131,7 +154,7 @@ def main():
     payload={"schema_version":"1.2","task_id":task["task_id"],"canonical_entry_id":task.get("canonical_entry_id"),"bukova":b,"status":"PASS" if findings else "FAIL",
              "evidence":"MEASURED","generated_at":datetime.now(timezone.utc).isoformat(),
              "queries":queries,"search_engine":"github-actions-public-web-multi-provider",
-             "findings":findings,"diagnostics":diagnostics,"canonical_mutation":"DISABLED"}
+             "findings":findings,"diagnostics":diagnostics,"external_ai":external_ai,"canonical_mutation":"DISABLED"}
     json.dump(payload,open(out,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
     return 0 if findings else 1
 if __name__=="__main__":raise SystemExit(main())
