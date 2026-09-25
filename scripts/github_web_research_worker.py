@@ -128,7 +128,7 @@ def main():
                 "sources":[{"url":u,"title":m["title"]}],"evidence_type":"web_discovery",
                 "confidence":"UNSPECIFIED","conflicts":[],"discovery_queries":m["queries"],"providers":m["providers"]}
                for u,m in list(found.items())[:12]]
-    payload={"schema_version":"1.2","task_id":task["task_id"],"bukova":b,"status":"PASS" if findings else "FAIL",
+    payload={"schema_version":"1.2","task_id":task["task_id"],"canonical_entry_id":task.get("canonical_entry_id"),"bukova":b,"status":"PASS" if findings else "FAIL",
              "evidence":"MEASURED","generated_at":datetime.now(timezone.utc).isoformat(),
              "queries":queries,"search_engine":"github-actions-public-web-multi-provider",
              "findings":findings,"diagnostics":diagnostics,"canonical_mutation":"DISABLED"}
