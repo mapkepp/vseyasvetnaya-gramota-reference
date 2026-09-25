@@ -1,0 +1,45 @@
+name: Autonomous research worker
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "27 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: autonomous-research-worker
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run four parallel public-web agents
+        shell: python
+        run: |
+          import json, pathlib, subprocess, concurrent.futures
+          from datetime import datetime, timezone
+          q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
+          out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
+          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:4]
+          def run(t):
+            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
+            json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+            return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:
+            results=list(zip(tasks,ex.map(run,tasks)))
+          now=datetime.now(timezone.utc).isoformat()
+          for t,rc in results:
+            t["status"]="DONE" if rc==0 else "FAILED"
+            t["completed_at"]=now
+          json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+          json.dump({"schema_version":"1.0","updated_at":now,"worker":"github-public-web","execution":"MEASURED","backend":"GitHub Actions","parallel_agents":len(tasks),"evidence":"MEASURED"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Commit evidence to dev
+        run: |
+          git config user.name "toolbox-research-worker"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin dev
+          git checkout dev
+          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json
+          git diff --cached --quiet || git commit -m "research: record autonomous public-web evidence"
+          git push origin dev

@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0",
+  "project":"vseyasvetnaya-gramota-reference",
+  "worker":{
+    "command":"python",
+    "arguments":["scripts/research_worker.py","{TASK_FILE}","{OUTPUT_FILE}"],
+    "authorized":true
+  },
+  "completion":{
+    "max_iterations":2,
+    "minimum_findings":1,
+    "require_sources":true
+  },
+  "axes":[
+    {"id":"practitioner","prompt":"Find identifiable practitioner reports for the named Bukova, preserving exact actions, reported observations/results, and source URLs.","queries":[]},
+    {"id":"verification","prompt":"Find independent or conflicting source material and distinguish direct Bukova use from composite staves.","queries":[]}
+  ]
+}

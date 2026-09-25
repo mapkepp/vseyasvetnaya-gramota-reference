@@ -1,0 +1,40 @@
+name: Autonomous Bukovy Research Coordinator
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autonomous-bukovy-research
+  cancel-in-progress: true
+
+jobs:
+  coordinate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate next research queue and heartbeat
+        run: python3 scripts/update-autonomous-research-status.py
+
+      - name: Commit coordinator state
+        run: |
+          git config user.name "bukovy-research-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/autonomous-status.json data/research/autonomous-queue.json
+          if git diff --cached --quiet; then
+            echo "No coordinator-state changes."
+            exit 0
+          fi
+          git commit -m "chore(research): refresh autonomous research queue"
+          git push origin HEAD:main
