@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "BOOTSTRAP",
+  "mode": "BOUNDED_AUTONOMOUS",
+  "policy": [
+    "free_or_local_first",
+    "external_ai_only_when_needed",
+    "ai_is_advisory_for_code_changes",
+    "bounded_deterministic_repairs",
+    "parallel_work_must_respect_global_limits"
+  ]
+}
