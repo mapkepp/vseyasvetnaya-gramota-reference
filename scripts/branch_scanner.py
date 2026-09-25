@@ -10,7 +10,7 @@ OUT=Path("data/research/branch-scan.json")
 PRIMARY={"main","dev"}
 LEGACY={"development","production","reserve","backup"}
 PREFIXES=("automation/","implementation/","research/")
-ALLOWED_PREFIXES=("scripts/","data/research/","data/toolbox/","api/","research-status.html",".github/workflows/")
+ALLOWED_PREFIXES=("scripts/","data/research/","data/toolbox/","api/","research-status.html")
 BLOCKED_PATHS=("secrets","credentials",".env")
 def api(path):
     req=urllib.request.Request(API+path,headers={"Accept":"application/vnd.github+json","Authorization":f"Bearer {TOKEN}","X-GitHub-Api-Version":"2022-11-28"})
