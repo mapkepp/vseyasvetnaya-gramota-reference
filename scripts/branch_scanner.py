@@ -7,6 +7,7 @@ REPO=os.environ.get("GITHUB_REPOSITORY","mapkepp/vseyasvetnaya-gramota-reference
 TOKEN=os.environ.get("GITHUB_TOKEN","")
 API="https://api.github.com"
 OUT=Path("data/research/branch-scan.json")
+ARCHIVE=Path("data/research/branch-archive.json")
 PRIMARY={"main","dev"}
 LEGACY={"development","production","reserve","backup"}
 PREFIXES=("automation/","implementation/","research/")
@@ -33,6 +34,7 @@ def classify(name, ahead, behind, files):
 def main():
     branches=api(f"/repos/{REPO}/branches?per_page=100") 
     rows=[]
+    archive_items=[]
     for b in branches:
         name=b["name"]
         try:
@@ -45,10 +47,17 @@ def main():
                  "status":c.get("status")}
         except Exception as e:
             row={"branch":name,"class":"scan-error","error":str(e)}
+        if row["class"] in ("legacy","obsolete") and row.get("branch") not in PRIMARY:
+            archive_items.append({"branch":name,"ahead_of_dev":row.get("ahead_of_dev"),"commits":row.get("commits"),"files":row.get("files",[])})
         rows.append(row)
     rows.sort(key=lambda x:(x["class"],x["branch"]))
     candidates=[r for r in rows if r["class"] in ("integration-candidate","partial-integration-candidate")]
     OUT.parent.mkdir(parents=True,exist_ok=True)
+    existing=json.loads(ARCHIVE.read_text(encoding="utf-8")) if ARCHIVE.exists() else {"version":1,"items":{}}
+    for item in archive_items:
+        key=item["branch"]+":"+str(item.get("commits"))+":"+str(item.get("files",[]))
+        existing["items"][key]=item
+    ARCHIVE.write_text(json.dumps({"version":1,"language":"ru","purpose":"уникальный резерв полезных изменений до удаления веток","dedup_key":"branch+commit_count+file_list","items":existing["items"]},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     OUT.write_text(json.dumps({"version":2,"language":"ru","base_branch":"dev","protected":sorted(PRIMARY),
       "policy":{"auto_apply":"integration-candidate или partial-integration-candidate; максимум 20 коммитов; только разрешённые пути; частичные ветки переносятся только как отдельный diff",
                 "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
