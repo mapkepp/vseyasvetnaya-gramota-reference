@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T08:39:07.204128+00:00",
+  "updated_at": "2026-09-25T08:42:33.456961+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 75,
+  "replanned_count": 79,
   "tasks": [
     {
       "task_id": "research-er",
@@ -1340,9 +1340,9 @@
       "canonical_entry_id": "dm80-image-53"
     },
     {
-      "task_id": "rotation-i-1",
+      "task_id": "rotation-dm80-image-26-1",
       "bukova": "I",
-      "status": "PENDING",
+      "status": "SUPERSEDED",
       "priority": "rotation",
       "created_at": "2026-09-25T08:26:58.812820+00:00",
       "generation": 1,
@@ -1355,10 +1355,14 @@
       ],
       "reason": "queue_replenishment",
       "generation_stamp": "20260925T082658812820+0000",
-      "canonical_entry_id": "dm80-image-26"
+      "canonical_entry_id": "dm80-image-26",
+      "legacy_task_id": "rotation-i-1",
+      "superseded_at": "2026-09-25T08:41:53.116155+00:00",
+      "superseded_by": "rotation-dm80-image-26-1-replan-1-replan-1",
+      "superseded_reason": "duplicate_pending_canonical_entry"
     },
     {
-      "task_id": "rotation-i-1",
+      "task_id": "rotation-dm80-image-27-1",
       "bukova": "I",
       "status": "FAILED",
       "priority": "rotation",
@@ -1373,10 +1377,11 @@
       ],
       "reason": "queue_replenishment",
       "generation_stamp": "20260925T082658812820+0000",
-      "canonical_entry_id": "dm80-image-27"
+      "canonical_entry_id": "dm80-image-27",
+      "legacy_task_id": "rotation-i-1"
     },
     {
-      "task_id": "rotation-i-кратка-1",
+      "task_id": "rotation-dm80-image-28-1",
       "bukova": "I Кратка",
       "status": "FAILED",
       "priority": "rotation",
@@ -1391,10 +1396,11 @@
       ],
       "reason": "queue_replenishment",
       "generation_stamp": "20260925T082658812820+0000",
-      "canonical_entry_id": "dm80-image-28"
+      "canonical_entry_id": "dm80-image-28",
+      "legacy_task_id": "rotation-i-кратка-1"
     },
     {
-      "task_id": "rotation-s--sело-1",
+      "task_id": "rotation-dm80-image-20-1",
       "bukova": "s\"-sело",
       "status": "FAILED",
       "priority": "rotation",
@@ -1409,10 +1415,11 @@
       ],
       "reason": "queue_replenishment",
       "generation_stamp": "20260925T082658812820+0000",
-      "canonical_entry_id": "dm80-image-20"
+      "canonical_entry_id": "dm80-image-20",
+      "legacy_task_id": "rotation-s--sело-1"
     },
     {
-      "task_id": "rotation-i-1-replan-1",
+      "task_id": "rotation-dm80-image-26-1-replan-1",
       "bukova": "I",
       "status": "DONE",
       "priority": "replan",
@@ -1425,11 +1432,12 @@
         "\"I\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-i-1",
-      "canonical_entry_id": "dm80-image-26"
+      "parent_task_id": "rotation-dm80-image-26-1",
+      "canonical_entry_id": "dm80-image-26",
+      "legacy_task_id": "rotation-i-1-replan-1"
     },
     {
-      "task_id": "rotation-i-кратка-1-replan-1",
+      "task_id": "rotation-dm80-image-28-1-replan-1",
       "bukova": "I Кратка",
       "status": "FAILED",
       "priority": "replan",
@@ -1442,11 +1450,12 @@
         "\"I Кратка\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-i-кратка-1",
-      "canonical_entry_id": "dm80-image-28"
+      "parent_task_id": "rotation-dm80-image-28-1",
+      "canonical_entry_id": "dm80-image-28",
+      "legacy_task_id": "rotation-i-кратка-1-replan-1"
     },
     {
-      "task_id": "rotation-s--sело-1-replan-1",
+      "task_id": "rotation-dm80-image-20-1-replan-1",
       "bukova": "s\"-sело",
       "status": "FAILED",
       "priority": "replan",
@@ -1459,14 +1468,15 @@
         "\"s\"-sело\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-s--sело-1",
-      "canonical_entry_id": "dm80-image-20"
+      "parent_task_id": "rotation-dm80-image-20-1",
+      "canonical_entry_id": "dm80-image-20",
+      "legacy_task_id": "rotation-s--sело-1-replan-1"
     },
     {
-      "task_id": "rotation-i-1-replan-1-replan-1",
+      "task_id": "rotation-dm80-image-26-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-26",
       "bukova": "I",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:29:25.465669+00:00",
       "queries": [
@@ -1477,10 +1487,11 @@
         "\"I\" \"получила результат\" Буков"
       ],
       "reason": "normalization_incomplete",
-      "parent_task_id": "rotation-i-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-26-1-replan-1",
+      "legacy_task_id": "rotation-i-1-replan-1-replan-1"
     },
     {
-      "task_id": "rotation-i-кратка-1-replan-1-replan-1",
+      "task_id": "rotation-dm80-image-28-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-28",
       "bukova": "I Кратка",
       "status": "FAILED",
@@ -1494,10 +1505,11 @@
         "\"I Кратка\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-i-кратка-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-28-1-replan-1",
+      "legacy_task_id": "rotation-i-кратка-1-replan-1-replan-1"
     },
     {
-      "task_id": "rotation-s--sело-1-replan-1-replan-1",
+      "task_id": "rotation-dm80-image-20-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-20",
       "bukova": "s\"-sело",
       "status": "FAILED",
@@ -1511,10 +1523,11 @@
         "\"s\"-sело\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-s--sело-1-replan-1"
+      "parent_task_id": "rotation-dm80-image-20-1-replan-1",
+      "legacy_task_id": "rotation-s--sело-1-replan-1-replan-1"
     },
     {
-      "task_id": "rotation-i-кратка-1-replan-1-replan-1-replan-1",
+      "task_id": "rotation-dm80-image-28-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-28",
       "bukova": "I Кратка",
       "status": "EXHAUSTED",
@@ -1528,12 +1541,13 @@
         "\"I Кратка\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-i-кратка-1-replan-1-replan-1",
+      "parent_task_id": "rotation-dm80-image-28-1-replan-1-replan-1",
       "exhausted_at": "2026-09-25T08:31:32.948371+00:00",
-      "exhausted_reason": "max_replan_depth_reached"
+      "exhausted_reason": "max_replan_depth_reached",
+      "legacy_task_id": "rotation-i-кратка-1-replan-1-replan-1-replan-1"
     },
     {
-      "task_id": "rotation-s--sело-1-replan-1-replan-1-replan-1",
+      "task_id": "rotation-dm80-image-20-1-replan-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-20",
       "bukova": "s\"-sело",
       "status": "EXHAUSTED",
@@ -1547,9 +1561,10 @@
         "\"s\"-sело\" \"получила результат\" Буков"
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-s--sело-1-replan-1-replan-1",
+      "parent_task_id": "rotation-dm80-image-20-1-replan-1-replan-1",
       "exhausted_at": "2026-09-25T08:31:32.948371+00:00",
-      "exhausted_reason": "max_replan_depth_reached"
+      "exhausted_reason": "max_replan_depth_reached",
+      "legacy_task_id": "rotation-s--sело-1-replan-1-replan-1-replan-1"
     },
     {
       "task_id": "rotation-dm80-image-10-1",
@@ -1657,7 +1672,7 @@
       "task_id": "rotation-dm80-image-10-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-10",
       "bukova": "Веде",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T08:39:07.204128+00:00",
       "queries": [
@@ -1674,7 +1689,7 @@
       "task_id": "rotation-dm80-image-11-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-11",
       "bukova": "Вита",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:39:07.204128+00:00",
       "queries": [
@@ -1691,7 +1706,7 @@
       "task_id": "rotation-dm80-image-13-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-13",
       "bukova": "Герьвь",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "created_at": "2026-09-25T08:39:07.204128+00:00",
       "queries": [
@@ -1703,6 +1718,74 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-13-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-26-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-26",
+      "bukova": "I",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:42:33.456961+00:00",
+      "queries": [
+        "\"I\" практика Букова форум",
+        "\"I\" \"нанес\" Букова",
+        "\"I\" \"получил результат\"",
+        "\"I\" \"применял\" практика",
+        "\"I\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-26-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-10-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-10",
+      "bukova": "Веде",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:42:33.456961+00:00",
+      "queries": [
+        "\"Веде\" практика Букова форум",
+        "\"Веде\" \"нанес\" Букова",
+        "\"Веде\" \"получил результат\"",
+        "\"Веде\" \"применял\" практика",
+        "\"Веде\" \"получила результат\" Буков"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-10-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-11-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-11",
+      "bukova": "Вита",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:42:33.456961+00:00",
+      "queries": [
+        "\"Вита\" практика Букова форум",
+        "\"Вита\" \"нанес\" Букова",
+        "\"Вита\" \"получил результат\"",
+        "\"Вита\" \"применял\" практика",
+        "\"Вита\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-11-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-13-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-13",
+      "bukova": "Герьвь",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:42:33.456961+00:00",
+      "queries": [
+        "\"Герьвь\" практика Букова форум",
+        "\"Герьвь\" \"нанес\" Букова",
+        "\"Герьвь\" \"получил результат\"",
+        "\"Герьвь\" \"применял\" практика",
+        "\"Герьвь\" \"получила результат\" Буков"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-13-1-replan-1-replan-1"
     }
   ],
   "rules": [
@@ -1717,7 +1800,7 @@
   "queue_health": {
     "policy": "bounded-replan-with-entry-id-rotation",
     "max_replan_depth": 3,
-    "updated_at": "2026-09-25T08:39:07.204128+00:00",
-    "new_replans": 3
+    "updated_at": "2026-09-25T08:42:33.456961+00:00",
+    "new_replans": 4
   }
 }
