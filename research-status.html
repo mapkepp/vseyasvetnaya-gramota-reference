@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Статус автономного исследования — ВсеЯСветная Грамота</title>
+<style>
+body{margin:0;background:#0b0d10;color:#edf1f7;font:16px/1.5 system-ui,sans-serif}
+main{max-width:1200px;margin:auto;padding:24px}
+h1{font-size:38px;margin:0 0 8px}.muted{color:#9da8b7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:18px 0}
+.card{border:1px solid #29303c;border-radius:14px;background:#151922;padding:16px}.ok{color:#9ad6a7}.warn{color:#e2c578}.bad{color:#e49393}
+.pill{display:inline-block;padding:6px 10px;border:1px solid #303744;border-radius:999px;background:#11151c;margin:3px}
+.task{border-top:1px solid #29303c;padding:12px 0}.task:first-child{border-top:0}
+a{color:#a9c7ff}.mono{font-family:ui-monospace,monospace;font-size:12px;overflow-wrap:anywhere}
+pre{white-space:pre-wrap;word-break:break-word;background:#0f1319;border-radius:10px;padding:12px}
+</style>
+</head>
+<body>
+<main>
+<h1>Статус автономного исследования</h1>
+<p class="muted">Источник состояния: ветка <b>dev</b>. Обновление в браузере каждые 30 секунд. Канонические 68 Буков напрямую этой страницей не изменяются.</p>
+<p><a href="index.html">← Вернуться в справочник</a> · <a href="api/v1/research-status.json">production API</a></p>
+<div id="summary" class="grid"></div>
+<div class="card"><h2>Последний цикл</h2><div id="cycle">Загрузка…</div></div>
+<div class="card"><h2>Что реально исследуется</h2><div id="tasks">Загрузка…</div></div>
+<div class="card"><h2>Ограничения</h2><p>Исследовательский worker только собирает и структурирует кандидатов. Автоматической записи в <span class="mono">data/bukovy.json</span> и <span class="mono">data/practice/practitioner-histories.json</span> нет.</p><p class="muted">Истории практиков остаются свидетельствами источников; composite staves не раскладываются на эффекты компонентов.</p></div>
+<div class="card"><h2>Сырые данные worker</h2><div id="raw">Загрузка…</div></div>
+<p id="updated" class="muted"></p>
+</main>
+<script>
+const BASE='https://raw.githubusercontent.com/mapkepp/vseyasvetnaya-gramota-reference/dev/';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function get(path){const r=await fetch(BASE+path,{cache:'no-store'});if(!r.ok)throw new Error(path+' HTTP '+r.status);return r.json();}
+function badge(label,cls){return '<span class="pill '+(cls||'')+'">'+esc(label)+'</span>'}
+async function refresh(){
+ try{
+  const [s,q,m]=await Promise.all([get('data/research/worker-status.json'),get('data/research/autonomous-queue.json'),get('data/research/worker-results/cycle-task-manifest.json')]);
+  const counts=q.tasks.reduce((a,t)=>(a[t.status]=(a[t.status]||0)+1,a),{});
+  const b=s.canonical_mutation==='DISABLED'?'ok':'bad';
+  document.getElementById('summary').innerHTML=[
+   badge('Worker: '+(s.worker||'unknown'), 'ok'),
+   badge('Phase: '+(s.phase||'unknown')),
+   badge('Execution: '+(s.execution||'unknown')),
+   badge('Cycle: '+(s.cycle_id||'unknown')),
+   badge('Selected: '+(s.selected_tasks??m.task_ids.length)),
+   badge('Verified: '+(s.verified_tasks??'?')),
+   badge('Normalized: '+(s.normalized_tasks??'?')),
+   badge('Review: '+(s.review_queue_count??'?')),
+   badge('Pending: '+(counts.PENDING||0)),
+   badge('Failed: '+(counts.FAILED||0),'warn'),
+   badge('Canonical mutation: '+(s.canonical_mutation||'unknown'),b)
+  ].join('');
+  document.getElementById('cycle').innerHTML='<p><b>cycle_id:</b> <span class="mono">'+esc(m.cycle_id)+'</span></p><p><b>Создан:</b> '+esc(m.created_at)+'</p><p><b>Задачи:</b> '+m.task_ids.map(esc).join(', ')+'</p>';
+  const rows=await Promise.all(m.task_ids.map(async id=>{
+    let r=null,n=null; try{r=await get('data/research/worker-results/'+id+'.result.json')}catch(e){}
+    try{n=await get('data/research/worker-results/'+id+'.normalized.json')}catch(e){}
+    return {id,r,n};
+  }));
+  document.getElementById('tasks').innerHTML=rows.map(x=>{
+    const r=x.r||{},n=x.n||{};
+    const rs=r.status||'NOT_FOUND', ns=n.status||'NOT_FOUND';
+    const cls=rs==='PASS'?'ok':rs==='FAIL'?'bad':'warn';
+    return '<div class="task"><p><b>'+esc(r.bukova||n.bukova||x.id)+'</b> '+badge('discovery: '+rs,cls)+' '+badge('normalizer: '+ns)+'</p>'+
+      '<p>Найдено источников: <b>'+esc(r.findings?.length||0)+'</b>; кандидатов нормализатора: <b>'+esc(n.candidate_count||0)+'</b>.</p>'+
+      '<p class="muted">'+esc((r.findings||[]).slice(0,3).map(f=>(f.sources||[]).map(s=>s.title).join(', ')).filter(Boolean).join(' · '))+'</p>'+
+      '<p class="mono"><a href="'+BASE+'data/research/worker-results/'+encodeURIComponent(x.id)+'.result.json">result.json</a> · <a href="'+BASE+'data/research/worker-results/'+encodeURIComponent(x.id)+'.normalized.json">normalized.json</a></p></div>';
+  }).join('');
+  document.getElementById('raw').innerHTML='<p><a href="'+BASE+'data/research/worker-status.json">worker-status.json</a></p><p><a href="'+BASE+'data/research/autonomous-queue.json">autonomous-queue.json</a></p><p><a href="'+BASE+'data/research/practitioner-review-queue.json">practitioner-review-queue.json</a></p>';
+  document.getElementById('updated').textContent='Последнее обновление страницы: '+new Date().toLocaleString('ru-RU');
+ }catch(e){document.getElementById('summary').innerHTML=badge('ERROR: '+e.message,'bad');}
+}
+refresh(); setInterval(refresh,30000);
+</script>
+</body>
+</html>
