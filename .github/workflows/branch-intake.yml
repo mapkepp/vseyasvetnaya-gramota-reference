@@ -1,0 +1,33 @@
+name: Autonomous branch scanner and intake
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: branch-intake
+  cancel-in-progress: true
+jobs:
+  scan-and-apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+      - name: Scan all branches
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/branch_scanner.py
+      - name: Apply safe candidates
+        run: python3 scripts/apply_branch_intake.py
+      - name: Publish branch intelligence
+        run: |
+          git config user.name "branch-intake-worker"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/branch-scan.json data/research/branch-intake.json
+          git diff --cached --quiet || git commit -m "automation: update branch intelligence"
+          git push origin HEAD:dev
