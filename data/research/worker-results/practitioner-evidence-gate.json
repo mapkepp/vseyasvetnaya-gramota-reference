@@ -1,43 +1,53 @@
 {
-  "schema_version": "1.0",
-  "updated_at": "2026-09-25T08:11:56.267573+00:00",
+  "schema_version": "1.1",
+  "updated_at": "2026-09-25T08:12:43.441Z",
   "evidence": "MEASURED",
-  "status": "PASS",
-  "ready_for_human_review": 3,
-  "incomplete": 29,
+  "status": "INCOMPLETE",
+  "ready_for_human_review": 0,
+  "incomplete": 26,
+  "rejected_by_strict_gate": 3,
   "canonical_mutation": "DISABLED",
-  "candidates": [
+  "candidates": [],
+  "rejections": [
     {
       "candidate_id": "research-ok-replan-1::1",
-      "practitioner": "Salsa",
-      "bukova": "Окъ",
-      "action": "Zwezda_174 Участник Сообщения: 28 Репутация: 4 Записан Re: Для поиска любви - Окъ #94 05 ноября 2015, 23:51:28 хочу дополнить,проносила 2 дня ,на 3й дорисовала еще 2 буковки(всех стало 6 штук)",
-      "reported_result": "Zwezda_174 Участник Сообщения: 28 Репутация: 4 Записан Re: Для поиска любви - Окъ #94 05 ноября 2015, 23:51:28 хочу дополнить,проносила 2 дня ,на 3й дорисовала еще 2 буковки(всех стало 6 штук)",
-      "source_url": "https://chernayamagiya.com/forum/index.php?topic=15388.90"
+      "reasons": [
+        "action_equals_result",
+        "forum_metadata_contamination",
+        "action_and_result_not_in_same_excerpt"
+      ],
+      "source_url": "https://chernayamagiya.com/forum/index.php?topic=15388.90",
+      "bukova": "Окъ"
     },
     {
       "candidate_id": "research-sy-replan-1::1",
-      "practitioner": "темы",
-      "bukova": "Сы",
-      "action": "А какой оговор при нанесении Сы",
-      "reported_result": "В первом случае нужен был совет/помощь как правильно поступить, буква Сы «возникла сама», информацию о ней практически не нашла, поэтому не стала ее рисовать",
-      "source_url": "https://mag-portal.net/viewtopic.php?f=226&t=8748"
+      "reasons": [
+        "generic_or_role_practitioner",
+        "action_is_question",
+        "no_application_verb",
+        "action_and_result_not_in_same_excerpt"
+      ],
+      "source_url": "https://mag-portal.net/viewtopic.php?f=226&t=8748",
+      "bukova": "Сы"
     },
     {
       "candidate_id": "research-er-replan-1-replan-1::5",
-      "practitioner": "Анисия",
-      "bukova": "Еръ",
-      "action": ", 26 декабря 2013, 20:51:02 « назад - далее » Печать Вниз Страницы 1 2 3 Действия пользователя Corvus corax Участник Сообщения: 5 Nastia Vladimirovna Записан Re: От оморочек - Еръ #30 20 февраля 2020, 13:30:10 Цитата: Dolce от 23 июля 2014, 20:53:32 Ставила на себя 1 Еръ Просила чтобы прочистила мозги Носила около 5 дней Других букв на мне не было Результат: мозги прочищены Она сама прекратила своё действие",
-      "reported_result": "ъ #36 10 февраля 2024, 15:03:03 Хочу сказать за букву, сначала думала я с опасением про нее, а потом просто на себя на несла с верху по воздуху по часовой стрелки, меня сразу сморила хотела сильно спать появился какой то холодок типо как мята в ногах руках, и на языке, почему решила применить очень стала все забывать и сильно чесалась голова, спать очень поздно ложилась сразу на следующей день утром встала бодрая и выспавшая , результат удивил , у меня маленький ребенок приходится ночью вставать",
-      "source_url": "https://chernayamagiya.com/forum/index.php?topic=15395.30"
+      "reasons": [
+        "forum_metadata_contamination",
+        "action_and_result_not_in_same_excerpt"
+      ],
+      "source_url": "https://chernayamagiya.com/forum/index.php?topic=15395.30",
+      "bukova": "Еръ"
     }
   ],
   "gate_rules": [
-    "identifiable practitioner required",
-    "specific canonical Bukova required",
-    "concrete action required",
-    "separately reported result/observation required",
-    "source URL required",
-    "candidate remains anecdotal and source-attributed"
+    "identifiable non-generic practitioner",
+    "specific Bukova",
+    "application verb in action",
+    "outcome marker in reported result",
+    "action != result",
+    "no forum metadata contamination",
+    "action and result present in same source excerpt",
+    "composite scope preserved"
   ]
 }
