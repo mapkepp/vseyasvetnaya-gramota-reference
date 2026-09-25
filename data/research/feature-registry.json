@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "default_state": "active",
+  "graduation_rule": "Доказавшие стабильную работу функции становятся активными по умолчанию; у каждой остаётся явный путь отключения/отката.",
+  "features": {
+    "safe_main_promotion": {
+      "state": "active",
+      "maturity": "proven",
+      "reversible": true,
+      "disable_via": "отключить workflow и оставить snapshots",
+      "recovery": "archive-main-pre-promotion-* + rollback PR"
+    },
+    "rolling_main_backup": {
+      "state": "active",
+      "maturity": "proven-design",
+      "reversible": true,
+      "disable_via": "отключить обновление main-backup",
+      "recovery": "pre-promotion snapshots"
+    },
+    "automatic_promotion_recovery": {
+      "state": "active",
+      "maturity": "guarded",
+      "reversible": true,
+      "disable_via": "отключить recovery step",
+      "recovery": "rollback-main workflow"
+    },
+    "branch_history_archiving": {
+      "state": "active",
+      "maturity": "proven",
+      "reversible": true,
+      "disable_via": "отключить cleanup/archive workflow",
+      "recovery": "patch archive + retained refs"
+    },
+    "system_self_repair": {
+      "state": "active",
+      "maturity": "guarded",
+      "reversible": true,
+      "disable_via": "отключить self-repair workflow",
+      "recovery": "git history + generated state"
+    }
+  }
+}
