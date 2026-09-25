@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T10:55:00+03:00",
+  "updated_at": "2026-09-25T08:01:20.767593+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 0,
+  "replanned_count": 4,
   "tasks": [
     {
       "task_id": "research-er",
       "bukova": "Еръ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "normal",
       "queries": [
         "\"Еръ\" применял Букова",
@@ -20,7 +20,7 @@
     {
       "task_id": "research-erh",
       "bukova": "Ерь",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "normal",
       "queries": [
         "\"Ерь\" применял Букова",
@@ -33,7 +33,7 @@
     {
       "task_id": "research-im",
       "bukova": "Имъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "normal",
       "queries": [
         "\"Имъ\" применял Букова",
@@ -46,7 +46,7 @@
     {
       "task_id": "research-li",
       "bukova": "Ли",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "normal",
       "queries": [
         "\"Ли\" применял Букова",
@@ -211,6 +211,62 @@
         "\"Сы\" получил Букова",
         "\"Сы\" практика став Буков"
       ]
+    },
+    {
+      "task_id": "research-er-replan-1",
+      "bukova": "Еръ",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:01:20.767593+00:00",
+      "queries": [
+        "\"Еръ\" практика Букова форум",
+        "\"Еръ\" \"нанес\" Букова",
+        "\"Еръ\" \"получил результат\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-er"
+    },
+    {
+      "task_id": "research-erh-replan-1",
+      "bukova": "Ерь",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:01:20.767593+00:00",
+      "queries": [
+        "\"Ерь\" практика Букова форум",
+        "\"Ерь\" \"нанес\" Букова",
+        "\"Ерь\" \"получил результат\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-erh"
+    },
+    {
+      "task_id": "research-im-replan-1",
+      "bukova": "Имъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:01:20.767593+00:00",
+      "queries": [
+        "\"Имъ\" практика Букова форум",
+        "\"Имъ\" \"нанес\" Букова",
+        "\"Имъ\" \"получил результат\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-im"
+    },
+    {
+      "task_id": "research-li-replan-1",
+      "bukova": "Ли",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:01:20.767593+00:00",
+      "queries": [
+        "\"Ли\" практика Букова форум",
+        "\"Ли\" \"нанес\" Букова",
+        "\"Ли\" \"получил результат\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "research-li"
     }
   ],
   "rules": [
