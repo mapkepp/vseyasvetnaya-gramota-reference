@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: autonomous-research-worker
+  group: dev-state-writers
   cancel-in-progress: false
 jobs:
   research:
