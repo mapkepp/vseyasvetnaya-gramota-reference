@@ -43,6 +43,16 @@ jobs:
           json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Build bounded specialist agent plan
         run: python3 scripts/agent_factory.py data/research/worker-results
+      - name: Execute bounded specialist stages in parallel
+        shell: python
+        run: |
+          import pathlib,subprocess,json,concurrent.futures
+          out=pathlib.Path("data/research/worker-results")
+          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          def specialist(task_id):
+            tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json")
+            return subprocess.run(["python3","scripts/specialist_pipeline.py",str(tf),str(rf)],check=False).returncode if rf.exists() else 0
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(specialist,manifest["task_ids"]))
       - name: Measure and plan self-improvement
         run: python3 scripts/self_improvement_cycle.py
       - name: Apply safe self-improvement
