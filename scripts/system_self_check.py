@@ -82,16 +82,16 @@ def main():
     issues += check_status_html()
     issues += check_writer_serialization()
     repairs=[]
-    if not issues:
-        registry_ok=REGISTRY.exists() and bool(load(REGISTRY,{}).get("surfaces"))
-        if not registry_ok: repairs.append(repair_registry())
-    else:
-        # Safe repair is limited to generated status registry. Other issues are recorded
-        # for the watchdog/status surface; no blind mutation is attempted.
-        if not REGISTRY.exists() or not load(REGISTRY,{}).get("surfaces"):
-            repairs.append(repair_registry())
+    # Derived status data is regenerated every cycle so new surfaces become visible automatically.
+    repairs.append(repair_registry())
     status="PASS" if not issues else "REPAIR_NEEDED"
-    health={"schema_version":"1.0","updated_at":now(),"status":status,
+    drift={"status":"UNKNOWN","main_only":None,"dev_only":None}
+    rc,out,_=run(["git","rev-list","--left-right","--count","origin/main...HEAD"])
+    if rc==0:
+        parts=out.split()
+        if len(parts)==2:
+            drift={"status":"DIVERGED" if parts[0]!="0" and parts[1]!="0" else "ALIGNED_OR_AHEAD","main_only":int(parts[0]),"dev_only":int(parts[1])}
+    health={"schema_version":"1.0","updated_at":now(),"status":status,"branch_coherence":drift,
             "issues":issues[:100],"repairs":repairs,"experience_recorded":True,
             "policy":{"fail_closed":True,"protected_branches":["main","dev"],
                       "auto_delete_branches":False,"auto_repair_scope":["generated telemetry","status registry"],
