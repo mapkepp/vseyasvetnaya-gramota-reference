@@ -28,6 +28,13 @@ jobs:
         run: python3 scripts/sync_status_surfaces.py
       - name: Record branch governance
         run: python3 scripts/branch_governance.py
+      - name: Scan all branches and prepare intake
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/branch_scanner.py
+      - name: Apply safe branch intake
+        run: python3 scripts/apply_branch_intake.py
       - name: Record evolution state
         shell: python
         run: |
@@ -45,6 +52,6 @@ jobs:
         run: |
           git config user.name "toolbox-evolution-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/toolbox/discovered-capabilities.json data/toolbox/capability-evaluations.json data/research/self-improvement.json
+          git add data/toolbox/discovered-capabilities.json data/toolbox/capability-evaluations.json data/research/self-improvement.json data/research/status-surface-registry.json data/research/branch-governance.json data/research/branch-scan.json data/research/branch-intake.json
           git diff --cached --quiet || git commit -m "toolbox: record capability discovery and evolution"
           git push origin HEAD:dev
