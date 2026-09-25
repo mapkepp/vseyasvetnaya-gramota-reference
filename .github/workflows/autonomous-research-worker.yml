@@ -53,6 +53,8 @@ jobs:
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json")
             return subprocess.run(["python3","scripts/specialist_pipeline.py",str(tf),str(rf)],check=False).returncode if rf.exists() else 0
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(specialist,manifest["task_ids"]))
+      - name: Measure research-cycle yield
+        run: python3 scripts/measure_research_cycle.py
       - name: Measure and plan self-improvement
         run: python3 scripts/self_improvement_cycle.py
       - name: Apply safe self-improvement
@@ -98,6 +100,6 @@ jobs:
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/agent-manifest.json data/research/self-improvement-application.json
+          git add data/research/worker-results data/research/worker-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/agent-manifest.json data/research/self-improvement-application.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git push origin HEAD:dev
