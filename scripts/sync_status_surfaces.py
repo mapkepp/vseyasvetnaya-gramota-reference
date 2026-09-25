@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, pathlib, datetime
+import json, pathlib
 
 ROOT = pathlib.Path(".")
 OUT = ROOT / "data/research/status-surface-registry.json"
@@ -42,8 +42,7 @@ def main():
     for p in found:
         item=old.get(p,{})
         item.update({"path":p,"label":item.get("label") or label(p),"description":item.get("description") or desc(p),"status":"READY"})
-        try: item["updated_at"]=datetime.datetime.fromtimestamp((ROOT/p).stat().st_mtime,datetime.timezone.utc).isoformat().replace("+00:00","Z")
-        except OSError: pass
+        if "updated_at" not in item: item.pop("updated_at",None)
         surfaces.append(item)
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps({"version":1,"generated_by":"status-surface-sync","surfaces":surfaces},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
