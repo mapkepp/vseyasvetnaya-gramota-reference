@@ -67,7 +67,7 @@ def main():
               "canonical_mutation":"DISABLED"
             })
             break
-    payload={"schema_version":"1.1","generated_at":datetime.now(timezone.utc).isoformat(),"task_id":task["task_id"],
+    payload={"schema_version":"1.1","generated_at":datetime.now(timezone.utc).isoformat(),"task_id":task["task_id"],"canonical_entry_id":task.get("canonical_entry_id"),
              "bukova":task.get("bukova"),
              "status":"PASS" if any(x["status"]=="READY_FOR_REVIEW" for x in results) else ("CANDIDATE" if results else "INCOMPLETE"),
              "evidence":"MEASURED","candidate_count":len(results),"candidates":results}
