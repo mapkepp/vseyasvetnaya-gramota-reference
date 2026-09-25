@@ -47,10 +47,10 @@ def main():
             row={"branch":name,"class":"scan-error","error":str(e)}
         rows.append(row)
     rows.sort(key=lambda x:(x["class"],x["branch"]))
-    candidates=[r for r in rows if r["class"]=="integration-candidate"]
+    candidates=[r for r in rows if r["class"] in ("integration-candidate","partial-integration-candidate")]
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps({"version":2,"language":"ru","base_branch":"dev","protected":sorted(PRIMARY),
-      "policy":{"auto_apply":"только integration-candidate; максимум 20 коммитов; только разрешённые пути; через merge --no-ff с предварительной проверкой конфликтов",
+      "policy":{"auto_apply":"integration-candidate или partial-integration-candidate; максимум 20 коммитов; только разрешённые пути; частичные ветки переносятся только как отдельный diff",
                 "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
                 "next_step":"apply_branch_intake.py"},
       "summary":{"branches":len(rows),"integration_candidates":len(candidates),"review_required":sum(r["class"]=="review-required" for r in rows),
