@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: branch-intake
-  cancel-in-progress: true
+  group: dev-state-writers
+  cancel-in-progress: false
 jobs:
   scan-and-apply:
     runs-on: ubuntu-latest
