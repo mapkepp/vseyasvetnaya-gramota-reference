@@ -82,13 +82,15 @@ jobs:
           fi
 
           candidate_sha="$(git rev-parse HEAD)"
+          main_sha="$(git -C /tmp/main-candidate rev-parse origin/main)"
           cd "$GITHUB_WORKSPACE"
           git push origin "$candidate_sha:refs/heads/$CANDIDATE" --force
 
-          python3 - "$candidate_sha" <<'PY'
+          python3 - "$candidate_sha" "$main_sha" <<'PY'
           import json, sys
           from pathlib import Path
           sha=sys.argv[1]
+          main_sha=sys.argv[2]
           p=Path("data/research/release-readiness.json")
           old=json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
           old.update({
@@ -96,6 +98,7 @@ jobs:
               "status":"READY_FOR_PROMOTION",
               "candidate":"rebuild-main-candidate",
               "candidate_sha":sha,
+              "main_sha":main_sha,
               "main":"origin/main",
               "dev":"origin/dev",
               "conflicts":[],
