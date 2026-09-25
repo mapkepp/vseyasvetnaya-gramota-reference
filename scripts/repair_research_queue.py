@@ -14,16 +14,13 @@ def depth(task_id):
 
 def slug(value):
     s = re.sub(r"[^\w\-]+", "-", str(value).strip().casefold(), flags=re.UNICODE)
-    return s.strip("-")[:50] or "bukova"
+    return s.strip("-")[:50] or "entry"
 
 def hydrate_entry_ids(tasks, canonical_entries):
     by_name = {}
     for e in canonical_entries:
         by_name.setdefault(e.get("name"), []).append(e.get("entry_id"))
-    used = set()
-    for t in tasks:
-        if t.get("canonical_entry_id"):
-            used.add(t["canonical_entry_id"])
+    used = set(t.get("canonical_entry_id") for t in tasks if t.get("canonical_entry_id"))
     for t in tasks:
         if t.get("canonical_entry_id"):
             continue
@@ -32,8 +29,6 @@ def hydrate_entry_ids(tasks, canonical_entries):
             t["canonical_entry_id"] = ids[0]
             used.add(ids[0])
         elif ids:
-            # Legacy queue items with duplicated display names are assigned
-            # deterministically to the first still-unassigned canonical entry.
             pick = next((x for x in ids if x not in used), ids[0])
             t["canonical_entry_id"] = pick
             used.add(pick)
@@ -56,16 +51,21 @@ def main():
             t["exhausted_reason"] = "max_replan_depth_reached"
             exhausted.append(t.get("task_id"))
 
-    pending_before = sum(1 for t in q.get("tasks", []) if t.get("status") == "PENDING")
+    pending_tasks = [t for t in q.get("tasks", []) if t.get("status") == "PENDING"]
+    pending_entries = set(t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id") for t in pending_tasks)
+    needed = max(0, REPLENISH_PER_CYCLE - len(pending_entries))
     additions = []
-    if pending_before == 0:
+
+    if needed:
         by_entry = {}
         for t in q.get("tasks", []):
-            by_entry.setdefault(t.get("canonical_entry_id"), []).append(t)
+            by_entry.setdefault(t.get("canonical_entry_id") or t.get("bukova"), []).append(t)
 
         candidates = []
         for e in entries:
             eid, name = e["entry_id"], e["name"]
+            if eid in pending_entries:
+                continue
             rows = by_entry.get(eid, [])
             rotations = [t for t in rows if str(t.get("task_id", "")).startswith("rotation-")]
             rotation_count = len(rotations)
@@ -75,7 +75,7 @@ def main():
             candidates.append((rotation_count, len(rows), latest, eid, name))
 
         candidates.sort()
-        for rotation_count, total_count, latest, eid, name in candidates[:REPLENISH_PER_CYCLE]:
+        for rotation_count, total_count, latest, eid, name in candidates[:needed]:
             gen = rotation_count + 1
             tid = f"rotation-{slug(eid)}-{gen}"
             if any(t.get("task_id") == tid for t in q.get("tasks", [])):
@@ -97,31 +97,31 @@ def main():
                 ],
                 "reason": "queue_replenishment"
             })
+            pending_entries.add(eid)
 
     q["tasks"].extend(additions)
     pending_after = sum(1 for t in q.get("tasks", []) if t.get("status") == "PENDING")
+    distinct_after = len(set(t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id") for t in q.get("tasks", []) if t.get("status") == "PENDING"))
     q["queue_health"] = {
         "policy": "bounded-replan-with-entry-id-rotation",
         "max_replan_depth": MAX_REPLAN_DEPTH,
         "max_rotation_generations": MAX_ROTATION_GENERATIONS,
-        "replenish_per_cycle": REPLENISH_PER_CYCLE,
+        "target_distinct_pending": REPLENISH_PER_CYCLE,
         "repaired_at": now,
         "exhausted_this_run": len(exhausted),
         "replenished_this_run": len(additions),
-        "pending_before": pending_before,
-        "pending_after": pending_after
+        "pending_after": pending_after,
+        "distinct_pending_entries_after": distinct_after
     }
     q["updated_at"] = now
     queue_path.write_text(json.dumps(q, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({
-        "status": "PASS",
-        "evidence": "MEASURED",
-        "exhausted": len(exhausted),
-        "replenished": len(additions),
-        "replenished_entries": [{"entry_id":x["canonical_entry_id"],"bukova":x["bukova"]} for x in additions],
-        "pending_before": pending_before,
-        "pending_after": pending_after
-    }, ensure_ascii=False, indent=2))
+        "status":"PASS","evidence":"MEASURED","exhausted":len(exhausted),
+        "replenished":len(additions),
+        "replenished_entries":[{"entry_id":x["canonical_entry_id"],"bukova":x["bukova"]} for x in additions],
+        "pending_after":pending_after,
+        "distinct_pending_entries_after":distinct_after
+    },ensure_ascii=False,indent=2))
 
-if __name__ == "__main__":
+if __name__=="__main__":
     raise SystemExit(main())
