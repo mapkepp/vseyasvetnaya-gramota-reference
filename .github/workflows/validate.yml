@@ -1,0 +1,41 @@
+name: Validate Bukovy
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bukovy-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Rebuild derived API
+        run: python3 scripts/build-api.py
+
+      - name: Validate canonical catalog and derived API
+        run: python3 scripts/validate-bukovy.py
+
+      - name: Require generated API to be committed
+        run: |
+          if ! git diff --quiet -- api; then
+            echo "::error::Derived API is out of sync with canonical data."
+            git diff --stat -- api
+            exit 1
+          fi
