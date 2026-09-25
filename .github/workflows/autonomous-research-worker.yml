@@ -1,5 +1,6 @@
 name: Autonomous research worker
 # queue_policy: bounded-replan-with-entry-id-rotation
+# selection_policy: one-pending-task-per-canonical-entry
 # worker_backend: multi-provider-1.1
 on:
   workflow_dispatch:
@@ -32,7 +33,18 @@ jobs:
           from datetime import datetime,timezone
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
-          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"][:4]
+          tasks=[]
+          seen=set()
+          for t in q["tasks"]:
+            if t.get("status")!="PENDING":
+              continue
+            key=t.get("canonical_entry_id") or t.get("bukova") or t.get("task_id")
+            if key in seen:
+              continue
+            seen.add(key)
+            tasks.append(t)
+            if len(tasks)>=4:
+              break
           now=datetime.now(timezone.utc)
           json.dump({"schema_version":"1.0","cycle_id":now.strftime("%Y%m%dT%H%M%SZ"),"created_at":now.isoformat(),"task_ids":[t["task_id"] for t in tasks]},open(out/"cycle-task-manifest.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Run four parallel discovery agents
