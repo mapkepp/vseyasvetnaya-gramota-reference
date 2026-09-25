@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""Сканирование веток и подготовка безопасного автоматического переноса полезных изменений."""
+import json, os, subprocess, urllib.request, urllib.parse
+from pathlib import Path
+
+REPO=os.environ.get("GITHUB_REPOSITORY","mapkepp/vseyasvetnaya-gramota-reference")
+TOKEN=os.environ.get("GITHUB_TOKEN","")
+API="https://api.github.com"
+OUT=Path("data/research/branch-scan.json")
+PRIMARY={"main","dev"}
+LEGACY={"development","production","reserve","backup"}
+PREFIXES=("automation/","implementation/","research/")
+ALLOWED_PREFIXES=("scripts/","data/research/","data/toolbox/","api/","research-status.html",".github/workflows/")
+BLOCKED_PATHS=("secrets","credentials",".env")
+def api(path):
+    req=urllib.request.Request(API+path,headers={"Accept":"application/vnd.github+json","Authorization":f"Bearer {TOKEN}","X-GitHub-Api-Version":"2022-11-28"})
+    with urllib.request.urlopen(req,timeout=20) as r: return json.load(r)
+def cmp(base,head):
+    return api(f"/repos/{REPO}/compare/{urllib.parse.quote(base,safe='')}...{urllib.parse.quote(head,safe='')}")
+def classify(name, ahead, behind, files):
+    if name in PRIMARY: return "protected"
+    if name in LEGACY: return "legacy"
+    if not name.startswith(PREFIXES): return "unclassified"
+    if ahead==0: return "obsolete"
+    if not files: return "obsolete"
+    allowed=all(any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS) for f in files)
+    return "integration-candidate" if allowed and ahead<=20 else "review-required"
+def main():
+    branches=api(f"/repos/{REPO}/branches?per_page=100") 
+    rows=[]
+    for b in branches:
+        name=b["name"]
+        try:
+            c=cmp("dev",name)
+            files=[x["filename"] for x in c.get("files",[])]
+            row={"branch":name,"class":classify(name,c.get("ahead_by",0),c.get("behind_by",0),files),
+                 "ahead_of_dev":c.get("ahead_by",0),"behind_dev":c.get("behind_by",0),
+                 "commits":c.get("total_commits",0),"files":files[:100],
+                 "merge_base":(c.get("merge_base_commit") or {}).get("sha"),
+                 "status":c.get("status")}
+        except Exception as e:
+            row={"branch":name,"class":"scan-error","error":str(e)}
+        rows.append(row)
+    rows.sort(key=lambda x:(x["class"],x["branch"]))
+    candidates=[r for r in rows if r["class"]=="integration-candidate"]
+    OUT.parent.mkdir(parents=True,exist_ok=True)
+    OUT.write_text(json.dumps({"version":2,"language":"ru","base_branch":"dev","protected":sorted(PRIMARY),
+      "policy":{"auto_apply":"только integration-candidate; максимум 20 коммитов; только разрешённые пути; через merge --no-ff с предварительной проверкой конфликтов",
+                "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
+                "next_step":"apply_branch_intake.py"},
+      "summary":{"branches":len(rows),"integration_candidates":len(candidates),"review_required":sum(r["class"]=="review-required" for r in rows),
+                 "obsolete":sum(r["class"]=="obsolete" for r in rows)},
+      "branches":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+if __name__=="__main__": main()
