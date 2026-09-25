@@ -5,11 +5,13 @@
   "worker": "github-public-web",
   "phase": "DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN",
   "execution": "MEASURED",
-  "selected_tasks": 4,
-  "verified_tasks": 4,
-  "normalized_tasks": 4,
+  "selected_tasks": 0,
+  "verified_tasks": 0,
+  "normalized_tasks": 0,
   "review_queue_count": 0,
   "evidence": "MEASURED",
   "canonical_mutation": "DISABLED",
-  "next": "pending tasks continue next hourly cycle"
+  "next": "first Bukovy-first cycle is triggered by the next dev push and then every 20 minutes",
+  "focus": "BUKOVY_FIRST",
+  "note": "Previous measured cycle predates the Bukovy-first queue reset; it is not evidence that the new 68-task queue has run."
 }
