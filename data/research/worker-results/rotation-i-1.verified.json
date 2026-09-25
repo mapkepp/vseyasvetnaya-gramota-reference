@@ -2,9 +2,44 @@
   "schema_version": "1.0",
   "task_id": "rotation-i-1",
   "bukova": "I",
-  "status": "INCOMPLETE",
+  "status": "PASS",
   "evidence": "MEASURED",
-  "generated_at": "2026-09-25T08:29:07.879187+00:00",
-  "verification": [],
+  "generated_at": "2026-09-25T08:30:12.082580+00:00",
+  "verification": [
+    {
+      "url": "http://physiclib.ru/books/item/f00/s00/z0000023/st002.shtml",
+      "title": "I [1981 Капица П.л. - Эксперимент, Теория, Практика]",
+      "reachable": true,
+      "bukova_mention": true,
+      "query_signal_count": 1,
+      "matched_signals": [
+        "i"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/379425251_Professionalnaa_ucebnaa_praktika_I_kurs_Ucebno-metodiceskoe_posobie_dla_studentov_i_prepodavatelej_-_2-e_izd_ispr",
+      "title": "Профессиональная Учебная Практика: I Курс : Учебно-методическое Пособие ...",
+      "reachable": false,
+      "bukova_mention": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "HTTPError"
+    },
+    {
+      "url": "http://storage.mstuca.ru/jspui/bitstream/123456789/9298/1/!T_Боков, Урюпин, Витковский, Лазин_new_A5_b&w.pdf",
+      "title": "PDF Учебная 1. Эксплуатационная Практика Бас Тип I",
+      "reachable": false,
+      "bukova_mention": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "InvalidURL"
+    }
+  ],
   "rule": "Candidate verification only; practitioner claim requires human-readable evidence of practitioner, action, result and source."
 }

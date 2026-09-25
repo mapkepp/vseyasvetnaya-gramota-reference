@@ -2,9 +2,9 @@
   "schema_version": "1.2",
   "task_id": "rotation-i-1",
   "bukova": "I",
-  "status": "FAIL",
+  "status": "PASS",
   "evidence": "MEASURED",
-  "generated_at": "2026-09-25T08:29:07.772118+00:00",
+  "generated_at": "2026-09-25T08:30:09.933601+00:00",
   "queries": [
     "\"I\" Букова практика источник",
     "\"I\" Букова \"нанес\" опыт",
@@ -17,7 +17,62 @@
     "\"I\" \"результат\" практика"
   ],
   "search_engine": "github-actions-public-web-multi-provider",
-  "findings": [],
+  "findings": [
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "http://physiclib.ru/books/item/f00/s00/z0000023/st002.shtml",
+          "title": "I [1981 Капица П.л. - Эксперимент, Теория, Практика]"
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"I\" Букова практика источник"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    },
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://www.researchgate.net/publication/379425251_Professionalnaa_ucebnaa_praktika_I_kurs_Ucebno-metodiceskoe_posobie_dla_studentov_i_prepodavatelej_-_2-e_izd_ispr",
+          "title": "Профессиональная Учебная Практика: I Курс : Учебно-методическое Пособие ..."
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"I\" Букова практика источник"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    },
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "http://storage.mstuca.ru/jspui/bitstream/123456789/9298/1/!T_Боков, Урюпин, Витковский, Лазин_new_A5_b&w.pdf",
+          "title": "PDF Учебная 1. Эксплуатационная Практика Бас Тип I"
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"I\" Букова практика источник"
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    }
+  ],
   "diagnostics": [
     {
       "provider": "bing",
@@ -26,37 +81,16 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&count=10",
       "results": 0,
-      "body_chars": 130206
+      "body_chars": 129278
     },
     {
       "provider": "duckduckgo",
       "query": "\"I\" Букова практика источник",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14196
-    },
-    {
-      "provider": "google",
-      "query": "\"I\" Букова практика источник",
-      "status": "EMPTY",
+      "status": "PASS",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&num=10",
-      "results": 0,
-      "body_chars": 92053
-    },
-    {
-      "provider": "yahoo",
-      "query": "\"I\" Букова практика источник",
-      "status": "FAIL",
-      "error": "HTTPError"
-    },
-    {
-      "provider": "github-code",
-      "query": "\"I\" Букова практика источник",
-      "status": "EMPTY",
-      "results": 0
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&kl=ru-ru",
+      "results": 3,
+      "body_chars": 17208
     },
     {
       "provider": "bing",
@@ -65,7 +99,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
       "results": 0,
-      "body_chars": 126307
+      "body_chars": 131007
     },
     {
       "provider": "duckduckgo",
@@ -74,7 +108,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
       "results": 0,
-      "body_chars": 14206
+      "body_chars": 14205
     },
     {
       "provider": "google",
@@ -83,13 +117,13 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
       "results": 0,
-      "body_chars": 92173
+      "body_chars": 91501
     },
     {
       "provider": "yahoo",
       "query": "\"I\" Букова \"нанес\" опыт",
       "status": "FAIL",
-      "error": "TimeoutError"
+      "error": "HTTPError"
     },
     {
       "provider": "github-code",
@@ -104,7 +138,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
       "results": 0,
-      "body_chars": 126979
+      "body_chars": 130813
     },
     {
       "provider": "duckduckgo",
@@ -113,7 +147,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
       "results": 0,
-      "body_chars": 14208
+      "body_chars": 14220
     },
     {
       "provider": "google",
@@ -122,7 +156,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
       "results": 0,
-      "body_chars": 92361
+      "body_chars": 91328
     },
     {
       "provider": "yahoo",
@@ -143,7 +177,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
       "results": 0,
-      "body_chars": 129689
+      "body_chars": 123952
     },
     {
       "provider": "duckduckgo",
@@ -152,7 +186,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
       "results": 0,
-      "body_chars": 14224
+      "body_chars": 14216
     },
     {
       "provider": "google",
@@ -161,7 +195,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
       "results": 0,
-      "body_chars": 92231
+      "body_chars": 91321
     },
     {
       "provider": "yahoo",
@@ -182,7 +216,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 132992
+      "body_chars": 130011
     },
     {
       "provider": "duckduckgo",
@@ -191,7 +225,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14184
+      "body_chars": 14196
     },
     {
       "provider": "google",
@@ -200,7 +234,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 92294
+      "body_chars": 91222
     },
     {
       "provider": "yahoo",
@@ -221,7 +255,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
       "results": 0,
-      "body_chars": 128822
+      "body_chars": 128175
     },
     {
       "provider": "duckduckgo",
@@ -230,7 +264,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
       "results": 0,
-      "body_chars": 14204
+      "body_chars": 14186
     },
     {
       "provider": "google",
@@ -239,7 +273,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
       "results": 0,
-      "body_chars": 92343
+      "body_chars": 91170
     },
     {
       "provider": "yahoo",
@@ -260,7 +294,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 129621
+      "body_chars": 130031
     },
     {
       "provider": "duckduckgo",
@@ -269,7 +303,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14198
+      "body_chars": 14196
     },
     {
       "provider": "google",
@@ -278,7 +312,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 92164
+      "body_chars": 91146
     },
     {
       "provider": "yahoo",
@@ -299,7 +333,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 128606
+      "body_chars": 129899
     },
     {
       "provider": "duckduckgo",
@@ -308,7 +342,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14206
+      "body_chars": 14200
     },
     {
       "provider": "google",
@@ -317,7 +351,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 92170
+      "body_chars": 91168
     },
     {
       "provider": "yahoo",
@@ -338,7 +372,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22I%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 129588
+      "body_chars": 128438
     },
     {
       "provider": "duckduckgo",
@@ -347,7 +381,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22I%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14207
+      "body_chars": 14220
     },
     {
       "provider": "google",
@@ -356,7 +390,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22I%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 92155
+      "body_chars": 91398
     },
     {
       "provider": "yahoo",

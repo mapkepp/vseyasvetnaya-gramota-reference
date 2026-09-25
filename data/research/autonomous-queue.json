@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T08:29:25.465669+00:00",
+  "updated_at": "2026-09-25T08:30:14.264553+00:00",
   "canonical_bukova_count": 68,
-  "replanned_count": 67,
+  "replanned_count": 69,
   "tasks": [
     {
       "task_id": "research-er",
@@ -1360,7 +1360,7 @@
     {
       "task_id": "rotation-i-1",
       "bukova": "I",
-      "status": "FAILED",
+      "status": "DONE",
       "priority": "rotation",
       "created_at": "2026-09-25T08:26:58.812820+00:00",
       "generation": 1,
@@ -1483,7 +1483,7 @@
       "task_id": "rotation-i-кратка-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-28",
       "bukova": "I Кратка",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:29:25.465669+00:00",
       "queries": [
@@ -1500,7 +1500,7 @@
       "task_id": "rotation-s--sело-1-replan-1-replan-1",
       "canonical_entry_id": "dm80-image-20",
       "bukova": "s\"-sело",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "created_at": "2026-09-25T08:29:25.465669+00:00",
       "queries": [
@@ -1512,6 +1512,40 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-s--sело-1-replan-1"
+    },
+    {
+      "task_id": "rotation-i-кратка-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-28",
+      "bukova": "I Кратка",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:30:14.264553+00:00",
+      "queries": [
+        "\"I Кратка\" практика Букова форум",
+        "\"I Кратка\" \"нанес\" Букова",
+        "\"I Кратка\" \"получил результат\"",
+        "\"I Кратка\" \"применял\" практика",
+        "\"I Кратка\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-i-кратка-1-replan-1-replan-1"
+    },
+    {
+      "task_id": "rotation-s--sело-1-replan-1-replan-1-replan-1",
+      "canonical_entry_id": "dm80-image-20",
+      "bukova": "s\"-sело",
+      "status": "PENDING",
+      "priority": "replan",
+      "created_at": "2026-09-25T08:30:14.264553+00:00",
+      "queries": [
+        "\"s\"-sело\" практика Букова форум",
+        "\"s\"-sело\" \"нанес\" Букова",
+        "\"s\"-sело\" \"получил результат\"",
+        "\"s\"-sело\" \"применял\" практика",
+        "\"s\"-sело\" \"получила результат\" Буков"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-s--sело-1-replan-1-replan-1"
     }
   ],
   "rules": [
@@ -1526,7 +1560,7 @@
   "queue_health": {
     "policy": "bounded-replan-with-entry-id-rotation",
     "max_replan_depth": 3,
-    "updated_at": "2026-09-25T08:29:25.465669+00:00",
-    "new_replans": 3
+    "updated_at": "2026-09-25T08:30:14.264553+00:00",
+    "new_replans": 2
   }
 }
