@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-37-1-replan-1-replan-1",
+  "canonical_entry_id": "dm80-image-37",
+  "bukova": "Люди",
+  "status": "INCOMPLETE",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-25T22:29:50.495947+00:00",
+  "verification": [
+    {
+      "url": "https://www.youtube.com/shorts/lXyTpGts338",
+      "title": "Букова \"ЛЮДИ\" #защита - YouTube",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://vk.com/video-227131826_456239073",
+      "title": "Букова Люди ч.2. Читаем в Буковнике ВсеЯСветной Грамоты. — Видео от ...",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "HTTPError"
+    },
+    {
+      "url": "https://vk.com/wall268684197_621",
+      "title": "ЮСъ. Вторая Букова в слове Люди, так же читается как УМ. 2025 | Наталия ...",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://lp.newpeople.ru/",
+      "title": "Мы - партия «Новые люди»",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": false,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "став",
+        "результат",
+        "получил"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://donday.ru/lenta/137631-ot-kolichestva-realnyh-del-mne-stalo-ploho-kak-proshel-samyj-dlinnyj-forum-novyh-ljudej-i-pochemu-na-nego-priehala-skoraja.html",
+      "title": "От количества реальных дел мне стало плохо: как прошёл самый длинный ...",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "TimeoutError"
+    },
+    {
+      "url": "https://ru.wikipedia.org/wiki/Новые_люди_(партия)",
+      "title": "Новые люди (партия) — Википедия",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "UnicodeEncodeError"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
