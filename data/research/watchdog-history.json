@@ -2,6 +2,14 @@
   "schema_version": "1.0",
   "checks": [
     {
+      "checked_at": "2026-09-26T19:06:19.697075+00:00",
+      "latest_run_id": "36264755903",
+      "worker_status": "completed",
+      "conclusion": "failure",
+      "pending": 68,
+      "heartbeat_age_seconds": 137
+    },
+    {
       "checked_at": "2026-09-26T19:04:14.473796+00:00",
       "latest_run_id": "36264648789",
       "worker_status": "completed",
@@ -170,7 +178,7 @@
       "heartbeat_age_seconds": 15549
     }
   ],
-  "consecutive_recovery_failures": 0,
-  "state": "HEALTHY",
-  "updated_at": "2026-09-26T19:04:14.473796+00:00"
+  "consecutive_recovery_failures": 1,
+  "state": "RECOVERY_PENDING",
+  "updated_at": "2026-09-26T19:06:19.697075+00:00"
 }
