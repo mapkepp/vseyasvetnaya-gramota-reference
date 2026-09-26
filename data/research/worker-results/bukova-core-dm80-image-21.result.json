@@ -1,0 +1,668 @@
+{
+  "schema_version": "1.2",
+  "task_id": "bukova-core-dm80-image-21",
+  "canonical_entry_id": "dm80-image-21",
+  "bukova": "З",
+  "status": "PASS",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-26T05:31:05.979919+00:00",
+  "queries": [
+    "\"З\" \"ВсеЯСветная Грамота\"",
+    "\"З\" Букова практика",
+    "\"З\" Букова \"применял\"",
+    "\"З\" Букова \"нанос\"",
+    "\"З\" Букова \"рисовал\"",
+    "\"З\" Букова \"носил\"",
+    "\"З\" Букова \"результат\"",
+    "\"З\" Букова \"получил\"",
+    "\"З\" \"став\" Букова",
+    "\"З\" \"отработка\" Буков",
+    "\"З\" \"упражнение\" Букова",
+    "\"З\" \"Буковник\" практика",
+    "\"З\" \"став\" Буков",
+    "\"З\" \"буквица\" практика",
+    "\"З\" \"нанос\" практика",
+    "\"З\" \"результат\" практика"
+  ],
+  "search_engine": "github-actions-public-web-multi-provider",
+  "findings": [
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://dzen.ru/a/Z-QrlNYgIFYYtRkg",
+          "title": "Всеясветная Грамота — Грамота Святой Руси: Древнее Знание, Запрещённое ..."
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"З\" \"ВсеЯСветная Грамота\""
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    },
+    {
+      "claim": "Discovered public-web source; requires human-readable verification before use.",
+      "sources": [
+        {
+          "url": "https://www.rugramota.ru/всеясветная-грамота/",
+          "title": "Всеясветная Грамота - Древнее Знание Святой Руси"
+        }
+      ],
+      "evidence_type": "web_discovery",
+      "confidence": "UNSPECIFIED",
+      "conflicts": [],
+      "discovery_queries": [
+        "\"З\" \"ВсеЯСветная Грамота\""
+      ],
+      "providers": [
+        "duckduckgo"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "provider": "bing",
+      "query": "\"З\" \"ВсеЯСветная Грамота\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+      "results": 0,
+      "body_chars": 97929
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"ВсеЯСветная Грамота\"",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+      "results": 2,
+      "body_chars": 14526
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 95144
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14172
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92063
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"применял\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+      "results": 0,
+      "body_chars": 125629
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"применял\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14202
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"применял\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+      "results": 0,
+      "body_chars": 92173
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"применял\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"применял\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"нанос\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+      "results": 0,
+      "body_chars": 135622
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"нанос\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14190
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"нанос\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+      "results": 0,
+      "body_chars": 92293
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"нанос\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"нанос\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"рисовал\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&count=10",
+      "results": 0,
+      "body_chars": 96162
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"рисовал\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14200
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"рисовал\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&num=10",
+      "results": 0,
+      "body_chars": 92108
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"рисовал\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"рисовал\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"носил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%BE%D1%81%D0%B8%D0%BB%22&count=10",
+      "results": 0,
+      "body_chars": 95193
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"носил\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%BE%D1%81%D0%B8%D0%BB%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14208
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"носил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%BE%D1%81%D0%B8%D0%BB%22&num=10",
+      "results": 0,
+      "body_chars": 92021
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"носил\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"носил\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"результат\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 97770
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"результат\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14198
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"результат\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 92156
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"результат\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"результат\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" Букова \"получил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22&count=10",
+      "results": 0,
+      "body_chars": 97025
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" Букова \"получил\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14206
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" Букова \"получил\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22&num=10",
+      "results": 0,
+      "body_chars": 92096
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" Букова \"получил\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" Букова \"получил\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"став\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96135
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"став\" Букова",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14188
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"став\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92255
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"став\" Букова",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"став\" Букова",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"отработка\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BE%D1%82%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 97040
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"отработка\" Буков",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BE%D1%82%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14208
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"отработка\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BE%D1%82%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 92249
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"отработка\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"отработка\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"упражнение\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96541
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"упражнение\" Букова",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14206
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"упражнение\" Букова",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92313
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"упражнение\" Букова",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"упражнение\" Букова",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"Буковник\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 96055
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"Буковник\" практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14200
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"Буковник\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92191
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"Буковник\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"Буковник\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 94857
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14186
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 92143
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"став\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"став\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 97193
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92499
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"буквица\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 97462
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92169
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"нанос\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 98668
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92227
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"результат\" практика",
+      "status": "EMPTY",
+      "results": 0
+    }
+  ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
+  "canonical_mutation": "DISABLED"
+}
