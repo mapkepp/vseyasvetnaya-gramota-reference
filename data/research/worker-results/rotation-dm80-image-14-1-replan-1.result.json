@@ -3,249 +3,335 @@
   "task_id": "rotation-dm80-image-14-1-replan-1",
   "canonical_entry_id": "dm80-image-14",
   "bukova": "Д",
-  "status": "PASS",
+  "status": "FAIL",
   "evidence": "MEASURED",
-  "generated_at": "2026-09-25T08:49:31.000813+00:00",
+  "generated_at": "2026-09-26T21:23:33.598863+00:00",
   "queries": [
-    "\"Д\" практика Букова форум",
-    "\"Д\" \"нанес\" Букова",
-    "\"Д\" \"получил результат\"",
-    "\"Д\" \"применял\" практика",
-    "\"Д\" \"получила результат\" Буков",
+    "\"Д\" \"Букова\" \"опыт\"",
+    "\"Д\" \"Букова\" \"отзыв\"",
+    "\"Д\" \"Букова\" \"история\"",
+    "\"Д\" \"Букова\" \"наблюдение\"",
+    "\"Д\" \"Букова\" \"эксперимент\"",
+    "\"Д\" \"Букова\" \"до\" \"после\"",
+    "\"Д\" \"Буковник\" \"упражнение\"",
+    "\"Д\" \"Буковы\" \"применение\"",
     "\"Д\" \"став\" Буков",
     "\"Д\" \"буквица\" практика",
     "\"Д\" \"нанос\" практика",
     "\"Д\" \"результат\" практика"
   ],
   "search_engine": "github-actions-public-web-multi-provider",
-  "findings": [
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://forum.d-seminar.ru/",
-          "title": "Форум педагогов"
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Д\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    },
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://www.rusfishing.ru/forum/forums/lovlya-na-otkrytoi-vode.33/",
-          "title": "Ловля на открытой воде. | Русфишинг! Центральный Форум Рыбаков!"
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Д\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    },
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://vk.com/wall-151469882_3247",
-          "title": "РазумоНошение на Поде РодПамяти. Букова \"О с Пода\". Букова Д (-\"О с ..."
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Д\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    }
-  ],
+  "findings": [],
   "diagnostics": [
     {
       "provider": "bing",
-      "query": "\"Д\" практика Букова форум",
+      "query": "\"Д\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&count=10",
       "results": 0,
-      "body_chars": 131399
+      "body_chars": 96384
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Д\" практика Букова форум",
-      "status": "PASS",
-      "http_status": 200,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&kl=ru-ru",
-      "results": 3,
-      "body_chars": 16167
-    },
-    {
-      "provider": "bing",
-      "query": "\"Д\" \"нанес\" Букова",
+      "query": "\"Д\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&count=10",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 130752
-    },
-    {
-      "provider": "duckduckgo",
-      "query": "\"Д\" \"нанес\" Букова",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14208
+      "body_chars": 9382
     },
     {
       "provider": "google",
-      "query": "\"Д\" \"нанес\" Букова",
+      "query": "\"Д\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&num=10",
       "results": 0,
-      "body_chars": 91429
+      "body_chars": 92423
     },
     {
       "provider": "yahoo",
-      "query": "\"Д\" \"нанес\" Букова",
+      "query": "\"Д\" \"Букова\" \"опыт\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Д\" \"нанес\" Букова",
+      "query": "\"Д\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Д\" \"получил результат\"",
+      "query": "\"Д\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&count=10",
       "results": 0,
-      "body_chars": 132615
+      "body_chars": 96910
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Д\" \"получил результат\"",
+      "query": "\"Д\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14212
+      "body_chars": 14220
     },
     {
       "provider": "google",
-      "query": "\"Д\" \"получил результат\"",
+      "query": "\"Д\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&num=10",
       "results": 0,
-      "body_chars": 91560
+      "body_chars": 92309
     },
     {
       "provider": "yahoo",
-      "query": "\"Д\" \"получил результат\"",
+      "query": "\"Д\" \"Букова\" \"отзыв\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Д\" \"получил результат\"",
+      "query": "\"Д\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Д\" \"применял\" практика",
+      "query": "\"Д\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&count=10",
       "results": 0,
-      "body_chars": 130960
+      "body_chars": 133874
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Д\" \"применял\" практика",
+      "query": "\"Д\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14212
+      "body_chars": 14230
     },
     {
       "provider": "google",
-      "query": "\"Д\" \"применял\" практика",
+      "query": "\"Д\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&num=10",
       "results": 0,
-      "body_chars": 91312
+      "body_chars": 92161
     },
     {
       "provider": "yahoo",
-      "query": "\"Д\" \"применял\" практика",
+      "query": "\"Д\" \"Букова\" \"история\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Д\" \"применял\" практика",
+      "query": "\"Д\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Д\" \"получила результат\" Буков",
+      "query": "\"Д\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
       "results": 0,
-      "body_chars": 131826
+      "body_chars": 132992
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Д\" \"получила результат\" Буков",
+      "query": "\"Д\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14214
+      "body_chars": 14229
     },
     {
       "provider": "google",
-      "query": "\"Д\" \"получила результат\" Буков",
+      "query": "\"Д\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
       "results": 0,
-      "body_chars": 91760
+      "body_chars": 92072
     },
     {
       "provider": "yahoo",
-      "query": "\"Д\" \"получила результат\" Буков",
+      "query": "\"Д\" \"Букова\" \"наблюдение\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Д\" \"получила результат\" Буков",
+      "query": "\"Д\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Д\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 125723
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Д\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14232
+    },
+    {
+      "provider": "google",
+      "query": "\"Д\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 92255
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Д\" \"Букова\" \"эксперимент\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Д\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Д\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 126023
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Д\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14250
+    },
+    {
+      "provider": "google",
+      "query": "\"Д\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92330
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Д\" \"Букова\" \"до\" \"после\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Д\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Д\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 129724
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Д\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14246
+    },
+    {
+      "provider": "google",
+      "query": "\"Д\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92076
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Д\" \"Буковник\" \"упражнение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Д\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Д\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 96964
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Д\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14236
+    },
+    {
+      "provider": "google",
+      "query": "\"Д\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92364
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Д\" \"Буковы\" \"применение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Д\" \"Буковы\" \"применение\"",
       "status": "EMPTY",
       "results": 0
     },
@@ -256,7 +342,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
       "results": 0,
-      "body_chars": 130456
+      "body_chars": 127837
     },
     {
       "provider": "duckduckgo",
@@ -265,7 +351,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
       "results": 0,
-      "body_chars": 14197
+      "body_chars": 14186
     },
     {
       "provider": "google",
@@ -274,7 +360,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
       "results": 0,
-      "body_chars": 91390
+      "body_chars": 92180
     },
     {
       "provider": "yahoo",
@@ -295,7 +381,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 129091
+      "body_chars": 95690
     },
     {
       "provider": "duckduckgo",
@@ -304,7 +390,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14204
+      "body_chars": 14197
     },
     {
       "provider": "google",
@@ -313,7 +399,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91811
+      "body_chars": 92421
     },
     {
       "provider": "yahoo",
@@ -334,7 +420,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 125692
+      "body_chars": 96265
     },
     {
       "provider": "duckduckgo",
@@ -343,7 +429,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14198
+      "body_chars": 14206
     },
     {
       "provider": "google",
@@ -352,7 +438,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91429
+      "body_chars": 92115
     },
     {
       "provider": "yahoo",
@@ -373,7 +459,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%94%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 131418
+      "body_chars": 97546
     },
     {
       "provider": "duckduckgo",
@@ -382,7 +468,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%94%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14202
+      "body_chars": 14208
     },
     {
       "provider": "google",
@@ -391,7 +477,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%94%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91798
+      "body_chars": 92385
     },
     {
       "provider": "yahoo",
@@ -406,5 +492,10 @@
       "results": 0
     }
   ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
   "canonical_mutation": "DISABLED"
 }
