@@ -46,7 +46,7 @@ fingerprint=hashlib.sha256(json.dumps({
 },sort_keys=True).encode()).hexdigest()[:16]
 
 exp=load(EXP,{"schema_version":"2.0","events":[],"learning_policy":{}})
-events=exp.get("events",[])
+events=[e for e in exp.get("events",[]) if e.get("type")!="research_cycle" or e.get("cycle_id")]
 event={
     "at":now,"type":"research_cycle","cycle_id":latest.get("cycle_id"),
     "status":health.get("status","UNKNOWN"),"fingerprint":fingerprint,
