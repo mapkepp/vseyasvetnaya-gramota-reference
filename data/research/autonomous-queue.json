@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T19:17:59.843255+00:00",
+  "updated_at": "2026-09-26T19:20:38.912546+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -3461,11 +3461,11 @@
       "task_id": "bukova-core-dm80-image-73-replan-1",
       "canonical_entry_id": "dm80-image-73",
       "bukova": "Юсъ",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-26T19:17:59.843255+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 1,
       "queries": [
         "\"Юсъ\" \"Букова\" \"опыт\"",
@@ -3478,13 +3478,15 @@
         "\"Юсъ\" \"Буковы\" \"применение\""
       ],
       "reason": "verification_incomplete",
-      "parent_task_id": "bukova-core-dm80-image-73"
+      "parent_task_id": "bukova-core-dm80-image-73",
+      "exhausted_at": "2026-09-26T19:20:38.912546+00:00",
+      "exhausted_reason": "worker_failed"
     }
   ],
   "queue_health": {
     "policy": "single-rotated-replan",
     "max_replan_depth": 1,
-    "updated_at": "2026-09-26T19:17:59.843255+00:00",
-    "new_replans": 1
+    "updated_at": "2026-09-26T19:20:38.912546+00:00",
+    "new_replans": 0
   }
 }
