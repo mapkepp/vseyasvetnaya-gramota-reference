@@ -2,6 +2,7 @@ name: Autonomous research watchdog
 # recovery-loop: stale-check -> self-repair -> worker-handoff
 # bounded-retry: recovery writer refreshes derived state after safe dev movement
 # ancestry: remote-dev must be an ancestor of generated local state before publish
+# handoff: queue is read directly from GitHub API content
 on:
   workflow_dispatch:
   push:
