@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T02:58:01.697987+00:00",
+  "updated_at": "2026-09-26T03:49:43.342504+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 8,
+  "replanned_count": 12,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -226,7 +226,7 @@
       "task_id": "bukova-core-dm80-image-15",
       "canonical_entry_id": "dm80-image-15",
       "bukova": "Е",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "critical",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
@@ -252,7 +252,7 @@
       "task_id": "bukova-core-dm80-image-16",
       "canonical_entry_id": "dm80-image-16",
       "bukova": "Е\"-ять",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
@@ -278,7 +278,7 @@
       "task_id": "bukova-core-dm80-image-17",
       "canonical_entry_id": "dm80-image-17",
       "bukova": "Ё",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
@@ -304,7 +304,7 @@
       "task_id": "bukova-core-dm80-image-18",
       "canonical_entry_id": "dm80-image-18",
       "bukova": "Ё\"-Ёкъ, Иръ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
@@ -1965,12 +1965,104 @@
       ],
       "reason": "verification_incomplete",
       "parent_task_id": "bukova-core-dm80-image-14"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-15-replan-1",
+      "canonical_entry_id": "dm80-image-15",
+      "bukova": "Е",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T03:49:43.342504+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Е\" \"Букова\" \"опыт\"",
+        "\"Е\" \"Букова\" \"отзыв\"",
+        "\"Е\" \"Букова\" \"история\"",
+        "\"Е\" \"Букова\" \"наблюдение\"",
+        "\"Е\" \"Букова\" \"эксперимент\"",
+        "\"Е\" \"Букова\" \"до\" \"после\"",
+        "\"Е\" \"Буковник\" \"упражнение\"",
+        "\"Е\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-15"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-16-replan-1",
+      "canonical_entry_id": "dm80-image-16",
+      "bukova": "Е\"-ять",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T03:49:43.342504+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Е\"-ять\" \"Букова\" \"опыт\"",
+        "\"Е\"-ять\" \"Букова\" \"отзыв\"",
+        "\"Е\"-ять\" \"Букова\" \"история\"",
+        "\"Е\"-ять\" \"Букова\" \"наблюдение\"",
+        "\"Е\"-ять\" \"Букова\" \"эксперимент\"",
+        "\"Е\"-ять\" \"Букова\" \"до\" \"после\"",
+        "\"Е\"-ять\" \"Буковник\" \"упражнение\"",
+        "\"Е\"-ять\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-16"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-17-replan-1",
+      "canonical_entry_id": "dm80-image-17",
+      "bukova": "Ё",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T03:49:43.342504+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Ё\" \"Букова\" \"опыт\"",
+        "\"Ё\" \"Букова\" \"отзыв\"",
+        "\"Ё\" \"Букова\" \"история\"",
+        "\"Ё\" \"Букова\" \"наблюдение\"",
+        "\"Ё\" \"Букова\" \"эксперимент\"",
+        "\"Ё\" \"Букова\" \"до\" \"после\"",
+        "\"Ё\" \"Буковник\" \"упражнение\"",
+        "\"Ё\" \"Буковы\" \"применение\""
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "bukova-core-dm80-image-17"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-18-replan-1",
+      "canonical_entry_id": "dm80-image-18",
+      "bukova": "Ё\"-Ёкъ, Иръ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T03:49:43.342504+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"опыт\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"отзыв\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"история\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"наблюдение\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"эксперимент\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Букова\" \"до\" \"после\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Буковник\" \"упражнение\"",
+        "\"Ё\"-Ёкъ, Иръ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-18"
     }
   ],
   "queue_health": {
     "policy": "single-rotated-replan",
     "max_replan_depth": 1,
-    "updated_at": "2026-09-26T02:58:01.697987+00:00",
+    "updated_at": "2026-09-26T03:49:43.342504+00:00",
     "new_replans": 4
   }
 }
