@@ -138,7 +138,7 @@ jobs:
           git fetch origin dev
           remote_sha="$(git rev-parse origin/dev)"
           local_sha="$(git rev-parse HEAD)"
-          if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+          if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
             echo "::error::DEV_MOVED_DURING_CYCLE: refusing to rebase/merge generated research state over newer dev."
             echo "local=$local_sha remote=$remote_sha"
             echo "The cycle result is intentionally discarded; watchdog will start a fresh cycle from current dev."
@@ -151,7 +151,7 @@ jobs:
             fi
             git fetch origin dev
             remote_sha="$(git rev-parse origin/dev)"
-            if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+            if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
               echo "::error::DEV_MOVED_DURING_PUSH: refusing conflict-producing rebase."
               echo "local=$local_sha remote=$remote_sha"
               exit 78
