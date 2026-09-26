@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: dev-state-writers
+  group: system-self-repair-writer
   cancel-in-progress: false
 jobs:
   health:
@@ -38,3 +38,16 @@ jobs:
             exit 78
           fi
           git push origin HEAD:dev
+
+      - name: Continue research after self-repair
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pending="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\\n' | base64 -d | jq '[.tasks[] | select(.status=="PENDING")] | length')"
+          if [ "$pending" -gt 0 ]; then
+            echo "SELF_REPAIR_HANDOFF: dispatching fresh research worker for $pending pending tasks."
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
+          else
+            echo "SELF_REPAIR_HANDOFF: research queue is empty."
+          fi
