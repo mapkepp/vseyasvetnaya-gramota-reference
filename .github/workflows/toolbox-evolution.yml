@@ -1,6 +1,12 @@
 name: Toolbox evolution worker
 on:
   workflow_dispatch:
+  push:
+    branches: [dev]
+    paths:
+      - "scripts/**"
+      - "data/toolbox/**"
+      - "data/research/self-improvement*.json"
   schedule:
     - cron: "17 */6 * * *"
 permissions:
