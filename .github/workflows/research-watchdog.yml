@@ -89,7 +89,7 @@ jobs:
           d["checks"]=[check]+d.get("checks",[])[:99]
           failures=0
           for x in d["checks"]:
-            if x.get("pending",0)>0 and x.get("worker_status") not in ("in_progress","queued"):
+            if x.get("pending",0)>0 and (x.get("worker_status") not in ("in_progress","queued") or x.get("heartbeat_age_seconds",999999)>900):
               failures+=1
             else: break
           d["consecutive_recovery_failures"]=failures
@@ -108,7 +108,7 @@ jobs:
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
           fi
           failures="$(jq -r '.consecutive_recovery_failures // 0' data/research/watchdog-history.json)"
-          if [ "$pending" -gt 0 ] && [ "$status" != "in_progress" ] && [ "$status" != "queued" ] && [ "$age" -gt 900 ]; then
+          if [ "$pending" -gt 0 ] && [ "$age" -gt 900 ]; then
             echo "Очередь есть, активного worker нет и heartbeat устарел — запускаем self-repair."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null || true
           fi
