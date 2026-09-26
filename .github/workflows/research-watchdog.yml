@@ -41,13 +41,15 @@ jobs:
           except Exception: pass
           runs=json.loads(subprocess.check_output([
               "gh","run","list","--workflow","autonomous-research-worker.yml","--branch","dev",
-              "--limit","5","--json","databaseId,status,conclusion"
+              "--limit","10","--json","databaseId,status,conclusion,createdAt"
           ],text=True))
           active=any(r.get("status") in ("queued","in_progress") for r in runs)
-          print(json.dumps({"pending":pending,"heartbeat_age_sec":age,"stale":stale,"active_run":active}))
-          if pending and stale and not active:
+          latest=sorted(runs,key=lambda r:r.get("createdAt",""),reverse=True)[0] if runs else {}
+          latest_failed=latest.get("conclusion")=="failure"
+          print(json.dumps({"pending":pending,"heartbeat_age_sec":age,"stale":stale,"active_run":active,"latest_run":latest,"latest_failed":latest_failed}))
+          if pending and not active and (stale or latest_failed):
               subprocess.run(["gh","workflow","run","autonomous-research-worker.yml","--ref","dev"],check=True)
-              print("RECOVERED: dispatched autonomous research worker")
+              print("RECOVERED: dispatched fresh autonomous research worker from current dev")
           else:
               print("WATCHDOG_OK: no recovery dispatch needed")
           PY
