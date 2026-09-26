@@ -31,7 +31,7 @@ jobs:
             git fetch origin dev
             local_sha="$(git rev-parse HEAD)"
             remote_sha="$(git rev-parse origin/dev)"
-            if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+            if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
               echo "SELF_REPAIR_REBASE_SAFE_RETRY: dev advanced; refreshing checkout and regenerating derived health state."
               git reset --hard origin/dev
               python3 scripts/system_self_check.py
