@@ -7,7 +7,7 @@ permissions:
   contents: write
   actions: write
 concurrency:
-  group: system-self-repair-writer
+  group: dev-state-writers
   cancel-in-progress: false
 jobs:
   health:
