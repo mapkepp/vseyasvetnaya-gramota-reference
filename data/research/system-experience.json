@@ -1,0 +1,54 @@
+{
+  "schema_version": "2.0",
+  "events": [
+    {
+      "at": "2026-09-26T06:18:16.459695+00:00",
+      "fingerprint": "a0ca1c859a987dae",
+      "status": "PASS",
+      "issues": [],
+      "repairs": [
+        "repaired: status surface registry regenerated"
+      ]
+    },
+    {
+      "at": "2026-09-26T06:18:16.497400+00:00",
+      "type": "research_cycle",
+      "cycle_id": null,
+      "status": "PASS",
+      "fingerprint": "84ff11c8cbc28b7f",
+      "measured": {
+        "tasks": 0,
+        "findings": 0,
+        "sources": 0,
+        "verified": 0,
+        "normalized": 0,
+        "failed": 0,
+        "duration_seconds": null
+      },
+      "lessons": [
+        "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт."
+      ],
+      "next_cycle_hints": [
+        "учитывать фактические ошибки и длительности предыдущих циклов",
+        "не переносить непроверенные практические свидетельства в канон",
+        "повторно использовать только подтверждённые поисковые стратегии"
+      ]
+    }
+  ],
+  "last_success_at": "2026-09-26T06:18:16.459695+00:00",
+  "last_failure_at": null,
+  "learning_policy": {
+    "enabled": true,
+    "learn_from_cycles": true,
+    "learn_from_failures": true,
+    "use_in_next_cycle": true,
+    "deduplicate": true,
+    "retain_last": 500,
+    "canonical_mutation_from_experience": "DISABLED"
+  },
+  "updated_at": "2026-09-26T06:18:16.497400+00:00",
+  "last_cycle_id": null,
+  "last_lessons": [
+    "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт."
+  ]
+}
