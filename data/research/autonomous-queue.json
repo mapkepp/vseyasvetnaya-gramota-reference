@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T21:36:19.355878+00:00",
+  "updated_at": "2026-09-26T21:37:20.039892+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 100,
+  "replanned_count": 104,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -5150,7 +5150,7 @@
       "task_id": "rotation-dm80-image-39-1",
       "canonical_entry_id": "dm80-image-39",
       "bukova": "Лель",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "created_at": "2026-09-26T21:36:19.355878+00:00",
       "generation": 1,
@@ -5170,13 +5170,14 @@
         "\"Лель\" \"применение\" -описание -определение",
         "\"Лель\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-42-1",
       "canonical_entry_id": "dm80-image-42",
       "bukova": "Мыслэте",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "created_at": "2026-09-26T21:36:19.355878+00:00",
       "generation": 1,
@@ -5196,13 +5197,14 @@
         "\"Мыслэте\" \"применение\" -описание -определение",
         "\"Мыслэте\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-43-1",
       "canonical_entry_id": "dm80-image-43",
       "bukova": "Ма",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "created_at": "2026-09-26T21:36:19.355878+00:00",
       "generation": 1,
@@ -5222,13 +5224,14 @@
         "\"Ма\" \"применение\" -описание -определение",
         "\"Ма\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-44-1",
       "canonical_entry_id": "dm80-image-44",
       "bukova": "Нашъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "created_at": "2026-09-26T21:36:19.355878+00:00",
       "generation": 1,
@@ -5248,7 +5251,100 @@
         "\"Нашъ\" \"применение\" -описание -определение",
         "\"Нашъ\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
+    },
+    {
+      "task_id": "rotation-dm80-image-39-1-replan-1",
+      "canonical_entry_id": "dm80-image-39",
+      "bukova": "Лель",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:37:19.986644+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Лель\" \"Букова\" \"опыт\"",
+        "\"Лель\" \"Букова\" \"отзыв\"",
+        "\"Лель\" \"Букова\" \"история\"",
+        "\"Лель\" \"Букова\" \"наблюдение\"",
+        "\"Лель\" \"Букова\" \"эксперимент\"",
+        "\"Лель\" \"Букова\" \"до\" \"после\"",
+        "\"Лель\" \"Буковник\" \"упражнение\"",
+        "\"Лель\" \"Буковы\" \"применение\""
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-39-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-42-1-replan-1",
+      "canonical_entry_id": "dm80-image-42",
+      "bukova": "Мыслэте",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:37:19.986644+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Мыслэте\" \"Букова\" \"опыт\"",
+        "\"Мыслэте\" \"Букова\" \"отзыв\"",
+        "\"Мыслэте\" \"Букова\" \"история\"",
+        "\"Мыслэте\" \"Букова\" \"наблюдение\"",
+        "\"Мыслэте\" \"Букова\" \"эксперимент\"",
+        "\"Мыслэте\" \"Букова\" \"до\" \"после\"",
+        "\"Мыслэте\" \"Буковник\" \"упражнение\"",
+        "\"Мыслэте\" \"Буковы\" \"применение\""
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-42-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-43-1-replan-1",
+      "canonical_entry_id": "dm80-image-43",
+      "bukova": "Ма",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:37:19.986644+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Ма\" \"Букова\" \"опыт\"",
+        "\"Ма\" \"Букова\" \"отзыв\"",
+        "\"Ма\" \"Букова\" \"история\"",
+        "\"Ма\" \"Букова\" \"наблюдение\"",
+        "\"Ма\" \"Букова\" \"эксперимент\"",
+        "\"Ма\" \"Букова\" \"до\" \"после\"",
+        "\"Ма\" \"Буковник\" \"упражнение\"",
+        "\"Ма\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-43-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-44-1-replan-1",
+      "canonical_entry_id": "dm80-image-44",
+      "bukova": "Нашъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:37:19.986644+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Нашъ\" \"Букова\" \"опыт\"",
+        "\"Нашъ\" \"Букова\" \"отзыв\"",
+        "\"Нашъ\" \"Букова\" \"история\"",
+        "\"Нашъ\" \"Букова\" \"наблюдение\"",
+        "\"Нашъ\" \"Букова\" \"эксперимент\"",
+        "\"Нашъ\" \"Букова\" \"до\" \"после\"",
+        "\"Нашъ\" \"Буковник\" \"упражнение\"",
+        "\"Нашъ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-44-1"
     }
   ],
   "queue_health": {
@@ -5256,11 +5352,11 @@
     "max_replan_depth": 3,
     "max_rotation_generations": 2,
     "target_distinct_pending": 4,
-    "repaired_at": "2026-09-26T21:36:19.355878+00:00",
+    "repaired_at": "2026-09-26T21:37:20.039892+00:00",
     "task_ids_migrated": 0,
     "exhausted_this_run": 0,
     "superseded_this_run": 0,
-    "replenished_this_run": 4,
+    "replenished_this_run": 0,
     "pending_after": 4,
     "distinct_pending_entries_after": 4,
     "duplicate_pending_after": 0
