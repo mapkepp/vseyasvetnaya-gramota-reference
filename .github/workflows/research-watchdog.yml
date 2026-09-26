@@ -75,8 +75,8 @@ jobs:
           fi
           echo "pending=$pending heartbeat_age_sec=$age latest=$latest status=$status conclusion=$conclusion"
           if [ -n "$latest" ] && [ "$status" = "completed" ] && [ "$conclusion" != "success" ]; then
-            echo "Последний worker завершился с ошибкой — запускаем повтор."
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${latest}/rerun" >/dev/null
+            echo "Последний worker завершился с ошибкой — запускаем свежий worker от текущего dev, а не rerun старого SHA."
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
             exit 0
           fi
           if [ "$pending" -gt 0 ] && [ "$age" -gt 2100 ] && [ "$status" != "in_progress" ] && [ "$status" != "queued" ]; then
