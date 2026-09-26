@@ -11,6 +11,7 @@ on:
       - "scripts/normalize_practitioner_evidence.py"
       - "scripts/practitioner_evidence_gate.py"
       - "scripts/replan_research_queue.py"
+      - "scripts/repair_research_queue.py"
   schedule:
     - cron: "7,27,47 * * * *"
 permissions:
@@ -108,6 +109,8 @@ jobs:
         run: python3 scripts/build_practitioner_review_queue.py data/research/worker-results
       - name: Replan unresolved research
         run: python3 scripts/replan_research_queue.py data/research/autonomous-queue.json data/research/worker-results data/research/worker-results/cycle-task-manifest.json
+      - name: Replenish research queue after replan
+        run: python3 scripts/repair_research_queue.py data/research/autonomous-queue.json data/bukovy.json
       - name: Write autonomous status
         shell: python
         run: |
