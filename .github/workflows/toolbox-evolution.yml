@@ -57,7 +57,8 @@ jobs:
           base_sha="$(git rev-parse HEAD)"
           remote_sha="$(git rev-parse origin/dev)"
           if ! git merge-base --is-ancestor "$base_sha" "$remote_sha"; then
-            echo "::error::DEV_MOVED_DURING_EVOLUTION: refusing to overwrite newer dev."
-            exit 78
+            echo "EVOLUTION_DEFERRED: dev advanced during evolution; no generated state is overwritten."
+            echo "A later dev push or scheduled run will repeat evolution from the current dev tip."
+            exit 0
           fi
           git push origin HEAD:dev
