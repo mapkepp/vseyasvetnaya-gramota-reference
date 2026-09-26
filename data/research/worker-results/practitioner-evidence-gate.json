@@ -1,14 +1,25 @@
 {
   "schema_version": "1.1",
-  "updated_at": "2026-09-26T18:51:25.712939+00:00",
+  "updated_at": "2026-09-26T18:54:50.089858+00:00",
   "evidence": "MEASURED",
   "status": "INCOMPLETE",
   "ready_for_human_review": 0,
   "incomplete": 0,
-  "rejected_by_strict_gate": 43,
+  "rejected_by_strict_gate": 44,
   "canonical_mutation": "DISABLED",
   "candidates": [],
   "rejections": [
+    {
+      "candidate_id": "bukova-core-dm80-image-37::1",
+      "reasons": [
+        "missing:practitioner",
+        "missing:reported_result",
+        "no_result_marker",
+        "action_and_result_not_in_same_excerpt"
+      ],
+      "source_url": "https://www.karvin.ru/score/insignia/charter/",
+      "bukova": "Люди"
+    },
     {
       "candidate_id": "research-er-replan-1-replan-1::1",
       "reasons": [
