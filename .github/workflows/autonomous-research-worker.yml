@@ -52,7 +52,7 @@ jobs:
             tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json"); runtime=out/(t["task_id"]+".runtime.json")
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             started=datetime.datetime.now(datetime.timezone.utc).isoformat()
-            rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
+            rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False,timeout=300).returncode
             finished=datetime.datetime.now(datetime.timezone.utc).isoformat()
             json.dump({"task_id":t["task_id"],"started_at":started,"finished_at":finished,"returncode":rc},open(runtime,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             return rc
@@ -73,7 +73,7 @@ jobs:
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def specialist(task_id):
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json")
-            return subprocess.run(["python3","scripts/specialist_pipeline.py",str(tf),str(rf)],check=False).returncode if rf.exists() else 0
+            return subprocess.run(["python3","scripts/specialist_pipeline.py",str(tf),str(rf)],check=False,timeout=180).returncode if rf.exists() else 0
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(specialist,manifest["task_ids"]))
       - name: Measure research-cycle yield
         run: python3 scripts/measure_research_cycle.py
@@ -89,7 +89,7 @@ jobs:
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def verify(task_id):
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json"); vf=out/(task_id+".verified.json")
-            return subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False).returncode if rf.exists() else 0
+            return subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False,timeout=180).returncode if rf.exists() else 0
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(verify,manifest["task_ids"]))
       - name: Normalize practitioner evidence in parallel
         shell: python
@@ -99,7 +99,7 @@ jobs:
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def normalize(task_id):
             tf=out/(task_id+".task.json"); vf=out/(task_id+".verified.json"); rf=out/(task_id+".result.json"); nf=out/(task_id+".normalized.json")
-            return subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False).returncode if vf.exists() and rf.exists() else 0
+            return subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False,timeout=180).returncode if vf.exists() and rf.exists() else 0
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: list(ex.map(normalize,manifest["task_ids"]))
       - name: Apply practitioner evidence gate
         run: python3 scripts/practitioner_evidence_gate.py data/research/worker-results
