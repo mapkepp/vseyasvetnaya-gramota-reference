@@ -20,6 +20,9 @@ metrics=load(METRICS,{})
 health=load(HEALTH,{"status":"NOT_YET_CHECKED","issues":[],"repairs":[]})
 cycles=history.get("cycles",[])
 latest=cycles[0] if cycles else {}
+if not latest.get("cycle_id"):
+    print(json.dumps({"status":"PASS","type":"health_only","message":"Нет завершённого research-cycle; опыт цикла не записывается."},ensure_ascii=False))
+    raise SystemExit(0)
 tasks=latest.get("tasks",[])
 findings=sum(int(t.get("findings_count") or 0) for t in tasks)
 sources=sum(int(t.get("source_count") or 0) for t in tasks)
