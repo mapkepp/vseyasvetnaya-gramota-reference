@@ -33,18 +33,23 @@
         "не переносить непроверенные практические свидетельства в канон",
         "повторно использовать только подтверждённые поисковые стратегии"
       ]
+    },
+    {
+      "at": "2026-09-26T06:25:01.547343+00:00",
+      "fingerprint": "a0ca1c859a987dae",
+      "status": "PASS",
+      "issues": [],
+      "repairs": [
+        "repaired: status surface registry regenerated"
+      ]
     }
   ],
-  "last_success_at": "2026-09-26T06:18:16.459695+00:00",
+  "last_success_at": "2026-09-26T06:25:01.547343+00:00",
   "last_failure_at": null,
   "learning_policy": {
-    "enabled": true,
-    "learn_from_cycles": true,
-    "learn_from_failures": true,
-    "use_in_next_cycle": true,
     "deduplicate": true,
-    "retain_last": 500,
-    "canonical_mutation_from_experience": "DISABLED"
+    "retain_last": 200,
+    "learn_from_failures": true
   },
   "updated_at": "2026-09-26T06:18:16.497400+00:00",
   "last_cycle_id": null,
