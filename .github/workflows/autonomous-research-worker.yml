@@ -118,6 +118,10 @@ jobs:
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
           json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"parallel_agents":6,"specialist_agent_roles":5,"pipeline":["DISCOVERY","SPECIALIZE","MEASURE","SELF_IMPROVE","VERIFY","NORMALIZE","GATE","REPLAN"],"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next scheduled cycle; watchdog may recover stalled runs"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Publish durable cycle telemetry
+        run: python3 scripts/publish_cycle_telemetry.py
+      - name: Process new system data
+        run: python3 scripts/process_system_data.py
       - name: Check integrity and record durable system experience
         run: |
           python3 scripts/system_self_check.py
