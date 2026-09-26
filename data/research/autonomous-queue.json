@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T21:37:20.039892+00:00",
+  "updated_at": "2026-09-26T21:37:48.001557+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -5258,11 +5258,11 @@
       "task_id": "rotation-dm80-image-39-1-replan-1",
       "canonical_entry_id": "dm80-image-39",
       "bukova": "Лель",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-26T21:37:19.986644+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 1,
       "queries": [
         "\"Лель\" \"Букова\" \"опыт\"",
@@ -5275,17 +5275,19 @@
         "\"Лель\" \"Буковы\" \"применение\""
       ],
       "reason": "normalization_incomplete",
-      "parent_task_id": "rotation-dm80-image-39-1"
+      "parent_task_id": "rotation-dm80-image-39-1",
+      "exhausted_at": "2026-09-26T21:37:47.944849+00:00",
+      "exhausted_reason": "worker_failed"
     },
     {
       "task_id": "rotation-dm80-image-42-1-replan-1",
       "canonical_entry_id": "dm80-image-42",
       "bukova": "Мыслэте",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-26T21:37:19.986644+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 1,
       "queries": [
         "\"Мыслэте\" \"Букова\" \"опыт\"",
@@ -5298,17 +5300,19 @@
         "\"Мыслэте\" \"Буковы\" \"применение\""
       ],
       "reason": "normalization_incomplete",
-      "parent_task_id": "rotation-dm80-image-42-1"
+      "parent_task_id": "rotation-dm80-image-42-1",
+      "exhausted_at": "2026-09-26T21:37:47.944849+00:00",
+      "exhausted_reason": "worker_failed"
     },
     {
       "task_id": "rotation-dm80-image-43-1-replan-1",
       "canonical_entry_id": "dm80-image-43",
       "bukova": "Ма",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-26T21:37:19.986644+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 1,
       "queries": [
         "\"Ма\" \"Букова\" \"опыт\"",
@@ -5321,17 +5325,19 @@
         "\"Ма\" \"Буковы\" \"применение\""
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-dm80-image-43-1"
+      "parent_task_id": "rotation-dm80-image-43-1",
+      "exhausted_at": "2026-09-26T21:37:47.944849+00:00",
+      "exhausted_reason": "worker_failed"
     },
     {
       "task_id": "rotation-dm80-image-44-1-replan-1",
       "canonical_entry_id": "dm80-image-44",
       "bukova": "Нашъ",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-26T21:37:19.986644+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 1,
       "queries": [
         "\"Нашъ\" \"Букова\" \"опыт\"",
@@ -5344,7 +5350,113 @@
         "\"Нашъ\" \"Буковы\" \"применение\""
       ],
       "reason": "worker_failed",
-      "parent_task_id": "rotation-dm80-image-44-1"
+      "parent_task_id": "rotation-dm80-image-44-1",
+      "exhausted_at": "2026-09-26T21:37:47.944849+00:00",
+      "exhausted_reason": "worker_failed"
+    },
+    {
+      "task_id": "rotation-dm80-image-45-1",
+      "canonical_entry_id": "dm80-image-45",
+      "bukova": "Ны",
+      "status": "PENDING",
+      "priority": "rotation",
+      "created_at": "2026-09-26T21:37:48.001557+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Ны\" \"Букова\" практика",
+        "\"Ны\" \"Буковы\" применение",
+        "\"Ны\" \"применял\" OR \"использовал\" OR \"использовали\"",
+        "\"Ны\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+        "\"Ны\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+        "\"Ны\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+        "\"Ны\" \"практик\" OR \"практика\" OR \"мастер\"",
+        "\"Ны\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+        "\"Ны\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+        "\"Ны\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+        "\"Ны\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+        "\"Ны\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+        "\"Ны\" \"применение\" -описание -определение",
+        "\"Ны\" \"Букова\" источник свидетельство практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-46-1",
+      "canonical_entry_id": "dm80-image-46",
+      "bukova": "Коло",
+      "status": "PENDING",
+      "priority": "rotation",
+      "created_at": "2026-09-26T21:37:48.001557+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Коло\" \"Букова\" практика",
+        "\"Коло\" \"Буковы\" применение",
+        "\"Коло\" \"применял\" OR \"использовал\" OR \"использовали\"",
+        "\"Коло\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+        "\"Коло\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+        "\"Коло\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+        "\"Коло\" \"практик\" OR \"практика\" OR \"мастер\"",
+        "\"Коло\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+        "\"Коло\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+        "\"Коло\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+        "\"Коло\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+        "\"Коло\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+        "\"Коло\" \"применение\" -описание -определение",
+        "\"Коло\" \"Букова\" источник свидетельство практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-48-1",
+      "canonical_entry_id": "dm80-image-48",
+      "bukova": "Окъ",
+      "status": "PENDING",
+      "priority": "rotation",
+      "created_at": "2026-09-26T21:37:48.001557+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Окъ\" \"Букова\" практика",
+        "\"Окъ\" \"Буковы\" применение",
+        "\"Окъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+        "\"Окъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+        "\"Окъ\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+        "\"Окъ\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+        "\"Окъ\" \"практик\" OR \"практика\" OR \"мастер\"",
+        "\"Окъ\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+        "\"Окъ\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+        "\"Окъ\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+        "\"Окъ\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+        "\"Окъ\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+        "\"Окъ\" \"применение\" -описание -определение",
+        "\"Окъ\" \"Букова\" источник свидетельство практика"
+      ],
+      "reason": "queue_replenishment"
+    },
+    {
+      "task_id": "rotation-dm80-image-49-1",
+      "canonical_entry_id": "dm80-image-49",
+      "bukova": "Отъ",
+      "status": "PENDING",
+      "priority": "rotation",
+      "created_at": "2026-09-26T21:37:48.001557+00:00",
+      "generation": 1,
+      "queries": [
+        "\"Отъ\" \"Букова\" практика",
+        "\"Отъ\" \"Буковы\" применение",
+        "\"Отъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+        "\"Отъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+        "\"Отъ\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+        "\"Отъ\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+        "\"Отъ\" \"практик\" OR \"практика\" OR \"мастер\"",
+        "\"Отъ\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+        "\"Отъ\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+        "\"Отъ\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+        "\"Отъ\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+        "\"Отъ\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+        "\"Отъ\" \"применение\" -описание -определение",
+        "\"Отъ\" \"Букова\" источник свидетельство практика"
+      ],
+      "reason": "queue_replenishment"
     }
   ],
   "queue_health": {
@@ -5352,11 +5464,11 @@
     "max_replan_depth": 3,
     "max_rotation_generations": 2,
     "target_distinct_pending": 4,
-    "repaired_at": "2026-09-26T21:37:20.039892+00:00",
+    "repaired_at": "2026-09-26T21:37:48.001557+00:00",
     "task_ids_migrated": 0,
     "exhausted_this_run": 0,
     "superseded_this_run": 0,
-    "replenished_this_run": 0,
+    "replenished_this_run": 4,
     "pending_after": 4,
     "distinct_pending_entries_after": 4,
     "duplicate_pending_after": 0
