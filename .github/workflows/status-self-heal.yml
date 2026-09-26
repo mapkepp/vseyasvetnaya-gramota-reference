@@ -10,8 +10,9 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: status-self-heal-main
+  group: dev-state-writers
   cancel-in-progress: false
+  queue: max
 jobs:
   heal:
     runs-on: ubuntu-latest
@@ -20,6 +21,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Record dev integrity and system experience
+        run: |
+          set -euo pipefail
+          git fetch origin dev
+          git worktree add /tmp/dev-health origin/dev
+          cd /tmp/dev-health
+          python3 scripts/system_self_check.py
+          python3 scripts/record_system_experience.py
+          git config user.name "toolbox-self-repair"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
+          git diff --cached --quiet || git commit -m "automation: record system health and experience"
+          git fetch origin dev
+          base_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git rev-parse origin/dev)"
+          if ! git merge-base --is-ancestor "$base_sha" "$remote_sha"; then
+            echo "::error::DEV_MOVED_DURING_STATUS_HEALTH: refusing to overwrite newer dev."
+            exit 78
+          fi
+          git push origin HEAD:dev
+
       - name: Validate status page
         id: validate
         shell: python
