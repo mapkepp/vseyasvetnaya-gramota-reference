@@ -5,13 +5,22 @@
   "bukova": "З",
   "status": "FAIL",
   "evidence": "MEASURED",
-  "generated_at": "2026-09-25T18:36:24.605459+00:00",
+  "generated_at": "2026-09-26T21:28:57.763321+00:00",
   "queries": [
-    "\"З\" Букова практика источник",
-    "\"З\" Букова \"нанес\" опыт",
-    "\"З\" Букова \"результат\" опыт",
-    "\"З\" Букова \"применял\" опыт",
-    "\"З\" Букова отзыв практика",
+    "\"З\" \"Букова\" практика",
+    "\"З\" \"Буковы\" применение",
+    "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
+    "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+    "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+    "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+    "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+    "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+    "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+    "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+    "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+    "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+    "\"З\" \"применение\" -описание -определение",
+    "\"З\" \"Букова\" источник свидетельство практика",
     "\"З\" \"став\" Буков",
     "\"З\" \"буквица\" практика",
     "\"З\" \"нанос\" практика",
@@ -22,196 +31,547 @@
   "diagnostics": [
     {
       "provider": "bing",
-      "query": "\"З\" Букова практика источник",
+      "query": "\"З\" \"Букова\" практика",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 134860
+      "body_chars": 126348
     },
     {
       "provider": "duckduckgo",
-      "query": "\"З\" Букова практика источник",
+      "query": "\"З\" \"Букова\" практика",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14208
+      "body_chars": 14202
     },
     {
       "provider": "google",
-      "query": "\"З\" Букова практика источник",
+      "query": "\"З\" \"Букова\" практика",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91638
+      "body_chars": 91699
     },
     {
       "provider": "yahoo",
-      "query": "\"З\" Букова практика источник",
+      "query": "\"З\" \"Букова\" практика",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"З\" Букова практика источник",
+      "query": "\"З\" \"Букова\" практика",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"З\" Букова \"нанес\" опыт",
+      "query": "\"З\" \"Буковы\" применение",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
       "results": 0,
-      "body_chars": 126333
+      "body_chars": 123722
     },
     {
       "provider": "duckduckgo",
-      "query": "\"З\" Букова \"нанес\" опыт",
+      "query": "\"З\" \"Буковы\" применение",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
       "results": 0,
-      "body_chars": 14206
+      "body_chars": 14205
     },
     {
       "provider": "google",
-      "query": "\"З\" Букова \"нанес\" опыт",
+      "query": "\"З\" \"Буковы\" применение",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
       "results": 0,
-      "body_chars": 91835
+      "body_chars": 91936
     },
     {
       "provider": "yahoo",
-      "query": "\"З\" Букова \"нанес\" опыт",
+      "query": "\"З\" \"Буковы\" применение",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"З\" Букова \"нанес\" опыт",
+      "query": "\"З\" \"Буковы\" применение",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"З\" Букова \"результат\" опыт",
+      "query": "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
       "results": 0,
-      "body_chars": 97133
+      "body_chars": 99538
     },
     {
       "provider": "duckduckgo",
-      "query": "\"З\" Букова \"результат\" опыт",
+      "query": "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14226
+      "body_chars": 14297
     },
     {
       "provider": "google",
-      "query": "\"З\" Букова \"результат\" опыт",
+      "query": "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
       "results": 0,
-      "body_chars": 91695
+      "body_chars": 92101
     },
     {
       "provider": "yahoo",
-      "query": "\"З\" Букова \"результат\" опыт",
+      "query": "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"З\" Букова \"результат\" опыт",
+      "query": "\"З\" \"применял\" OR \"использовал\" OR \"использовали\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"З\" Букова \"применял\" опыт",
+      "query": "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
       "results": 0,
-      "body_chars": 96851
+      "body_chars": 97027
     },
     {
       "provider": "duckduckgo",
-      "query": "\"З\" Букова \"применял\" опыт",
+      "query": "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14212
+      "body_chars": 14330
     },
     {
       "provider": "google",
-      "query": "\"З\" Букова \"применял\" опыт",
+      "query": "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
       "results": 0,
-      "body_chars": 91356
+      "body_chars": 91992
     },
     {
       "provider": "yahoo",
-      "query": "\"З\" Букова \"применял\" опыт",
+      "query": "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"З\" Букова \"применял\" опыт",
+      "query": "\"З\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"З\" Букова отзыв практика",
+      "query": "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&count=10",
       "results": 0,
-      "body_chars": 98823
+      "body_chars": 99061
     },
     {
       "provider": "duckduckgo",
-      "query": "\"З\" Букова отзыв практика",
+      "query": "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14190
+      "body_chars": 14332
     },
     {
       "provider": "google",
-      "query": "\"З\" Букова отзыв практика",
+      "query": "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&num=10",
       "results": 0,
-      "body_chars": 91401
+      "body_chars": 92013
     },
     {
       "provider": "yahoo",
-      "query": "\"З\" Букова отзыв практика",
+      "query": "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"З\" Букова отзыв практика",
+      "query": "\"З\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&count=10",
+      "results": 0,
+      "body_chars": 98304
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14318
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22+OR+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22+OR+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22+OR+%22%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%22&num=10",
+      "results": 0,
+      "body_chars": 91985
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&count=10",
+      "results": 0,
+      "body_chars": 98187
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14290
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%22+OR+%22%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%22+OR+%22%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80%22&num=10",
+      "results": 0,
+      "body_chars": 91929
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"практик\" OR \"практика\" OR \"мастер\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 129616
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14308
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA%22+OR+%22%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%22+OR+%22%D0%BE%D1%82%D1%87%D1%91%D1%82%22+OR+%22%D0%BE%D1%82%D1%87%D0%B5%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91856
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&count=10",
+      "results": 0,
+      "body_chars": 97652
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14282
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%84%D0%BE%D1%80%D1%83%D0%BC%22+OR+%22%D0%BE%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%22&num=10",
+      "results": 0,
+      "body_chars": 92118
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&count=10",
+      "results": 0,
+      "body_chars": 130661
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14321
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%22+OR+%22%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F%22+OR+%22%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%22+OR+%22%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%22&num=10",
+      "results": 0,
+      "body_chars": 91816
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 132889
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14302
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91909
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&count=10",
+      "results": 0,
+      "body_chars": 99283
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14322
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22+OR+%22%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+OR+%22%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D0%BA%D0%B0%22&num=10",
+      "results": 0,
+      "body_chars": 91889
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+      "results": 0,
+      "body_chars": 131684
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14232
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22+-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+      "results": 0,
+      "body_chars": 91957
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"применение\" -описание -определение",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"применение\" -описание -определение",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"З\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 97153
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"З\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14242
+    },
+    {
+      "provider": "google",
+      "query": "\"З\" \"Букова\" источник свидетельство практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92011
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"З\" \"Букова\" источник свидетельство практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"З\" \"Букова\" источник свидетельство практика",
       "status": "EMPTY",
       "results": 0
     },
@@ -222,16 +582,13 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
       "results": 0,
-      "body_chars": 96559
+      "body_chars": 95562
     },
     {
       "provider": "duckduckgo",
       "query": "\"З\" \"став\" Буков",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14198
+      "status": "FAIL",
+      "error": "HTTPError"
     },
     {
       "provider": "google",
@@ -240,7 +597,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
       "results": 0,
-      "body_chars": 91629
+      "body_chars": 91953
     },
     {
       "provider": "yahoo",
@@ -261,16 +618,13 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 94080
+      "body_chars": 96983
     },
     {
       "provider": "duckduckgo",
       "query": "\"З\" \"буквица\" практика",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14204
+      "status": "FAIL",
+      "error": "HTTPError"
     },
     {
       "provider": "google",
@@ -279,7 +633,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91489
+      "body_chars": 91789
     },
     {
       "provider": "yahoo",
@@ -300,16 +654,13 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 96179
+      "body_chars": 95458
     },
     {
       "provider": "duckduckgo",
       "query": "\"З\" \"нанос\" практика",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14194
+      "status": "FAIL",
+      "error": "HTTPError"
     },
     {
       "provider": "google",
@@ -318,7 +669,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91459
+      "body_chars": 91914
     },
     {
       "provider": "yahoo",
@@ -339,16 +690,13 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%97%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 97678
+      "body_chars": 96164
     },
     {
       "provider": "duckduckgo",
       "query": "\"З\" \"результат\" практика",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%97%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14214
+      "status": "FAIL",
+      "error": "HTTPError"
     },
     {
       "provider": "google",
@@ -357,7 +705,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%97%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91469
+      "body_chars": 91809
     },
     {
       "provider": "yahoo",
@@ -372,5 +720,10 @@
       "results": 0
     }
   ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
   "canonical_mutation": "DISABLED"
 }
