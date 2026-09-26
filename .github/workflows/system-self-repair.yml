@@ -52,7 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          pending="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\\n' | base64 -d | jq '[.tasks[] | select(.status=="PENDING")] | length')"
+          pending="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | base64 -d | jq '[.tasks[] | select(.status=="PENDING")] | length')"
           if [ "$pending" -gt 0 ]; then
             echo "SELF_REPAIR_HANDOFF: dispatching fresh research worker for $pending pending tasks."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
