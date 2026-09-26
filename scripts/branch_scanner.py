@@ -44,10 +44,11 @@ def main():
         try:
             c=cmp("dev",name)
             files=[x["filename"] for x in c.get("files",[])]
+            allowed_files=[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
+            archive_worthy=[f for f in files if any(f.startswith(p) for p in ARCHIVE_WORTHY_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)]
             row={"branch":name,"class":classify(name,c.get("ahead_by",0),c.get("behind_by",0),files),
                  "ahead_of_dev":c.get("ahead_by",0),"behind_dev":c.get("behind_by",0),
-                 "commits":c.get("total_commits",0),"files":files[:100],"allowed_files":[f for f in files if any(f.startswith(p) for p in ALLOWED_PREFIXES) and not any(x in f.lower() for x in BLOCKED_PATHS)],
-                 "archive_worthy_files":archive_worthy,
+                 "commits":c.get("total_commits",0),"files":files[:100],"allowed_files":allowed_files,"archive_worthy_files":archive_worthy,
                  "merge_base":(c.get("merge_base_commit") or {}).get("sha"),
                  "status":c.get("status")}
         except Exception as e:
@@ -57,6 +58,12 @@ def main():
         rows.append(row)
     rows.sort(key=lambda x:(x["class"],x["branch"]))
     candidates=[r for r in rows if r["class"] in ("integration-candidate","partial-integration-candidate")]
+    primary_relationship={}
+    try:
+        pc=cmp("dev","main")
+        primary_relationship={"base":"dev","head":"main","status":pc.get("status"),"main_ahead_of_dev":pc.get("ahead_by",0),"main_behind_dev":pc.get("behind_by",0),"merge_base":(pc.get("merge_base_commit") or {}).get("sha")}
+    except Exception as e:
+        primary_relationship={"base":"dev","head":"main","status":"scan-error","error":str(e)}
     OUT.parent.mkdir(parents=True,exist_ok=True)
     existing=json.loads(ARCHIVE.read_text(encoding="utf-8")) if ARCHIVE.exists() else {"version":1,"items":{}}
     for item in archive_items:
@@ -68,6 +75,7 @@ def main():
                 "never_auto_apply":["main","dev","legacy","review-required","scan-error"],
       "archive_worthy_paths":list(ARCHIVE_WORTHY_PREFIXES),
                 "next_step":"apply_branch_intake.py"},
+      "primary_relationship":primary_relationship,
       "summary":{"branches":len(rows),"integration_candidates":len(candidates),"review_required":sum(r["class"]=="review-required" for r in rows),
                  "obsolete":sum(r["class"] in ("obsolete","trash-candidate") for r in rows)},
       "branches":rows},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
