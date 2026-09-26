@@ -8,7 +8,6 @@ permissions:
 concurrency:
   group: dev-state-writers
   cancel-in-progress: false
-  queue: max
 jobs:
   health:
     runs-on: ubuntu-latest
