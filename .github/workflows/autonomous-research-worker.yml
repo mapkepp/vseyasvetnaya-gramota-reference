@@ -47,9 +47,14 @@ jobs:
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           by_id={t["task_id"]:t for t in q["tasks"]}; tasks=[by_id[x] for x in manifest["task_ids"]]
           def run(t):
-            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json")
+            import datetime
+            tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json"); runtime=out/(t["task_id"]+".runtime.json")
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-            return subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
+            started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+            rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False).returncode
+            finished=datetime.datetime.now(datetime.timezone.utc).isoformat()
+            json.dump({"task_id":t["task_id"],"started_at":started,"finished_at":finished,"returncode":rc},open(runtime,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+            return rc
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: results=list(zip(tasks,ex.map(run,tasks)))
           for t,rc in results:
             t["attempt"]=int(t.get("attempt",0))+1
@@ -112,11 +117,14 @@ jobs:
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
           json.dump({"schema_version":"1.0","updated_at":datetime.now(timezone.utc).isoformat(),"cycle_id":manifest["cycle_id"],"worker":"github-public-web","phase":"DISCOVERY_VERIFY_NORMALIZE_GATE_REPLAN","execution":"MEASURED","selected_tasks":len(manifest["task_ids"]),"parallel_agents":6,"specialist_agent_roles":5,"pipeline":["DISCOVERY","SPECIALIZE","MEASURE","SELF_IMPROVE","VERIFY","NORMALIZE","GATE","REPLAN"],"verified_tasks":verified,"normalized_tasks":normalized,"review_queue_count":review.get("queue_count",0),"evidence":"MEASURED","canonical_mutation":"DISABLED","next":"pending tasks continue next scheduled cycle; watchdog may recover stalled runs"},open("data/research/worker-status.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+      - name: Record cycle and task history
+        run: python3 scripts/record_research_history.py
+
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/self-improvement-application.json
+          git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/self-improvement-application.json data/research/research-history.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git fetch origin dev
           for attempt in 1 2 3; do
