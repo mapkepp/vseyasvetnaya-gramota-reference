@@ -28,7 +28,6 @@ jobs:
           git worktree add /tmp/dev-health origin/dev
           cd /tmp/dev-health
           python3 scripts/system_self_check.py
-          python3 scripts/record_system_experience.py
           mkdir -p /tmp/health-snapshot
           cp data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json /tmp/health-snapshot/
           for attempt in 1 2 3; do
