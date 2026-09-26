@@ -7,6 +7,9 @@ on:
       - ".github/workflows/research-watchdog.yml"
   schedule:
     - cron: "*/5 * * * *"
+  workflow_run:
+    workflows: ["Autonomous research worker"]
+    types: [completed]
 
 permissions:
   contents: write
