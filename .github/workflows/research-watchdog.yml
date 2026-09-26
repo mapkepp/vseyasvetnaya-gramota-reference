@@ -103,13 +103,20 @@ jobs:
           git diff --cached --quiet || git commit -m "automation: record watchdog check"
           git push origin HEAD:main || true
 
-          if [ "$status" != "in_progress" ] && [ "$status" != "queued" ]; then
+          if [ "$pending" -gt 0 ] && [ "$age" -gt 900 ] && { [ "$status" = "in_progress" ] || [ "$status" = "queued" ]; }; then
+            echo "STALE_ACTIVE_WORKER: heartbeat устарел у активного worker — отменяем зависший run и запускаем восстановление."
+            if [ -n "$latest" ]; then
+              gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/$latest/cancel" >/dev/null || true
+            fi
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null || true
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
+          elif [ "$status" != "in_progress" ] && [ "$status" != "queued" ] && [ "$pending" -gt 0 ]; then
             echo "Нет активного worker — запускаем новый worker от текущего dev."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
           fi
           failures="$(jq -r '.consecutive_recovery_failures // 0' data/research/watchdog-history.json)"
           if [ "$pending" -gt 0 ] && [ "$age" -gt 900 ]; then
-            echo "Очередь есть, активного worker нет и heartbeat устарел — запускаем self-repair."
+            echo "Очередь есть и heartbeat устарел — запускаем self-repair."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null || true
           fi
           if [ "$pending" -gt 0 ] && [ "$failures" -ge 3 ]; then
