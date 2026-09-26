@@ -1,0 +1,54 @@
+name: Toolbox evolution worker
+on:
+  workflow_dispatch:
+  push:
+    branches: [dev]
+    paths:
+      - "scripts/discover_capabilities.py"
+      - "scripts/evaluate_capabilities.py"
+      - "scripts/self_improvement_cycle.py"
+      - "data/toolbox/**"
+  schedule:
+    - cron: "17 */2 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: dev-state-writers
+  cancel-in-progress: false
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+      - name: Discover new capabilities
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/discover_capabilities.py
+      - name: Evaluate discovered capabilities
+        run: python3 scripts/evaluate_capabilities.py
+      - name: Measure self-improvement
+        run: python3 scripts/self_improvement_cycle.py
+      - name: Apply bounded self-improvement
+        run: python3 scripts/self_improvement_apply.py
+      - name: Process new system data
+        run: python3 scripts/process_system_data.py
+      - name: Synchronize status-page data surfaces
+        run: python3 scripts/sync_status_surfaces.py
+      - name: Commit evolution telemetry
+        run: |
+          git config user.name "toolbox-evolution-worker"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/toolbox data/research/self-improvement.json data/research/self-improvement-application.json data/research/system-data-ledger.json data/research/status-surface-registry.json
+          git diff --cached --quiet || git commit -m "toolbox: record capability discovery and self-improvement"
+          git fetch origin dev
+          remote_sha="$(git rev-parse origin/dev)"
+          local_sha="$(git rev-parse HEAD)"
+          if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+            echo "::error::DEV_MOVED_DURING_EVOLUTION"
+            exit 78
+          fi
+          git push origin HEAD:dev
