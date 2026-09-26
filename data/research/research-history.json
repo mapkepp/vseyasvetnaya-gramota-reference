@@ -1,0 +1,1208 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-26T18:51:26.444674+00:00",
+  "cycles": [
+    {
+      "schema_version": "2.0",
+      "cycle_id": "20260926T184950Z",
+      "run_id": "36263913877",
+      "run_number": "104",
+      "workflow": "Autonomous research worker",
+      "event": "workflow_dispatch",
+      "branch": "dev",
+      "commit": "a1940805188595319a1ef14e70cbe29f01fbf0d9",
+      "started_at": "2026-09-26T18:49:50.025301+00:00",
+      "finished_at": "2026-09-26T18:51:26.444674+00:00",
+      "duration_seconds": 96.419,
+      "selected_tasks": 6,
+      "tasks": [
+        {
+          "task_id": "bukova-core-dm80-image-40",
+          "canonical_entry_id": "dm80-image-40",
+          "bukova": "Лагъ",
+          "priority": "critical",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.099201+00:00",
+          "finished_at": "2026-09-26T18:51:23.590726+00:00",
+          "duration_seconds": 93.492,
+          "attempt": 0,
+          "queries": [
+            "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+            "\"Лагъ\" Букова практика",
+            "\"Лагъ\" Букова \"применял\"",
+            "\"Лагъ\" Букова \"нанос\"",
+            "\"Лагъ\" Букова \"рисовал\"",
+            "\"Лагъ\" Букова \"носил\"",
+            "\"Лагъ\" Букова \"результат\"",
+            "\"Лагъ\" Букова \"получил\"",
+            "\"Лагъ\" \"став\" Букова",
+            "\"Лагъ\" \"отработка\" Буков",
+            "\"Лагъ\" \"упражнение\" Букова",
+            "\"Лагъ\" \"Буковник\" практика",
+            "\"Лагъ\" \"став\" Буков",
+            "\"Лагъ\" \"буквица\" практика",
+            "\"Лагъ\" \"нанос\" практика",
+            "\"Лагъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 130165
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14210
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&num=10",
+              "results": 0,
+              "body_chars": 92281
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 128471
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14190
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92129
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 96035
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14220
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92200
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 128947
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14196
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92094
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "bukova-core-dm80-image-41",
+          "canonical_entry_id": "dm80-image-41",
+          "bukova": "Лагъ",
+          "priority": "critical",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.099290+00:00",
+          "finished_at": "2026-09-26T18:51:02.627447+00:00",
+          "duration_seconds": 72.528,
+          "attempt": 0,
+          "queries": [
+            "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+            "\"Лагъ\" Букова практика",
+            "\"Лагъ\" Букова \"применял\"",
+            "\"Лагъ\" Букова \"нанос\"",
+            "\"Лагъ\" Букова \"рисовал\"",
+            "\"Лагъ\" Букова \"носил\"",
+            "\"Лагъ\" Букова \"результат\"",
+            "\"Лагъ\" Букова \"получил\"",
+            "\"Лагъ\" \"став\" Букова",
+            "\"Лагъ\" \"отработка\" Буков",
+            "\"Лагъ\" \"упражнение\" Букова",
+            "\"Лагъ\" \"Буковник\" практика",
+            "\"Лагъ\" \"став\" Буков",
+            "\"Лагъ\" \"буквица\" практика",
+            "\"Лагъ\" \"нанос\" практика",
+            "\"Лагъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 96491
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14222
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&num=10",
+              "results": 0,
+              "body_chars": 92232
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 95909
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14177
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92285
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 129290
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14208
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92461
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 129420
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14196
+            },
+            {
+              "provider": "google",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9B%D0%B0%D0%B3%D1%8A%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92442
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Лагъ\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "bukova-core-dm80-image-32",
+          "canonical_entry_id": "dm80-image-32",
+          "bukova": "Моси",
+          "priority": "high",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "PASS",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.100504+00:00",
+          "finished_at": "2026-09-26T18:50:42.365085+00:00",
+          "duration_seconds": 52.265,
+          "attempt": 0,
+          "queries": [
+            "\"Моси\" \"ВсеЯСветная Грамота\"",
+            "\"Моси\" Букова практика",
+            "\"Моси\" Букова \"применял\"",
+            "\"Моси\" Букова \"нанос\"",
+            "\"Моси\" Букова \"рисовал\"",
+            "\"Моси\" Букова \"носил\"",
+            "\"Моси\" Букова \"результат\"",
+            "\"Моси\" Букова \"получил\"",
+            "\"Моси\" \"став\" Букова",
+            "\"Моси\" \"отработка\" Буков",
+            "\"Моси\" \"упражнение\" Букова",
+            "\"Моси\" \"Буковник\" практика",
+            "\"Моси\" \"став\" Буков",
+            "\"Моси\" \"буквица\" практика",
+            "\"Моси\" \"нанос\" практика",
+            "\"Моси\" \"результат\" практика"
+          ],
+          "findings_count": 1,
+          "verified": true,
+          "normalized": true,
+          "sources": [
+            "https://www.youtube.com/watch?v=ULOlQzhtUAU"
+          ],
+          "source_count": 1,
+          "finding_summaries": [
+            "Discovered public-web source; requires human-readable verification before use."
+          ],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Моси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 134707
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Моси\" \"ВсеЯСветная Грамота\"",
+              "status": "PASS",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 1,
+              "body_chars": 11596
+            },
+            {
+              "provider": "bing",
+              "query": "\"Моси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 96332
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Моси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14178
+            },
+            {
+              "provider": "google",
+              "query": "\"Моси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92234
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Моси\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Моси\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Моси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 126570
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Моси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14214
+            },
+            {
+              "provider": "google",
+              "query": "\"Моси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92225
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Моси\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Моси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Моси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 128447
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Моси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14208
+            },
+            {
+              "provider": "google",
+              "query": "\"Моси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92217
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Моси\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Моси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Моси\" Букова \"рисовал\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 95546
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Моси\" Букова \"рисовал\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14206
+            },
+            {
+              "provider": "google",
+              "query": "\"Моси\" Букова \"рисовал\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9C%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92231
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "bukova-core-dm80-image-33",
+          "canonical_entry_id": "dm80-image-33",
+          "bukova": "Вси",
+          "priority": "high",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.100138+00:00",
+          "finished_at": "2026-09-26T18:51:23.540495+00:00",
+          "duration_seconds": 93.44,
+          "attempt": 0,
+          "queries": [
+            "\"Вси\" \"ВсеЯСветная Грамота\"",
+            "\"Вси\" Букова практика",
+            "\"Вси\" Букова \"применял\"",
+            "\"Вси\" Букова \"нанос\"",
+            "\"Вси\" Букова \"рисовал\"",
+            "\"Вси\" Букова \"носил\"",
+            "\"Вси\" Букова \"результат\"",
+            "\"Вси\" Букова \"получил\"",
+            "\"Вси\" \"став\" Букова",
+            "\"Вси\" \"отработка\" Буков",
+            "\"Вси\" \"упражнение\" Букова",
+            "\"Вси\" \"Буковник\" практика",
+            "\"Вси\" \"став\" Буков",
+            "\"Вси\" \"буквица\" практика",
+            "\"Вси\" \"нанос\" практика",
+            "\"Вси\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Вси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%92%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 130640
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Вси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%92%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14226
+            },
+            {
+              "provider": "google",
+              "query": "\"Вси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%92%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&num=10",
+              "results": 0,
+              "body_chars": 92139
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Вси\" \"ВсеЯСветная Грамота\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Вси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Вси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 128577
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Вси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14176
+            },
+            {
+              "provider": "google",
+              "query": "\"Вси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92353
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Вси\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Вси\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Вси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 94232
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Вси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14218
+            },
+            {
+              "provider": "google",
+              "query": "\"Вси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92449
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Вси\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Вси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Вси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 95116
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Вси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14194
+            },
+            {
+              "provider": "google",
+              "query": "\"Вси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%92%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92257
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Вси\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Вси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "bukova-core-dm80-image-34",
+          "canonical_entry_id": "dm80-image-34",
+          "bukova": "Овоси",
+          "priority": "high",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.100976+00:00",
+          "finished_at": "2026-09-26T18:51:02.628125+00:00",
+          "duration_seconds": 72.527,
+          "attempt": 0,
+          "queries": [
+            "\"Овоси\" \"ВсеЯСветная Грамота\"",
+            "\"Овоси\" Букова практика",
+            "\"Овоси\" Букова \"применял\"",
+            "\"Овоси\" Букова \"нанос\"",
+            "\"Овоси\" Букова \"рисовал\"",
+            "\"Овоси\" Букова \"носил\"",
+            "\"Овоси\" Букова \"результат\"",
+            "\"Овоси\" Букова \"получил\"",
+            "\"Овоси\" \"став\" Букова",
+            "\"Овоси\" \"отработка\" Буков",
+            "\"Овоси\" \"упражнение\" Букова",
+            "\"Овоси\" \"Буковник\" практика",
+            "\"Овоси\" \"став\" Буков",
+            "\"Овоси\" \"буквица\" практика",
+            "\"Овоси\" \"нанос\" практика",
+            "\"Овоси\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Овоси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 97493
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Овоси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 9382
+            },
+            {
+              "provider": "google",
+              "query": "\"Овоси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&num=10",
+              "results": 0,
+              "body_chars": 92288
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Овоси\" \"ВсеЯСветная Грамота\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Овоси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Овоси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 97367
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Овоси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14186
+            },
+            {
+              "provider": "google",
+              "query": "\"Овоси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92484
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Овоси\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Овоси\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Овоси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 129686
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Овоси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14209
+            },
+            {
+              "provider": "google",
+              "query": "\"Овоси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92283
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Овоси\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Овоси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Овоси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 130600
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Овоси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14228
+            },
+            {
+              "provider": "google",
+              "query": "\"Овоси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D0%B2%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92080
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Овоси\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Овоси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "bukova-core-dm80-image-35",
+          "canonical_entry_id": "dm80-image-35",
+          "bukova": "Ороси",
+          "priority": "high",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T18:49:50.102387+00:00",
+          "finished_at": "2026-09-26T18:50:42.362611+00:00",
+          "duration_seconds": 52.26,
+          "attempt": 0,
+          "queries": [
+            "\"Ороси\" \"ВсеЯСветная Грамота\"",
+            "\"Ороси\" Букова практика",
+            "\"Ороси\" Букова \"применял\"",
+            "\"Ороси\" Букова \"нанос\"",
+            "\"Ороси\" Букова \"рисовал\"",
+            "\"Ороси\" Букова \"носил\"",
+            "\"Ороси\" Букова \"результат\"",
+            "\"Ороси\" Букова \"получил\"",
+            "\"Ороси\" \"став\" Букова",
+            "\"Ороси\" \"отработка\" Буков",
+            "\"Ороси\" \"упражнение\" Букова",
+            "\"Ороси\" \"Буковник\" практика",
+            "\"Ороси\" \"став\" Буков",
+            "\"Ороси\" \"буквица\" практика",
+            "\"Ороси\" \"нанос\" практика",
+            "\"Ороси\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Ороси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&count=10",
+              "results": 0,
+              "body_chars": 97697
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ороси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14236
+            },
+            {
+              "provider": "google",
+              "query": "\"Ороси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%92%D1%81%D0%B5%D0%AF%D0%A1%D0%B2%D0%B5%D1%82%D0%BD%D0%B0%D1%8F+%D0%93%D1%80%D0%B0%D0%BC%D0%BE%D1%82%D0%B0%22&num=10",
+              "results": 0,
+              "body_chars": 92397
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ороси\" \"ВсеЯСветная Грамота\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ороси\" \"ВсеЯСветная Грамота\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ороси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 96091
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ороси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14210
+            },
+            {
+              "provider": "google",
+              "query": "\"Ороси\" Букова практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92196
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ороси\" Букова практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ороси\" Букова практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ороси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 129386
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ороси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14210
+            },
+            {
+              "provider": "google",
+              "query": "\"Ороси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92206
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ороси\" Букова \"применял\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ороси\" Букова \"применял\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ороси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&count=10",
+              "results": 0,
+              "body_chars": 94622
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ороси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14204
+            },
+            {
+              "provider": "google",
+              "query": "\"Ороси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22&num=10",
+              "results": 0,
+              "body_chars": 92285
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ороси\" Букова \"нанос\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ороси\" Букова \"нанос\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        }
+      ]
+    }
+  ]
+}

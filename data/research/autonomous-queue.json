@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T05:44:33.821062+00:00",
+  "updated_at": "2026-09-26T18:51:25.809806+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 24,
+  "replanned_count": 30,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -668,11 +668,11 @@
       "task_id": "bukova-core-dm80-image-32",
       "canonical_entry_id": "dm80-image-32",
       "bukova": "Моси",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_plus_practical_context",
       "queries": [
@@ -694,11 +694,11 @@
       "task_id": "bukova-core-dm80-image-33",
       "canonical_entry_id": "dm80-image-33",
       "bukova": "Вси",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_plus_practical_context",
       "queries": [
@@ -720,11 +720,11 @@
       "task_id": "bukova-core-dm80-image-34",
       "canonical_entry_id": "dm80-image-34",
       "bukova": "Овоси",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_plus_practical_context",
       "queries": [
@@ -746,11 +746,11 @@
       "task_id": "bukova-core-dm80-image-35",
       "canonical_entry_id": "dm80-image-35",
       "bukova": "Ороси",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "high",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_plus_practical_context",
       "queries": [
@@ -876,11 +876,11 @@
       "task_id": "bukova-core-dm80-image-40",
       "canonical_entry_id": "dm80-image-40",
       "bukova": "Лагъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "critical",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_only",
       "queries": [
@@ -902,11 +902,11 @@
       "task_id": "bukova-core-dm80-image-41",
       "canonical_entry_id": "dm80-image-41",
       "bukova": "Лагъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "critical",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-25T23:01:20.247Z",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "coverage_status": "source_description_only",
       "queries": [
@@ -2333,12 +2333,150 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "bukova-core-dm80-image-30"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-32-replan-1",
+      "canonical_entry_id": "dm80-image-32",
+      "bukova": "Моси",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Моси\" \"Букова\" \"опыт\"",
+        "\"Моси\" \"Букова\" \"отзыв\"",
+        "\"Моси\" \"Букова\" \"история\"",
+        "\"Моси\" \"Букова\" \"наблюдение\"",
+        "\"Моси\" \"Букова\" \"эксперимент\"",
+        "\"Моси\" \"Букова\" \"до\" \"после\"",
+        "\"Моси\" \"Буковник\" \"упражнение\"",
+        "\"Моси\" \"Буковы\" \"применение\""
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "bukova-core-dm80-image-32"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-33-replan-1",
+      "canonical_entry_id": "dm80-image-33",
+      "bukova": "Вси",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Вси\" \"Букова\" \"опыт\"",
+        "\"Вси\" \"Букова\" \"отзыв\"",
+        "\"Вси\" \"Букова\" \"история\"",
+        "\"Вси\" \"Букова\" \"наблюдение\"",
+        "\"Вси\" \"Букова\" \"эксперимент\"",
+        "\"Вси\" \"Букова\" \"до\" \"после\"",
+        "\"Вси\" \"Буковник\" \"упражнение\"",
+        "\"Вси\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-33"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-34-replan-1",
+      "canonical_entry_id": "dm80-image-34",
+      "bukova": "Овоси",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Овоси\" \"Букова\" \"опыт\"",
+        "\"Овоси\" \"Букова\" \"отзыв\"",
+        "\"Овоси\" \"Букова\" \"история\"",
+        "\"Овоси\" \"Букова\" \"наблюдение\"",
+        "\"Овоси\" \"Букова\" \"эксперимент\"",
+        "\"Овоси\" \"Букова\" \"до\" \"после\"",
+        "\"Овоси\" \"Буковник\" \"упражнение\"",
+        "\"Овоси\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-34"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-35-replan-1",
+      "canonical_entry_id": "dm80-image-35",
+      "bukova": "Ороси",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Ороси\" \"Букова\" \"опыт\"",
+        "\"Ороси\" \"Букова\" \"отзыв\"",
+        "\"Ороси\" \"Букова\" \"история\"",
+        "\"Ороси\" \"Букова\" \"наблюдение\"",
+        "\"Ороси\" \"Букова\" \"эксперимент\"",
+        "\"Ороси\" \"Букова\" \"до\" \"после\"",
+        "\"Ороси\" \"Буковник\" \"упражнение\"",
+        "\"Ороси\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-35"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-40-replan-1",
+      "canonical_entry_id": "dm80-image-40",
+      "bukova": "Лагъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Лагъ\" \"Букова\" \"опыт\"",
+        "\"Лагъ\" \"Букова\" \"отзыв\"",
+        "\"Лагъ\" \"Букова\" \"история\"",
+        "\"Лагъ\" \"Букова\" \"наблюдение\"",
+        "\"Лагъ\" \"Букова\" \"эксперимент\"",
+        "\"Лагъ\" \"Букова\" \"до\" \"после\"",
+        "\"Лагъ\" \"Буковник\" \"упражнение\"",
+        "\"Лагъ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-40"
+    },
+    {
+      "task_id": "bukova-core-dm80-image-41-replan-1",
+      "canonical_entry_id": "dm80-image-41",
+      "bukova": "Лагъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T18:51:25.809806+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Лагъ\" \"Букова\" \"опыт\"",
+        "\"Лагъ\" \"Букова\" \"отзыв\"",
+        "\"Лагъ\" \"Букова\" \"история\"",
+        "\"Лагъ\" \"Букова\" \"наблюдение\"",
+        "\"Лагъ\" \"Букова\" \"эксперимент\"",
+        "\"Лагъ\" \"Букова\" \"до\" \"после\"",
+        "\"Лагъ\" \"Буковник\" \"упражнение\"",
+        "\"Лагъ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "bukova-core-dm80-image-41"
     }
   ],
   "queue_health": {
     "policy": "single-rotated-replan",
     "max_replan_depth": 1,
-    "updated_at": "2026-09-26T05:44:33.821062+00:00",
-    "new_replans": 4
+    "updated_at": "2026-09-26T18:51:25.809806+00:00",
+    "new_replans": 6
   }
 }

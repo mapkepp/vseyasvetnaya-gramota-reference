@@ -1,12 +1,56 @@
 {
   "schema_version": "1.0",
-  "status": "BOOTSTRAP",
+  "updated_at": "2026-09-26T18:51:23.998076+00:00",
+  "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
+  "inputs": {
+    "pending": 62,
+    "failed": 20,
+    "last_cycle": "20260926T054421Z",
+    "cycle_metrics": {
+      "found": 1,
+      "unique_urls": 0,
+      "verified": 0,
+      "specialist_evidence": 0,
+      "practitioner_hits": 0
+    },
+    "experience_event_count": 3,
+    "previous_lessons": [
+      "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт."
+    ]
+  },
+  "proposals": [
+    {
+      "id": "learn-from-system-experience",
+      "action": "apply_previous_cycle_lessons",
+      "reason": "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт.",
+      "safe": true,
+      "source": "system-experience.json"
+    },
+    {
+      "id": "practitioner-yield-zero",
+      "action": "expand_practitioner_queries",
+      "reason": "sources found but no practitioner hits in cycle metrics",
+      "safe": true
+    },
+    {
+      "id": "failed-task-rotation",
+      "action": "route_failed_tasks_to_replan",
+      "reason": "20 failed tasks are present",
+      "safe": true
+    },
+    {
+      "id": "cap-external-escalation",
+      "action": "use_external_ai_only_on_low_coverage",
+      "reason": "avoid duplicate search/model cost",
+      "safe": true
+    }
+  ],
   "policy": [
-    "free_or_local_first",
-    "external_ai_only_when_needed",
-    "ai_is_advisory_for_code_changes",
-    "bounded_deterministic_repairs",
-    "parallel_work_must_respect_global_limits"
+    "no arbitrary code execution",
+    "no canonical-data mutation by AI",
+    "bounded changes only",
+    "prefer free/local providers",
+    "escalate external AI only when evidence coverage is weak"
   ]
 }
