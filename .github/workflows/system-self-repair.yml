@@ -27,14 +27,25 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
           git diff --cached --quiet || git commit -m "automation: record system health and experience"
-          git fetch origin dev
-          base_sha="$(git rev-parse HEAD)"
-          remote_sha="$(git rev-parse origin/dev)"
-          if ! git merge-base --is-ancestor "$base_sha" "$remote_sha"; then
-            echo "::error::DEV_MOVED_DURING_SELF_REPAIR: refusing to overwrite newer dev."
-            exit 78
-          fi
-          git push origin HEAD:dev
+          for attempt in 1 2 3; do
+            git fetch origin dev
+            local_sha="$(git rev-parse HEAD)"
+            remote_sha="$(git rev-parse origin/dev)"
+            if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+              echo "SELF_REPAIR_REBASE_SAFE_RETRY: dev advanced; refreshing checkout and regenerating derived health state."
+              git reset --hard origin/dev
+              python3 scripts/system_self_check.py
+              git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
+              git diff --cached --quiet || git commit -m "automation: record self-check repair and experience"
+              continue
+            fi
+            if git push origin HEAD:dev; then
+              echo "SELF_REPAIR_PUBLISH_OK"
+              exit 0
+            fi
+          done
+          echo "::error::SELF_REPAIR_PUBLISH_FAILED: bounded retries exhausted."
+          exit 1
 
       - name: Continue research after self-repair
         if: always()
