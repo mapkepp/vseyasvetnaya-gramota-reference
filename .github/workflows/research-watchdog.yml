@@ -8,7 +8,7 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_run:
-    workflows: ["Autonomous research worker"]
+    workflows: ["Autonomous research worker", "System integrity and self-repair"]
     types: [completed]
 
 permissions:
