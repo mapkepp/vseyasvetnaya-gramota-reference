@@ -12,6 +12,7 @@ ROOT=pathlib.Path(".")
 STATUS=ROOT/"data/research/worker-status.json"
 QUEUE=ROOT/"data/research/autonomous-queue.json"
 METRICS=ROOT/"data/research/cycle-metrics.json"
+EXPERIENCE=ROOT/"data/research/system-experience.json"
 OUT=ROOT/"data/research/self-improvement.json"
 
 def load(p, default):
@@ -23,9 +24,13 @@ def main():
     s=load(STATUS,{})
     q=load(QUEUE,{"tasks":[]})
     m=load(METRICS,{})
+    exp=load(EXPERIENCE,{})
+    lessons=exp.get("last_lessons",[]) or []
     pending=sum(1 for t in q.get("tasks",[]) if t.get("status")=="PENDING")
     failed=sum(1 for t in q.get("tasks",[]) if t.get("status")=="FAILED")
     proposals=[]
+    if lessons:
+        proposals.append({"id":"learn-from-system-experience","action":"apply_previous_cycle_lessons","reason":"; ".join(lessons[:5]),"safe":True,"source":"system-experience.json"})
     totals=m.get("totals",{})
     if totals.get("practitioner_hits",0)==0 and totals.get("found",0)>0:
         proposals.append({"id":"practitioner-yield-zero","action":"expand_practitioner_queries","reason":"sources found but no practitioner hits in cycle metrics","safe":True})
@@ -39,7 +44,7 @@ def main():
         proposals.append({"id":"review-evidence","action":"prioritize_human_review_queue","reason":"verified evidence still needs review","safe":True})
     proposals.append({"id":"cap-external-escalation","action":"use_external_ai_only_on_low_coverage","reason":"avoid duplicate search/model cost","safe":True})
     state={"schema_version":"1.0","updated_at":now,"status":"PASS","mode":"BOUNDED_AUTONOMOUS",
-           "inputs":{"pending":pending,"failed":failed,"last_cycle":s.get("cycle_id"),"cycle_metrics":totals},
+           "inputs":{"pending":pending,"failed":failed,"last_cycle":s.get("cycle_id"),"cycle_metrics":totals,"experience_event_count":len(exp.get("events",[])),"previous_lessons":lessons[:10]},
            "proposals":proposals,
            "policy":["no arbitrary code execution","no canonical-data mutation by AI","bounded changes only",
                      "prefer free/local providers","escalate external AI only when evidence coverage is weak"]}
