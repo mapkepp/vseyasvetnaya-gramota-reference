@@ -108,8 +108,7 @@ jobs:
             if [ -n "$latest" ]; then
               gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/$latest/cancel" >/dev/null || true
             fi
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null || true
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null
           elif [ "$status" != "in_progress" ] && [ "$status" != "queued" ] && [ "$pending" -gt 0 ]; then
             echo "Нет активного worker — запускаем новый worker от текущего dev."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
