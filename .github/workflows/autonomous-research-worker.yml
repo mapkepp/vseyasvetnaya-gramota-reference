@@ -118,4 +118,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/self-improvement-application.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
-          git push origin HEAD:dev
+          git fetch origin dev
+          for attempt in 1 2 3; do
+            git rebase origin/dev || {
+              git rebase --abort || true
+              git fetch origin dev
+              continue
+            }
+            if git push origin HEAD:dev; then
+              exit 0
+            fi
+            git fetch origin dev
+          done
+          echo "Autonomous research publish failed after 3 rebase/push attempts."
+          exit 1
