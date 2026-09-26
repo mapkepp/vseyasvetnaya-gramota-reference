@@ -95,9 +95,18 @@ jobs:
           d["checks"]=[check]+d.get("checks",[])[:99]
           failures=0
           for x in d["checks"]:
-            if x.get("pending",0)>0 and (x.get("worker_status") not in ("in_progress","queued") or x.get("heartbeat_age_seconds",999999)>900):
+            status=x.get("worker_status")
+            conclusion=x.get("conclusion")
+            heartbeat_age=x.get("heartbeat_age_seconds",999999)
+            pending_count=x.get("pending",0)
+            problematic=bool(pending_count) and (
+              conclusion in ("failure","cancelled","timed_out") or
+              (status in ("in_progress","queued") and heartbeat_age>900)
+            )
+            if problematic:
               failures+=1
-            else: break
+            else:
+              break
           d["consecutive_recovery_failures"]=failures
           d["state"]="RECOVERY_REQUIRED" if failures>=3 else ("RECOVERY_PENDING" if failures else "HEALTHY")
           d["updated_at"]=check["checked_at"]
