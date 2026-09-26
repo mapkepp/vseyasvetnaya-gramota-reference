@@ -15,7 +15,6 @@ permissions:
 concurrency:
   group: dev-state-writers
   cancel-in-progress: false
-  queue: max
 jobs:
   watchdog:
     runs-on: ubuntu-latest
