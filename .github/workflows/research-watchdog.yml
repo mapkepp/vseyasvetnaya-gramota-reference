@@ -121,6 +121,5 @@ jobs:
           failures="$(jq -r '.consecutive_recovery_failures // 0' data/research/watchdog-history.json)"
           if [ "$pending" -gt 0 ] && [ "$failures" -ge 3 ]; then
             echo "::error::ASSISTANT_REQUIRED: worker не восстановился после нескольких проверок."
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/toolbox-evolution.yml/dispatches" -f ref=dev >/dev/null || true
-            gh api --method POST "repos/${GITHUB_REPOSITORY}/issues" -f title="[ASSISTANT-REQUIRED] Автовосстановление worker не сработало" -f body="Watchdog зафиксировал $failures последовательных проблемных проверок при наличии ожидающих задач. Запущены свежий worker, self-repair и toolbox evolution. Нужен разбор ассистентом." >/dev/null || true
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/issues" -f title="[ASSISTANT-REQUIRED] Автовосстановление worker не сработало" -f body="Watchdog зафиксировал $failures последовательных проблемных проверок при наличии ожидающих задач. Self-repair будет проверяться повторно; toolbox evolution не запускается параллельно с recovery writer. Нужен разбор ассистентом." >/dev/null || true
           fi
