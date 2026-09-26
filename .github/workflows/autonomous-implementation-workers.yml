@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
-  push:
-    branches: [dev]
   schedule:
     - cron: "47 * * * *"
 permissions:
