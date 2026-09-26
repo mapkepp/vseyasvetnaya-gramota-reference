@@ -3,6 +3,10 @@ name: Fetch source image
 on:
   workflow_dispatch:
 
+concurrency:
+  group: dev-state-writers
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
