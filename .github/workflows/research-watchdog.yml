@@ -49,25 +49,6 @@ jobs:
             git commit -m "fix(research): watchdog restore worker components"
             git push origin HEAD:dev
           fi
-      - name: Check integrity and record system experience on dev
-        run: |
-          set -euo pipefail
-          cd /tmp/dev
-          python3 scripts/system_self_check.py
-          python3 scripts/record_system_experience.py
-          git config user.name "toolbox-self-repair"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
-          git diff --cached --quiet || git commit -m "automation: record system health and experience"
-          git fetch origin dev
-          base_sha="$(git rev-parse HEAD)"
-          remote_sha="$(git rev-parse origin/dev)"
-          if ! git merge-base --is-ancestor "$base_sha" "$remote_sha"; then
-            echo "::error::DEV_MOVED_DURING_WATCHDOG_HEALTH: refusing to overwrite newer dev."
-            exit 78
-          fi
-          git push origin HEAD:dev
-
       - name: Check latest worker runs
         env:
           GH_TOKEN: ${{ github.token }}
