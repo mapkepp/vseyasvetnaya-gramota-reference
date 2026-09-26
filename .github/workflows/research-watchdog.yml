@@ -1,5 +1,6 @@
 name: Autonomous research watchdog
 # recovery-loop: stale-check -> self-repair -> worker-handoff
+# bounded-retry: recovery writer refreshes derived state after safe dev movement
 on:
   workflow_dispatch:
   push:
