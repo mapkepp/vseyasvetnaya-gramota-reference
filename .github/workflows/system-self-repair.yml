@@ -1,0 +1,40 @@
+name: System integrity and self-repair
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: dev-state-writers
+  cancel-in-progress: false
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+      - name: Run integrity checks
+        run: python3 scripts/system_self_check.py
+      - name: Process and learn from system data
+        run: |
+          python3 scripts/process_system_data.py
+          python3 scripts/self_improvement_cycle.py
+          python3 scripts/self_improvement_apply.py
+      - name: Publish repaired state
+        run: |
+          git config user.name "toolbox-self-repair"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research
+          git diff --cached --quiet || git commit -m "automation: record self-check repair and learning"
+          git fetch origin dev
+          local_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git rev-parse origin/dev)"
+          if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+            echo "::error::DEV_MOVED_DURING_SELF_REPAIR"
+            exit 78
+          fi
+          git push origin HEAD:dev
