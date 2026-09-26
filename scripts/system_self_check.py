@@ -13,10 +13,14 @@ HEALTH=ROOT/"data/research/system-health.json"
 EXPERIENCE=ROOT/"data/research/system-experience.json"
 REGISTRY=ROOT/"data/research/status-surface-registry.json"
 WATCHED_JSON=(ROOT/"data/research", ROOT/"data/toolbox")
-WRITER_WORKFLOWS={
-    "autonomous-research-worker.yml","toolbox-evolution.yml",
-    "autonomous-implementation-workers.yml","branch-intake.yml","branch-archive-cleanup.yml",
-    "system-self-repair.yml","rebuild-main-candidate.yml"
+WRITER_WORKFLOW_GROUPS={
+    "autonomous-research-worker.yml":"dev-state-writers",
+    "toolbox-evolution.yml":"dev-state-writers",
+    "autonomous-implementation-workers.yml":"dev-state-writers",
+    "branch-intake.yml":"dev-state-writers",
+    "branch-archive-cleanup.yml":"dev-state-writers",
+    "system-self-repair.yml":"system-self-repair-writer",
+    "rebuild-main-candidate.yml":"dev-state-writers"
 }
 def now(): return datetime.now(timezone.utc).isoformat()
 def run(cmd):
@@ -64,12 +68,14 @@ def check_status_html():
 def check_writer_serialization():
     bad=[]
     wf=ROOT/".github/workflows"
-    for name in WRITER_WORKFLOWS:
+    for name,expected_group in WRITER_WORKFLOW_GROUPS.items():
         p=wf/name
-        if not p.exists(): bad.append(f"missing writer workflow: {name}"); continue
+        if not p.exists():
+            bad.append(f"missing writer workflow: {name}")
+            continue
         s=p.read_text(encoding="utf-8")
-        if "group: dev-state-writers" not in s or "cancel-in-progress: false" not in s:
-            bad.append(f"{name}: missing shared dev-state-writers serialization")
+        if f"group: {expected_group}" not in s or "cancel-in-progress: false" not in s:
+            bad.append(f"{name}: expected concurrency group {expected_group} with cancel-in-progress=false")
     return bad
 def repair_registry():
     p=ROOT/"scripts/sync_status_surfaces.py"
