@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-26T19:08:53.784696+00:00",
+  "updated_at": "2026-09-26T19:09:28.385242+00:00",
   "focus": "BUKOVY_FIRST",
   "canonical_count": 68,
   "queue_core_task_count": 68,
@@ -12,9 +12,9 @@
     "direct_practice_found": 7
   },
   "queue_counts": {
-    "pending": 62,
-    "done": 1,
-    "exhausted": 0,
+    "pending": 57,
+    "done": 0,
+    "exhausted": 5,
     "missing": 0
   },
   "rules": {
@@ -27,7 +27,7 @@
     {
       "entry_id": "dm80-image-7",
       "name": "А",
-      "queue_status": "FAILED",
+      "queue_status": "EXHAUSTED",
       "priority": "replan",
       "practical_status": "general_practice_context",
       "direct_practice_count": 0,
@@ -40,7 +40,7 @@
     {
       "entry_id": "dm80-image-8",
       "name": "Аз",
-      "queue_status": "FAILED",
+      "queue_status": "EXHAUSTED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -53,7 +53,7 @@
     {
       "entry_id": "dm80-image-9",
       "name": "Буки",
-      "queue_status": "FAILED",
+      "queue_status": "EXHAUSTED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -66,7 +66,7 @@
     {
       "entry_id": "dm80-image-10",
       "name": "Веде",
-      "queue_status": "FAILED",
+      "queue_status": "EXHAUSTED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -79,7 +79,7 @@
     {
       "entry_id": "dm80-image-11",
       "name": "Вита",
-      "queue_status": "FAILED",
+      "queue_status": "EXHAUSTED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -92,7 +92,7 @@
     {
       "entry_id": "dm80-image-12",
       "name": "Глагол",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "compound_only",
       "direct_practice_count": 0,
@@ -105,7 +105,7 @@
     {
       "entry_id": "dm80-image-13",
       "name": "Герьвь",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -119,7 +119,7 @@
     {
       "entry_id": "dm80-image-14",
       "name": "Д",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "source_description_only",
       "direct_practice_count": 0,
@@ -130,7 +130,7 @@
     {
       "entry_id": "dm80-image-15",
       "name": "Е",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "source_description_only",
       "direct_practice_count": 0,
@@ -141,7 +141,7 @@
     {
       "entry_id": "dm80-image-16",
       "name": "Е\"-ять",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -154,7 +154,7 @@
     {
       "entry_id": "dm80-image-17",
       "name": "Ё",
-      "queue_status": "PENDING",
+      "queue_status": "FAILED",
       "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
@@ -899,8 +899,8 @@
     {
       "entry_id": "dm80-image-74",
       "name": "Я, Слово",
-      "queue_status": "DONE",
-      "priority": "high",
+      "queue_status": "PENDING",
+      "priority": "replan",
       "practical_status": "source_description_plus_practical_context",
       "direct_practice_count": 0,
       "compound_mention_count": 0,
