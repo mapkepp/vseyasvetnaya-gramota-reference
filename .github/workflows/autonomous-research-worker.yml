@@ -1,6 +1,16 @@
 name: Autonomous research worker
 on:
   workflow_dispatch:
+  push:
+    branches: [dev]
+    paths:
+      - ".github/workflows/autonomous-research-worker.yml"
+      - "scripts/bukovy_completion_gate.py"
+      - "scripts/github_web_research_worker.py"
+      - "scripts/verify_research_sources.py"
+      - "scripts/normalize_practitioner_evidence.py"
+      - "scripts/practitioner_evidence_gate.py"
+      - "scripts/replan_research_queue.py"
   schedule:
     - cron: "7,27,47 * * * *"
 permissions:
@@ -106,6 +116,6 @@ jobs:
         run: |
           git config user.name "toolbox-research-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/agent-manifest.json data/research/self-improvement-application.json
+          git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/self-improvement-application.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git push origin HEAD:dev
