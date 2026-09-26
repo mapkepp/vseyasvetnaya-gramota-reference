@@ -6,12 +6,9 @@ name: Autonomous research worker
 # worker_backend: multi-provider-1.1
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    types: [opened, synchronize]
-  schedule:
-    - cron: "*/5 * * * *"
+
+# Legacy control-plane workflow intentionally disabled.
+# Autonomous research publication is owned exclusively by the dev worker + dev watchdog.
 permissions:
   contents: write
 concurrency:
