@@ -1,7 +1,835 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-26T21:42:25.214079+00:00",
+  "updated_at": "2026-09-26T21:43:10.714000+00:00",
   "cycles": [
+    {
+      "schema_version": "2.0",
+      "cycle_id": "20260926T214249Z",
+      "run_id": "36273866290",
+      "run_number": "152",
+      "workflow": "Autonomous research worker",
+      "event": "workflow_dispatch",
+      "branch": "dev",
+      "commit": "64dbd3e1101c67e79c7a03100ed9ebff63f8b676",
+      "started_at": "2026-09-26T21:42:49.426820+00:00",
+      "finished_at": "2026-09-26T21:43:10.714000+00:00",
+      "duration_seconds": 21.287,
+      "selected_tasks": 4,
+      "tasks": [
+        {
+          "task_id": "rotation-dm80-image-59-1",
+          "canonical_entry_id": "dm80-image-59",
+          "bukova": "Тор",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T21:42:49.488621+00:00",
+          "finished_at": "2026-09-26T21:43:00.628344+00:00",
+          "duration_seconds": 11.14,
+          "attempt": null,
+          "queries": [
+            "\"Тор\" \"Букова\" практика",
+            "\"Тор\" \"Буковы\" применение",
+            "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+            "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+            "\"Тор\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+            "\"Тор\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+            "\"Тор\" \"практик\" OR \"практика\" OR \"мастер\"",
+            "\"Тор\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+            "\"Тор\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+            "\"Тор\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+            "\"Тор\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+            "\"Тор\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+            "\"Тор\" \"применение\" -описание -определение",
+            "\"Тор\" \"Букова\" источник свидетельство практика",
+            "\"Тор\" \"став\" Буков",
+            "\"Тор\" \"буквица\" практика",
+            "\"Тор\" \"нанос\" практика",
+            "\"Тор\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Тор\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 96439
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Тор\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14212
+            },
+            {
+              "provider": "google",
+              "query": "\"Тор\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 91886
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Тор\" \"Букова\" практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Тор\" \"Букова\" практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Тор\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+              "results": 0,
+              "body_chars": 96633
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Тор\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14228
+            },
+            {
+              "provider": "google",
+              "query": "\"Тор\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+              "results": 0,
+              "body_chars": 92330
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Тор\" \"Буковы\" применение",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Тор\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
+              "results": 0,
+              "body_chars": 99384
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14302
+            },
+            {
+              "provider": "google",
+              "query": "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
+              "results": 0,
+              "body_chars": 92428
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Тор\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 137220
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14334
+            },
+            {
+              "provider": "google",
+              "query": "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A2%D0%BE%D1%80%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92491
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Тор\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-60-1",
+          "canonical_entry_id": "dm80-image-60",
+          "bukova": "Ук",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T21:42:49.489001+00:00",
+          "finished_at": "2026-09-26T21:43:01.630826+00:00",
+          "duration_seconds": 12.142,
+          "attempt": null,
+          "queries": [
+            "\"Ук\" \"Букова\" практика",
+            "\"Ук\" \"Буковы\" применение",
+            "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+            "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+            "\"Ук\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+            "\"Ук\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+            "\"Ук\" \"практик\" OR \"практика\" OR \"мастер\"",
+            "\"Ук\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+            "\"Ук\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+            "\"Ук\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+            "\"Ук\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+            "\"Ук\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+            "\"Ук\" \"применение\" -описание -определение",
+            "\"Ук\" \"Букова\" источник свидетельство практика",
+            "\"Ук\" \"став\" Буков",
+            "\"Ук\" \"буквица\" практика",
+            "\"Ук\" \"нанос\" практика",
+            "\"Ук\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Ук\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 95583
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ук\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14198
+            },
+            {
+              "provider": "google",
+              "query": "\"Ук\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92287
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ук\" \"Букова\" практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ук\" \"Букова\" практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ук\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+              "results": 0,
+              "body_chars": 129354
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ук\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14207
+            },
+            {
+              "provider": "google",
+              "query": "\"Ук\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+              "results": 0,
+              "body_chars": 92269
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ук\" \"Буковы\" применение",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ук\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
+              "results": 0,
+              "body_chars": 99681
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A3%D0%BA%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14300
+            },
+            {
+              "provider": "google",
+              "query": "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
+              "results": 0,
+              "body_chars": 92348
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ук\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 130884
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A3%D0%BA%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14332
+            },
+            {
+              "provider": "google",
+              "query": "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A3%D0%BA%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92398
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ук\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-61-1",
+          "canonical_entry_id": "dm80-image-61",
+          "bukova": "Фита",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "PASS",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T21:42:49.488959+00:00",
+          "finished_at": "2026-09-26T21:43:01.280063+00:00",
+          "duration_seconds": 11.791,
+          "attempt": null,
+          "queries": [
+            "\"Фита\" \"Букова\" практика",
+            "\"Фита\" \"Буковы\" применение",
+            "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+            "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+            "\"Фита\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+            "\"Фита\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+            "\"Фита\" \"практик\" OR \"практика\" OR \"мастер\"",
+            "\"Фита\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+            "\"Фита\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+            "\"Фита\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+            "\"Фита\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+            "\"Фита\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+            "\"Фита\" \"применение\" -описание -определение",
+            "\"Фита\" \"Букова\" источник свидетельство практика",
+            "\"Фита\" \"став\" Буков",
+            "\"Фита\" \"буквица\" практика",
+            "\"Фита\" \"нанос\" практика",
+            "\"Фита\" \"результат\" практика"
+          ],
+          "findings_count": 6,
+          "verified": true,
+          "normalized": true,
+          "sources": [
+            "https://vk.com/wall-62219602_35094",
+            "https://vk.com/wall-62219602_23627",
+            "https://www.youtube.com/watch?v=kKKdkbS-Edo",
+            "https://www.youtube.com/watch?v=h_Ipj2sfoJ8",
+            "https://dzen.ru/shorts/67826c69dbf5f52acf6d7c21",
+            "https://www.instagram.com/p/C3VRuKRI6Wn/"
+          ],
+          "source_count": 6,
+          "finding_summaries": [
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use."
+          ],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 131094
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Букова\" практика",
+              "status": "PASS",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 6,
+              "body_chars": 21633
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+              "results": 0,
+              "body_chars": 97844
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14212
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+              "results": 0,
+              "body_chars": 92248
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"Буковы\" применение",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
+              "results": 0,
+              "body_chars": 130572
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14310
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
+              "results": 0,
+              "body_chars": 92302
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 131249
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14336
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92518
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&count=10",
+              "results": 0,
+              "body_chars": 136730
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14350
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%22+OR+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%BE%D1%81%D1%8C%22+OR+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+OR+%22%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%22&num=10",
+              "results": 0,
+              "body_chars": 92412
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-62-1",
+          "canonical_entry_id": "dm80-image-62",
+          "bukova": "Хвъ",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-26T21:42:49.489227+00:00",
+          "finished_at": "2026-09-26T21:43:01.380356+00:00",
+          "duration_seconds": 11.891,
+          "attempt": null,
+          "queries": [
+            "\"Хвъ\" \"Букова\" практика",
+            "\"Хвъ\" \"Буковы\" применение",
+            "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+            "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+            "\"Хвъ\" \"получил\" OR \"получилось\" OR \"результат\" OR \"эффект\"",
+            "\"Хвъ\" \"опыт\" OR \"отзыв\" OR \"история\" OR \"случай\"",
+            "\"Хвъ\" \"практик\" OR \"практика\" OR \"мастер\"",
+            "\"Хвъ\" \"дневник\" OR \"журнал\" OR \"отчёт\" OR \"отчет\"",
+            "\"Хвъ\" \"форум\" OR \"обсуждение\" OR \"комментарии\"",
+            "\"Хвъ\" \"видео\" OR \"лекция\" OR \"семинар\" OR \"разбор\"",
+            "\"Хвъ\" \"исследование\" OR \"наблюдение\" OR \"эксперимент\"",
+            "\"Хвъ\" \"до\" \"после\" OR \"изменение\" OR \"динамика\"",
+            "\"Хвъ\" \"применение\" -описание -определение",
+            "\"Хвъ\" \"Букова\" источник свидетельство практика",
+            "\"Хвъ\" \"став\" Буков",
+            "\"Хвъ\" \"буквица\" практика",
+            "\"Хвъ\" \"нанос\" практика",
+            "\"Хвъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+              "results": 0,
+              "body_chars": 127529
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+              "results": 0,
+              "body_chars": 9364
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Букова\" практика",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+              "results": 0,
+              "body_chars": 92182
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Букова\" практика",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Букова\" практика",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+              "results": 0,
+              "body_chars": 129433
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14228
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+              "results": 0,
+              "body_chars": 92262
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Буковы\" применение",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Буковы\" применение",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&count=10",
+              "results": 0,
+              "body_chars": 133366
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14308
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%22+OR+%22%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8%22&num=10",
+              "results": 0,
+              "body_chars": 92236
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"применял\" OR \"использовал\" OR \"использовали\"",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&count=10",
+              "results": 0,
+              "body_chars": 126120
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14322
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+OR+%22%D0%BD%D0%B0%D1%87%D0%B5%D1%80%D1%82%D0%B0%D0%BB%22+OR+%22%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D0%BB%22+OR+%22%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%22&num=10",
+              "results": 0,
+              "body_chars": 92474
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"нанес\" OR \"начертал\" OR \"написал\" OR \"составил\"",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
     {
       "schema_version": "2.0",
       "cycle_id": "20260926T214211Z",
