@@ -15,6 +15,7 @@ on:
     - cron: "7,27,47 * * * *"
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: dev-state-writers
   cancel-in-progress: false
@@ -159,3 +160,10 @@ jobs:
           done
           echo "::error::Autonomous research publish failed without attempting a conflict-producing merge."
           exit 1
+      - name: Notify watchdog after worker completion
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "WORKER_COMPLETION_HANDOFF: notify watchdog immediately."
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/research-watchdog.yml/dispatches" -f ref=main >/dev/null
