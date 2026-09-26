@@ -29,18 +29,24 @@ jobs:
           cd /tmp/dev-health
           python3 scripts/system_self_check.py
           python3 scripts/record_system_experience.py
-          git config user.name "toolbox-self-repair"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
-          git diff --cached --quiet || git commit -m "automation: record system health and experience"
-          git fetch origin dev
-          base_sha="$(git rev-parse HEAD)"
-          remote_sha="$(git rev-parse origin/dev)"
-          if ! git merge-base --is-ancestor "$base_sha" "$remote_sha"; then
-            echo "::error::DEV_MOVED_DURING_STATUS_HEALTH: refusing to overwrite newer dev."
-            exit 78
-          fi
-          git push origin HEAD:dev
+          mkdir -p /tmp/health-snapshot
+          cp data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json /tmp/health-snapshot/
+          for attempt in 1 2 3; do
+            git fetch origin dev
+            git reset --hard origin/dev
+            cp /tmp/health-snapshot/system-health.json /tmp/health-snapshot/system-experience.json /tmp/health-snapshot/status-surface-registry.json data/research/
+            git config user.name "toolbox-self-repair"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/research/system-health.json data/research/system-experience.json data/research/status-surface-registry.json
+            git diff --cached --quiet && exit 0
+            git commit -m "automation: record system health and experience"
+            if git push origin HEAD:dev; then
+              echo "HEALTH_PUBLISH_OK"
+              exit 0
+            fi
+          done
+          echo "::error::Health publication could not safely advance dev after 3 attempts."
+          exit 1
 
       - name: Validate status page
         id: validate
