@@ -1,0 +1,53 @@
+name: Research watchdog
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3,13,23,33,43,53 * * * *"
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: research-watchdog
+  cancel-in-progress: false
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 1
+      - name: Detect stale worker and recover
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess, datetime
+          pending=0
+          try:
+              q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
+              pending=sum(1 for t in q.get("tasks",[]) if t.get("status")=="PENDING")
+          except Exception: pass
+          stale=True
+          age=None
+          try:
+              d=json.load(open("data/research/worker-status.json",encoding="utf-8"))
+              ts=d.get("updated_at")
+              if ts:
+                  dt=datetime.datetime.fromisoformat(ts.replace("Z","+00:00"))
+                  age=(datetime.datetime.now(datetime.timezone.utc)-dt).total_seconds()
+                  stale=age > 35*60
+          except Exception: pass
+          runs=json.loads(subprocess.check_output([
+              "gh","run","list","--workflow","autonomous-research-worker.yml","--branch","dev",
+              "--limit","5","--json","databaseId,status,conclusion"
+          ],text=True))
+          active=any(r.get("status") in ("queued","in_progress") for r in runs)
+          print(json.dumps({"pending":pending,"heartbeat_age_sec":age,"stale":stale,"active_run":active}))
+          if pending and stale and not active:
+              subprocess.run(["gh","workflow","run","autonomous-research-worker.yml","--ref","dev"],check=True)
+              print("RECOVERED: dispatched autonomous research worker")
+          else:
+              print("WATCHDOG_OK: no recovery dispatch needed")
+          PY
