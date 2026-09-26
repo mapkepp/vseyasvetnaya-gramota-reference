@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "entity": "run",
+  "key": "run_id",
+  "storage": "data/research/run-history/{utc_year}/{utc_month}/{utc_day}/{branch}.json",
+  "semantics": "append-or-upsert by run_id",
+  "timestamps": "UTC ISO-8601 only",
+  "fields": {
+    "run_id": "integer",
+    "run_number": "integer|null",
+    "process": "string",
+    "status": "string",
+    "conclusion": "string|null",
+    "branch": "string",
+    "workflow": "string|null",
+    "commit": "string|null",
+    "started_at": "ISO-8601|null",
+    "finished_at": "ISO-8601|null",
+    "duration_seconds": "number|null",
+    "created_at": "ISO-8601|null",
+    "updated_at": "ISO-8601|null",
+    "url": "string|null",
+    "observed_at": "ISO-8601"
+  },
+  "indexes": {
+    "by_run_id": "unique",
+    "by_branch": "branch",
+    "by_started_at": "descending",
+    "by_status": "status"
+  },
+  "retention": "daily branch shards; current day may be upserted",
+  "principle": "normalized persistent history; GitHub Actions API is fallback/live source"
+}
