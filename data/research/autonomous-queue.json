@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-26T21:37:48.001557+00:00",
+  "updated_at": "2026-09-26T21:39:12.969584+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 104,
+  "replanned_count": 108,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -5358,7 +5358,7 @@
       "task_id": "rotation-dm80-image-45-1",
       "canonical_entry_id": "dm80-image-45",
       "bukova": "Ны",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "created_at": "2026-09-26T21:37:48.001557+00:00",
       "generation": 1,
@@ -5378,13 +5378,14 @@
         "\"Ны\" \"применение\" -описание -определение",
         "\"Ны\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-46-1",
       "canonical_entry_id": "dm80-image-46",
       "bukova": "Коло",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "created_at": "2026-09-26T21:37:48.001557+00:00",
       "generation": 1,
@@ -5404,13 +5405,14 @@
         "\"Коло\" \"применение\" -описание -определение",
         "\"Коло\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-48-1",
       "canonical_entry_id": "dm80-image-48",
       "bukova": "Окъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "created_at": "2026-09-26T21:37:48.001557+00:00",
       "generation": 1,
@@ -5430,13 +5432,14 @@
         "\"Окъ\" \"применение\" -описание -определение",
         "\"Окъ\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
     },
     {
       "task_id": "rotation-dm80-image-49-1",
       "canonical_entry_id": "dm80-image-49",
       "bukova": "Отъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "created_at": "2026-09-26T21:37:48.001557+00:00",
       "generation": 1,
@@ -5456,7 +5459,100 @@
         "\"Отъ\" \"применение\" -описание -определение",
         "\"Отъ\" \"Букова\" источник свидетельство практика"
       ],
-      "reason": "queue_replenishment"
+      "reason": "queue_replenishment",
+      "attempt": 1
+    },
+    {
+      "task_id": "rotation-dm80-image-45-1-replan-1",
+      "canonical_entry_id": "dm80-image-45",
+      "bukova": "Ны",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:39:12.914093+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Ны\" \"Букова\" \"опыт\"",
+        "\"Ны\" \"Букова\" \"отзыв\"",
+        "\"Ны\" \"Букова\" \"история\"",
+        "\"Ны\" \"Букова\" \"наблюдение\"",
+        "\"Ны\" \"Букова\" \"эксперимент\"",
+        "\"Ны\" \"Букова\" \"до\" \"после\"",
+        "\"Ны\" \"Буковник\" \"упражнение\"",
+        "\"Ны\" \"Буковы\" \"применение\""
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-45-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-46-1-replan-1",
+      "canonical_entry_id": "dm80-image-46",
+      "bukova": "Коло",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:39:12.914093+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Коло\" \"Букова\" \"опыт\"",
+        "\"Коло\" \"Букова\" \"отзыв\"",
+        "\"Коло\" \"Букова\" \"история\"",
+        "\"Коло\" \"Букова\" \"наблюдение\"",
+        "\"Коло\" \"Букова\" \"эксперимент\"",
+        "\"Коло\" \"Букова\" \"до\" \"после\"",
+        "\"Коло\" \"Буковник\" \"упражнение\"",
+        "\"Коло\" \"Буковы\" \"применение\""
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-46-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-48-1-replan-1",
+      "canonical_entry_id": "dm80-image-48",
+      "bukova": "Окъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:39:12.914093+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Окъ\" \"Букова\" \"опыт\"",
+        "\"Окъ\" \"Букова\" \"отзыв\"",
+        "\"Окъ\" \"Букова\" \"история\"",
+        "\"Окъ\" \"Букова\" \"наблюдение\"",
+        "\"Окъ\" \"Букова\" \"эксперимент\"",
+        "\"Окъ\" \"Букова\" \"до\" \"после\"",
+        "\"Окъ\" \"Буковник\" \"упражнение\"",
+        "\"Окъ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-48-1"
+    },
+    {
+      "task_id": "rotation-dm80-image-49-1-replan-1",
+      "canonical_entry_id": "dm80-image-49",
+      "bukova": "Отъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-26T21:39:12.914093+00:00",
+      "attempt": 0,
+      "max_attempts": 1,
+      "queries": [
+        "\"Отъ\" \"Букова\" \"опыт\"",
+        "\"Отъ\" \"Букова\" \"отзыв\"",
+        "\"Отъ\" \"Букова\" \"история\"",
+        "\"Отъ\" \"Букова\" \"наблюдение\"",
+        "\"Отъ\" \"Букова\" \"эксперимент\"",
+        "\"Отъ\" \"Букова\" \"до\" \"после\"",
+        "\"Отъ\" \"Буковник\" \"упражнение\"",
+        "\"Отъ\" \"Буковы\" \"применение\""
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-49-1"
     }
   ],
   "queue_health": {
@@ -5464,11 +5560,11 @@
     "max_replan_depth": 3,
     "max_rotation_generations": 2,
     "target_distinct_pending": 4,
-    "repaired_at": "2026-09-26T21:37:48.001557+00:00",
+    "repaired_at": "2026-09-26T21:39:12.969584+00:00",
     "task_ids_migrated": 0,
     "exhausted_this_run": 0,
     "superseded_this_run": 0,
-    "replenished_this_run": 4,
+    "replenished_this_run": 0,
     "pending_after": 4,
     "distinct_pending_entries_after": 4,
     "duplicate_pending_after": 0
