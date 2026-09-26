@@ -3,249 +3,335 @@
   "task_id": "rotation-dm80-image-35-1-replan-1",
   "canonical_entry_id": "dm80-image-35",
   "bukova": "Ороси",
-  "status": "PASS",
+  "status": "FAIL",
   "evidence": "MEASURED",
-  "generated_at": "2026-09-25T21:31:12.332598+00:00",
+  "generated_at": "2026-09-26T21:33:24.739468+00:00",
   "queries": [
-    "\"Ороси\" практика Букова форум",
-    "\"Ороси\" \"нанес\" Букова",
-    "\"Ороси\" \"получил результат\"",
-    "\"Ороси\" \"применял\" практика",
-    "\"Ороси\" \"получила результат\" Буков",
+    "\"Ороси\" \"Букова\" \"опыт\"",
+    "\"Ороси\" \"Букова\" \"отзыв\"",
+    "\"Ороси\" \"Букова\" \"история\"",
+    "\"Ороси\" \"Букова\" \"наблюдение\"",
+    "\"Ороси\" \"Букова\" \"эксперимент\"",
+    "\"Ороси\" \"Букова\" \"до\" \"после\"",
+    "\"Ороси\" \"Буковник\" \"упражнение\"",
+    "\"Ороси\" \"Буковы\" \"применение\"",
     "\"Ороси\" \"став\" Буков",
     "\"Ороси\" \"буквица\" практика",
     "\"Ороси\" \"нанос\" практика",
     "\"Ороси\" \"результат\" практика"
   ],
   "search_engine": "github-actions-public-web-multi-provider",
-  "findings": [
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://www.youtube.com/watch?v=INm1Gm523lE",
-          "title": "Как писать БУКОВЫ. 5 часть - YouTube"
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Ороси\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    },
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://www.youtube.com/watch?v=TKDC3OhkNwY",
-          "title": "Герьвьец, Всеясветнаяграмота, Букова ОРОсИ....ссылку найдёте в описании ..."
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Ороси\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    },
-    {
-      "claim": "Discovered public-web source; requires human-readable verification before use.",
-      "sources": [
-        {
-          "url": "https://vk.com/wall292367053_895",
-          "title": "Фудэн ороси 風伝おろし - природное явление конца осени. На восходе солнца ..."
-        }
-      ],
-      "evidence_type": "web_discovery",
-      "confidence": "UNSPECIFIED",
-      "conflicts": [],
-      "discovery_queries": [
-        "\"Ороси\" практика Букова форум"
-      ],
-      "providers": [
-        "duckduckgo"
-      ]
-    }
-  ],
+  "findings": [],
   "diagnostics": [
     {
       "provider": "bing",
-      "query": "\"Ороси\" практика Букова форум",
+      "query": "\"Ороси\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&count=10",
       "results": 0,
-      "body_chars": 97300
+      "body_chars": 136389
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Ороси\" практика Букова форум",
-      "status": "PASS",
-      "http_status": 200,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0+%D1%84%D0%BE%D1%80%D1%83%D0%BC&kl=ru-ru",
-      "results": 3,
-      "body_chars": 14832
-    },
-    {
-      "provider": "bing",
-      "query": "\"Ороси\" \"нанес\" Букова",
+      "query": "\"Ороси\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&count=10",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 96111
-    },
-    {
-      "provider": "duckduckgo",
-      "query": "\"Ороси\" \"нанес\" Букова",
-      "status": "EMPTY",
-      "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&kl=ru-ru",
-      "results": 0,
-      "body_chars": 14203
+      "body_chars": 9394
     },
     {
       "provider": "google",
-      "query": "\"Ороси\" \"нанес\" Букова",
+      "query": "\"Ороси\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%B5%D1%81%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&num=10",
       "results": 0,
-      "body_chars": 91592
+      "body_chars": 91857
     },
     {
       "provider": "yahoo",
-      "query": "\"Ороси\" \"нанес\" Букова",
+      "query": "\"Ороси\" \"Букова\" \"опыт\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Ороси\" \"нанес\" Букова",
+      "query": "\"Ороси\" \"Букова\" \"опыт\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Ороси\" \"получил результат\"",
+      "query": "\"Ороси\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&count=10",
       "results": 0,
-      "body_chars": 98102
+      "body_chars": 124857
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Ороси\" \"получил результат\"",
+      "query": "\"Ороси\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14214
+      "body_chars": 14228
     },
     {
       "provider": "google",
-      "query": "\"Ороси\" \"получил результат\"",
+      "query": "\"Ороси\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&num=10",
       "results": 0,
-      "body_chars": 91573
+      "body_chars": 92181
     },
     {
       "provider": "yahoo",
-      "query": "\"Ороси\" \"получил результат\"",
+      "query": "\"Ороси\" \"Букова\" \"отзыв\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Ороси\" \"получил результат\"",
+      "query": "\"Ороси\" \"Букова\" \"отзыв\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Ороси\" \"применял\" практика",
+      "query": "\"Ороси\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&count=10",
       "results": 0,
-      "body_chars": 98940
+      "body_chars": 125803
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Ороси\" \"применял\" практика",
+      "query": "\"Ороси\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14220
+      "body_chars": 14238
     },
     {
       "provider": "google",
-      "query": "\"Ороси\" \"применял\" практика",
+      "query": "\"Ороси\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%8F%D0%BB%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&num=10",
       "results": 0,
-      "body_chars": 91487
+      "body_chars": 92008
     },
     {
       "provider": "yahoo",
-      "query": "\"Ороси\" \"применял\" практика",
+      "query": "\"Ороси\" \"Букова\" \"история\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Ороси\" \"применял\" практика",
+      "query": "\"Ороси\" \"Букова\" \"история\"",
       "status": "EMPTY",
       "results": 0
     },
     {
       "provider": "bing",
-      "query": "\"Ороси\" \"получила результат\" Буков",
+      "query": "\"Ороси\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
       "results": 0,
-      "body_chars": 99311
+      "body_chars": 131034
     },
     {
       "provider": "duckduckgo",
-      "query": "\"Ороси\" \"получила результат\" Буков",
+      "query": "\"Ороси\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 202,
-      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
       "results": 0,
-      "body_chars": 14234
+      "body_chars": 14232
     },
     {
       "provider": "google",
-      "query": "\"Ороси\" \"получила результат\" Буков",
+      "query": "\"Ороси\" \"Букова\" \"наблюдение\"",
       "status": "EMPTY",
       "http_status": 200,
-      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB%D0%B0+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
       "results": 0,
-      "body_chars": 91598
+      "body_chars": 91901
     },
     {
       "provider": "yahoo",
-      "query": "\"Ороси\" \"получила результат\" Буков",
+      "query": "\"Ороси\" \"Букова\" \"наблюдение\"",
       "status": "FAIL",
       "error": "HTTPError"
     },
     {
       "provider": "github-code",
-      "query": "\"Ороси\" \"получила результат\" Буков",
+      "query": "\"Ороси\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ороси\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 139036
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ороси\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14240
+    },
+    {
+      "provider": "google",
+      "query": "\"Ороси\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91833
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ороси\" \"Букова\" \"эксперимент\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ороси\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ороси\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 143625
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ороси\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14252
+    },
+    {
+      "provider": "google",
+      "query": "\"Ороси\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 91814
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ороси\" \"Букова\" \"до\" \"после\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ороси\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ороси\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 135105
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ороси\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14242
+    },
+    {
+      "provider": "google",
+      "query": "\"Ороси\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 91761
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ороси\" \"Буковник\" \"упражнение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ороси\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"Ороси\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 131061
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"Ороси\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14238
+    },
+    {
+      "provider": "google",
+      "query": "\"Ороси\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 91866
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"Ороси\" \"Буковы\" \"применение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"Ороси\" \"Буковы\" \"применение\"",
       "status": "EMPTY",
       "results": 0
     },
@@ -256,7 +342,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
       "results": 0,
-      "body_chars": 95374
+      "body_chars": 136195
     },
     {
       "provider": "duckduckgo",
@@ -265,7 +351,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
       "results": 0,
-      "body_chars": 14194
+      "body_chars": 14200
     },
     {
       "provider": "google",
@@ -274,7 +360,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
       "results": 0,
-      "body_chars": 91458
+      "body_chars": 91669
     },
     {
       "provider": "yahoo",
@@ -295,7 +381,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 96776
+      "body_chars": 138590
     },
     {
       "provider": "duckduckgo",
@@ -304,7 +390,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14206
+      "body_chars": 14224
     },
     {
       "provider": "google",
@@ -313,7 +399,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91754
+      "body_chars": 92123
     },
     {
       "provider": "yahoo",
@@ -334,7 +420,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 96456
+      "body_chars": 138214
     },
     {
       "provider": "duckduckgo",
@@ -343,7 +429,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14214
+      "body_chars": 14208
     },
     {
       "provider": "google",
@@ -352,7 +438,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91455
+      "body_chars": 92049
     },
     {
       "provider": "yahoo",
@@ -373,7 +459,7 @@
       "http_status": 200,
       "final_url": "https://www.bing.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
       "results": 0,
-      "body_chars": 97284
+      "body_chars": 138036
     },
     {
       "provider": "duckduckgo",
@@ -382,7 +468,7 @@
       "http_status": 202,
       "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&kl=ru-ru",
       "results": 0,
-      "body_chars": 14216
+      "body_chars": 14210
     },
     {
       "provider": "google",
@@ -391,7 +477,7 @@
       "http_status": 200,
       "final_url": "https://www.google.com/search?q=%22%D0%9E%D1%80%D0%BE%D1%81%D0%B8%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
       "results": 0,
-      "body_chars": 91478
+      "body_chars": 92102
     },
     {
       "provider": "yahoo",
@@ -406,5 +492,10 @@
       "results": 0
     }
   ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
   "canonical_mutation": "DISABLED"
 }
