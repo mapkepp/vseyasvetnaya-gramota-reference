@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.2",
+  "task_id": "bukova-core-dm80-image-28-replan-1",
+  "canonical_entry_id": "dm80-image-28",
+  "bukova": "I Кратка",
+  "status": "FAIL",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-26T19:10:37.796427+00:00",
+  "queries": [
+    "\"I Кратка\" \"Букова\" \"опыт\"",
+    "\"I Кратка\" \"Букова\" \"отзыв\"",
+    "\"I Кратка\" \"Букова\" \"история\"",
+    "\"I Кратка\" \"Букова\" \"наблюдение\"",
+    "\"I Кратка\" \"Букова\" \"эксперимент\"",
+    "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+    "\"I Кратка\" \"Буковник\" \"упражнение\"",
+    "\"I Кратка\" \"Буковы\" \"применение\"",
+    "\"I Кратка\" \"став\" Буков",
+    "\"I Кратка\" \"буквица\" практика",
+    "\"I Кратка\" \"нанос\" практика",
+    "\"I Кратка\" \"результат\" практика"
+  ],
+  "search_engine": "github-actions-public-web-multi-provider",
+  "findings": [],
+  "diagnostics": [
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"опыт\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 127987
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"опыт\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 9403
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"опыт\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D0%BF%D1%8B%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 92006
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"опыт\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"опыт\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"отзыв\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&count=10",
+      "results": 0,
+      "body_chars": 127097
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"отзыв\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14228
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"отзыв\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%22&num=10",
+      "results": 0,
+      "body_chars": 92239
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"отзыв\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"отзыв\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"история\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&count=10",
+      "results": 0,
+      "body_chars": 131573
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"история\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14244
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"история\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22&num=10",
+      "results": 0,
+      "body_chars": 92262
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"история\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"история\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 134078
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14250
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92288
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"наблюдение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"наблюдение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&count=10",
+      "results": 0,
+      "body_chars": 128105
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14258
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82%22&num=10",
+      "results": 0,
+      "body_chars": 91901
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"эксперимент\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"эксперимент\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 130559
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14264
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%22%D0%B4%D0%BE%22+%22%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92090
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Букова\" \"до\" \"после\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 126107
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14254
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%22+%22%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92344
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Буковник\" \"упражнение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Буковник\" \"упражнение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&count=10",
+      "results": 0,
+      "body_chars": 131367
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14244
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D1%8B%22+%22%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%22&num=10",
+      "results": 0,
+      "body_chars": 92573
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"Буковы\" \"применение\"",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"Буковы\" \"применение\"",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&count=10",
+      "results": 0,
+      "body_chars": 129178
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 202,
+      "final_url": "https://html.duckduckgo.com/html/?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&kl=ru-ru",
+      "results": 0,
+      "body_chars": 14224
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"став\" Буков",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D1%81%D1%82%D0%B0%D0%B2%22+%D0%91%D1%83%D0%BA%D0%BE%D0%B2&num=10",
+      "results": 0,
+      "body_chars": 92225
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"став\" Буков",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"став\" Буков",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 128758
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"буквица\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%B1%D1%83%D0%BA%D0%B2%D0%B8%D1%86%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92284
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"буквица\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"буквица\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 129968
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"нанос\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D0%BD%D0%B0%D0%BD%D0%BE%D1%81%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92379
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"нанос\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"нанос\" практика",
+      "status": "EMPTY",
+      "results": 0
+    },
+    {
+      "provider": "bing",
+      "query": "\"I Кратка\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.bing.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&count=10",
+      "results": 0,
+      "body_chars": 129859
+    },
+    {
+      "provider": "duckduckgo",
+      "query": "\"I Кратка\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "google",
+      "query": "\"I Кратка\" \"результат\" практика",
+      "status": "EMPTY",
+      "http_status": 200,
+      "final_url": "https://www.google.com/search?q=%22I+%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%22+%22%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0&num=10",
+      "results": 0,
+      "body_chars": 92395
+    },
+    {
+      "provider": "yahoo",
+      "query": "\"I Кратка\" \"результат\" практика",
+      "status": "FAIL",
+      "error": "HTTPError"
+    },
+    {
+      "provider": "github-code",
+      "query": "\"I Кратка\" \"результат\" практика",
+      "status": "EMPTY",
+      "results": 0
+    }
+  ],
+  "external_ai": {
+    "provider": "none",
+    "status": "UNAVAILABLE",
+    "text": ""
+  },
+  "canonical_mutation": "DISABLED"
+}
