@@ -5,6 +5,7 @@ on:
     - cron: "*/10 * * * *"
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: system-self-repair-writer
   cancel-in-progress: false
