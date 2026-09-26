@@ -24,6 +24,10 @@ def main():
     q=load(QUEUE,{"tasks":[]})
     plan=load(PLAN,{})
     changes=[]
+    experience=load(ROOT/"data/research/system-experience.json",{})
+    lessons=experience.get("last_lessons",[]) or []
+    if lessons:
+        changes.append({"change":"apply_system_experience","count":len(lessons),"lessons":lessons[:10],"reason":"previous cycle lessons are inputs to this bounded improvement cycle"})
     pending=[t for t in q.get("tasks",[]) if t.get("status")=="PENDING"]
     failed=[t for t in q.get("tasks",[]) if t.get("status")=="FAILED"]
 
@@ -39,6 +43,7 @@ def main():
     result={"schema_version":"1.0","updated_at":now,"status":"PASS",
             "mode":"BOUNDED_AUTONOMOUS","policy":policy,
             "changes":changes,"plan_status":plan.get("status"),
+            "experience":{"enabled":bool(experience.get("learning_policy",{}).get("enabled",False)),"lessons_considered":len(lessons)},
             "safety":["no source-code self-modification","no arbitrary shell from AI","no canonical-data mutation",
                       "no additional GitHub jobs","external AI only on low coverage"]}
     OUT.parent.mkdir(parents=True,exist_ok=True)
