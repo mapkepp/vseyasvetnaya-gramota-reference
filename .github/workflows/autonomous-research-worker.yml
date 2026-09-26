@@ -18,6 +18,7 @@ permissions:
 concurrency:
   group: dev-state-writers
   cancel-in-progress: false
+  queue: max
 jobs:
   research:
     runs-on: ubuntu-latest
@@ -127,16 +128,26 @@ jobs:
           git add data/research/worker-results data/research/worker-status.json data/research/bukovy-research-status.json data/research/autonomous-queue.json data/research/practitioner-review-queue.json data/research/self-improvement.json data/research/cycle-metrics.json data/research/self-improvement-application.json data/research/research-history.json
           git diff --cached --quiet || git commit -m "research: record autonomous evidence cycle"
           git fetch origin dev
+          remote_sha="$(git rev-parse origin/dev)"
+          local_sha="$(git rev-parse HEAD)"
+          if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+            echo "::error::DEV_MOVED_DURING_CYCLE: refusing to rebase/merge generated research state over newer dev."
+            echo "local=$local_sha remote=$remote_sha"
+            echo "The cycle result is intentionally discarded; watchdog will start a fresh cycle from current dev."
+            exit 78
+          fi
           for attempt in 1 2 3; do
-            git rebase origin/dev || {
-              git rebase --abort || true
-              git fetch origin dev
-              continue
-            }
             if git push origin HEAD:dev; then
+              echo "PUBLISH_OK: dev advanced from $remote_sha to $local_sha"
               exit 0
             fi
             git fetch origin dev
+            remote_sha="$(git rev-parse origin/dev)"
+            if ! git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+              echo "::error::DEV_MOVED_DURING_PUSH: refusing conflict-producing rebase."
+              echo "local=$local_sha remote=$remote_sha"
+              exit 78
+            fi
           done
-          echo "Autonomous research publish failed after 3 rebase/push attempts."
+          echo "::error::Autonomous research publish failed without attempting a conflict-producing merge."
           exit 1
