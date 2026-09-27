@@ -1,7 +1,1199 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T10:23:01.577384+00:00",
+  "updated_at": "2026-09-27T10:23:44.100968+00:00",
   "cycles": [
+    {
+      "schema_version": "2.0",
+      "cycle_id": "20260927T102326Z",
+      "run_id": "36312371838",
+      "run_number": "205",
+      "workflow": "Autonomous research worker",
+      "event": "workflow_dispatch",
+      "branch": "dev",
+      "commit": "8ef710b0edd3333aa92223089d8f1d0716657073",
+      "started_at": "2026-09-27T10:23:26.559122+00:00",
+      "finished_at": "2026-09-27T10:23:44.100968+00:00",
+      "duration_seconds": 17.542,
+      "selected_tasks": 6,
+      "tasks": [
+        {
+          "task_id": "rotation-dm80-image-61-2",
+          "canonical_entry_id": "dm80-image-61",
+          "bukova": "Фита",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.618686+00:00",
+          "finished_at": "2026-09-27T10:23:35.156346+00:00",
+          "duration_seconds": 8.538,
+          "attempt": 0,
+          "queries": [
+            "\"Фита\" \"Букова\" практика свидетельство",
+            "\"Фита\" \"Букова\" применение опыт",
+            "\"Фита\" \"Букова\" результат эффект",
+            "\"Фита\" \"Букова\" отзыв история",
+            "\"Фита\" \"Букова\" упражнение",
+            "\"Фита\" \"Буковник\" практика",
+            "\"Фита\" \"Буковы\" применение",
+            "\"Фита\" \"Букова\" наблюдение эксперимент",
+            "\"Фита\" \"Букова\" дневник форум видео",
+            "\"Фита\" \"став\" Буков",
+            "\"Фита\" \"буквица\" практика",
+            "\"Фита\" \"нанос\" практика",
+            "\"Фита\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 97799
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14248
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&num=10",
+              "results": 0,
+              "body_chars": 91794
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"Букова\" практика свидетельство",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 97432
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14222
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91418
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 133073
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14224
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91582
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Фита\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 97499
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Фита\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14218
+            },
+            {
+              "provider": "google",
+              "query": "\"Фита\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B8%D1%82%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91490
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Фита\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Фита\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-62-2",
+          "canonical_entry_id": "dm80-image-62",
+          "bukova": "Хвъ",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.619549+00:00",
+          "finished_at": "2026-09-27T10:23:35.103414+00:00",
+          "duration_seconds": 8.484,
+          "attempt": 0,
+          "queries": [
+            "\"Хвъ\" \"Букова\" практика свидетельство",
+            "\"Хвъ\" \"Букова\" применение опыт",
+            "\"Хвъ\" \"Букова\" результат эффект",
+            "\"Хвъ\" \"Букова\" отзыв история",
+            "\"Хвъ\" \"Букова\" упражнение",
+            "\"Хвъ\" \"Буковник\" практика",
+            "\"Хвъ\" \"Буковы\" применение",
+            "\"Хвъ\" \"Букова\" наблюдение эксперимент",
+            "\"Хвъ\" \"Букова\" дневник форум видео",
+            "\"Хвъ\" \"став\" Буков",
+            "\"Хвъ\" \"буквица\" практика",
+            "\"Хвъ\" \"нанос\" практика",
+            "\"Хвъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 131066
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 0,
+              "body_chars": 9406
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&num=10",
+              "results": 0,
+              "body_chars": 91731
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Букова\" практика свидетельство",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 130823
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14214
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91561
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 129765
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14222
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91679
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Хвъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 96216
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Хвъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14222
+            },
+            {
+              "provider": "google",
+              "query": "\"Хвъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B2%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91677
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Хвъ\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Хвъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-63-2",
+          "canonical_entry_id": "dm80-image-63",
+          "bukova": "Ферьтъ",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.619629+00:00",
+          "finished_at": "2026-09-27T10:23:35.156281+00:00",
+          "duration_seconds": 8.537,
+          "attempt": 0,
+          "queries": [
+            "\"Ферьтъ\" \"Букова\" практика свидетельство",
+            "\"Ферьтъ\" \"Букова\" применение опыт",
+            "\"Ферьтъ\" \"Букова\" результат эффект",
+            "\"Ферьтъ\" \"Букова\" отзыв история",
+            "\"Ферьтъ\" \"Букова\" упражнение",
+            "\"Ферьтъ\" \"Буковник\" практика",
+            "\"Ферьтъ\" \"Буковы\" применение",
+            "\"Ферьтъ\" \"Букова\" наблюдение эксперимент",
+            "\"Ферьтъ\" \"Букова\" дневник форум видео",
+            "\"Ферьтъ\" \"став\" Буков",
+            "\"Ферьтъ\" \"буквица\" практика",
+            "\"Ферьтъ\" \"нанос\" практика",
+            "\"Ферьтъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Ферьтъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 132917
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ферьтъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14240
+            },
+            {
+              "provider": "google",
+              "query": "\"Ферьтъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&num=10",
+              "results": 0,
+              "body_chars": 91540
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ферьтъ\" \"Букова\" практика свидетельство",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ферьтъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ферьтъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 131818
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ферьтъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14226
+            },
+            {
+              "provider": "google",
+              "query": "\"Ферьтъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91559
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ферьтъ\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ферьтъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ферьтъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 98178
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ферьтъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14228
+            },
+            {
+              "provider": "google",
+              "query": "\"Ферьтъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91644
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ферьтъ\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ферьтъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ферьтъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 128119
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ферьтъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14216
+            },
+            {
+              "provider": "google",
+              "query": "\"Ферьтъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A4%D0%B5%D1%80%D1%8C%D1%82%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91768
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ферьтъ\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ферьтъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-64-2",
+          "canonical_entry_id": "dm80-image-64",
+          "bukova": "Херъ",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.620374+00:00",
+          "finished_at": "2026-09-27T10:23:35.153834+00:00",
+          "duration_seconds": 8.533,
+          "attempt": 0,
+          "queries": [
+            "\"Херъ\" \"Букова\" практика свидетельство",
+            "\"Херъ\" \"Букова\" применение опыт",
+            "\"Херъ\" \"Букова\" результат эффект",
+            "\"Херъ\" \"Букова\" отзыв история",
+            "\"Херъ\" \"Букова\" упражнение",
+            "\"Херъ\" \"Буковник\" практика",
+            "\"Херъ\" \"Буковы\" применение",
+            "\"Херъ\" \"Букова\" наблюдение эксперимент",
+            "\"Херъ\" \"Букова\" дневник форум видео",
+            "\"Херъ\" \"став\" Буков",
+            "\"Херъ\" \"буквица\" практика",
+            "\"Херъ\" \"нанос\" практика",
+            "\"Херъ\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Херъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 97872
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Херъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14248
+            },
+            {
+              "provider": "google",
+              "query": "\"Херъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&num=10",
+              "results": 0,
+              "body_chars": 91633
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Херъ\" \"Букова\" практика свидетельство",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Херъ\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Херъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 99032
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Херъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14222
+            },
+            {
+              "provider": "google",
+              "query": "\"Херъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91682
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Херъ\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Херъ\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Херъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 98585
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Херъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14230
+            },
+            {
+              "provider": "google",
+              "query": "\"Херъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91776
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Херъ\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Херъ\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Херъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 96319
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Херъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14217
+            },
+            {
+              "provider": "google",
+              "query": "\"Херъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A5%D0%B5%D1%80%D1%8A%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91648
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Херъ\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Херъ\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-65-2",
+          "canonical_entry_id": "dm80-image-65",
+          "bukova": "Черьвь",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "FAIL",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.622041+00:00",
+          "finished_at": "2026-09-27T10:23:34.552407+00:00",
+          "duration_seconds": 7.93,
+          "attempt": 0,
+          "queries": [
+            "\"Черьвь\" \"Букова\" практика свидетельство",
+            "\"Черьвь\" \"Букова\" применение опыт",
+            "\"Черьвь\" \"Букова\" результат эффект",
+            "\"Черьвь\" \"Букова\" отзыв история",
+            "\"Черьвь\" \"Букова\" упражнение",
+            "\"Черьвь\" \"Буковник\" практика",
+            "\"Черьвь\" \"Буковы\" применение",
+            "\"Черьвь\" \"Букова\" наблюдение эксперимент",
+            "\"Черьвь\" \"Букова\" дневник форум видео",
+            "\"Черьвь\" \"став\" Буков",
+            "\"Черьвь\" \"буквица\" практика",
+            "\"Черьвь\" \"нанос\" практика",
+            "\"Черьвь\" \"результат\" практика"
+          ],
+          "findings_count": 0,
+          "verified": true,
+          "normalized": true,
+          "sources": [],
+          "source_count": 0,
+          "finding_summaries": [],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Черьвь\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 132437
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Черьвь\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14240
+            },
+            {
+              "provider": "google",
+              "query": "\"Черьвь\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&num=10",
+              "results": 0,
+              "body_chars": 91772
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Черьвь\" \"Букова\" практика свидетельство",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Черьвь\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Черьвь\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 97865
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Черьвь\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14226
+            },
+            {
+              "provider": "google",
+              "query": "\"Черьвь\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91623
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Черьвь\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Черьвь\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Черьвь\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 112386
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Черьвь\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14234
+            },
+            {
+              "provider": "google",
+              "query": "\"Черьвь\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91538
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Черьвь\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Черьвь\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Черьвь\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 95316
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Черьвь\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14215
+            },
+            {
+              "provider": "google",
+              "query": "\"Черьвь\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A7%D0%B5%D1%80%D1%8C%D0%B2%D1%8C%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91686
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Черьвь\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Черьвь\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            }
+          ],
+          "error": null
+        },
+        {
+          "task_id": "rotation-dm80-image-66-2",
+          "canonical_entry_id": "dm80-image-66",
+          "bukova": "Ша",
+          "priority": "rotation",
+          "goal": "Исследование практического применения и подтверждений",
+          "status": "PASS",
+          "evidence": "MEASURED",
+          "started_at": "2026-09-27T10:23:26.624279+00:00",
+          "finished_at": "2026-09-27T10:23:35.058550+00:00",
+          "duration_seconds": 8.434,
+          "attempt": 0,
+          "queries": [
+            "\"Ша\" \"Букова\" практика свидетельство",
+            "\"Ша\" \"Букова\" применение опыт",
+            "\"Ша\" \"Букова\" результат эффект",
+            "\"Ша\" \"Букова\" отзыв история",
+            "\"Ша\" \"Букова\" упражнение",
+            "\"Ша\" \"Буковник\" практика",
+            "\"Ша\" \"Буковы\" применение",
+            "\"Ша\" \"Букова\" наблюдение эксперимент",
+            "\"Ша\" \"Букова\" дневник форум видео",
+            "\"Ша\" \"став\" Буков",
+            "\"Ша\" \"буквица\" практика",
+            "\"Ша\" \"нанос\" практика",
+            "\"Ша\" \"результат\" практика"
+          ],
+          "findings_count": 5,
+          "verified": true,
+          "normalized": true,
+          "sources": [
+            "https://www.youtube.com/watch?v=38tepVG6uYg",
+            "https://vk.com/wall497673759_26523",
+            "https://vk.com/wall-63433377_5217",
+            "https://dzen.ru/shorts/67895b236e18dd431bb6a4a1",
+            "https://www.youtube.com/watch?v=IxhCd-f_sPA"
+          ],
+          "source_count": 5,
+          "finding_summaries": [
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use.",
+            "Discovered public-web source; requires human-readable verification before use."
+          ],
+          "diagnostics": [
+            {
+              "provider": "bing",
+              "query": "\"Ша\" \"Букова\" практика свидетельство",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&count=10",
+              "results": 0,
+              "body_chars": 133591
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ша\" \"Букова\" практика свидетельство",
+              "status": "PASS",
+              "http_status": 200,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D1%81%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE&kl=ru-ru",
+              "results": 5,
+              "body_chars": 19408
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ша\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&count=10",
+              "results": 0,
+              "body_chars": 132128
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ша\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14218
+            },
+            {
+              "provider": "google",
+              "query": "\"Ша\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%BF%D1%8B%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91571
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ша\" \"Букова\" применение опыт",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ша\" \"Букова\" применение опыт",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ша\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&count=10",
+              "results": 0,
+              "body_chars": 130397
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ша\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14214
+            },
+            {
+              "provider": "google",
+              "query": "\"Ша\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82+%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82&num=10",
+              "results": 0,
+              "body_chars": 91653
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ша\" \"Букова\" результат эффект",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ша\" \"Букова\" результат эффект",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ша\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&count=10",
+              "results": 0,
+              "body_chars": 130346
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ша\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14208
+            },
+            {
+              "provider": "google",
+              "query": "\"Ша\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D0%BE%D1%82%D0%B7%D1%8B%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F&num=10",
+              "results": 0,
+              "body_chars": 91336
+            },
+            {
+              "provider": "yahoo",
+              "query": "\"Ша\" \"Букова\" отзыв история",
+              "status": "FAIL",
+              "error": "HTTPError"
+            },
+            {
+              "provider": "github-code",
+              "query": "\"Ша\" \"Букова\" отзыв история",
+              "status": "EMPTY",
+              "results": 0
+            },
+            {
+              "provider": "bing",
+              "query": "\"Ша\" \"Букова\" упражнение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.bing.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&count=10",
+              "results": 0,
+              "body_chars": 132330
+            },
+            {
+              "provider": "duckduckgo",
+              "query": "\"Ша\" \"Букова\" упражнение",
+              "status": "EMPTY",
+              "http_status": 202,
+              "final_url": "https://html.duckduckgo.com/html/?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&kl=ru-ru",
+              "results": 0,
+              "body_chars": 14214
+            },
+            {
+              "provider": "google",
+              "query": "\"Ша\" \"Букова\" упражнение",
+              "status": "EMPTY",
+              "http_status": 200,
+              "final_url": "https://www.google.com/search?q=%22%D0%A8%D0%B0%22+%22%D0%91%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%22+%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5&num=10",
+              "results": 0,
+              "body_chars": 91609
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
     {
       "schema_version": "2.0",
       "cycle_id": "20260927T102128Z",
