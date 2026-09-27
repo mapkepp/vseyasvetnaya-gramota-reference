@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-24-4-replan-1-replan-2-replan-3",
+  "canonical_entry_id": "dm80-image-24",
+  "bukova": "И",
+  "status": "PASS",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-27T20:44:31.001262+00:00",
+  "verification": [
+    {
+      "url": "https://macpractica.ru/experts/12157",
+      "title": "Букова Мария - Платформа для МАК и Т-игр",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://scholar.sfu.ru/author/3372967",
+      "title": "Публикации: Букова М. И. | Researcher Support",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков",
+        "став",
+        "примен",
+        "практик",
+        "заметил"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://www.maam.ru/detskijsad/1617037",
+      "title": "Наталья Букова. Блог - Страница 1 - Публикации автора 1617037 ...",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://vk.com/wall443263231_17874",
+      "title": "Букова КАКО. Исполнение и реализация задуманного. Помогает выстроить ...",
+      "reachable": true,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNCONFIRMED"
+    },
+    {
+      "url": "https://research.sfu-kras.ru/publications/author/3372967",
+      "title": "Публикации: Букова М. И. | Научно-инновационный портал СФУ",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "URLError"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
