@@ -1,19 +1,17 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T09:56:50.060532+00:00",
+  "updated_at": "2026-09-27T09:58:48.652516+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
-    "pending": 38,
-    "failed": 195,
+    "pending": 32,
+    "failed": 201,
     "last_cycle": "20260927T094824Z",
     "cycle_metrics": {
-      "cycles": 1,
-      "tasks": 6,
       "found": 0,
       "unique_urls": 0,
       "verified": 0,
-      "normalized": 6,
+      "specialist_evidence": 0,
       "practitioner_hits": 0
     },
     "experience_event_count": 5,
@@ -32,7 +30,7 @@
     {
       "id": "failed-task-rotation",
       "action": "route_failed_tasks_to_replan",
-      "reason": "195 failed tasks are present",
+      "reason": "201 failed tasks are present",
       "safe": true
     },
     {
