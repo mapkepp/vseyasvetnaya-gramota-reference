@@ -1,19 +1,17 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T08:58:27.509956+00:00",
+  "updated_at": "2026-09-27T08:58:49.164165+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
     "pending": 6,
-    "failed": 90,
+    "failed": 95,
     "last_cycle": "20260927T085606Z",
     "cycle_metrics": {
-      "cycles": 1,
-      "tasks": 0,
-      "found": 0,
+      "found": 8,
       "unique_urls": 0,
       "verified": 0,
-      "normalized": 0,
+      "specialist_evidence": 0,
       "practitioner_hits": 0
     },
     "experience_event_count": 5,
@@ -30,6 +28,12 @@
       "source": "system-experience.json"
     },
     {
+      "id": "practitioner-yield-zero",
+      "action": "expand_practitioner_queries",
+      "reason": "sources found but no practitioner hits in cycle metrics",
+      "safe": true
+    },
+    {
       "id": "resume-pending",
       "action": "increase_scheduler_frequency",
       "reason": "pending tasks exist but last cycle selected none",
@@ -38,7 +42,7 @@
     {
       "id": "failed-task-rotation",
       "action": "route_failed_tasks_to_replan",
-      "reason": "90 failed tasks are present",
+      "reason": "95 failed tasks are present",
       "safe": true
     },
     {
