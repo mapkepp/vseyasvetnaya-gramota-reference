@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-27T10:37:53.434381+00:00",
+  "updated_at": "2026-09-27T10:38:39.383761+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 334,
+  "replanned_count": 336,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -9356,12 +9356,12 @@
       "task_id": "rotation-dm80-image-73-2",
       "canonical_entry_id": "dm80-image-73",
       "bukova": "Юсъ",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-27T09:09:22.262424+00:00",
       "generation": 2,
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Юсъ\" \"Букова\" практика свидетельство",
@@ -9381,12 +9381,12 @@
       "task_id": "rotation-dm80-image-74-2",
       "canonical_entry_id": "dm80-image-74",
       "bukova": "Я, Слово",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "rotation",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-27T09:09:22.262424+00:00",
       "generation": 2,
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Я, Слово\" \"Букова\" практика свидетельство",
@@ -14393,6 +14393,62 @@
       "replan_depth": 3,
       "exhausted_at": "2026-09-27T10:37:53.370578+00:00",
       "exhausted_reason": "worker_failed"
+    },
+    {
+      "task_id": "rotation-dm80-image-73-2-replan-1",
+      "canonical_entry_id": "dm80-image-73",
+      "bukova": "Юсъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-27T10:38:39.343049+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Юсъ\" \"Букова\" \"опыт\" практика",
+        "\"Юсъ\" \"Букова\" \"отзыв\" результат",
+        "\"Юсъ\" \"Букова\" \"история\" применение",
+        "\"Юсъ\" \"Букова\" \"наблюдение\" эффект",
+        "\"Юсъ\" \"Букова\" \"эксперимент\" результат",
+        "\"Юсъ\" \"Букова\" \"до\" \"после\"",
+        "\"Юсъ\" \"Буковник\" упражнение практика",
+        "\"Юсъ\" \"Буковы\" применение опыт",
+        "\"Юсъ\" \"Букова\" мастер практика свидетельство",
+        "\"Юсъ\" \"Букова\" дневник журнал отчёт",
+        "\"Юсъ\" \"Букова\" форум обсуждение комментарии",
+        "\"Юсъ\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-73-2",
+      "replan_depth": 1
+    },
+    {
+      "task_id": "rotation-dm80-image-74-2-replan-1",
+      "canonical_entry_id": "dm80-image-74",
+      "bukova": "Я, Слово",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-27T10:38:39.343049+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Я, Слово\" \"Букова\" \"опыт\" практика",
+        "\"Я, Слово\" \"Букова\" \"отзыв\" результат",
+        "\"Я, Слово\" \"Букова\" \"история\" применение",
+        "\"Я, Слово\" \"Букова\" \"наблюдение\" эффект",
+        "\"Я, Слово\" \"Букова\" \"эксперимент\" результат",
+        "\"Я, Слово\" \"Букова\" \"до\" \"после\"",
+        "\"Я, Слово\" \"Буковник\" упражнение практика",
+        "\"Я, Слово\" \"Буковы\" применение опыт",
+        "\"Я, Слово\" \"Букова\" мастер практика свидетельство",
+        "\"Я, Слово\" \"Букова\" дневник журнал отчёт",
+        "\"Я, Слово\" \"Букова\" форум обсуждение комментарии",
+        "\"Я, Слово\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-74-2",
+      "replan_depth": 1
     }
   ],
   "queue_health": {
@@ -14403,6 +14459,6 @@
     "replenished_this_run": 0,
     "pending_after": 2,
     "distinct_pending_entries_after": 2,
-    "repaired_at": "2026-09-27T10:37:53.434381+00:00"
+    "repaired_at": "2026-09-27T10:38:39.383761+00:00"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T10:37:52.710157+00:00",
+  "updated_at": "2026-09-27T10:38:27.413417+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "policy": {
@@ -19,8 +19,13 @@
     },
     {
       "change": "failed_tasks_visible_to_replanner",
-      "count": 281,
+      "count": 275,
       "reason": "replan stage can regenerate weak tasks"
+    },
+    {
+      "change": "idle_state",
+      "value": "WAIT_FOR_QUEUE",
+      "reason": "no pending tasks; do not spawn empty agents"
     }
   ],
   "plan_status": "PASS",
