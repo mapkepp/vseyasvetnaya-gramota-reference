@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T08:58:15.474574+00:00",
+  "updated_at": "2026-09-27T19:54:31.546413+00:00",
   "status": "PASS",
   "policy": {
     "auto_install": false,
@@ -10,9 +10,9 @@
   },
   "evaluations": [
     {
-      "repository": "HarnessRouter/harnessrouter",
+      "repository": "ag2ai/ag2",
       "license": "Apache-2.0",
-      "stars": 2688,
+      "stars": 4963,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -26,7 +26,77 @@
     {
       "repository": "pydantic/pydantic-ai",
       "license": "MIT",
-      "stars": 20206,
+      "stars": 20214,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "RyanAlberts/best-of-Agent-Harnesses",
+      "license": "CC-BY-SA-4.0",
+      "stars": 989,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
+    },
+    {
+      "repository": "HarnessRouter/harnessrouter",
+      "license": "Apache-2.0",
+      "stars": 2700,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "HKUDS/nanobot",
+      "license": "MIT",
+      "stars": 48619,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "omnigent-ai/omnigent",
+      "license": "Apache-2.0",
+      "stars": 10293,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "microsoft/agent-framework",
+      "license": "MIT",
+      "stars": 13824,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -40,105 +110,7 @@
     {
       "repository": "evalstate/fast-agent",
       "license": "Apache-2.0",
-      "stars": 3919,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "ZJU-REAL/HugAgentOS",
-      "license": "NOASSERTION",
-      "stars": 1117,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "omnigent-ai/omnigent",
-      "license": "Apache-2.0",
-      "stars": 10276,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "jaylfc/taOS",
-      "license": "AGPL-3.0",
-      "stars": 552,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "microsoft/agent-governance-toolkit",
-      "license": "MIT",
-      "stars": 6347,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "strands-agents/harness-sdk",
-      "license": "Apache-2.0",
-      "stars": 8472,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "doobidoo/mcp-memory-service",
-      "license": "Apache-2.0",
-      "stars": 1965,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "MervinPraison/PraisonAI",
-      "license": "MIT",
-      "stars": 9092,
+      "stars": 3921,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -152,7 +124,35 @@
     {
       "repository": "loopx-project/loopx",
       "license": "Apache-2.0",
-      "stars": 6022,
+      "stars": 6070,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "Lumiwealth/lumibot",
+      "license": "GPL-3.0",
+      "stars": 2097,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
+    },
+    {
+      "repository": "AgileRL/AgileRL",
+      "license": "Apache-2.0",
+      "stars": 951,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -166,7 +166,7 @@
     {
       "repository": "ApodexAI/FrontierAgent",
       "license": "Apache-2.0",
-      "stars": 4630,
+      "stars": 4645,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -178,23 +178,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "shuxiachai/academic-commercialization-agent",
-      "license": "MIT",
-      "stars": 770,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "dragon1086/prism-insight",
-      "license": "AGPL-3.0",
-      "stars": 767,
+      "repository": "SenteLabsAI/OpenExecutive",
+      "license": "NOASSERTION",
+      "stars": 5336,
       "checks": {
         "known_license": false,
         "active_enough": true,
@@ -206,37 +192,23 @@
       "next": "collect more metadata"
     },
     {
-      "repository": "bytedance/deer-flow",
-      "license": "MIT",
-      "stars": 83027,
+      "repository": "dragon1086/prism-insight",
+      "license": "AGPL-3.0",
+      "stars": 768,
       "checks": {
-        "known_license": true,
+        "known_license": false,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": true
+        "free_first_compatible": false
       },
-      "decision": "EVALUATE_ADAPTER",
+      "decision": "HOLD",
       "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "inclusionAI/Avernet",
-      "license": "Apache-2.0",
-      "stars": 572,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
+      "next": "collect more metadata"
     },
     {
       "repository": "raullenchai/Rapid-MLX",
       "license": "NOASSERTION",
-      "stars": 3850,
+      "stars": 3853,
       "checks": {
         "known_license": false,
         "active_enough": true,
@@ -250,7 +222,7 @@
     {
       "repository": "waybarrios/vllm-mlx",
       "license": "Apache-2.0",
-      "stars": 1596,
+      "stars": 1597,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -264,7 +236,7 @@
     {
       "repository": "adongwanai/learn-workbuddy",
       "license": "MIT",
-      "stars": 382,
+      "stars": 383,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -278,7 +250,7 @@
     {
       "repository": "cactus-compute/needle",
       "license": "Apache-2.0",
-      "stars": 12736,
+      "stars": 12754,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -320,7 +292,7 @@
     {
       "repository": "zrt-ai-lab/ViNote",
       "license": "MIT",
-      "stars": 469,
+      "stars": 470,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -334,7 +306,7 @@
     {
       "repository": "antoinezambelli/forge",
       "license": "MIT",
-      "stars": 2251,
+      "stars": 2250,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -346,23 +318,23 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "jjang-ai/vmlx",
-      "license": "Apache-2.0",
-      "stars": 871,
+      "repository": "jgravelle/jcodemunch-mcp",
+      "license": "NOASSERTION",
+      "stars": 2716,
       "checks": {
-        "known_license": true,
+        "known_license": false,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": true
+        "free_first_compatible": false
       },
-      "decision": "EVALUATE_ADAPTER",
+      "decision": "HOLD",
       "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
+      "next": "collect more metadata"
     },
     {
       "repository": "vitali87/code-graph-rag",
       "license": "MIT",
-      "stars": 5181,
+      "stars": 5183,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -374,9 +346,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "stickerdaniel/linkedin-mcp-server",
+      "repository": "Ikalus1988/MisakaNet",
       "license": "Apache-2.0",
-      "stars": 3639,
+      "stars": 512,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -388,9 +360,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "DeHor-Labs/mcp-fiscal-brasil",
+      "repository": "jianruntech/geo-score",
       "license": "MIT",
-      "stars": 312,
+      "stars": 553,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -400,11 +372,39 @@
       "decision": "EVALUATE_ADAPTER",
       "known": false,
       "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "VibeTensor/attestix",
+      "license": "Apache-2.0",
+      "stars": 360,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "cbcoutinho/nextcloud-mcp-server",
+      "license": "AGPL-3.0",
+      "stars": 368,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
     },
     {
       "repository": "caura-ai/caura",
       "license": "Apache-2.0",
-      "stars": 536,
+      "stars": 538,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -418,7 +418,7 @@
     {
       "repository": "heymrun/heym",
       "license": "NOASSERTION",
-      "stars": 1287,
+      "stars": 1290,
       "checks": {
         "known_license": false,
         "active_enough": true,
@@ -430,9 +430,9 @@
       "next": "collect more metadata"
     },
     {
-      "repository": "razzant/ouroboros",
-      "license": "MIT",
-      "stars": 1383,
+      "repository": "maziyarpanahi/openmed",
+      "license": "Apache-2.0",
+      "stars": 5420,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -446,7 +446,7 @@
     {
       "repository": "LearningCircuit/local-deep-research",
       "license": "MIT",
-      "stars": 9133,
+      "stars": 9137,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -458,37 +458,51 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "john-rocky/coreai-model-zoo",
-      "license": "NOASSERTION",
-      "stars": 449,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "feder-cr/jev",
-      "license": "MIT",
-      "stars": 888,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "maziyarpanahi/openmed",
+      "repository": "MakazhanAlpamys/Soup",
       "license": "Apache-2.0",
-      "stars": 5419,
+      "stars": 7394,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "nicedreamzapp/claude-code-local",
+      "license": "MIT",
+      "stars": 3330,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "goruck/home-generative-agent",
+      "license": "MIT",
+      "stars": 310,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "syv-ai/HyperQwen",
+      "license": "Apache-2.0",
+      "stars": 1734,
       "checks": {
         "known_license": true,
         "active_enough": true,
