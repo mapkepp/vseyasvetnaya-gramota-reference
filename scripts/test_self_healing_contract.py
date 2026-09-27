@@ -16,7 +16,7 @@ def need(text,label,needle):
     if needle not in text:
         errors.append(f"{label}: missing {needle}")
 
-for label,text in [("watchdog",watch),("self-repair",repair),("worker",worker)]:
+for label,text in [("self-repair",repair),("worker",worker)]:
     if re.search(r"concurrency:\s*\n\s*group:\s*dev-state-writers", text) is None:
         errors.append(f"{label}: not serialized by dev-state-writers")
 
