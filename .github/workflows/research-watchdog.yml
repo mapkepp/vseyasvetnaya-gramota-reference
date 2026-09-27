@@ -1,10 +1,4 @@
 name: Autonomous research watchdog
-# recovery-loop: stale-check -> self-repair -> worker-handoff
-# bounded-retry: recovery writer refreshes derived state after safe dev movement
-# ancestry: remote-dev must be an ancestor of generated local state before publish
-# handoff: queue is read directly from GitHub API content
-# permissions: self-repair owns actions:write for worker handoff
-# completion-handoff: worker explicitly wakes this watchdog after every cycle
 on:
   workflow_dispatch:
   push:
@@ -16,67 +10,41 @@ on:
   workflow_run:
     workflows: ["Autonomous research worker", "System integrity and self-repair"]
     types: [completed]
-
 permissions:
   contents: write
   actions: write
   issues: write
 concurrency:
-  group: dev-state-writers
+  group: research-watchdog
   cancel-in-progress: false
 jobs:
   watchdog:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Checkout control branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify and repair worker installation
+      - name: Check state and serialize recovery
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git fetch origin dev
-          git worktree add /tmp/dev origin/dev
-          repaired=0
-          for f in scripts/repair_research_queue.py scripts/verify_research_sources.py scripts/replan_research_queue.py scripts/practitioner_evidence_gate.py scripts/build_practitioner_review_queue.py scripts/normalize_practitioner_evidence.py scripts/github_web_research_worker.py; do
-            if ! test -f "/tmp/dev/$f"; then
-              if git cat-file -e "origin/main:$f" 2>/dev/null; then
-                mkdir -p "/tmp/dev/$(dirname "$f")"
-                git show "origin/main:$f" > "/tmp/dev/$f"
-                repaired=1
-                echo "REPAIRED $f"
-              else
-                echo "::error::Missing worker component in dev and main: $f"
-                exit 1
-              fi
-            fi
-          done
-          python3 -m py_compile /tmp/dev/scripts/*.py
-          if [ "$repaired" = "1" ]; then
-            cd /tmp/dev
-            git config user.name "research-watchdog"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add scripts
-            git commit -m "fix(research): watchdog restore worker components"
-            git push origin HEAD:dev
-          fi
-      - name: Check worker, record result and recover
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
           mkdir -p data/research
-          runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?per_page=10")"
-          latest="$(echo "$runs" | jq -r '.workflow_runs[0].id // empty')"
-          status="$(echo "$runs" | jq -r '.workflow_runs[0].status // empty')"
-          conclusion="$(echo "$runs" | jq -r '.workflow_runs[0].conclusion // empty')"
+          runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10")"
+          repair_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/runs?branch=dev&per_page=10")"
+          latest="$(echo "$runs" | jq -r '.workflow_runs[0] // {}')"
+          latest_id="$(echo "$latest" | jq -r '.id // empty')"
+          status="$(echo "$latest" | jq -r '.status // empty')"
+          conclusion="$(echo "$latest" | jq -r '.conclusion // empty')"
+          worker_active="$(echo "$runs" | jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length')"
+          repair_active="$(echo "$repair_runs" | jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length')"
           queue="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\n' | base64 -d)"
           pending="$(echo "$queue" | jq '[.tasks[] | select(.status=="PENDING")] | length')"
           worker="{}"
-          if worker_payload="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/worker-status.json?ref=dev" 2>/dev/null)"; then
-            worker="$(echo "$worker_payload" | jq -r '.content // empty' | tr -d '\n' | base64 -d 2>/dev/null || echo "{}")"
+          if payload="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/worker-status.json?ref=dev" 2>/dev/null)"; then
+            worker="$(echo "$payload" | jq -r '.content' | tr -d '\n' | base64 -d 2>/dev/null || echo '{}')"
           fi
           heartbeat="$(echo "$worker" | jq -r '.updated_at // empty')"
           age=999999
@@ -86,27 +54,21 @@ jobs:
             [ "$hb_epoch" -gt 0 ] && age=$((now_epoch-hb_epoch))
           fi
           python3 - <<PY
-          import json, pathlib
-          from datetime import datetime, timezone
+          import json,pathlib
+          from datetime import datetime,timezone
           p=pathlib.Path("data/research/watchdog-history.json")
           try:d=json.loads(p.read_text())
           except Exception:d={"schema_version":"1.0","checks":[]}
-          check={"checked_at":datetime.now(timezone.utc).isoformat(),"latest_run_id":"$latest","worker_status":"$status","conclusion":"$conclusion","pending":int("$pending"),"heartbeat_age_seconds":int("$age")}
+          check={"checked_at":datetime.now(timezone.utc).isoformat(),"latest_run_id":"$latest_id","worker_status":"$status","conclusion":"$conclusion","pending":int("$pending"),"heartbeat_age_seconds":int("$age")}
           d["checks"]=[check]+d.get("checks",[])[:99]
           failures=0
           for x in d["checks"]:
-            status=x.get("worker_status")
-            conclusion=x.get("conclusion")
-            heartbeat_age=x.get("heartbeat_age_seconds",999999)
-            pending_count=x.get("pending",0)
-            problematic=bool(pending_count) and (
-              conclusion in ("failure","cancelled","timed_out") or
-              (status in ("in_progress","queued") and heartbeat_age>900)
+            problematic=bool(x.get("pending",0)) and (
+              x.get("conclusion") in ("failure","cancelled","timed_out") or
+              (x.get("worker_status") in ("in_progress","queued") and x.get("heartbeat_age_seconds",999999)>900)
             )
-            if problematic:
-              failures+=1
-            else:
-              break
+            if problematic: failures+=1
+            else: break
           d["consecutive_recovery_failures"]=failures
           d["state"]="RECOVERY_REQUIRED" if failures>=3 else ("RECOVERY_PENDING" if failures else "HEALTHY")
           d["updated_at"]=check["checked_at"]
@@ -116,24 +78,38 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/research/watchdog-history.json
           git diff --cached --quiet || git commit -m "automation: record watchdog check"
-          git push origin HEAD:main || true
+          git fetch origin main
+          remote_main="$(git rev-parse origin/main)"
+          local_main="$(git rev-parse HEAD)"
+          if git merge-base --is-ancestor "$remote_main" "$local_main"; then git push origin HEAD:main || true; fi
 
-          if [ "$pending" -gt 0 ] && [ "$age" -gt 900 ]; then
-            if [ "$status" = "in_progress" ] || [ "$status" = "queued" ]; then
-              echo "STALE_ACTIVE_WORKER: heartbeat устарел у активного worker — отменяем зависший run и запускаем self-repair."
-              if [ -n "$latest" ]; then
-                gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/$latest/cancel" >/dev/null || true
-              fi
-            else
-              echo "STALE_FINISHED_WORKER: очередь не обработана и heartbeat устарел — запускаем self-repair перед новым worker."
-            fi
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null
-          elif [ "$status" != "in_progress" ] && [ "$status" != "queued" ] && [ "$pending" -gt 0 ]; then
-            echo "Нет активного worker — запускаем новый worker от текущего dev."
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
+          if [ "$pending" -eq 0 ]; then
+            echo "WATCHDOG_OK: queue empty."
+            exit 0
           fi
+          if [ "$repair_active" -gt 0 ]; then
+            echo "WATCHDOG_WAIT: self-repair active."
+            exit 0
+          fi
+          if [ "$worker_active" -gt 0 ] && [ "$age" -gt 900 ]; then
+            echo "STALE_ACTIVE_WORKER: cancel worker and dispatch one self-repair."
+            [ -n "$latest_id" ] && gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/$latest_id/cancel" >/dev/null || true
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null
+            exit 0
+          fi
+          if [ "$worker_active" -gt 0 ]; then
+            echo "WATCHDOG_OK: worker active."
+            exit 0
+          fi
+          if [ "$age" -gt 900 ] || [ "$conclusion" = "failure" ] || [ "$conclusion" = "cancelled" ] || [ "$conclusion" = "timed_out" ]; then
+            echo "RECOVERY_NEEDED: self-repair first."
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/dispatches" -f ref=dev >/dev/null
+            exit 0
+          fi
+          echo "NO_ACTIVE_WORKER: dispatch one worker."
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
           failures="$(jq -r '.consecutive_recovery_failures // 0' data/research/watchdog-history.json)"
           if [ "$pending" -gt 0 ] && [ "$failures" -ge 3 ]; then
-            echo "::error::ASSISTANT_REQUIRED: worker не восстановился после нескольких проверок."
-            gh api --method POST "repos/${GITHUB_REPOSITORY}/issues" -f title="[ASSISTANT-REQUIRED] Автовосстановление worker не сработало" -f body="Watchdog зафиксировал $failures последовательных проблемных проверок при наличии ожидающих задач. Self-repair будет проверяться повторно; toolbox evolution не запускается параллельно с recovery writer. Нужен разбор ассистентом." >/dev/null || true
+            echo "::error::ASSISTANT_REQUIRED: repeated recovery failure."
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/issues" -f title="[ASSISTANT-REQUIRED] Автовосстановление worker не сработало" -f body="Watchdog: $failures последовательных проблемных проверок при наличии ожидающих задач. Требуется разбор ассистентом." >/dev/null || true
           fi
