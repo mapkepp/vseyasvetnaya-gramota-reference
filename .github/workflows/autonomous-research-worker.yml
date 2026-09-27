@@ -18,9 +18,8 @@ permissions:
   contents: write
   actions: write
 concurrency:
-  group: dev-state-writers
+  group: autonomous-research-worker
   cancel-in-progress: false
-
 jobs:
   research:
     runs-on: ubuntu-latest
@@ -37,23 +36,21 @@ jobs:
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           out=pathlib.Path("data/research/worker-results"); out.mkdir(parents=True,exist_ok=True)
           rank={"critical":0,"high":1,"replan":2,"normal":3,"low":4}
-          tasks=[t for t in q["tasks"] if t.get("status")=="PENDING"]
-          tasks=sorted(tasks,key=lambda t:(rank.get(t.get("priority"),9),t.get("created_at","")))[:6]
+          tasks=sorted([t for t in q["tasks"] if t.get("status")=="PENDING"],key=lambda t:(rank.get(t.get("priority"),9),t.get("created_at","")))[:6]
           now=datetime.now(timezone.utc)
           json.dump({"schema_version":"1.0","cycle_id":now.strftime("%Y%m%dT%H%M%SZ"),"created_at":now.isoformat(),"task_ids":[t["task_id"] for t in tasks]},open(out/"cycle-task-manifest.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Run six parallel discovery agents
         shell: python
         run: |
-          import json,pathlib,subprocess,concurrent.futures
+          import json,pathlib,subprocess,concurrent.futures,datetime
           out=pathlib.Path("data/research/worker-results")
           manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           q=json.load(open("data/research/autonomous-queue.json",encoding="utf-8"))
           by_id={t["task_id"]:t for t in q["tasks"]}; tasks=[by_id[x] for x in manifest["task_ids"]]
           def run(t):
-            import datetime
             tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json"); runtime=out/(t["task_id"]+".runtime.json")
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
-            started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+            started=datetime.datetime.datetime.now(datetime.timezone.utc).isoformat() if False else datetime.datetime.now(datetime.timezone.utc).isoformat()
             rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False,timeout=300).returncode
             finished=datetime.datetime.now(datetime.timezone.utc).isoformat()
             json.dump({"task_id":t["task_id"],"started_at":started,"finished_at":finished,"returncode":rc},open(runtime,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
@@ -71,8 +68,7 @@ jobs:
         shell: python
         run: |
           import pathlib,subprocess,json,concurrent.futures
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          out=pathlib.Path("data/research/worker-results"); manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def specialist(task_id):
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json")
             return subprocess.run(["python3","scripts/specialist_pipeline.py",str(tf),str(rf)],check=False,timeout=180).returncode if rf.exists() else 0
@@ -87,8 +83,7 @@ jobs:
         shell: python
         run: |
           import pathlib,subprocess,json,concurrent.futures
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          out=pathlib.Path("data/research/worker-results"); manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def verify(task_id):
             tf=out/(task_id+".task.json"); rf=out/(task_id+".result.json"); vf=out/(task_id+".verified.json")
             return subprocess.run(["python3","scripts/verify_research_sources.py",str(tf),str(rf),str(vf)],check=False,timeout=180).returncode if rf.exists() else 0
@@ -97,8 +92,7 @@ jobs:
         shell: python
         run: |
           import pathlib,subprocess,json,concurrent.futures
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          out=pathlib.Path("data/research/worker-results"); manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           def normalize(task_id):
             tf=out/(task_id+".task.json"); vf=out/(task_id+".verified.json"); rf=out/(task_id+".result.json"); nf=out/(task_id+".normalized.json")
             return subprocess.run(["python3","scripts/normalize_practitioner_evidence.py",str(tf),str(vf),str(nf)],check=False,timeout=180).returncode if vf.exists() and rf.exists() else 0
@@ -116,8 +110,7 @@ jobs:
         run: |
           import json,pathlib
           from datetime import datetime,timezone
-          out=pathlib.Path("data/research/worker-results")
-          manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
+          out=pathlib.Path("data/research/worker-results"); manifest=json.load(open(out/"cycle-task-manifest.json",encoding="utf-8"))
           verified=sum(1 for x in manifest["task_ids"] if (out/(x+".verified.json")).exists())
           normalized=sum(1 for x in manifest["task_ids"] if (out/(x+".normalized.json")).exists())
           review=json.load(open("data/research/practitioner-review-queue.json",encoding="utf-8"))
@@ -131,8 +124,6 @@ jobs:
           python3 scripts/system_self_check.py
           python3 scripts/record_research_history.py
           python3 scripts/record_system_experience.py
-
-
       - name: Commit evidence and queue to dev
         run: |
           git config user.name "toolbox-research-worker"
@@ -143,30 +134,24 @@ jobs:
           remote_sha="$(git rev-parse origin/dev)"
           local_sha="$(git rev-parse HEAD)"
           if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
-            echo "::error::DEV_MOVED_DURING_CYCLE: refusing to rebase/merge generated research state over newer dev."
-            echo "local=$local_sha remote=$remote_sha"
-            echo "The cycle result is intentionally discarded; watchdog will start a fresh cycle from current dev."
+            echo "::error::DEV_MOVED_DURING_CYCLE: refusing to publish over newer dev."
             exit 78
           fi
           for attempt in 1 2 3; do
             if git push origin HEAD:dev; then
-              echo "PUBLISH_OK: dev advanced from $remote_sha to $local_sha"
+              echo "PUBLISH_OK"
               exit 0
             fi
             git fetch origin dev
             remote_sha="$(git rev-parse origin/dev)"
             if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
-              echo "::error::DEV_MOVED_DURING_PUSH: refusing conflict-producing rebase."
-              echo "local=$local_sha remote=$remote_sha"
+              echo "::error::DEV_MOVED_DURING_PUSH: refusing conflict-producing merge."
               exit 78
             fi
           done
-          echo "::error::Autonomous research publish failed without attempting a conflict-producing merge."
           exit 1
       - name: Notify watchdog after worker completion
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "WORKER_COMPLETION_HANDOFF: notify watchdog immediately."
-          gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/research-watchdog.yml/dispatches" -f ref=main >/dev/null
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/research-watchdog.yml/dispatches" -f ref=main >/dev/null
