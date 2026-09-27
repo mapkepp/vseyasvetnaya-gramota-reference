@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.1",
+  "task_id": "rotation-dm80-image-7-4-replan-1-replan-2-replan-3",
+  "canonical_entry_id": "dm80-image-7",
+  "bukova": "А",
+  "status": "PASS",
+  "evidence": "MEASURED",
+  "generated_at": "2026-09-27T20:04:48.810965+00:00",
+  "verification": [
+    {
+      "url": "https://scholar.sfu.ru/author/3372967",
+      "title": "Публикации: Букова М. И. | Researcher Support",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": true,
+      "result_context": true,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков",
+        "став",
+        "примен",
+        "практик",
+        "заметил"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://rep.bntu.by/browse?value=Букова, А. А.",
+      "title": "Repository BNTU - Browsing by Author \"Букова, А. А.\"",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "InvalidURL"
+    },
+    {
+      "url": "https://www.internauka.org/authors/bukova-anna-aleksandrovna",
+      "title": "Букова Анна Александровна | www.internauka.org",
+      "reachable": true,
+      "bukova_mention": true,
+      "domain_context": true,
+      "practice_context": true,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [
+        "буков",
+        "став"
+      ],
+      "evidence_type": "source_verification",
+      "verification": "CANDIDATE"
+    },
+    {
+      "url": "https://всеясветнаяграмота.рф/gramota/bukovnik/",
+      "title": "Всеясветная грамота - Буковы Всеясветного Вселенскаго Буковника",
+      "reachable": false,
+      "bukova_mention": false,
+      "domain_context": false,
+      "practice_context": false,
+      "result_context": false,
+      "query_signal_count": 0,
+      "matched_signals": [],
+      "evidence_type": "source_verification",
+      "verification": "UNREACHABLE",
+      "error": "UnicodeEncodeError"
+    }
+  ],
+  "rule": "Candidate verification requires the Bukova mention plus Bukova-specific context and practice/result context; practitioner claim still requires human-readable evidence."
+}
