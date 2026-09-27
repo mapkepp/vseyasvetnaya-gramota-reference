@@ -32,6 +32,9 @@ jobs:
       - name: Validate canonical catalog and derived API
         run: python3 scripts/validate-bukovy.py
 
+      - name: Validate autonomous self-healing contract
+        run: python3 scripts/test_self_healing_contract.py
+
       - name: Require generated API to be committed
         run: |
           if ! git diff --quiet -- api; then
