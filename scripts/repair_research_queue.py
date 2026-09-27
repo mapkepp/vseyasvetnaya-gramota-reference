@@ -2,9 +2,9 @@
 import json,pathlib,re,sys
 from datetime import datetime,timezone
 
-MAX_REPLAN_DEPTH=3
+MAX_REPLAN_DEPTH=6
 REPLENISH_PER_CYCLE=6
-MAX_ROTATION_GENERATIONS=3
+MAX_ROTATION_GENERATIONS=6
 
 def depth(task_id):
     return len(re.findall(r"-replan-\d+", str(task_id)))
@@ -45,17 +45,30 @@ def main():
           "task_id":tid,"canonical_entry_id":eid,"bukova":name,"status":"PENDING",
           "priority":"rotation","track":"BUKOVY_FIRST","created_at":now,"generation":gen,
           "attempt":0,"max_attempts":2,
-          "queries":[
-            f'"{name}" "Букова" практика свидетельство',
-            f'"{name}" "Букова" применение опыт',
-            f'"{name}" "Букова" результат эффект',
-            f'"{name}" "Букова" отзыв история',
-            f'"{name}" "Букова" упражнение',
-            f'"{name}" "Буковник" практика',
-            f'"{name}" "Буковы" применение',
-            f'"{name}" "Букова" наблюдение эксперимент',
-            f'"{name}" "Букова" дневник форум видео'
-          ],
+          "queries": (
+            [f'"{name}" Букова Instagram', f'"{name}" Букова YouTube', f'"{name}" Букова TikTok',
+             f'"{name}" Букова VK видео', f'"{name}" Букова VK', f'"{name}" Буковник видео',
+             f'"{name}" ВсеЯСветная практика', f'"{name}" ВсеЯСветная результат',
+             f'"{name}" Букова отзыв форум', f'"{name}" Букова комментарии', f'"{name}" Букова мастер',
+             f'"{name}" Букова разбор'] if gen == 2 else
+            [f'"{name}" site:youtube.com Букова', f'"{name}" site:rutube.ru Букова',
+             f'"{name}" site:vk.com Букова', f'"{name}" site:proza.ru Букова',
+             f'"{name}" site:forum.anastasia.ru Букова', f'"{name}" site:bezvremenye.ru Букова',
+             f'"{name}" ВсеЯСветная Грамота отзыв', f'"{name}" ВсеЯСветная Грамота практика',
+             f'"{name}" ВсеЯСветная Грамота результат', f'"{name}" Букова применение',
+             f'"{name}" Букова упражнение', f'"{name}" Буковник'] if gen == 3 else
+            [f'"{name}" "Букова" личный опыт', f'"{name}" "Букова" мой опыт',
+             f'"{name}" "Букова" я применял', f'"{name}" "Букова" мне помог',
+             f'"{name}" "Букова" получилось', f'"{name}" "Букова" изменения',
+             f'"{name}" "Букова" результаты', f'"{name}" "Букова" практиковал',
+             f'"{name}" "Букова" методика', f'"{name}" "Букова" техника',
+             f'"{name}" "Букова" занятие', f'"{name}" "Букова" до после'] if gen >= 4 else
+            [f'"{name}" "Букова" практика свидетельство', f'"{name}" "Букова" применение опыт',
+             f'"{name}" "Букова" результат эффект', f'"{name}" "Букова" отзыв история',
+             f'"{name}" "Букова" упражнение', f'"{name}" "Буковник" практика',
+             f'"{name}" "Буковы" применение', f'"{name}" "Букова" наблюдение эксперимент',
+             f'"{name}" "Букова" дневник форум видео']
+          ),
           "reason":"terminal_task_recovery",
           "parent_task_id":latest.get("task_id")
         })
