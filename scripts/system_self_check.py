@@ -19,7 +19,7 @@ WRITER_WORKFLOW_GROUPS={
     "autonomous-implementation-workers.yml":"dev-state-writers",
     "branch-intake.yml":"dev-state-writers",
     "branch-archive-cleanup.yml":"dev-state-writers",
-    "system-self-repair.yml":"system-self-repair-writer",
+    "system-self-repair.yml":"dev-state-writers",
     "rebuild-main-candidate.yml":"dev-state-writers"
 }
 def now(): return datetime.now(timezone.utc).isoformat()
