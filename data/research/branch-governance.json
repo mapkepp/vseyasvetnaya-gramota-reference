@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "language": "ru",
+  "policy": {
+    "main": "стабильная опубликованная ветка",
+    "dev": "основная рабочая ветка автономной разработки",
+    "legacy": "исторические/резервные ветки не использовать для новой работы",
+    "temporary": "ветки automation/*, implementation/* и research/* считать временными и закрывать после переноса результата"
+  },
+  "recommended_flow": "dev → проверка → main",
+  "protected_roles": [
+    "main",
+    "dev"
+  ],
+  "legacy_roles": [
+    "development",
+    "production",
+    "reserve",
+    "backup"
+  ],
+  "temporary_prefixes": [
+    "automation/",
+    "implementation/",
+    "research/"
+  ],
+  "note": "Тулбокс должен сначала проверять состояние веток и не создавать новую ветку без необходимости."
+}

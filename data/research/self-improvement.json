@@ -1,17 +1,19 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T08:56:06.708359+00:00",
+  "updated_at": "2026-09-27T08:58:15.520442+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
-    "pending": 0,
+    "pending": 6,
     "failed": 90,
-    "last_cycle": "20260927T085441Z",
+    "last_cycle": "20260927T085606Z",
     "cycle_metrics": {
+      "cycles": 1,
+      "tasks": 0,
       "found": 0,
       "unique_urls": 0,
       "verified": 0,
-      "specialist_evidence": 0,
+      "normalized": 0,
       "practitioner_hits": 0
     },
     "experience_event_count": 4,
@@ -26,6 +28,12 @@
       "reason": "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт.",
       "safe": true,
       "source": "system-experience.json"
+    },
+    {
+      "id": "resume-pending",
+      "action": "increase_scheduler_frequency",
+      "reason": "pending tasks exist but last cycle selected none",
+      "safe": true
     },
     {
       "id": "failed-task-rotation",
