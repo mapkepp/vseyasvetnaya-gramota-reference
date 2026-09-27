@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-27T10:40:18.419038+00:00",
+  "updated_at": "2026-09-27T10:40:53.122739+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -14510,11 +14510,11 @@
       "task_id": "rotation-dm80-image-73-2-replan-1-replan-2-replan-3",
       "canonical_entry_id": "dm80-image-73",
       "bukova": "Юсъ",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-27T10:40:18.355151+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Юсъ\" \"Букова\" \"опыт\" практика",
@@ -14532,17 +14532,19 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-73-2-replan-1-replan-2",
-      "replan_depth": 3
+      "replan_depth": 3,
+      "exhausted_at": "2026-09-27T10:40:53.061010+00:00",
+      "exhausted_reason": "worker_failed"
     },
     {
       "task_id": "rotation-dm80-image-74-2-replan-1-replan-2-replan-3",
       "canonical_entry_id": "dm80-image-74",
       "bukova": "Я, Слово",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-27T10:40:18.355151+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Я, Слово\" \"Букова\" \"опыт\" практика",
@@ -14560,7 +14562,9 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-74-2-replan-1-replan-2",
-      "replan_depth": 3
+      "replan_depth": 3,
+      "exhausted_at": "2026-09-27T10:40:53.061010+00:00",
+      "exhausted_reason": "worker_failed"
     }
   ],
   "queue_health": {
@@ -14569,8 +14573,8 @@
     "max_rotation_generations": 3,
     "target_distinct_pending": 6,
     "replenished_this_run": 0,
-    "pending_after": 2,
-    "distinct_pending_entries_after": 2,
-    "repaired_at": "2026-09-27T10:40:18.419038+00:00"
+    "pending_after": 0,
+    "distinct_pending_entries_after": 0,
+    "repaired_at": "2026-09-27T10:40:53.122739+00:00"
   }
 }
