@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T19:57:02.157327+00:00",
+  "updated_at": "2026-09-27T20:00:02.986322+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "policy": {
@@ -18,14 +18,14 @@
       "reason": "previous cycle lessons are inputs to this bounded improvement cycle"
     },
     {
-      "change": "failed_tasks_visible_to_replanner",
-      "count": 283,
-      "reason": "replan stage can regenerate weak tasks"
+      "change": "maintain_parallelism",
+      "value": 6,
+      "reason": "queue has enough pending work"
     },
     {
-      "change": "idle_state",
-      "value": "WAIT_FOR_QUEUE",
-      "reason": "no pending tasks; do not spawn empty agents"
+      "change": "failed_tasks_visible_to_replanner",
+      "count": 287,
+      "reason": "replan stage can regenerate weak tasks"
     }
   ],
   "plan_status": "PASS",
