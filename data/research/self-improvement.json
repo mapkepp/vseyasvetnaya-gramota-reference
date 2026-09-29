@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T23:26:18.664872+00:00",
+  "updated_at": "2026-09-29T23:28:19.226876+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
     "pending": 8,
-    "failed": 536,
-    "last_cycle": "20260929T232147Z",
+    "failed": 541,
+    "last_cycle": "20260929T232423Z",
     "cycle_metrics": {
-      "found": 11,
+      "found": 7,
       "unique_urls": 0,
       "verified": 0,
       "specialist_evidence": 0,
@@ -36,7 +36,13 @@
     {
       "id": "failed-task-rotation",
       "action": "route_failed_tasks_to_replan",
-      "reason": "536 failed tasks are present",
+      "reason": "541 failed tasks are present",
+      "safe": true
+    },
+    {
+      "id": "review-evidence",
+      "action": "prioritize_human_review_queue",
+      "reason": "verified evidence still needs review",
       "safe": true
     },
     {
