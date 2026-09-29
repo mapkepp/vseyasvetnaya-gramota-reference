@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-29T22:27:06.444638+00:00",
+  "updated_at": "2026-09-29T22:29:08.233864+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 550,
+  "replanned_count": 556,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -22313,11 +22313,11 @@
       "task_id": "rotation-dm80-image-37-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-37",
       "bukova": "Люди",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Люди\" \"Букова\" опыт практика",
@@ -22335,17 +22335,19 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-37-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
     },
     {
       "task_id": "rotation-dm80-image-38-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-38",
       "bukova": "Ли",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Ли\" \"Букова\" опыт практика",
@@ -22363,17 +22365,19 @@
       ],
       "reason": "verification_incomplete",
       "parent_task_id": "rotation-dm80-image-38-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
     },
     {
       "task_id": "rotation-dm80-image-39-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-39",
       "bukova": "Лель",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Лель\" \"Букова\" опыт практика",
@@ -22391,17 +22395,18 @@
       ],
       "reason": "normalization_incomplete",
       "parent_task_id": "rotation-dm80-image-39-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 0
     },
     {
       "task_id": "rotation-dm80-image-40-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-40",
       "bukova": "Лагъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Лагъ\" \"Букова\" опыт практика",
@@ -22419,17 +22424,19 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-40-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
     },
     {
       "task_id": "rotation-dm80-image-41-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-41",
       "bukova": "Лагъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Лагъ\" \"Букова\" опыт практика",
@@ -22447,17 +22454,19 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-41-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
     },
     {
       "task_id": "rotation-dm80-image-42-4-replan-1-replan-2-replan-3-replan-4-replan-5",
       "canonical_entry_id": "dm80-image-42",
       "bukova": "Мыслэте",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T22:27:06.373041+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Мыслэте\" \"Букова\" опыт практика",
@@ -22475,7 +22484,177 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-42-4-replan-1-replan-2-replan-3-replan-4",
-      "replan_depth": 5
+      "replan_depth": 5,
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
+    },
+    {
+      "task_id": "rotation-dm80-image-37-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-37",
+      "bukova": "Люди",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Люди\" \"Букова\" опыт практика",
+        "\"Люди\" \"Букова\" отзыв результат",
+        "\"Люди\" \"Букова\" история применение",
+        "\"Люди\" \"Букова\" наблюдение эффект",
+        "\"Люди\" \"Букова\" эксперимент результат",
+        "\"Люди\" \"Букова\" до после",
+        "\"Люди\" \"Буковник\" упражнение практика",
+        "\"Люди\" \"Буковы\" применение опыт",
+        "\"Люди\" \"Букова\" мастер практика свидетельство",
+        "\"Люди\" \"Букова\" дневник журнал отчёт",
+        "\"Люди\" \"Букова\" форум обсуждение комментарии",
+        "\"Люди\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-37-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
+    },
+    {
+      "task_id": "rotation-dm80-image-38-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-38",
+      "bukova": "Ли",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Ли\" \"Букова\" опыт практика",
+        "\"Ли\" \"Букова\" отзыв результат",
+        "\"Ли\" \"Букова\" история применение",
+        "\"Ли\" \"Букова\" наблюдение эффект",
+        "\"Ли\" \"Букова\" эксперимент результат",
+        "\"Ли\" \"Букова\" до после",
+        "\"Ли\" \"Буковник\" упражнение практика",
+        "\"Ли\" \"Буковы\" применение опыт",
+        "\"Ли\" \"Букова\" мастер практика свидетельство",
+        "\"Ли\" \"Букова\" дневник журнал отчёт",
+        "\"Ли\" \"Букова\" форум обсуждение комментарии",
+        "\"Ли\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-38-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
+    },
+    {
+      "task_id": "rotation-dm80-image-39-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-39",
+      "bukova": "Лель",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Лель\" \"Букова\" опыт практика",
+        "\"Лель\" \"Букова\" отзыв результат",
+        "\"Лель\" \"Букова\" история применение",
+        "\"Лель\" \"Букова\" наблюдение эффект",
+        "\"Лель\" \"Букова\" эксперимент результат",
+        "\"Лель\" \"Букова\" до после",
+        "\"Лель\" \"Буковник\" упражнение практика",
+        "\"Лель\" \"Буковы\" применение опыт",
+        "\"Лель\" \"Букова\" мастер практика свидетельство",
+        "\"Лель\" \"Букова\" дневник журнал отчёт",
+        "\"Лель\" \"Букова\" форум обсуждение комментарии",
+        "\"Лель\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "normalization_incomplete",
+      "parent_task_id": "rotation-dm80-image-39-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
+    },
+    {
+      "task_id": "rotation-dm80-image-40-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-40",
+      "bukova": "Лагъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Лагъ\" \"Букова\" опыт практика",
+        "\"Лагъ\" \"Букова\" отзыв результат",
+        "\"Лагъ\" \"Букова\" история применение",
+        "\"Лагъ\" \"Букова\" наблюдение эффект",
+        "\"Лагъ\" \"Букова\" эксперимент результат",
+        "\"Лагъ\" \"Букова\" до после",
+        "\"Лагъ\" \"Буковник\" упражнение практика",
+        "\"Лагъ\" \"Буковы\" применение опыт",
+        "\"Лагъ\" \"Букова\" мастер практика свидетельство",
+        "\"Лагъ\" \"Букова\" дневник журнал отчёт",
+        "\"Лагъ\" \"Букова\" форум обсуждение комментарии",
+        "\"Лагъ\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-40-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
+    },
+    {
+      "task_id": "rotation-dm80-image-41-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-41",
+      "bukova": "Лагъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Лагъ\" \"Букова\" опыт практика",
+        "\"Лагъ\" \"Букова\" отзыв результат",
+        "\"Лагъ\" \"Букова\" история применение",
+        "\"Лагъ\" \"Букова\" наблюдение эффект",
+        "\"Лагъ\" \"Букова\" эксперимент результат",
+        "\"Лагъ\" \"Букова\" до после",
+        "\"Лагъ\" \"Буковник\" упражнение практика",
+        "\"Лагъ\" \"Буковы\" применение опыт",
+        "\"Лагъ\" \"Букова\" мастер практика свидетельство",
+        "\"Лагъ\" \"Букова\" дневник журнал отчёт",
+        "\"Лагъ\" \"Букова\" форум обсуждение комментарии",
+        "\"Лагъ\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-41-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
+    },
+    {
+      "task_id": "rotation-dm80-image-42-4-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
+      "canonical_entry_id": "dm80-image-42",
+      "bukova": "Мыслэте",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T22:29:08.157387+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Мыслэте\" \"Букова\" опыт практика",
+        "\"Мыслэте\" \"Букова\" отзыв результат",
+        "\"Мыслэте\" \"Букова\" история применение",
+        "\"Мыслэте\" \"Букова\" наблюдение эффект",
+        "\"Мыслэте\" \"Букова\" эксперимент результат",
+        "\"Мыслэте\" \"Букова\" до после",
+        "\"Мыслэте\" \"Буковник\" упражнение практика",
+        "\"Мыслэте\" \"Буковы\" применение опыт",
+        "\"Мыслэте\" \"Букова\" мастер практика свидетельство",
+        "\"Мыслэте\" \"Букова\" дневник журнал отчёт",
+        "\"Мыслэте\" \"Букова\" форум обсуждение комментарии",
+        "\"Мыслэте\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-42-4-replan-1-replan-2-replan-3-replan-4-replan-5",
+      "replan_depth": 6
     }
   ],
   "queue_health": {
@@ -22486,6 +22665,6 @@
     "replenished_this_run": 0,
     "pending_after": 38,
     "distinct_pending_entries_after": 38,
-    "repaired_at": "2026-09-29T22:27:06.444638+00:00"
+    "repaired_at": "2026-09-29T22:29:08.233864+00:00"
   }
 }
