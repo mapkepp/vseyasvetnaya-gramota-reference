@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T23:33:06.763713+00:00",
+  "updated_at": "2026-09-29T23:35:00.449204+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
     "pending": 8,
-    "failed": 552,
-    "last_cycle": "20260929T232850Z",
+    "failed": 557,
+    "last_cycle": "20260929T233113Z",
     "cycle_metrics": {
-      "found": 0,
+      "found": 4,
       "unique_urls": 0,
       "verified": 0,
       "specialist_evidence": 0,
@@ -28,9 +28,15 @@
       "source": "system-experience.json"
     },
     {
+      "id": "practitioner-yield-zero",
+      "action": "expand_practitioner_queries",
+      "reason": "sources found but no practitioner hits in cycle metrics",
+      "safe": true
+    },
+    {
       "id": "failed-task-rotation",
       "action": "route_failed_tasks_to_replan",
-      "reason": "552 failed tasks are present",
+      "reason": "557 failed tasks are present",
       "safe": true
     },
     {
