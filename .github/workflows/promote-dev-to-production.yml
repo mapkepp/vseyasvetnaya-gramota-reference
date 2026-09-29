@@ -40,6 +40,19 @@ jobs:
             exit 1
           fi
 
+      - name: Require safe promotion ancestry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin main dev --prune
+          if ! git merge-base --is-ancestor origin/main origin/dev; then
+            echo "::error::PROMOTION_BLOCKED_DIVERGED: dev is not a descendant of main; refusing automatic production merge."
+            git rev-list --left-right --count origin/main...origin/dev
+            exit 78
+          fi
+          echo "PASS: dev descends from main; automatic promotion is safe to attempt."
+
       - name: Snapshot production
         run: |
           git checkout --detach origin/main
