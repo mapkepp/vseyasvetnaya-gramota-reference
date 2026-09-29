@@ -39,6 +39,7 @@ def main():
             run("git","reset","--hard","HEAD^",check=False)
             results.append({"branch":b,"status":"blocked-validation"}); continue
         results.append({"branch":b,"status":"merged" if mode=="integration-candidate" else "extracted"})
-    # Удаление веток выполняется только после подтверждения, что ветка не содержит уникального полезного материала; protected main/dev никогда не удаляются.\n    cleanup=[]\n    for r in d.get("branches",[]):\n        if r.get("class") not in ("obsolete","legacy") or r.get("branch") in PRIMARY: continue\n        cleanup.append({"branch":r["branch"],"status":"quarantine-only","reason":"сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"})\n    OUT.parent.mkdir(parents=True,exist_ok=True)
+    # Удаление веток выполняется только после подтверждения, что ветка не содержит уникального полезного материала; protected main/dev никогда не удаляются.
+    cleanup=[]\n    for r in d.get("branches",[]):\n        if r.get("class") not in ("obsolete","legacy") or r.get("branch") in PRIMARY: continue\n        cleanup.append({"branch":r["branch"],"status":"quarantine-only","reason":"сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"})\n    OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps({"version":1,"language":"ru","base_branch":"dev","results":results,"cleanup":cleanup},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__": main()
