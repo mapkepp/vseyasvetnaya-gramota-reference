@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-27T19:54:43.799386+00:00",
+  "updated_at": "2026-09-29T21:56:31.728096+00:00",
   "status": "PASS",
   "policy": {
     "auto_install": false,
@@ -10,79 +10,9 @@
   },
   "evaluations": [
     {
-      "repository": "ag2ai/ag2",
-      "license": "Apache-2.0",
-      "stars": 4963,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
       "repository": "pydantic/pydantic-ai",
       "license": "MIT",
-      "stars": 20214,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "RyanAlberts/best-of-Agent-Harnesses",
-      "license": "CC-BY-SA-4.0",
-      "stars": 989,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "HarnessRouter/harnessrouter",
-      "license": "Apache-2.0",
-      "stars": 2700,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "HKUDS/nanobot",
-      "license": "MIT",
-      "stars": 48619,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "omnigent-ai/omnigent",
-      "license": "Apache-2.0",
-      "stars": 10293,
+      "stars": 20271,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -96,7 +26,77 @@
     {
       "repository": "microsoft/agent-framework",
       "license": "MIT",
-      "stars": 13824,
+      "stars": 13866,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "omnigent-ai/omnigent",
+      "license": "Apache-2.0",
+      "stars": 10348,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "microsoft/agent-governance-toolkit",
+      "license": "MIT",
+      "stars": 6364,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "strands-agents/harness-sdk",
+      "license": "Apache-2.0",
+      "stars": 8562,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "ag2ai/ag2",
+      "license": "Apache-2.0",
+      "stars": 4970,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "HarnessRouter/harnessrouter",
+      "license": "Apache-2.0",
+      "stars": 2774,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -110,63 +110,7 @@
     {
       "repository": "evalstate/fast-agent",
       "license": "Apache-2.0",
-      "stars": 3921,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "loopx-project/loopx",
-      "license": "Apache-2.0",
-      "stars": 6070,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "Lumiwealth/lumibot",
-      "license": "GPL-3.0",
-      "stars": 2097,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "AgileRL/AgileRL",
-      "license": "Apache-2.0",
-      "stars": 951,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "ApodexAI/FrontierAgent",
-      "license": "Apache-2.0",
-      "stars": 4645,
+      "stars": 3922,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -179,50 +123,106 @@
     },
     {
       "repository": "SenteLabsAI/OpenExecutive",
-      "license": "NOASSERTION",
-      "stars": 5336,
+      "license": "Apache-2.0",
+      "stars": 5394,
       "checks": {
-        "known_license": false,
+        "known_license": true,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": false
+        "free_first_compatible": true
       },
-      "decision": "HOLD",
+      "decision": "EVALUATE_ADAPTER",
       "known": false,
-      "next": "collect more metadata"
+      "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "dragon1086/prism-insight",
-      "license": "AGPL-3.0",
-      "stars": 768,
+      "repository": "google/adk-python",
+      "license": "Apache-2.0",
+      "stars": 21680,
       "checks": {
-        "known_license": false,
+        "known_license": true,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": false
+        "free_first_compatible": true
       },
-      "decision": "HOLD",
+      "decision": "EVALUATE_ADAPTER",
       "known": false,
-      "next": "collect more metadata"
+      "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "raullenchai/Rapid-MLX",
-      "license": "NOASSERTION",
-      "stars": 3853,
+      "repository": "moorcheh-ai/memanto",
+      "license": "MIT",
+      "stars": 2300,
       "checks": {
-        "known_license": false,
+        "known_license": true,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": false
+        "free_first_compatible": true
       },
-      "decision": "HOLD",
+      "decision": "EVALUATE_ADAPTER",
       "known": false,
-      "next": "collect more metadata"
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "Abilityai/trinity",
+      "license": "Apache-2.0",
+      "stars": 601,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "doobidoo/mcp-memory-service",
+      "license": "Apache-2.0",
+      "stars": 1973,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
     },
     {
       "repository": "waybarrios/vllm-mlx",
       "license": "Apache-2.0",
-      "stars": 1597,
+      "stars": 1601,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "raullenchai/Rapid-MLX",
+      "license": "NOASSERTION",
+      "stars": 3865,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
+    },
+    {
+      "repository": "cactus-compute/needle",
+      "license": "Apache-2.0",
+      "stars": 12858,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -236,21 +236,7 @@
     {
       "repository": "adongwanai/learn-workbuddy",
       "license": "MIT",
-      "stars": 383,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "cactus-compute/needle",
-      "license": "Apache-2.0",
-      "stars": 12754,
+      "stars": 393,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -318,23 +304,23 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "jgravelle/jcodemunch-mcp",
-      "license": "NOASSERTION",
-      "stars": 2716,
+      "repository": "svnscha/mcp-windbg",
+      "license": "MIT",
+      "stars": 1597,
       "checks": {
-        "known_license": false,
+        "known_license": true,
         "active_enough": true,
         "public_repo": true,
-        "free_first_compatible": false
+        "free_first_compatible": true
       },
-      "decision": "HOLD",
+      "decision": "EVALUATE_ADAPTER",
       "known": false,
-      "next": "collect more metadata"
+      "next": "build sandbox adapter and benchmark against current worker"
     },
     {
       "repository": "vitali87/code-graph-rag",
       "license": "MIT",
-      "stars": 5183,
+      "stars": 5190,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -346,79 +332,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "Ikalus1988/MisakaNet",
-      "license": "Apache-2.0",
-      "stars": 512,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "jianruntech/geo-score",
-      "license": "MIT",
-      "stars": 553,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "VibeTensor/attestix",
-      "license": "Apache-2.0",
-      "stars": 360,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "cbcoutinho/nextcloud-mcp-server",
-      "license": "AGPL-3.0",
-      "stars": 368,
-      "checks": {
-        "known_license": false,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": false
-      },
-      "decision": "HOLD",
-      "known": false,
-      "next": "collect more metadata"
-    },
-    {
-      "repository": "caura-ai/caura",
-      "license": "Apache-2.0",
-      "stars": 538,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "heymrun/heym",
+      "repository": "jgravelle/jcodemunch-mcp",
       "license": "NOASSERTION",
-      "stars": 1290,
+      "stars": 2721,
       "checks": {
         "known_license": false,
         "active_enough": true,
@@ -430,9 +346,9 @@
       "next": "collect more metadata"
     },
     {
-      "repository": "maziyarpanahi/openmed",
+      "repository": "Cranot/roam-code",
       "license": "Apache-2.0",
-      "stars": 5420,
+      "stars": 519,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -442,11 +358,53 @@
       "decision": "EVALUATE_ADAPTER",
       "known": false,
       "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "ArcadeAI/arcade-mcp",
+      "license": "MIT",
+      "stars": 1040,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "agent-next/polymarket-paper-trader",
+      "license": "MIT",
+      "stars": 401,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "inferstep/ATLAS",
+      "license": "AGPL-3.0",
+      "stars": 2097,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
     },
     {
       "repository": "LearningCircuit/local-deep-research",
       "license": "MIT",
-      "stars": 9137,
+      "stars": 9142,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -458,23 +416,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "MakazhanAlpamys/Soup",
-      "license": "Apache-2.0",
-      "stars": 7394,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "nicedreamzapp/claude-code-local",
+      "repository": "razzant/ouroboros",
       "license": "MIT",
-      "stars": 3330,
+      "stars": 1393,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -486,9 +430,23 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "goruck/home-generative-agent",
+      "repository": "axoviq-ai/synthadoc",
+      "license": "AGPL-3.0",
+      "stars": 1465,
+      "checks": {
+        "known_license": false,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": false
+      },
+      "decision": "HOLD",
+      "known": false,
+      "next": "collect more metadata"
+    },
+    {
+      "repository": "HKUDS/nanobot",
       "license": "MIT",
-      "stars": 310,
+      "stars": 48679,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -500,9 +458,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "syv-ai/HyperQwen",
-      "license": "Apache-2.0",
-      "stars": 1734,
+      "repository": "dograh-hq/dograh",
+      "license": "BSD-2-Clause",
+      "stars": 5775,
       "checks": {
         "known_license": true,
         "active_enough": true,
