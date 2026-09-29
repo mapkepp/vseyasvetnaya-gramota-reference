@@ -55,11 +55,16 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          pending="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\n' | base64 -d | jq '[.tasks[] | select(.status=="PENDING")] | length')"
-          worker_active="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10" | jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length')"
+          set -euo pipefail
+          pending="$(jq '[.tasks[] | select(.status=="PENDING")] | length' data/research/autonomous-queue.json)"
+          worker_active="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10" --jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' || echo 0)"
+          if ! [[ "$pending" =~ ^[0-9]+$ ]]; then
+            echo "::error::SELF_REPAIR_HANDOFF_INVALID_QUEUE_COUNT"
+            exit 1
+          fi
           if [ "$pending" -gt 0 ] && [ "$worker_active" -eq 0 ]; then
-            echo "SELF_REPAIR_HANDOFF: repair succeeded; dispatching one worker."
+            echo "SELF_REPAIR_HANDOFF: repair succeeded; dispatching one worker for $pending pending tasks."
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
           else
-            echo "SELF_REPAIR_HANDOFF: no worker dispatch needed."
+            echo "SELF_REPAIR_HANDOFF: no worker dispatch needed (pending=$pending active=$worker_active)."
           fi
