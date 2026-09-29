@@ -54,14 +54,28 @@ jobs:
             tf=out/(t["task_id"]+".task.json"); rf=out/(t["task_id"]+".result.json"); runtime=out/(t["task_id"]+".runtime.json")
             json.dump(t,open(tf,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             started=datetime.datetime.datetime.now(datetime.timezone.utc).isoformat() if False else datetime.datetime.now(datetime.timezone.utc).isoformat()
-            rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False,timeout=300).returncode
+            try:
+              rc=subprocess.run(["python3","scripts/github_web_research_worker.py",str(tf),str(rf)],check=False,timeout=300).returncode
+              timeout=False
+            except subprocess.TimeoutExpired:
+              rc=124
+              timeout=True
+            except Exception as exc:
+              rc=125
+              timeout=False
+              json.dump({"task_id":t["task_id"],"error":repr(exc)},open(runtime.with_suffix(".error.json"),"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             finished=datetime.datetime.now(datetime.timezone.utc).isoformat()
-            json.dump({"task_id":t["task_id"],"started_at":started,"finished_at":finished,"returncode":rc},open(runtime,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
+            json.dump({"task_id":t["task_id"],"started_at":started,"finished_at":finished,"returncode":rc,"timed_out":timeout},open(runtime,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
             return rc
           with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex: results=list(zip(tasks,ex.map(run,tasks)))
           for t,rc in results:
             t["attempt"]=int(t.get("attempt",0))+1
             t["status"]="DONE" if rc==0 else "FAILED"
+            t["last_returncode"]=rc
+            if rc==124:
+              t["last_failure"]="TIMEOUT"
+            elif rc!=0:
+              t["last_failure"]="WORKER_ERROR"
           json.dump(q,open("data/research/autonomous-queue.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Update Bukovy-first completion gate
         run: python3 scripts/bukovy_completion_gate.py
