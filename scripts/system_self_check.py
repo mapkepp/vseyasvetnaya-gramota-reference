@@ -19,7 +19,7 @@ WRITER_WORKFLOW_GROUPS={
     "autonomous-implementation-workers.yml":"dev-state-writers",
     "branch-intake.yml":"dev-state-writers",
     "branch-archive-cleanup.yml":"dev-state-writers",
-    "system-self-repair.yml":"system-self-repair-writer",
+    "system-self-repair.yml":"dev-state-writers",
     "rebuild-main-candidate.yml":"dev-state-writers"
 }
 def now(): return datetime.now(timezone.utc).isoformat()
@@ -39,8 +39,8 @@ def check_json():
             except Exception as e: bad.append(f"{p}: {e}")
     return bad
 def check_python():
-    rc,_,err=run(["python3","-m","compileall","-q","scripts"])
-    return [] if rc==0 else [err or "compileall failed"]
+    rc,out,err=run(["python3","-m","compileall","scripts"])
+    return [] if rc==0 else [f"compileall failed: {err or out or 'no compiler diagnostics'}"]
 def check_status_html():
     candidates=[]
     p=ROOT/"research-status.html"
