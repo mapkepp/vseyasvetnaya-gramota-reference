@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T21:57:14.317897+00:00",
+  "updated_at": "2026-09-29T22:01:42.744375+00:00",
   "status": "PASS",
   "policy": {
     "auto_install": false,
@@ -321,6 +321,20 @@
       "repository": "vitali87/code-graph-rag",
       "license": "MIT",
       "stars": 5190,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
+      "repository": "JerBouma/FinanceToolkit",
+      "license": "MIT",
+      "stars": 5391,
       "checks": {
         "known_license": true,
         "active_enough": true,
