@@ -1,13 +1,15 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T19:59:30.580924+00:00",
-  "status": "PASS",
+  "updated_at": "2026-09-29T21:56:41.921223+00:00",
+  "status": "REPAIR_NEEDED",
   "branch_coherence": {
     "status": "DIVERGED",
-    "main_only": 1,
-    "dev_only": 872
+    "main_only": 373,
+    "dev_only": 553
   },
-  "issues": [],
+  "issues": [
+    "system-self-repair.yml: expected concurrency group system-self-repair-writer with cancel-in-progress=false"
+  ],
   "repairs": [
     "repaired: status surface registry regenerated"
   ],
