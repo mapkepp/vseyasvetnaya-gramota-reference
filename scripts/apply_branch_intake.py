@@ -5,6 +5,7 @@ from pathlib import Path
 SCAN=Path("data/research/branch-scan.json")
 OUT=Path("data/research/branch-intake.json")
 PRIMARY={"main","dev"}
+PROTECTED_PREFIXES=(".github/workflows/","scripts/")
 def run(*a,check=True,**kw): return subprocess.run(a,text=True,capture_output=True,check=check,**kw)
 def main():
     d=json.loads(SCAN.read_text(encoding="utf-8")) if SCAN.exists() else {}
@@ -16,11 +17,21 @@ def main():
         b=r["branch"]; allowed=r.get("allowed_files",[])
         if not allowed: continue
         if mode=="integration-candidate":
+            if any(str(x).startswith(PROTECTED_PREFIXES) for x in allowed):
+                results.append({"branch":b,"status":"blocked-protected-write-zone"})
+                continue
             test=run("git","merge","--no-commit","--no-ff",f"origin/{b}",check=False)
             if test.returncode!=0:
                 run("git","merge","--abort",check=False); results.append({"branch":b,"status":"blocked-conflict"}); continue
             run("git","merge","--abort",check=False)
             m=run("git","merge","--no-ff","--no-edit",f"origin/{b}",check=False)
+            if m.returncode==0:
+                changed=run("git","diff","--name-only","HEAD^","HEAD",check=False).stdout.splitlines()
+                forbidden=[x for x in changed if x.startswith(PROTECTED_PREFIXES) or x not in allowed]
+                if forbidden:
+                    run("git","reset","--hard","HEAD^",check=False)
+                    results.append({"branch":b,"status":"blocked-write-zone","files":forbidden[:50]})
+                    continue
         else:
             mb=run("git","merge-base","HEAD",f"origin/{b}").stdout.strip()
             patch=run("git","diff",mb,f"origin/{b}","--",*allowed,check=False)
