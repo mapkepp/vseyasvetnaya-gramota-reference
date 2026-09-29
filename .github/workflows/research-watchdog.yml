@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "3,13,23,33,43,53 * * * *"
+  workflow_run:
+    workflows: ["Autonomous research worker", "System integrity and self-repair"]
+    types: [completed]
 permissions:
   contents: read
   actions: write
