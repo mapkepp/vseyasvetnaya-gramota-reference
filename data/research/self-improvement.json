@@ -1,18 +1,20 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T22:16:36.245182+00:00",
+  "updated_at": "2026-09-29T22:17:07.195712+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
-    "pending": 32,
+    "pending": 38,
     "failed": 422,
-    "last_cycle": "20260929T221241Z",
+    "last_cycle": "20260929T221442Z",
     "cycle_metrics": {
+      "cycles": 1,
+      "tasks": 6,
       "found": 6,
       "unique_urls": 0,
       "verified": 0,
-      "specialist_evidence": 0,
-      "practitioner_hits": 0
+      "normalized": 6,
+      "practitioner_hits": 1
     },
     "experience_event_count": 7,
     "previous_lessons": [
@@ -26,12 +28,6 @@
       "reason": "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт.",
       "safe": true,
       "source": "system-experience.json"
-    },
-    {
-      "id": "practitioner-yield-zero",
-      "action": "expand_practitioner_queries",
-      "reason": "sources found but no practitioner hits in cycle metrics",
-      "safe": true
     },
     {
       "id": "failed-task-rotation",
