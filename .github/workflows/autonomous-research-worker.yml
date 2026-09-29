@@ -14,8 +14,6 @@ on:
       - "scripts/practitioner_evidence_gate.py"
       - "scripts/replan_research_queue.py"
       - "scripts/repair_research_queue.py"
-  schedule:
-    - cron: "7,27,47 * * * *"
 permissions:
   contents: write
   actions: write
