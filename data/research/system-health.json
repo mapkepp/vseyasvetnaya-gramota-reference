@@ -1,15 +1,14 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T22:17:06.712571+00:00",
+  "updated_at": "2026-09-29T22:19:17.489826+00:00",
   "status": "REPAIR_NEEDED",
   "branch_coherence": {
     "status": "DIVERGED",
     "main_only": 383,
-    "dev_only": 572
+    "dev_only": 579
   },
   "issues": [
-    "compileall failed",
-    "system-self-repair.yml: expected concurrency group system-self-repair-writer with cancel-in-progress=false"
+    "compileall failed: Listing 'scripts'...\nCompiling 'scripts/agent_factory.py'...\nCompiling 'scripts/apply_branch_intake.py'...\n***   File \"scripts/apply_branch_intake.py\", line 57\n    cleanup=[]\\n    for r in d.get(\"branches\",[]):\\n        if r.get(\"class\") not in (\"obsolete\",\"legacy\") or r.get(\"branch\") in PRIMARY: continue\\n        cleanup.append({\"branch\":r[\"branch\"],\"status\":\"quarantine-only\",\"reason\":\"сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом\"})\\n    OUT.parent.mkdir(parents=True,exist_ok=True)\n               ^\nSyntaxError: unexpected character after line continuation character\n\nCompiling 'scripts/archive_and_cleanup_branches.py'...\nCompiling 'scripts/autonomous_implementation_workers.py'...\nCompiling 'scripts/branch_governance.py'...\nCompiling 'scripts/branch_scanner.py'...\nCompiling 'scripts/build-api.py'...\nCompiling 'scripts/build_practitioner_review_queue.py'...\nCompiling 'scripts/bukovy_completion_gate.py'...\nCompiling 'scripts/discover_capabilities.py'...\nCompiling 'scripts/evaluate_capabilities.py'...\nCompiling 'scripts/external_ai_router.py'...\nCompiling 'scripts/github_web_research_worker.py'...\nCompiling 'scripts/measure_research_cycle.py'...\nCompiling 'scripts/normalize_practitioner_evidence.py'...\nCompiling 'scripts/practitioner_evidence_gate.py'...\nCompiling 'scripts/process_system_data.py'...\nCompiling 'scripts/publish_cycle_telemetry.py'...\nCompiling 'scripts/publish_live_research_status.py'...\nCompiling 'scripts/record_research_history.py'...\nCompiling 'scripts/record_system_experience.py'...\nCompiling 'scripts/recover-fita-image.py'...\nCompiling 'scripts/recover-historical-six-pages.py'...\nCompiling 'scripts/repair_research_queue.py'...\nCompiling 'scripts/replan_research_queue.py'...\nCompiling 'scripts/self_improvement_apply.py'...\nCompiling 'scripts/self_improvement_cycle.py'...\nCompiling 'scripts/specialist_pipeline.py'...\nCompiling 'scripts/sync_status_surfaces.py'...\nCompiling 'scripts/system_self_check.py'...\nCompiling 'scripts/test_self_healing_contract.py'...\nCompiling 'scripts/validate-bukovy.py'...\nCompiling 'scripts/verify_research_sources.py'..."
   ],
   "repairs": [
     "repaired: status surface registry regenerated"
