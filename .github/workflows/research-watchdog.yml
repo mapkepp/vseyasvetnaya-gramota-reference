@@ -25,7 +25,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          queue="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\n' | base64 -d)"
+          git fetch origin dev --prune
+          queue="$(git show origin/dev:data/research/autonomous-queue.json)"
           pending="$(echo "$queue" | jq '[.tasks[] | select(.status=="PENDING")] | length')"
           worker_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10")"
           repair_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/runs?branch=dev&per_page=10")"
@@ -36,8 +37,8 @@ jobs:
           conclusion="$(echo "$latest" | jq -r '.conclusion // empty')"
           latest_id="$(echo "$latest" | jq -r '.id // empty')"
           worker="{}"
-          if payload="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/worker-status.json?ref=dev" 2>/dev/null)"; then
-            worker="$(echo "$payload" | jq -r '.content' | tr -d '\n' | base64 -d 2>/dev/null || echo '{}')"
+          if worker_text="$(git show origin/dev:data/research/worker-status.json 2>/dev/null)"; then
+            worker="$worker_text"
           fi
           heartbeat="$(echo "$worker" | jq -r '.updated_at // empty')"
           age=999999
