@@ -1,6 +1,10 @@
 name: System integrity and self-repair
 on:
   workflow_dispatch:
+  push:
+    branches: [dev]
+    paths:
+      - ".github/workflows/system-self-repair.yml"
 permissions:
   contents: write
   actions: write
