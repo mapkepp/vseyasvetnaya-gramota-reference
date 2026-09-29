@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-29T23:57:58.332502+00:00",
+  "updated_at": "2026-09-29T23:58:36.211096+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 737,
+  "replanned_count": 739,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -28187,11 +28187,11 @@
       "task_id": "rotation-dm80-image-74-4-replan-1",
       "canonical_entry_id": "dm80-image-74",
       "bukova": "Я, Слово",
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T23:57:58.250960+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Я, Слово\" \"Букова\" опыт практика",
@@ -28209,18 +28209,19 @@
       ],
       "reason": "worker_failed",
       "parent_task_id": "rotation-dm80-image-74-4",
-      "replan_depth": 1
+      "replan_depth": 1,
+      "last_returncode": 0
     },
     {
       "task_id": "rotation-dm80-image-64-4--3",
       "canonical_entry_id": "dm80-image-64",
       "bukova": "Херъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-29T23:57:58.332502+00:00",
       "generation": 4,
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Херъ\" \"Букова\" личный опыт",
@@ -28237,7 +28238,65 @@
         "\"Херъ\" \"Букова\" до после"
       ],
       "reason": "terminal_task_recovery",
-      "parent_task_id": "rotation-dm80-image-64-2-replan-1-replan-2-replan-3"
+      "parent_task_id": "rotation-dm80-image-64-2-replan-1-replan-2-replan-3",
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
+    },
+    {
+      "task_id": "rotation-dm80-image-74-4-replan-1-replan-2",
+      "canonical_entry_id": "dm80-image-74",
+      "bukova": "Я, Слово",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T23:58:36.127234+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Я, Слово\" \"Букова\" опыт практика",
+        "\"Я, Слово\" \"Букова\" отзыв результат",
+        "\"Я, Слово\" \"Букова\" история применение",
+        "\"Я, Слово\" \"Букова\" наблюдение эффект",
+        "\"Я, Слово\" \"Букова\" эксперимент результат",
+        "\"Я, Слово\" \"Букова\" до после",
+        "\"Я, Слово\" \"Буковник\" упражнение практика",
+        "\"Я, Слово\" \"Буковы\" применение опыт",
+        "\"Я, Слово\" \"Букова\" мастер практика свидетельство",
+        "\"Я, Слово\" \"Букова\" дневник журнал отчёт",
+        "\"Я, Слово\" \"Букова\" форум обсуждение комментарии",
+        "\"Я, Слово\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "verification_incomplete",
+      "parent_task_id": "rotation-dm80-image-74-4-replan-1",
+      "replan_depth": 2
+    },
+    {
+      "task_id": "rotation-dm80-image-64-4--3-replan-1",
+      "canonical_entry_id": "dm80-image-64",
+      "bukova": "Херъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-29T23:58:36.127234+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Херъ\" \"Букова\" опыт практика",
+        "\"Херъ\" \"Букова\" отзыв результат",
+        "\"Херъ\" \"Букова\" история применение",
+        "\"Херъ\" \"Букова\" наблюдение эффект",
+        "\"Херъ\" \"Букова\" эксперимент результат",
+        "\"Херъ\" \"Букова\" до после",
+        "\"Херъ\" \"Буковник\" упражнение практика",
+        "\"Херъ\" \"Буковы\" применение опыт",
+        "\"Херъ\" \"Букова\" мастер практика свидетельство",
+        "\"Херъ\" \"Букова\" дневник журнал отчёт",
+        "\"Херъ\" \"Букова\" форум обсуждение комментарии",
+        "\"Херъ\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-64-4--3",
+      "replan_depth": 1
     }
   ],
   "queue_health": {
@@ -28245,9 +28304,9 @@
     "max_replan_depth": 6,
     "max_rotation_generations": 6,
     "target_distinct_pending": 6,
-    "replenished_this_run": 1,
+    "replenished_this_run": 0,
     "pending_after": 2,
     "distinct_pending_entries_after": 2,
-    "repaired_at": "2026-09-29T23:57:58.332502+00:00"
+    "repaired_at": "2026-09-29T23:58:36.211096+00:00"
   }
 }
