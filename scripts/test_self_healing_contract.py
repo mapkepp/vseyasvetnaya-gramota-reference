@@ -26,8 +26,8 @@ for needle in ["repair_active","STALE_ACTIVE_WORKER","RECOVERY_NEEDED","WATCHDOG
     need(watch,"watchdog",needle)
 for needle in ["if: success()","SELF_REPAIR_PUBLISH_OK","SELF_REPAIR_PUBLISH_FAILED","SELF_REPAIR_HANDOFF"]:
     need(repair,"self-repair",needle)
-for needle in ["Repair research queue before selection","DEV_MOVED_DURING_CYCLE",
-               "PUBLISH_OK","timeout=300","timeout=180"]:
+for needle in ["Repair research queue before selection","git rebase --autostash origin/dev",
+               "DEV_REBASE_CONFLICT","PUBLISH_OK","timeout=300","timeout=180"]:
     need(worker,"worker",needle)
 
 if contract.get("state_writer_concurrency_group") != "dev-state-writers":
