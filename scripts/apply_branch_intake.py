@@ -33,6 +33,9 @@ def main():
                     results.append({"branch":b,"status":"blocked-write-zone","files":forbidden[:50]})
                     continue
         else:
+            if any(str(x).startswith(PROTECTED_PREFIXES) for x in allowed):
+                results.append({"branch":b,"status":"blocked-protected-write-zone"})
+                continue
             mb=run("git","merge-base","HEAD",f"origin/{b}").stdout.strip()
             patch=run("git","diff",mb,f"origin/{b}","--",*allowed,check=False)
             if patch.returncode!=0 or not patch.stdout.strip():
