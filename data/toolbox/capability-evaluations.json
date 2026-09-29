@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T22:19:06.944865+00:00",
+  "updated_at": "2026-09-29T22:21:42.836036+00:00",
   "status": "PASS",
   "policy": {
     "auto_install": false,
@@ -122,6 +122,20 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
+      "repository": "moorcheh-ai/memanto",
+      "license": "MIT",
+      "stars": 2300,
+      "checks": {
+        "known_license": true,
+        "active_enough": true,
+        "public_repo": true,
+        "free_first_compatible": true
+      },
+      "decision": "EVALUATE_ADAPTER",
+      "known": false,
+      "next": "build sandbox adapter and benchmark against current worker"
+    },
+    {
       "repository": "SenteLabsAI/OpenExecutive",
       "license": "Apache-2.0",
       "stars": 5394,
@@ -139,20 +153,6 @@
       "repository": "google/adk-python",
       "license": "Apache-2.0",
       "stars": 21680,
-      "checks": {
-        "known_license": true,
-        "active_enough": true,
-        "public_repo": true,
-        "free_first_compatible": true
-      },
-      "decision": "EVALUATE_ADAPTER",
-      "known": false,
-      "next": "build sandbox adapter and benchmark against current worker"
-    },
-    {
-      "repository": "moorcheh-ai/memanto",
-      "license": "MIT",
-      "stars": 2300,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -304,9 +304,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "svnscha/mcp-windbg",
+      "repository": "vitali87/code-graph-rag",
       "license": "MIT",
-      "stars": 1597,
+      "stars": 5190,
       "checks": {
         "known_license": true,
         "active_enough": true,
@@ -318,9 +318,9 @@
       "next": "build sandbox adapter and benchmark against current worker"
     },
     {
-      "repository": "vitali87/code-graph-rag",
+      "repository": "svnscha/mcp-windbg",
       "license": "MIT",
-      "stars": 5190,
+      "stars": 1597,
       "checks": {
         "known_license": true,
         "active_enough": true,
