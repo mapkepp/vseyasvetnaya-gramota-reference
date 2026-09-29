@@ -73,10 +73,22 @@
       "repairs": [
         "repaired: status surface registry regenerated"
       ]
+    },
+    {
+      "at": "2026-09-29T22:01:54.444231+00:00",
+      "fingerprint": "81f4a3e920af1ba8",
+      "status": "REPAIR_NEEDED",
+      "issues": [
+        "compileall failed",
+        "system-self-repair.yml: expected concurrency group system-self-repair-writer with cancel-in-progress=false"
+      ],
+      "repairs": [
+        "repaired: status surface registry regenerated"
+      ]
     }
   ],
   "last_success_at": "2026-09-29T19:59:30.581313+00:00",
-  "last_failure_at": "2026-09-29T21:56:41.921621+00:00",
+  "last_failure_at": "2026-09-29T22:01:54.444231+00:00",
   "learning_policy": {
     "deduplicate": true,
     "retain_last": 200,
