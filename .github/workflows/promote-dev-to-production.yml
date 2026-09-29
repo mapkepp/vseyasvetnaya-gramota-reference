@@ -44,7 +44,7 @@ jobs:
         run: |
           git checkout --detach origin/main
           stamp=$(date -u +%Y%m%d-%H%M%S)
-          backup="backup/$stamp"
+          backup="recovery/production-snapshots/$stamp"
           git push origin "HEAD:refs/heads/$backup"
           echo "BACKUP_BRANCH=$backup" >> "$GITHUB_ENV"
 
