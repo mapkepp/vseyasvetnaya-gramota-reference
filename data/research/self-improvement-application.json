@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-29T23:39:19.955761+00:00",
+  "updated_at": "2026-09-29T23:41:29.891962+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "policy": {
@@ -16,11 +16,6 @@
         "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт."
       ],
       "reason": "previous cycle lessons are inputs to this bounded improvement cycle"
-    },
-    {
-      "change": "maintain_parallelism",
-      "value": 6,
-      "reason": "queue has enough pending work"
     },
     {
       "change": "failed_tasks_visible_to_replanner",
