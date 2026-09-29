@@ -6,6 +6,7 @@ permissions:
   actions: write
 concurrency:
   group: dev-state-writers
+  queue: max
   cancel-in-progress: false
 jobs:
   health:
