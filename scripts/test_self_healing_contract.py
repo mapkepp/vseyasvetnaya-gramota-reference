@@ -16,9 +16,15 @@ def need(text,label,needle):
     if needle not in text:
         errors.append(f"{label}: missing {needle}")
 
+groups={}
 for label,text in [("self-repair",repair),("worker",worker)]:
-    if re.search(r"concurrency:\s*\n\s*group:\s*dev-state-writers", text) is None:
-        errors.append(f"{label}: not serialized by dev-state-writers")
+    m=re.search(r"concurrency:\s*\n\s*group:\s*([^\n]+)", text)
+    if not m:
+        errors.append(f"{label}: missing explicit concurrency group")
+    else:
+        groups[label]=m.group(1).strip()
+if groups.get("self-repair") == groups.get("worker"):
+    errors.append("recovery control-plane: worker and self-repair must use isolated concurrency groups")
 
 for needle in ["repair_active","STALE_ACTIVE_WORKER","RECOVERY_NEEDED","WATCHDOG_WAIT",
                "actions/workflows/system-self-repair.yml/dispatches",
@@ -31,7 +37,10 @@ for needle in ["Repair research queue before selection","git rebase --autostash 
     need(worker,"worker",needle)
 
 if contract.get("state_writer_concurrency_group") != "dev-state-writers":
-    errors.append("system-contract: writer group mismatch")
+    errors.append("system-contract: shared writer group mismatch")
+isolated=contract.get("isolated_recovery_groups", {})
+if isolated.get("worker") != groups.get("worker") or isolated.get("self_repair") != groups.get("self-repair"):
+    errors.append("system-contract: isolated recovery groups do not match workflows")
 
 marker='if [ "$worker_active" -gt 0 ] && [ "$age" -gt 900 ]; then'
 if marker not in watch:
@@ -50,6 +59,6 @@ if errors:
     sys.exit(1)
 
 print("PASS: autonomous recovery contract")
-print("PASS: single dev-state-writer serialization")
+print("PASS: recovery workers use isolated concurrency groups")
 print("PASS: stale worker -> self-repair -> worker handoff is fail-closed")
 print("PASS: queue repair runs before worker selection")
