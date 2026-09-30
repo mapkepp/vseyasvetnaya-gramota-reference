@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "language": "ru",
+  "purpose": "уникальный резерв полезных изменений до удаления веток",
+  "dedup_key": "branch+commit_count+file_list",
+  "items": {
+    "backup:3:['config/deployment-channels.json', 'docs/DEPLOYMENT-CHANNELS.md', 'scripts/Invoke-PromotionGate.ps1']": {
+      "branch": "backup",
+      "ahead_of_dev": 3,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ]
+    },
+    "development:3:['config/deployment-channels.json', 'docs/DEPLOYMENT-CHANNELS.md', 'scripts/Invoke-PromotionGate.ps1']": {
+      "branch": "development",
+      "ahead_of_dev": 3,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ]
+    },
+    "production:4:['.github/workflows/publish.yml', 'config/deployment-channels.json', 'docs/DEPLOYMENT-CHANNELS.md', 'scripts/Invoke-PromotionGate.ps1']": {
+      "branch": "production",
+      "ahead_of_dev": 4,
+      "commits": 4,
+      "files": [
+        ".github/workflows/publish.yml",
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ]
+    },
+    "reserve:3:['config/deployment-channels.json', 'docs/DEPLOYMENT-CHANNELS.md', 'scripts/Invoke-PromotionGate.ps1']": {
+      "branch": "reserve",
+      "ahead_of_dev": 3,
+      "commits": 3,
+      "files": [
+        "config/deployment-channels.json",
+        "docs/DEPLOYMENT-CHANNELS.md",
+        "scripts/Invoke-PromotionGate.ps1"
+      ]
+    }
+  }
+}

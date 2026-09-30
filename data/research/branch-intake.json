@@ -2,5 +2,56 @@
   "version": 1,
   "language": "ru",
   "base_branch": "dev",
-  "results": []
+  "results": [
+    {
+      "branch": "research/strict-evidence-gate",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "implementation/autonomous-loop-clean",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "research/evidence-normalizer",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "research/github-web-worker-clean",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "research/pipeline-dedup",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "research/review-queue",
+      "status": "blocked-protected-write-zone"
+    },
+    {
+      "branch": "research/verification-loop",
+      "status": "blocked-protected-write-zone"
+    }
+  ],
+  "cleanup": [
+    {
+      "branch": "backup",
+      "status": "quarantine-only",
+      "reason": "сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"
+    },
+    {
+      "branch": "development",
+      "status": "quarantine-only",
+      "reason": "сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"
+    },
+    {
+      "branch": "production",
+      "status": "quarantine-only",
+      "reason": "сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"
+    },
+    {
+      "branch": "reserve",
+      "status": "quarantine-only",
+      "reason": "сначала сохранён уникальный снимок; автоматическое удаление разрешено только отдельным cleanup-проходом"
+    }
+  ]
 }
