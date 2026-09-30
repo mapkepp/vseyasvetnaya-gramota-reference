@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-30T02:02:07.648342+00:00",
+  "updated_at": "2026-09-30T02:02:44.130784+00:00",
   "status": "PASS",
   "mode": "BOUNDED_AUTONOMOUS",
   "inputs": {
     "pending": 0,
     "failed": 609,
-    "last_cycle": "20260930T015620Z",
+    "last_cycle": "20260930T015707Z",
     "cycle_metrics": {
-      "found": 0,
+      "found": 6,
       "unique_urls": 0,
       "verified": 0,
       "specialist_evidence": 0,
@@ -26,6 +26,12 @@
       "reason": "Цикл завершён без зарегистрированных аномалий; сохраняем успешную схему как рабочий опыт.",
       "safe": true,
       "source": "system-experience.json"
+    },
+    {
+      "id": "practitioner-yield-zero",
+      "action": "expand_practitioner_queries",
+      "reason": "sources found but no practitioner hits in cycle metrics",
+      "safe": true
     },
     {
       "id": "failed-task-rotation",
