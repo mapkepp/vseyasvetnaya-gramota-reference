@@ -105,10 +105,23 @@
       "repairs": [
         "repaired: status surface registry regenerated"
       ]
+    },
+    {
+      "at": "2026-09-30T08:55:41.342076+00:00",
+      "fingerprint": "e07211f1ee2b14df",
+      "status": "REPAIR_NEEDED",
+      "issues": [
+        "autonomous-research-worker.yml: expected concurrency group dev-state-writers with cancel-in-progress=false",
+        "toolbox-evolution.yml: expected concurrency group dev-state-writers with cancel-in-progress=false",
+        "system-self-repair.yml: expected concurrency group dev-state-writers with cancel-in-progress=false"
+      ],
+      "repairs": [
+        "repaired: status surface registry regenerated"
+      ]
     }
   ],
   "last_success_at": "2026-09-30T02:25:26.970590+00:00",
-  "last_failure_at": "2026-09-29T22:19:17.490267+00:00",
+  "last_failure_at": "2026-09-30T08:55:41.342076+00:00",
   "learning_policy": {
     "deduplicate": true,
     "retain_last": 200,
