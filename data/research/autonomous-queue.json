@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-30T01:44:06.142817+00:00",
+  "updated_at": "2026-09-30T01:44:53.741283+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -12,7 +12,7 @@
     "compound_practice_never_attributed_to_component": true,
     "canonical_mutation_requires_review": true
   },
-  "replanned_count": 761,
+  "replanned_count": 762,
   "tasks": [
     {
       "task_id": "bukova-core-dm80-image-7",
@@ -32322,12 +32322,12 @@
       "task_id": "rotation-dm80-image-64-4--120",
       "canonical_entry_id": "dm80-image-64",
       "bukova": "Херъ",
-      "status": "PENDING",
+      "status": "FAILED",
       "priority": "rotation",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-30T01:44:06.142817+00:00",
       "generation": 4,
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Херъ\" \"Букова\" личный опыт",
@@ -32344,7 +32344,37 @@
         "\"Херъ\" \"Букова\" до после"
       ],
       "reason": "terminal_task_recovery",
-      "parent_task_id": "rotation-dm80-image-64-4--108"
+      "parent_task_id": "rotation-dm80-image-64-4--108",
+      "last_returncode": 1,
+      "last_failure": "WORKER_ERROR"
+    },
+    {
+      "task_id": "rotation-dm80-image-64-4--120-replan-1",
+      "canonical_entry_id": "dm80-image-64",
+      "bukova": "Херъ",
+      "status": "PENDING",
+      "priority": "replan",
+      "track": "BUKOVY_FIRST",
+      "created_at": "2026-09-30T01:44:53.676319+00:00",
+      "attempt": 0,
+      "max_attempts": 2,
+      "queries": [
+        "\"Херъ\" \"Букова\" опыт практика",
+        "\"Херъ\" \"Букова\" отзыв результат",
+        "\"Херъ\" \"Букова\" история применение",
+        "\"Херъ\" \"Букова\" наблюдение эффект",
+        "\"Херъ\" \"Букова\" эксперимент результат",
+        "\"Херъ\" \"Букова\" до после",
+        "\"Херъ\" \"Буковник\" упражнение практика",
+        "\"Херъ\" \"Буковы\" применение опыт",
+        "\"Херъ\" \"Букова\" мастер практика свидетельство",
+        "\"Херъ\" \"Букова\" дневник журнал отчёт",
+        "\"Херъ\" \"Букова\" форум обсуждение комментарии",
+        "\"Херъ\" \"Букова\" видео лекция семинар разбор"
+      ],
+      "reason": "worker_failed",
+      "parent_task_id": "rotation-dm80-image-64-4--120",
+      "replan_depth": 1
     }
   ],
   "queue_health": {
@@ -32352,9 +32382,9 @@
     "max_replan_depth": 6,
     "max_rotation_generations": 6,
     "target_distinct_pending": 6,
-    "replenished_this_run": 1,
+    "replenished_this_run": 0,
     "pending_after": 1,
     "distinct_pending_entries_after": 1,
-    "repaired_at": "2026-09-30T01:44:06.142817+00:00"
+    "repaired_at": "2026-09-30T01:44:53.741283+00:00"
   }
 }
