@@ -1,12 +1,13 @@
 name: System integrity and self-repair
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
 permissions:
   contents: write
   actions: write
 concurrency:
-  group: dev-state-writers
-  queue: max
+  group: system-self-repair-writer
   cancel-in-progress: false
 jobs:
   health:
@@ -19,12 +20,14 @@ jobs:
           fetch-depth: 0
       - name: Run integrity checks and bounded repairs
         run: |
+          set -euo pipefail
           python3 scripts/system_self_check.py
           python3 scripts/process_system_data.py
           python3 scripts/self_improvement_cycle.py
           python3 scripts/self_improvement_apply.py
       - name: Publish repaired state
         run: |
+          set -euo pipefail
           git config user.name "toolbox-self-repair"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/research
@@ -34,12 +37,8 @@ jobs:
             remote_sha="$(git rev-parse origin/dev)"
             local_sha="$(git rev-parse HEAD)"
             if git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
-              if git push origin HEAD:dev; then
-                echo "SELF_REPAIR_PUBLISH_OK"
-                exit 0
-              fi
+              if git push origin HEAD:dev; then exit 0; fi
             else
-              echo "SELF_REPAIR_REFRESH: dev advanced; reset and regenerate derived state."
               git reset --hard origin/dev
               python3 scripts/system_self_check.py
               python3 scripts/process_system_data.py
@@ -57,15 +56,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          pending="$(jq '[.tasks[] | select(.status=="PENDING")] | length' data/research/autonomous-queue.json)"
-          worker_active="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10" --jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' || echo 0)"
-          if ! [[ "$pending" =~ ^[0-9]+$ ]]; then
-            echo "::error::SELF_REPAIR_HANDOFF_INVALID_QUEUE_COUNT"
-            exit 1
-          fi
-          if [ "$pending" -gt 0 ] && [ "$worker_active" -eq 0 ]; then
-            echo "SELF_REPAIR_HANDOFF: repair succeeded; dispatching one worker for $pending pending tasks."
+          queue="$(gh api "repos/${GITHUB_REPOSITORY}/contents/data/research/autonomous-queue.json?ref=dev" | jq -r '.content' | tr -d '\n' | base64 -d)"
+          pending="$(echo "$queue" | jq '[.tasks[] | select(.status=="PENDING")] | length')"
+          active="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10" --jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' || echo 0)"
+          if ! [[ "$pending" =~ ^[0-9]+$ ]] || ! [[ "$active" =~ ^[0-9]+$ ]]; then exit 1; fi
+          if [ "$pending" -gt 0 ] && [ "$active" -eq 0 ]; then
             gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/dispatches" -f ref=dev >/dev/null
-          else
-            echo "SELF_REPAIR_HANDOFF: no worker dispatch needed (pending=$pending active=$worker_active)."
           fi
