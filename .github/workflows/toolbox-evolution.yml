@@ -1,19 +1,13 @@
 name: Toolbox evolution worker
-# runtime-check: corrected ancestry + safe defer policy
+# runtime-check: bounded capability discovery; never self-trigger from its own telemetry commit
 on:
   workflow_dispatch:
-  push:
-    branches: [dev]
-    paths:
-      - "scripts/**"
-      - "data/toolbox/**"
-      - "data/research/self-improvement*.json"
   schedule:
     - cron: "17 */6 * * *"
 permissions:
   contents: write
 concurrency:
-  group: dev-state-writers
+  group: toolbox-evolution-writer
   cancel-in-progress: false
 jobs:
   evolve:
@@ -50,16 +44,16 @@ jobs:
           json.dump(d,open(p,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
       - name: Commit evolution telemetry
         run: |
+          set -euo pipefail
           git config user.name "toolbox-evolution-worker"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/toolbox/discovered-capabilities.json data/toolbox/capability-evaluations.json data/research/self-improvement.json data/research/status-surface-registry.json data/research/branch-governance.json
           git diff --cached --quiet || git commit -m "toolbox: record capability discovery and evolution"
           git fetch origin dev
-          base_sha="$(git rev-parse HEAD)"
           remote_sha="$(git rev-parse origin/dev)"
-          if ! git merge-base --is-ancestor "$remote_sha" "$base_sha"; then
-            echo "EVOLUTION_DEFERRED: dev advanced during evolution; no generated state is overwritten."
-            echo "A later dev push or scheduled run will repeat evolution from the current dev tip."
+          local_sha="$(git rev-parse HEAD)"
+          if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+            echo "EVOLUTION_DEFERRED: dev advanced; discard this generated state and let the next scheduled/manual run regenerate it."
             exit 0
           fi
           git push origin HEAD:dev
