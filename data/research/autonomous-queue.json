@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "updated_at": "2026-09-30T02:48:57.344624+00:00",
+  "updated_at": "2026-09-30T02:50:16.484821+00:00",
   "canonical_bukova_count": 68,
   "focus": "BUKOVY_FIRST",
   "policy": {
@@ -34279,11 +34279,11 @@
       "task_id": "rotation-dm80-image-64-5--13-replan-1-replan-2-replan-3-replan-4-replan-5-replan-6",
       "canonical_entry_id": "dm80-image-64",
       "bukova": "Херъ",
-      "status": "PENDING",
+      "status": "EXHAUSTED",
       "priority": "replan",
       "track": "BUKOVY_FIRST",
       "created_at": "2026-09-30T02:48:57.260138+00:00",
-      "attempt": 0,
+      "attempt": 1,
       "max_attempts": 2,
       "queries": [
         "\"Херъ\" \"Букова\" опыт практика",
@@ -34301,7 +34301,10 @@
       ],
       "reason": "verification_incomplete",
       "parent_task_id": "rotation-dm80-image-64-5--13-replan-1-replan-2-replan-3-replan-4-replan-5",
-      "replan_depth": 6
+      "replan_depth": 6,
+      "last_returncode": 0,
+      "exhausted_at": "2026-09-30T02:50:16.397428+00:00",
+      "exhausted_reason": "verification_incomplete"
     }
   ],
   "queue_health": {
@@ -34310,8 +34313,8 @@
     "max_rotation_generations": 6,
     "target_distinct_pending": 6,
     "replenished_this_run": 0,
-    "pending_after": 1,
-    "distinct_pending_entries_after": 1,
-    "repaired_at": "2026-09-30T02:48:57.344624+00:00"
+    "pending_after": 0,
+    "distinct_pending_entries_after": 0,
+    "repaired_at": "2026-09-30T02:50:16.484821+00:00"
   }
 }
