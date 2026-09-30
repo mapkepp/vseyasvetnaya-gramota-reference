@@ -18,8 +18,7 @@ permissions:
   contents: write
   actions: write
 concurrency:
-  group: dev-state-writers
-  queue: max
+  group: autonomous-research-worker
   cancel-in-progress: false
 jobs:
   research:
