@@ -12,8 +12,7 @@ permissions:
 
 concurrency:
   group: pages-production
-  cancel-in-progress: false
-  queue: max
+  cancel-in-progress: true
 
 jobs:
   build:
