@@ -7,6 +7,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$BridgeVersion = '3.1'
 [Net.ServicePointManager]::Expect100Continue = $false
 
 $Repo = 'mapkepp/-ai-private-toolbox'
@@ -102,8 +103,8 @@ function Upload-Binary {
   $req.Method='POST'
   $req.ContentType='application/octet-stream'
   $req.ContentLength=$Size
-  $req.Timeout=1800000
-  $req.ReadWriteTimeout=1800000
+  $req.Timeout=7200000
+  $req.ReadWriteTimeout=7200000
   $req.AllowWriteStreamBuffering=$false
   $req.SendChunked=$false
   $req.Headers['Authorization']='Bearer '+$Token
@@ -137,10 +138,25 @@ function Upload-Binary {
     if($output){$output.Dispose()}
     $input.Dispose()
   }
-  $resp=$req.GetResponse()
+  try{
+    $resp=$req.GetResponse()
+  }catch [Net.WebException]{
+    $code=0
+    if($_.Exception.Response){$code=$_.Exception.Response.StatusCode.value__}
+    $detail=$_.Exception.Message
+    if($_.Exception.Response){
+      try{
+        $sr=New-Object IO.StreamReader($_.Exception.Response.GetResponseStream())
+        $body=$sr.ReadToEnd();$sr.Dispose()
+        if($body){$detail=$detail+' · '+$body}
+      }catch{}
+    }
+    throw ('GitHub asset upload HTTP '+$code+': '+$detail)
+  }
   try{
     $reader=New-Object IO.StreamReader($resp.GetResponseStream())
     $txt=$reader.ReadToEnd();$reader.Dispose()
+    if([string]::IsNullOrWhiteSpace($txt)){throw 'GitHub не вернул данные загруженного asset'}
     return ($txt|ConvertFrom-Json)
   }finally{$resp.Dispose()}
 }
@@ -155,11 +171,30 @@ if($Worker){
     if([string]::IsNullOrWhiteSpace($token)){throw 'Токен не передан'}
     Write-State $statePath @{ok=$true;state='running';phase='CHECK_RELEASE';message='Проверяю Release';size=$size;sent=0;percent=0;startedAt=$job.startedAt}
     $release=Ensure-Release $tag $token
-    $old=Find-Asset $release $assetName $token
-    if($old){Delete-Asset $old $token}
-    Write-State $statePath @{ok=$true;state='running';phase='GITHUB_UPLOAD';message='Передаю бинарные данные в GitHub';size=$size;sent=0;percent=0;startedAt=$job.startedAt}
-    $asset=Upload-Binary $release $source $assetName $token $statePath $size
-    if([int64]$asset.size -ne $size){throw 'GitHub сообщил несовпадающий размер'}
+    $asset=$null
+    for($attempt=1;$attempt -le 3;$attempt++){
+      try{
+        $release=Get-Release $tag $token
+        $old=Find-Asset $release $assetName $token
+        if($old){Delete-Asset $old $token}
+        Write-State $statePath @{
+          ok=$true;state='running';phase='GITHUB_UPLOAD'
+          message=('Передаю бинарные данные в GitHub · попытка '+$attempt+'/3')
+          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$job.startedAt
+        }
+        $asset=Upload-Binary $release $source $assetName $token $statePath $size
+        if([int64]$asset.size -ne $size){throw 'GitHub сообщил несовпадающий размер'}
+        break
+      }catch{
+        if($attempt -ge 3){throw}
+        Write-State $statePath @{
+          ok=$true;state='running';phase='RETRY'
+          message=('Ошибка передачи, повтор через 5 секунд · попытка '+$attempt+'/3')
+          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$job.startedAt
+        }
+        Start-Sleep -Seconds 5
+      }
+    }
     Write-State $statePath @{ok=$true;state='running';phase='VERIFY';message='Проверяю загруженный asset';size=$size;sent=$size;percent=99;startedAt=$job.startedAt}
     $release=Get-Release $tag $token
     $final=Find-Asset $release $assetName $token
@@ -230,7 +265,7 @@ function Handle-Client {
   $stream=$Client.GetStream();$req=Read-Request $stream
   if($req.Method -eq 'OPTIONS'){Send-Response $stream 204 'text/plain' '';return}
   if($req.Method -eq 'GET'){
-    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version='3.0';single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
+    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version='+$BridgeVersion+';single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
     if($req.Path -like '/status*'){
       $q=$req.Path.IndexOf('?');$query=if($q -ge 0){$req.Path.Substring($q+1)}else{''}
       $m=$query -split '&'|Where-Object{$_ -like 'id=*'}|Select-Object -First 1
@@ -272,7 +307,7 @@ function Handle-Client {
       }catch{}
     }
     if(-not $ready){Send-Response $stream 500 'application/json' (@{ok=$false;message='Локальный канал не запустился';port=$newPort}|ConvertTo-Json -Compress);return}
-    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version='3.0'}|ConvertTo-Json -Compress)
+    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version='+$BridgeVersion+'}|ConvertTo-Json -Compress)
     return
   }
 
@@ -325,7 +360,7 @@ $listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1')
 $listener.Start()
 
 if($SingleJob){
-  Write-Host ('F-Fast Bridge 3.0 single upload: http://127.0.0.1:'+ $Port)
+  Write-Host ('F-Fast Bridge 3.1 single upload: http://127.0.0.1:'+ $Port)
   try{
     $client=$listener.AcceptTcpClient()
     try{Handle-Client $client}
@@ -336,7 +371,7 @@ if($SingleJob){
   exit
 }
 
-Write-Host ('F-Fast Bridge 3.0 manager: http://127.0.0.1:'+ $Port)
+Write-Host ('F-Fast Bridge 3.1 manager: http://127.0.0.1:'+ $Port)
 while($true){
   $client=$listener.AcceptTcpClient()
   try{Handle-Client $client}
