@@ -83,7 +83,7 @@ function Upload-Binary {
 }
 if($Worker){
   if([string]::IsNullOrWhiteSpace($JobFile)){exit 2}
-  $sourcePath=$null
+  $sourcePath=$null;$tmpPath=$null;$tmpAsset=$null
   try{
     $job=Get-Content -Raw -LiteralPath $JobFile|ConvertFrom-Json
     $statePath=[IO.Path]::ChangeExtension($JobFile,'.status.json')
@@ -96,27 +96,38 @@ if($Worker){
     Ensure-Release $gh
     $release=Get-Release $gh
     $target=Get-AssetByName $gh ([long]$release.id) $assetName
+    $tmpName='MF_TMP_'+$job.id
+    $tmpPath=Join-Path (Split-Path -Parent $sourcePath) $tmpName
+    Rename-Item -LiteralPath $sourcePath -NewName $tmpName
     Write-State $statePath @{ok=$true;state='running';phase='Отправка в GitHub';message='Бинарная передача идёт через GitHub CLI без Base64…';size=$size;startedAt=$job.startedAt}
-    $upload=Upload-Binary $gh $sourcePath
+    $upload=Upload-Binary $gh $tmpPath
     if($upload.ExitCode -ne 0){
       $detail=$upload.Stderr.Trim();if([string]::IsNullOrWhiteSpace($detail)){$detail=$upload.Stdout.Trim()}
       $m='GitHub upload завершился с ошибкой.';if($detail){$m+=' '+$detail};throw $m
     }
-    Write-State $statePath @{ok=$true;state='running';phase='Проверяю сохранение';message='GitHub завершил приём. Проверяю размер и наличие asset…';size=$size;startedAt=$job.startedAt;githubSeconds=$upload.Seconds}
+    Write-State $statePath @{ok=$true;state='running';phase='Проверяю сохранение';message='Проверяю загруженный бинарный asset на стороне GitHub…';size=$size;startedAt=$job.startedAt;githubSeconds=$upload.Seconds}
+    $release=Get-Release $gh
+    $tmpAsset=Get-AssetByName $gh ([long]$release.id) $tmpName
+    if(-not $tmpAsset){throw 'GitHub ответил об успешной загрузке, но временный asset не найден.'}
+    if([int64]$tmpAsset.size -ne $size){throw ('Размер сохранённого asset не совпадает: '+$tmpAsset.size+' байт вместо '+$size+'.')}
+    if($target){
+      & $gh api --method DELETE "repos/$Repo/releases/assets/$($target.id)" *> $null
+      if($LASTEXITCODE -ne 0){throw 'Новый файл загружен и проверен, но старую версию не удалось удалить.'}
+    }
+    $patchRaw=& $gh api --method PATCH "repos/$Repo/releases/assets/$($tmpAsset.id)" -f "name=$assetName" 2>&1
+    if($LASTEXITCODE -ne 0){throw (($patchRaw -join $NL).Trim())}
     $release=Get-Release $gh
     $newAsset=Get-AssetByName $gh ([long]$release.id) $assetName
-    if(-not $newAsset){throw 'Ответ об успешной загрузке получен, но asset не найден при повторной проверке.'}
-    if([int64]$newAsset.size -ne $size){throw ('Размер не совпадает: GitHub сообщил '+$newAsset.size+' байт вместо '+$size+'.')}
-    if($target -and [int64]$target.id -ne [int64]$newAsset.id){
-      & $gh api --method DELETE "repos/$Repo/releases/assets/$($target.id)" *> $null
-      if($LASTEXITCODE -ne 0){throw 'Новая версия загружена, но старую версию не удалось удалить автоматически.'}
-    }
+    if(-not $newAsset){throw 'После переименования asset не найден при повторной проверке.'}
+    if([int64]$newAsset.size -ne $size){throw ('Финальный размер не совпадает: '+$newAsset.size+' байт вместо '+$size+'.')}
     Write-State $statePath @{ok=$true;state='done';phase='Готово';message='Файл записан и проверен в GitHub.';size=$size;githubSeconds=$upload.Seconds;assetId=[int64]$newAsset.id;downloadUrl=$newAsset.browser_download_url;finishedAt=(Get-Date).ToString('o')}
-    Remove-Item -LiteralPath $sourcePath -Force -ErrorAction SilentlyContinue
+    if($tmpPath){Remove-Item -LiteralPath $tmpPath -Force -ErrorAction SilentlyContinue}
   }catch{
     $statePath=[IO.Path]::ChangeExtension($JobFile,'.status.json')
+    try{if($tmpAsset){& $gh api --method DELETE "repos/$Repo/releases/assets/$($tmpAsset.id)" *> $null}}catch{}
     Fail-Job $statePath $_.Exception.Message
     if($sourcePath){Remove-Item -LiteralPath $sourcePath -Force -ErrorAction SilentlyContinue}
+    if($tmpPath){Remove-Item -LiteralPath $tmpPath -Force -ErrorAction SilentlyContinue}
     exit 1
   }
   exit 0
