@@ -18,6 +18,9 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px
 .actions{display:flex;gap:6px;justify-content:flex-end}.empty{text-align:center;padding:30px;color:#687078}
 .modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.open{display:flex}.modalbox{background:#fff;border-radius:14px;max-width:900px;width:100%;max-height:90vh;overflow:auto;padding:16px}.preview{max-width:100%;max-height:70vh;display:block;margin:auto}.code{white-space:pre-wrap;overflow:auto;background:#101418;color:#e8edf2;padding:14px;border-radius:10px;max-height:70vh;font:13px ui-monospace,monospace}
 .status{min-height:20px;margin-top:8px;font-size:13px}.ok{color:#177245}.err{color:#b42318}
+.activity{height:3px;width:100%;margin:0 0 12px;overflow:hidden;border-radius:3px;background:#e8edf2;display:none}.activity.on{display:block}.activity i{display:block;height:100%;width:35%;background:#0969da;animation:activity 1s linear infinite}
+.busy:after{content:' ';display:inline-block;width:9px;height:9px;margin-left:7px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;vertical-align:-1px;animation:spin .7s linear infinite}
+button.busy{cursor:wait;opacity:.8}@keyframes activity{from{transform:translateX(-120%)}to{transform:translateX(320%)}}@keyframes spin{to{transform:rotate(360deg)}}
 .note{font-size:12px;color:#5d6670;line-height:1.5;margin-top:10px}
 @media(max-width:700px){.auth{grid-template-columns:1fr}.actions button{font-size:12px;padding:6px}.hide-mobile{display:none}}
 </style>
@@ -26,6 +29,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px
 <div class="wrap">
 <header><div><h1>📁 Мои файлы</h1><div class="muted">Личное файловое хранилище · GitHub</div></div><button id="logout" class="small">Забыть токен</button></header>
 
+<div id="activity" class="activity"><i></i></div>
 <div class="card" id="authCard">
   <b>Подключение</b>
   <div class="auth" style="margin-top:10px">
@@ -57,15 +61,17 @@ let token=sessionStorage.getItem('myfiles_token')||'', path=ROOT, entries=[];
 
 const $=id=>document.getElementById(id);
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+let busyCount=0;function busy(on=true){busyCount=Math.max(0,busyCount+(on?1:-1));$('activity').classList.toggle('on',busyCount>0)}
+function setMsgBusy(el,text,ok=false,on=true){msg(el,text,ok);el.classList.toggle('busy',on)}
 function msg(el,text,ok=false){el.textContent=text;el.className='status '+(ok?'ok':'err')}
 function headers(){return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json'}}
-async function api(url,opt={}){const r=await fetch(API+url,{...opt,headers:{...headers(),...(opt.headers||{})}});let d=null;try{d=await r.json()}catch{}if(!r.ok)throw new Error((d&&d.message)||('HTTP '+r.status));return d}
+async function api(url,opt={}){busy(true);try{const r=await fetch(API+url,{...opt,headers:{...headers(),...(opt.headers||{})}});let d=null;try{d=await r.json()}catch{}if(!r.ok)throw new Error((d&&d.message)||('HTTP '+r.status));return d}finally{busy(false)}}
 function b64(buf){let s='',a=new Uint8Array(buf);const n=0x8000;for(let i=0;i<a.length;i+=n)s+=String.fromCharCode(...a.subarray(i,i+n));return btoa(s)}
 function decode64(s){const bin=atob(s.replace(/\n/g,''));const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a}
 function join(a,b){return (a+'/'+b).replace(/\/+/g,'/')}
 function isUnder(p){return p===ROOT||p.startsWith(ROOT+'/')}
-async function connect(){try{await api('/user');sessionStorage.setItem('myfiles_token',token);$('authCard').style.display='none';$('app').style.display='block';await load()}catch(e){sessionStorage.removeItem('myfiles_token');msg($('authStatus'),'Не удалось подключиться: '+e.message)}}
-async function load(){try{entries=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(path).replace(/%2F/g,'/'));if(!Array.isArray(entries))entries=[entries];render();}catch(e){msg($('status'),'Ошибка чтения: '+e.message)}}
+async function connect(){const b=$('connect');b.disabled=true;b.classList.add('busy');setMsgBusy($('authStatus'),'Проверяю токен и доступ к папке…',false,true);try{await api('/user');await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(ROOT));sessionStorage.setItem('myfiles_token',token);$('authCard').style.display='none';$('app').style.display='block';await load()}catch(e){sessionStorage.removeItem('myfiles_token');msg($('authStatus'),'Не удалось подключиться: '+e.message)}finally{b.disabled=false;b.classList.remove('busy');$('authStatus').classList.remove('busy')}}
+async function load(){setMsgBusy($('status'),'Загружаю содержимое '+path+'…',false,true);try{entries=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(path).replace(/%2F/g,'/'));if(!Array.isArray(entries))entries=[entries];render();}catch(e){msg($('status'),'Ошибка чтения: '+e.message)}finally{$('status').classList.remove('busy')}}
 function render(){
  $('crumb').textContent=path.replace(ROOT,'Мои файлы')||'Мои файлы';
  const visible=entries.filter(x=>x.name!=='.gitkeep').sort((a,b)=>(a.type!==b.type? (a.type==='dir'?-1:1):a.name.localeCompare(b.name,'ru')));
@@ -84,8 +90,8 @@ function goUp(){if(path===ROOT)return;path=path.substring(0,path.lastIndexOf('/'
 window.goUp=goUp;window.openEntry=openEntry;
 async function createFolder(){let n=prompt('Имя новой папки:');if(!n)return;n=n.trim();if(!n||/[\\]/.test(n))return alert('Недопустимое имя');try{await putFile(join(path,n+'/.gitkeep'),new Uint8Array(), 'Создать папку '+n);await load()}catch(e){alert(e.message)}}
 async function putFile(p,data,message){if(!isUnder(p))throw Error('Недопустимый путь');const body={message,content:b64(data)};await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/'),{method:'PUT',body:JSON.stringify(body)})}
-async function uploadFile(file,target){if(file.size>100*1024*1024)throw Error(file.name+': файл больше 100 MB — GitHub Contents API его не принимает');msg($('status'),'Подготовка: '+file.name+' ('+formatSize(file.size)+')…');const data=new Uint8Array(await file.arrayBuffer());msg($('status'),'Отправка: '+file.name+' ('+formatSize(file.size)+')…');await putFile(join(target,file.name),data,'Загрузить '+file.name)}
-async function uploadList(files){files=Array.from(files);let ok=0;for(const f of files){try{if(f.size>100*1024*1024)throw Error(f.name+': файл больше 100 MB — GitHub Contents API его не принимает');let rel=f.webkitRelativePath||f.relativePath||f.name;rel=rel.replace(/^\/+/, '');let parts=rel.split('/');let name=parts.pop();let dir=targetPathFromParts(path,parts);msg($('status'),'Читаю: '+rel+' ('+formatSize(f.size)+')…');const data=new Uint8Array(await f.arrayBuffer());msg($('status'),'Отправляю: '+rel+' ('+formatSize(f.size)+')…');await putFile(join(dir,name),data,'Загрузить '+rel);ok++;msg($('status'),'Загружено: '+ok+'/'+files.length+' — '+rel,true)}catch(e){msg($('status'),'Ошибка '+f.name+': '+e.message)}}await load()}
+async function uploadFile(file,target){if(file.size>100*1024*1024)throw Error(file.name+': файл больше 100 MB — GitHub Contents API его не принимает');setMsgBusy($('status'),'Подготовка: '+file.name+' ('+formatSize(file.size)+')…',false,true);const data=new Uint8Array(await file.arrayBuffer());setMsgBusy($('status'),'Отправка: '+file.name+' ('+formatSize(file.size)+')…',false,true);await putFile(join(target,file.name),data,'Загрузить '+file.name)}
+async function uploadList(files){files=Array.from(files);let ok=0;for(const f of files){try{if(f.size>100*1024*1024)throw Error(f.name+': файл больше 100 MB — GitHub Contents API его не принимает');let rel=f.webkitRelativePath||f.relativePath||f.name;rel=rel.replace(/^\/+/, '');let parts=rel.split('/');let name=parts.pop();let dir=targetPathFromParts(path,parts);setMsgBusy($('status'),'Читаю: '+rel+' ('+formatSize(f.size)+')…',false,true);const data=new Uint8Array(await f.arrayBuffer());setMsgBusy($('status'),'Отправляю: '+rel+' ('+formatSize(f.size)+')…',false,true);await putFile(join(dir,name),data,'Загрузить '+rel);ok++;msg($('status'),'Загружено: '+ok+'/'+files.length+' — '+rel,true);$('status').classList.remove('busy')}catch(e){msg($('status'),'Ошибка '+f.name+': '+e.message);$('status').classList.remove('busy')}}await load()}
 function targetPathFromParts(base,parts){return parts.reduce((p,x)=>join(p,x),base)}
 async function handleFiles(files){files=Array.from(files);if(!files.length)return;await uploadList(files)}
 async function renameEntry(i){const x=real(i);let n=prompt('Новое имя:',x.name);if(!n||n===x.name)return;n=n.trim();if(!n||n.includes('/'))return;try{await moveEntry(x,join(path,n));await load()}catch(e){alert(e.message)}}
