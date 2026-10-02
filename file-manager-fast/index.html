@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Мои файлы FAST</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#17202a;background:linear-gradient(135deg,#efe7ff,#e4f7ff 55%,#f4ffe8)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh}.wrap{max-width:1180px;margin:auto;padding:18px}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+h1{font-size:24px;margin:0}.muted{color:#626b78;font-size:13px}
+.card{background:#fffffff2;border:1px solid #d9d4e6;border-radius:14px;padding:16px;box-shadow:0 5px 18px #37205b12}
+.auth{display:grid;grid-template-columns:1fr auto;gap:10px}.auth input{width:100%;padding:12px;border:1px solid #cbd3db;border-radius:9px;font:inherit}
+button,.btn{border:1px solid #cbd3db;background:#fff;border-radius:9px;padding:10px 13px;cursor:pointer;font:inherit}.primary{background:#6b3fd6;color:#fff;border-color:#6b3fd6}.danger{color:#b42318}.small{padding:6px 9px;font-size:13px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.crumb{font-family:ui-monospace,monospace;font-size:14px;flex:1;min-width:220px}
+.drop{border:2px dashed #9a86c5;border-radius:14px;padding:28px;text-align:center;margin:14px 0;background:#ffffffb8}.drop.over{border-color:#6b3fd6;background:#f1ebff}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #edf0f2}th{font-size:12px;color:#687078}.name{font-weight:600}.dir{cursor:pointer;color:#5a32b5}
+.actions{display:flex;gap:6px;justify-content:flex-end}.empty{text-align:center;padding:30px;color:#687078}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.open{display:flex}.modalbox{background:#fff;border-radius:14px;max-width:900px;width:100%;max-height:90vh;overflow:auto;padding:16px}.preview{max-width:100%;max-height:70vh;display:block;margin:auto}.code{white-space:pre-wrap;overflow:auto;background:#101418;color:#e8edf2;padding:14px;border-radius:10px;max-height:70vh;font:13px ui-monospace,monospace}
+.status{min-height:20px;margin-top:8px;font-size:13px}.ok{color:#177245}.err{color:#b42318}
+.activity{height:3px;width:100%;margin:0 0 12px;overflow:hidden;border-radius:3px;background:#e8edf2;display:none}.activity.on{display:block}.activity i{display:block;height:100%;width:35%;background:#6b3fd6;animation:activity 1s linear infinite}
+.busy:after{content:' ';display:inline-block;width:9px;height:9px;margin-left:7px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;vertical-align:-1px;animation:spin .7s linear infinite}
+button.busy{cursor:wait;opacity:.8}
+.uploadBox{display:none;margin-top:12px;padding:14px;border:1px solid #d9d4e6;border-radius:12px;background:#fbf9ff}.uploadBox.on{display:block}
+.uploadTop{display:flex;gap:10px;justify-content:space-between;align-items:center;font-size:14px;font-weight:700}.uploadBar{height:12px;margin-top:9px;overflow:hidden;border-radius:99px;background:#e5e1ee}.uploadBar i{display:block;height:100%;width:0;background:#6b3fd6;transition:width .12s linear}
+.uploadInfo{margin-top:7px;font-size:12px;color:#5e6570;line-height:1.5}
+.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#eee7ff;color:#5330a7;font-size:12px;font-weight:700;margin-top:6px}
+@keyframes activity{from{transform:translateX(-120%)}to{transform:translateX(320%)}}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:700px){.auth{grid-template-columns:1fr}.actions button{font-size:12px;padding:6px}.hide-mobile{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><h1>⚡ Мои файлы FAST</h1><div class="muted">Отдельное хранилище · быстрый режим загрузки</div><div class="badge">MY-FILES-FAST</div></div>
+  <button id="logout" class="small">Забыть токен</button>
+</header>
+
+<div id="activity" class="activity"><i></i></div>
+
+<div class="card" id="authCard">
+  <b>Подключение</b>
+  <div class="auth" style="margin-top:10px">
+    <input id="token" type="password" autocomplete="off" placeholder="Вставь GitHub token">
+    <button id="connect" class="primary">Подключить</button>
+  </div>
+  <div class="muted" style="margin-top:10px">Эта страница использует отдельную папку <b>MY-FILES-FAST</b> в том же приватном репозитории. Токен хранится только в sessionStorage браузера.</div>
+  <div id="authStatus" class="status"></div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="toolbar card">
+    <button id="up">⬆ Вверх</button>
+    <button id="newFolder">📁 Новая папка</button>
+    <label class="btn primary">⚡ Загрузить<input id="fileInput" type="file" multiple hidden></label>
+    <span id="crumb" class="crumb"></span>
+    <button id="refresh">↻ Обновить</button>
+  </div>
+  <div id="drop" class="drop">Перетащи сюда файлы или папки — они загрузятся в текущую папку</div>
+  <div class="card">
+    <div id="list"></div>
+    <div id="status" class="status"></div>
+    <div id="uploadBox" class="uploadBox">
+      <div class="uploadTop"><span id="uploadName">Загрузка</span><span id="uploadPct">0%</span></div>
+      <div class="uploadBar"><i id="uploadBar"></i></div>
+      <div id="uploadInfo" class="uploadInfo"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="modal" class="modal"><div class="modalbox"><div class="toolbar"><b id="modalTitle"></b><button id="closeModal" style="margin-left:auto">Закрыть</button></div><div id="modalBody" style="margin-top:12px"></div></div></div>
+
+<script>
+const OWNER='mapkepp',REPO='-ai-private-toolbox',ROOT='MY-FILES-FAST',API='https://api.github.com';
+let token=sessionStorage.getItem('myfiles_fast_token')||'',path=ROOT,entries=[];
+const $=id=>document.getElementById(id);
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function formatSize(n){if(!Number.isFinite(n))return '';if(n<1024)return n+' Б';if(n<1048576)return (n/1024).toFixed(1)+' КБ';if(n<1073741824)return (n/1048576).toFixed(1)+' МБ';return (n/1073741824).toFixed(2)+' ГБ'}
+let busyCount=0;
+function busy(on=true){busyCount=Math.max(0,busyCount+(on?1:-1));$('activity').classList.toggle('on',busyCount>0)}
+function msg(el,text,ok=false){el.textContent=text;el.className='status '+(ok?'ok':'err')}
+function setBusy(el,text,ok=false,on=true){msg(el,text,ok);el.classList.toggle('busy',on)}
+function headers(){return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json'}}
+async function api(url,opt={}){busy(true);try{const sep=url.includes('?')?'&':'?';const r=await fetch(API+url+sep+'_fast='+Date.now(),{cache:'no-store',...opt,headers:{...headers(),...(opt.headers||{})}});let d=null;try{d=await r.json()}catch{}if(!r.ok){const e=new Error((d&&d.message)||('HTTP '+r.status));e.status=r.status;throw e}return d}finally{busy(false)}}
+function join(a,b){return(a+'/'+b).replace(/\/+/g,'/')}
+function isUnder(p){return p===ROOT||p.startsWith(ROOT+'/')}
+function readAsBase64(file){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>{const s=String(fr.result||'');const comma=s.indexOf(',');resolve(comma>=0?s.slice(comma+1):s)};fr.onerror=()=>reject(fr.error||new Error('Не удалось прочитать файл'));fr.readAsDataURL(file)})}
+function uploadUi(name,on){$('uploadBox').classList.toggle('on',on);if(on){$('uploadName').textContent=name;$('uploadPct').textContent='0%';$('uploadBar').style.width='0%';$('uploadInfo').textContent='Подготовка…'}}
+function progress(name,fileSize,e,startedAt){const pct=e.total?Math.min(99,Math.round(e.loaded/e.total*100)):0;const secs=Math.max(.001,(performance.now()-startedAt)/1000);const speed=e.loaded/secs;const remain=e.total?Math.max(0,(e.total-e.loaded)/Math.max(speed,.001)):0;$('uploadName').textContent=name;$('uploadPct').textContent=pct+'%';$('uploadBar').style.width=pct+'%';$('uploadInfo').textContent='Отправка · '+formatSize(e.loaded)+' / '+formatSize(e.total||0)+' · '+formatSize(speed)+'/с · осталось примерно '+(remain<60?Math.ceil(remain)+' с':Math.ceil(remain/60)+' мин')+' · исходный файл '+formatSize(fileSize)}
+function putFast(p,b64,message,file,requestBytes){if(!isUnder(p))return Promise.reject(new Error('Недопустимый путь'));return new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();const url=API+'/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/')+'?_fast='+Date.now();const started=performance.now();xhr.open('PUT',url,true);xhr.setRequestHeader('Accept','application/vnd.github+json');xhr.setRequestHeader('Authorization','Bearer '+token);xhr.setRequestHeader('X-GitHub-Api-Version','2026-03-10');xhr.setRequestHeader('Content-Type','application/json');xhr.upload.onprogress=e=>{if(e.lengthComputable)progress(file.name,file.size,e,started)};xhr.onload=()=>{busy(false);let d=null;try{d=JSON.parse(xhr.responseText)}catch{}if(xhr.status>=200&&xhr.status<300){$('uploadPct').textContent='100%';$('uploadBar').style.width='100%';$('uploadInfo').textContent='Ответ GitHub получен · передано по сети '+formatSize(requestBytes)+' · сейчас обновляю список…';resolve(d)}else reject(new Error(d&&d.message?d.message:'HTTP '+xhr.status))};xhr.onerror=()=>{busy(false);reject(new Error('Сетевой сбой при отправке'))};xhr.onabort=()=>{busy(false);reject(new Error('Загрузка прервана'))};busy(true);xhr.send(JSON.stringify({message,content:b64}))})}
+async function uploadList(files){files=Array.from(files);if(!files.length)return;let ok=0;for(const f of files){try{if(f.size>=100*1024*1024)throw Error(f.name+': 100 МБ или больше — GitHub Contents API не принимает такой файл.');let rel=(f.webkitRelativePath||f.relativePath||f.name).replace(/^\/+/,''),parts=rel.split('/'),name=parts.pop(),dir=parts.reduce((p,x)=>join(p,x),path);uploadUi(rel,true);setBusy($('status'),'Быстро читаю файл: '+rel+' ('+formatSize(f.size)+')…',false,true);const b64=await readAsBase64(f);const requestBytes=new Blob([JSON.stringify({message:'Загрузить '+rel,content:b64})]).size;setBusy($('status'),'Отправляю: '+rel+'…',false,true);await putFast(join(dir,name),b64,'Загрузить '+rel,f,requestBytes);ok++;msg($('status'),'Готово: GitHub принял '+rel,true);$('status').classList.remove('busy')}catch(e){msg($('status'),'Ошибка '+f.name+': '+e.message);$('status').classList.remove('busy')}}setBusy($('status'),'Загружено '+ok+'/'+files.length+'. Проверяю содержимое папки…',false,true);await load();if(ok===files.length)msg($('status'),'Загрузка завершена: '+ok+' файл(ов) сохранено в MY-FILES-FAST.',true);$('status').classList.remove('busy')}
+async function connect(){const b=$('connect');token=$('token').value.trim();if(!token)return;b.disabled=true;b.classList.add('busy');setBusy($('authStatus'),'Проверяю доступ к MY-FILES-FAST…',false,true);try{const d=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(ROOT));if(!Array.isArray(d))throw Error('MY-FILES-FAST не является папкой');sessionStorage.setItem('myfiles_fast_token',token);$('authCard').style.display='none';$('app').style.display='block';path=ROOT;entries=d;render();msg($('status'),'Подключено. MY-FILES-FAST загружена.',true)}catch(e){sessionStorage.removeItem('myfiles_fast_token');let m=e.message||'Неизвестная ошибка';if(m.includes('Bad credentials'))m='GitHub не принял токен (401).';else if(m.includes('Not Found')||e.status===404)m='Нет доступа к MY-FILES-FAST. Проверь права токена на репозиторий.';msg($('authStatus'),'Не удалось подключиться: '+m)}finally{b.disabled=false;b.classList.remove('busy');$('authStatus').classList.remove('busy')}}
+async function load(){setBusy($('status'),'Загружаю '+path+'…',false,true);try{entries=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(path).replace(/%2F/g,'/'));if(!Array.isArray(entries))entries=[entries];render()}catch(e){msg($('status'),'Ошибка чтения: '+e.message)}finally{$('status').classList.remove('busy')}}
+function render(){$('crumb').textContent=path.replace(ROOT,'Мои файлы FAST')||'Мои файлы FAST';const visible=entries.filter(x=>x.name!=='.gitkeep').sort((a,b)=>(a.type!==b.type?(a.type==='dir'?-1:1):a.name.localeCompare(b.name,'ru')));if(path!==ROOT)visible.unshift({name:'..',type:'back'});if(!visible.length){$('list').innerHTML='<div class="empty">Папка пуста</div>';return}$('list').innerHTML='<table><thead><tr><th>Имя</th><th class="hide-mobile">Тип</th><th class="hide-mobile">Размер</th><th></th></tr></thead><tbody>'+visible.map((x,i)=>{if(x.type==='back')return '<tr><td colspan="4"><button class="small" onclick="goUp()">⬆ ..</button></td></tr>';const icon=x.type==='dir'?'📁':'📄',size=x.type==='file'?formatSize(x.size):'';return '<tr><td><span class="name '+(x.type==='dir'?'dir':'')+'" onclick="openEntry('+i+')">'+icon+' '+esc(x.name)+'</span></td><td class="hide-mobile">'+x.type+'</td><td class="hide-mobile">'+size+'</td><td><div class="actions"><button class="small" onclick="downloadEntry('+i+')">⬇</button><button class="small" onclick="previewEntry('+i+')">👁</button><button class="small" onclick="renameEntry('+i+')">✏</button><button class="small danger" onclick="deleteEntry('+i+')">🗑</button></div></td></tr>'}).join('')+'</tbody></table>'}
+function real(i){const visible=entries.filter(x=>x.name!=='.gitkeep').sort((a,b)=>(a.type!==b.type?(a.type==='dir'?-1:1):a.name.localeCompare(b.name,'ru')));return visible[i]}
+function openEntry(i){const x=real(i);if(x.type==='dir'){path=x.path;load()}else previewEntry(i)}
+function goUp(){if(path===ROOT)return;const parts=path.split('/');parts.pop();path=parts.join('/');load()}
+async function putSmall(p,data,message){const body={message,content:btoa(unescape(encodeURIComponent(data)))};await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/'),{method:'PUT',body:JSON.stringify(body)})}
+async function createFolder(){let n=prompt('Имя новой папки:');if(!n)return;n=n.trim();if(!n||/[\\/]/.test(n))return alert('Недопустимое имя');try{await putSmall(join(path,n+'/.gitkeep'),'','Создать папку '+n);await load()}catch(e){alert(e.message)}}
+async function getFileData(p){const x=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/'));if(x.content){const bin=atob(x.content.replace(/\n/g,''));const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a}const r=await fetch(x.download_url,{headers:{Authorization:'Bearer '+token}});if(!r.ok)throw Error('Не удалось скачать '+p);return new Uint8Array(await r.arrayBuffer())}
+async function deletePath(p,sha){await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/'),{method:'DELETE',body:JSON.stringify({message:'Удалить '+p,sha})})}
+async function removeRecursive(x){if(x.type==='file'){await deletePath(x.path,x.sha);return}const cs=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(x.path).replace(/%2F/g,'/'));for(const c of cs)await removeRecursive(c);await deletePath(x.path,x.sha)}
+async function deleteEntry(i){const x=real(i);if(!confirm('Удалить «'+x.name+'»?'+(x.type==='dir'?' Будет удалено содержимое папки.':'')))return;try{await removeRecursive(x);await load()}catch(e){alert(e.message)}}
+async function renameEntry(i){const x=real(i),n=(prompt('Новое имя:',x.name)||'').trim();if(!n||n===x.name||n.includes('/'))return;try{const d=await getFileData(x.path);const b64=await new Promise((res,rej)=>{const blob=new Blob([d]);const fr=new FileReader();fr.onload=()=>res(String(fr.result).split(',')[1]);fr.onerror=()=>rej(fr.error);fr.readAsDataURL(blob)});await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(join(path,n)).replace(/%2F/g,'/'),{method:'PUT',body:JSON.stringify({message:'Переименовать '+x.path,content:b64})});await deletePath(x.path,x.sha);await load()}catch(e){alert(e.message)}}
+async function downloadEntry(i){const x=real(i);if(x.type==='dir')return;try{const data=await getFileData(x.path);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data]));a.download=x.name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}catch(e){alert(e.message)}}
+async function previewEntry(i){const x=real(i);if(x.type==='dir')return;try{const data=await getFileData(x.path),ext=x.name.split('.').pop().toLowerCase();let type='application/octet-stream';if(['png','jpg','jpeg','gif','webp','svg'].includes(ext))type=ext==='jpg'||ext==='jpeg'?'image/jpeg':'image/'+ext;if(ext==='pdf')type='application/pdf';if(['mp4','webm'].includes(ext))type='video/'+ext;if(['mp3','wav','ogg'].includes(ext))type='audio/'+ext;const url=URL.createObjectURL(new Blob([data],{type}));$('modalTitle').textContent=x.name;let body;if(type.startsWith('image/'))body='<img class="preview" src="'+url+'">';else if(type==='application/pdf')body='<iframe class="preview" style="width:100%;height:70vh" src="'+url+'"></iframe>';else if(type.startsWith('video/'))body='<video class="preview" controls src="'+url+'"></video>';else if(type.startsWith('audio/'))body='<audio style="width:100%" controls src="'+url+'"></audio>';else body='<p>Для этого типа файла встроенный просмотр не используется.</p>';$('modalBody').innerHTML=body;$('modal').classList.add('open')}catch(e){alert(e.message)}}
+function closeModal(){ $('modal').classList.remove('open');$('modalBody').innerHTML=''}
+window.downloadEntry=downloadEntry;window.previewEntry=previewEntry;window.renameEntry=renameEntry;window.deleteEntry=deleteEntry;window.closeModal=closeModal;
+$('connect').onclick=connect;$('token').value=token;$('logout').onclick=()=>{sessionStorage.removeItem('myfiles_fast_token');token='';location.reload()};$('up').onclick=goUp;$('newFolder').onclick=createFolder;$('refresh').onclick=load;$('closeModal').onclick=closeModal;$('fileInput').onchange=e=>{uploadList(e.target.files);e.target.value=''};
+const drop=$('drop');drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};drop.ondragleave=()=>drop.classList.remove('over');drop.ondrop=async e=>{e.preventDefault();drop.classList.remove('over');const files=[];const walk=async(entry,base)=>{if(entry.isFile)await new Promise(res=>entry.file(f=>{Object.defineProperty(f,'relativePath',{value:base+f.name});files.push(f);res()}));else if(entry.isDirectory){const r=entry.createReader();const read=()=>new Promise(res=>r.readEntries(async es=>{if(!es.length)return res();for(const c of es)await walk(c,base+entry.name+'/');await read();res()}));await read()}};for(const it of e.dataTransfer.items){const en=it.webkitGetAsEntry?.();if(en)await walk(en,'')}if(files.length)await uploadList(files);else await uploadList(e.dataTransfer.files)};
+if(token)connect();
+</script>
+</body>
+</html>
