@@ -32,6 +32,9 @@ jobs:
       - name: Validate production
         run: python3 scripts/validate-bukovy.py
 
+      - name: Validate file managers
+        run: python3 scripts/validate-file-manager.py
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
