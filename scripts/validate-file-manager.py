@@ -53,7 +53,7 @@ if "<title>F Мои файлы FAST</title>" not in fast_html or "<h1>F ⚡ Мо
 
 if "3 минуты" in first_html or "3 минуты" in fast_html:
     raise AssertionError("legacy 3-minute upload timeout remains")
-if "setTimeout(()=>ctl.abort(),15000)" not in first or "setTimeout(()=>ctl.abort(),15000)" not in fast:
+if "localJson('http://127.0.0.1:8765/reserve',{method:'POST'},15_000)" not in first or "localJson('http://127.0.0.1:8765/reserve',{method:'POST'},15_000)" not in fast:
     raise AssertionError("reserve timeout protection missing")
 if "21600" not in first or "21600" not in fast:
     raise AssertionError("large-file wait budget missing")
