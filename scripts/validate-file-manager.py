@@ -58,7 +58,7 @@ if "setTimeout(()=>ctl.abort(),15000)" not in first or "setTimeout(()=>ctl.abort
 if "21600" not in first or "21600" not in fast:
     raise AssertionError("large-file wait budget missing")
 
-for needle in ("$BridgeVersion = '3.1'", "-TimeoutSec 15", "$req.Timeout=7200000", "/reserve", "/upload"):
+for needle in ("$BridgeVersion = '3.2'", "-TimeoutSec 15", "$req.Timeout=7200000", "/reserve", "/upload"):
     if needle not in bridge:
         raise AssertionError(f"bridge hardening marker missing: {needle}")
 
@@ -67,4 +67,4 @@ print("PASS both pages have identical normalized functional core")
 print("PASS first page has no F branding")
 print("PASS FAST branding is preserved")
 print("PASS reserve timeout and long upload wait are present")
-print("PASS bridge 3.1 timeout/retry/reserve markers are present")
+print("PASS bridge 3.2 timeout/retry/reserve markers are present")
