@@ -265,7 +265,7 @@ function Handle-Client {
   $stream=$Client.GetStream();$req=Read-Request $stream
   if($req.Method -eq 'OPTIONS'){Send-Response $stream 204 'text/plain' '';return}
   if($req.Method -eq 'GET'){
-    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version='+$BridgeVersion+';single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
+    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version=$BridgeVersion;single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
     if($req.Path -like '/status*'){
       $q=$req.Path.IndexOf('?');$query=if($q -ge 0){$req.Path.Substring($q+1)}else{''}
       $m=$query -split '&'|Where-Object{$_ -like 'id=*'}|Select-Object -First 1
