@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Мои файлы — GitHub</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#17202a;background:#f5f7fa}
@@ -65,12 +68,12 @@ let busyCount=0;function busy(on=true){busyCount=Math.max(0,busyCount+(on?1:-1))
 function setMsgBusy(el,text,ok=false,on=true){msg(el,text,ok);el.classList.toggle('busy',on)}
 function msg(el,text,ok=false){el.textContent=text;el.className='status '+(ok?'ok':'err')}
 function headers(){return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json'}}
-async function api(url,opt={}){busy(true);try{const r=await fetch(API+url,{...opt,headers:{...headers(),...(opt.headers||{})}});let d=null;try{d=await r.json()}catch{}if(!r.ok)throw new Error((d&&d.message)||('HTTP '+r.status));return d}finally{busy(false)}}
+async function api(url,opt={}){busy(true);try{const r=await fetch(API+url,{...opt,headers:{...headers(),...(opt.headers||{})}});let d=null;try{d=await r.json()}catch{}if(!r.ok){const e=new Error((d&&d.message)||('HTTP '+r.status));e.status=r.status;throw e}return d}finally{busy(false)}}
 function b64(buf){let s='',a=new Uint8Array(buf);const n=0x8000;for(let i=0;i<a.length;i+=n)s+=String.fromCharCode(...a.subarray(i,i+n));return btoa(s)}
 function decode64(s){const bin=atob(s.replace(/\n/g,''));const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a}
 function join(a,b){return (a+'/'+b).replace(/\/+/g,'/')}
 function isUnder(p){return p===ROOT||p.startsWith(ROOT+'/')}
-async function connect(){const b=$('connect');b.disabled=true;b.classList.add('busy');setMsgBusy($('authStatus'),'Проверяю токен и доступ к папке…',false,true);try{await api('/user');await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(ROOT));sessionStorage.setItem('myfiles_token',token);$('authCard').style.display='none';$('app').style.display='block';await load()}catch(e){sessionStorage.removeItem('myfiles_token');msg($('authStatus'),'Не удалось подключиться: '+e.message)}finally{b.disabled=false;b.classList.remove('busy');$('authStatus').classList.remove('busy')}}
+async function connect(){const b=$('connect');b.disabled=true;b.classList.add('busy');setMsgBusy($('authStatus'),'Проверяю доступ к MY-FILES…',false,true);try{const d=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(ROOT));if(!Array.isArray(d))throw Error('MY-FILES не является папкой');sessionStorage.setItem('myfiles_token',token);$('authCard').style.display='none';$('app').style.display='block';await load()}catch(e){sessionStorage.removeItem('myfiles_token');let m=e.message||'Неизвестная ошибка';if(m.includes('Bad credentials'))m='GitHub не принял токен (401). Создай/введи действующий Fine-grained token.';else if(m.includes('Resource not accessible'))m='Токен не имеет доступа к этому репозиторию. Нужен Contents: Read and write для -ai-private-toolbox.';else if(m.includes('Not Found'))m='Репозиторий или папка MY-FILES недоступны этому токену. Проверь Repository access.';msg($('authStatus'),'Не удалось подключиться: '+m)}finally{b.disabled=false;b.classList.remove('busy');$('authStatus').classList.remove('busy')}}
 async function load(){setMsgBusy($('status'),'Загружаю содержимое '+path+'…',false,true);try{entries=await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(path).replace(/%2F/g,'/'));if(!Array.isArray(entries))entries=[entries];render();}catch(e){msg($('status'),'Ошибка чтения: '+e.message)}finally{$('status').classList.remove('busy')}}
 function render(){
  $('crumb').textContent=path.replace(ROOT,'Мои файлы')||'Мои файлы';
