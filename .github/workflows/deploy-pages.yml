@@ -35,6 +35,18 @@ jobs:
       - name: Validate file managers
         run: python3 scripts/validate-file-manager.py
 
+      - name: Validate PowerShell bridge syntax
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile('file-manager-fast/fast-bridge.ps1', [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) {
+            $errors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
+          Write-Host 'PASS PowerShell bridge syntax'
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
