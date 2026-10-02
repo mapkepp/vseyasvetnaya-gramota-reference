@@ -1,7 +1,8 @@
 param(
   [switch]$Worker,
   [string]$JobFile,
-  [int]$Port = 8765
+  [int]$Port = 8765,
+  [switch]$SingleJob
 )
 
 Set-StrictMode -Version Latest
@@ -229,7 +230,7 @@ function Handle-Client {
   $stream=$Client.GetStream();$req=Read-Request $stream
   if($req.Method -eq 'OPTIONS'){Send-Response $stream 204 'text/plain' '';return}
   if($req.Method -eq 'GET'){
-    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version='2.0'}|ConvertTo-Json -Compress);return}
+    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version='3.0';single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
     if($req.Path -like '/status*'){
       $q=$req.Path.IndexOf('?');$query=if($q -ge 0){$req.Path.Substring($q+1)}else{''}
       $m=$query -split '&'|Where-Object{$_ -like 'id=*'}|Select-Object -First 1
@@ -242,6 +243,39 @@ function Handle-Client {
     }
     Send-Response $stream 404 'application/json' '{"ok":false,"message":"not found"}';return
   }
+  if($req.Method -eq 'POST' -and $req.Path -eq '/reserve' -and -not $SingleJob){
+    $newPort=0
+    for($try=0;$try -lt 40;$try++){
+      $candidate=Get-Random -Minimum 8800 -Maximum 8990
+      $probe=$null
+      try{
+        $probe=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1'),$candidate)
+        $probe.Start();$probe.Stop();$probe=$null
+        $newPort=$candidate
+        break
+      }catch{
+        if($probe){try{$probe.Stop()}catch{}}
+      }
+    }
+    if($newPort -eq 0){Send-Response $stream 500 'application/json' '{"ok":false,"message":"Не удалось найти свободный порт"}';return}
+
+    Start-Process -FilePath 'powershell.exe' -WindowStyle Hidden -ArgumentList @(
+      '-NoProfile','-ExecutionPolicy','Bypass','-File',$ScriptPath,'-SingleJob','-Port',$newPort
+    )|Out-Null
+
+    $ready=$false
+    for($try=0;$try -lt 30;$try++){
+      Start-Sleep -Milliseconds 100
+      try{
+        $h=Invoke-WebRequest -UseBasicParsing -Uri ('http://127.0.0.1:'+ $newPort +'/health') -TimeoutSec 1 -ErrorAction Stop
+        if($h.StatusCode -eq 200){$ready=$true;break}
+      }catch{}
+    }
+    if(-not $ready){Send-Response $stream 500 'application/json' (@{ok=$false;message='Локальный канал не запустился';port=$newPort}|ConvertTo-Json -Compress);return}
+    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version='3.0'}|ConvertTo-Json -Compress)
+    return
+  }
+
   if($req.Method -eq 'POST' -and $req.Path -eq '/upload'){
     $auth=$req.Headers['authorization']
     if(-not $auth){Send-Response $stream 400 'application/json' '{"ok":false,"message":"missing authorization"}';return}
@@ -289,7 +323,20 @@ function Handle-Client {
 
 $listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1'),$Port)
 $listener.Start()
-Write-Host ('F-Fast Bridge 2.0: http://127.0.0.1:'+ $Port)
+
+if($SingleJob){
+  Write-Host ('F-Fast Bridge 3.0 single upload: http://127.0.0.1:'+ $Port)
+  try{
+    $client=$listener.AcceptTcpClient()
+    try{Handle-Client $client}
+    catch{
+      try{Send-Response $client.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}
+    }finally{$client.Close()}
+  }finally{$listener.Stop()}
+  exit
+}
+
+Write-Host ('F-Fast Bridge 3.0 manager: http://127.0.0.1:'+ $Port)
 while($true){
   $client=$listener.AcceptTcpClient()
   try{Handle-Client $client}
