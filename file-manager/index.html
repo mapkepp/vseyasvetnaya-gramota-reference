@@ -84,10 +84,8 @@ function goUp(){if(path===ROOT)return;path=path.substring(0,path.lastIndexOf('/'
 window.goUp=goUp;window.openEntry=openEntry;
 async function createFolder(){let n=prompt('Имя новой папки:');if(!n)return;n=n.trim();if(!n||/[\\]/.test(n))return alert('Недопустимое имя');try{await putFile(join(path,n+'/.gitkeep'),new Uint8Array(), 'Создать папку '+n);await load()}catch(e){alert(e.message)}}
 async function putFile(p,data,message){if(!isUnder(p))throw Error('Недопустимый путь');const body={message,content:b64(data)};await api('/repos/'+OWNER+'/'+REPO+'/contents/'+encodeURIComponent(p).replace(/%2F/g,'/'),{method:'PUT',body:JSON.stringify(body)})}
-async function uploadFile(file,target){if(file.size>100*1024*1024)throw Error(file.name+': GitHub Contents API ограничен примерно 100 MB на файл');const data=new Uint8Array(await file.arrayBuffer());await putFile(join(target,file.name),data,'Загрузить '+file.name)}
-async function uploadList(files){
- let ok=0;for(const f of files){try{let rel=f.webkitRelativePath||f.relativePath||f.name;rel=rel.replace(/^\/+/, '');let parts=rel.split('/');let name=parts.pop();let dir=targetPathFromParts(path,parts);const data=new Uint8Array(await f.arrayBuffer());await putFile(join(dir,name),data,'Загрузить '+rel);ok++;msg($('status'),'Загружено: '+ok+'/'+files.length,true)}catch(e){msg($('status'),e.message)}}await load()
-}
+async function uploadFile(file,target){if(file.size>100*1024*1024)throw Error(file.name+': файл больше 100 MB — GitHub Contents API его не принимает');msg($('status'),'Подготовка: '+file.name+' ('+formatSize(file.size)+')…');const data=new Uint8Array(await file.arrayBuffer());msg($('status'),'Отправка: '+file.name+' ('+formatSize(file.size)+')…');await putFile(join(target,file.name),data,'Загрузить '+file.name)}
+async function uploadList(files){files=Array.from(files);let ok=0;for(const f of files){try{if(f.size>100*1024*1024)throw Error(f.name+': файл больше 100 MB — GitHub Contents API его не принимает');let rel=f.webkitRelativePath||f.relativePath||f.name;rel=rel.replace(/^\/+/, '');let parts=rel.split('/');let name=parts.pop();let dir=targetPathFromParts(path,parts);msg($('status'),'Читаю: '+rel+' ('+formatSize(f.size)+')…');const data=new Uint8Array(await f.arrayBuffer());msg($('status'),'Отправляю: '+rel+' ('+formatSize(f.size)+')…');await putFile(join(dir,name),data,'Загрузить '+rel);ok++;msg($('status'),'Загружено: '+ok+'/'+files.length+' — '+rel,true)}catch(e){msg($('status'),'Ошибка '+f.name+': '+e.message)}}await load()}
 function targetPathFromParts(base,parts){return parts.reduce((p,x)=>join(p,x),base)}
 async function handleFiles(files){files=Array.from(files);if(!files.length)return;await uploadList(files)}
 async function renameEntry(i){const x=real(i);let n=prompt('Новое имя:',x.name);if(!n||n===x.name)return;n=n.trim();if(!n||n.includes('/'))return;try{await moveEntry(x,join(path,n));await load()}catch(e){alert(e.message)}}
@@ -104,7 +102,7 @@ window.downloadEntry=downloadEntry;window.previewEntry=previewEntry;window.renam
 $('connect').onclick=()=>{token=$('token').value.trim();if(token)connect()};$('token').value=token;
 $('logout').onclick=()=>{sessionStorage.removeItem('myfiles_token');token='';location.reload()};
 $('up').onclick=goUp;$('newFolder').onclick=createFolder;$('refresh').onclick=load;$('closeModal').onclick=closeModal;
-$('fileInput').onchange=e=>handleFiles(e.target.files);
+$('fileInput').onchange=e=>{handleFiles(e.target.files);e.target.value=''};
 const drop=$('drop');drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};drop.ondragleave=()=>drop.classList.remove('over');drop.ondrop=async e=>{e.preventDefault();drop.classList.remove('over');const files=[];const walk=async(entry,base)=>{if(entry.isFile)await new Promise(res=>entry.file(f=>{Object.defineProperty(f,'relativePath',{value:base+f.name});files.push(f);res()}));else if(entry.isDirectory){const r=entry.createReader();const read=()=>new Promise(res=>r.readEntries(async es=>{if(!es.length)return res();for(const c of es)await walk(c,base+entry.name+'/');await read();res()}));await read()}};for(const it of e.dataTransfer.items){const en=it.webkitGetAsEntry?.();if(en)await walk(en,'')}if(files.length)await handleFiles(files);else await handleFiles(e.dataTransfer.files)};
 if(token)connect();
 </script>
