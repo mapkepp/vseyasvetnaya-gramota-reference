@@ -1,191 +1,52 @@
-﻿param(
-  [switch]$Worker,
-  [string]$JobFile,
-  [int]$Port = 8765
-)
-
+﻿param([switch]$Worker,[string]$JobFile,[int]$Port=8765)
 Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-$Repo = 'mapkepp/-ai-private-toolbox'
-$Tag = 'MY-FILES-FAST'
-$Base = Join-Path $env:LOCALAPPDATA 'F-Fast-Bridge'
-$JobsDir = Join-Path $Base 'jobs'
-$ScriptPath = $MyInvocation.MyCommand.Path
-$NL = [Environment]::NewLine
-New-Item -ItemType Directory -Force -Path $JobsDir | Out-Null
+$ErrorActionPreference='Stop'
+$Repo='mapkepp/-ai-private-toolbox'
+$Base=Join-Path $env:LOCALAPPDATA 'F-Fast-Bridge'
+$JobsDir=Join-Path $Base 'jobs'
+$ScriptPath=$MyInvocation.MyCommand.Path
+New-Item -ItemType Directory -Force -Path $JobsDir|Out-Null
 
-function Write-State {
-  param([string]$Path,[hashtable]$State)
-  [IO.File]::WriteAllText($Path,($State|ConvertTo-Json -Depth 6 -Compress),(New-Object Text.UTF8Encoding($false)))
-}
-function Fail-Job {
-  param([string]$Path,[string]$Message)
-  Write-State $Path @{ok=$false;state='error';phase='Ошибка';message=$Message;finishedAt=(Get-Date).ToString('o')}
-}
-function Encode-AssetName {
-  param([string]$Path)
-  $b=[Text.Encoding]::UTF8.GetBytes($Path)
-  return 'MF_'+([Convert]::ToBase64String($b).TrimEnd('=').Replace('+','-').Replace('/','_'))
-}
-function Get-Gh {
-  $c=Get-Command gh -ErrorAction SilentlyContinue
-  if(!$c){throw 'GitHub CLI (gh) не найден в PATH.'}
-  return $c.Source
-}
-function Ensure-Release {
-  param([string]$Gh)
-  & $Gh release view $Tag -R $Repo *> $null
-  if($LASTEXITCODE -ne 0){
-    & $Gh release create $Tag -R $Repo --title 'F Мои файлы FAST' --notes 'Бинарное файловое хранилище F Мои файлы FAST.' --prerelease --latest=false *> $null
-    if($LASTEXITCODE -ne 0){throw 'Не удалось создать служебный релиз MY-FILES-FAST.'}
-  }
-  for($i=0;$i -lt 10;$i++){
-    & $Gh release view $Tag -R $Repo *> $null
-    if($LASTEXITCODE -eq 0){return}
-    Start-Sleep -Milliseconds 800
-  }
-  throw 'GitHub создал релиз, но он ещё не виден API.'
-}
-function Get-Release {
-  param([string]$Gh)
-  $raw=& $Gh api "repos/$Repo/releases/tags/$Tag" 2>&1
-  if($LASTEXITCODE -ne 0){throw (($raw -join $NL).Trim())}
-  return ($raw -join $NL|ConvertFrom-Json)
-}
-function Get-AssetByName {
-  param([string]$Gh,[long]$ReleaseId,[string]$Name)
-  for($page=1;$page -le 10;$page++){
-    $raw=& $Gh api "repos/$Repo/releases/$ReleaseId/assets?per_page=100&page=$page" 2>&1
-    if($LASTEXITCODE -ne 0){throw (($raw -join $NL).Trim())}
-    $arr=@($raw -join $NL|ConvertFrom-Json)
-    if($arr.Count -eq 0){return $null}
-    foreach($a in $arr){if($a.name -eq $Name){return $a}}
-    if($arr.Count -lt 100){return $null}
-  }
-  return $null
-}
-function Upload-Binary {
-  param([string]$Gh,[string]$SourcePath)
-  $psi=New-Object Diagnostics.ProcessStartInfo
-  $psi.FileName=$Gh
-  $psi.UseShellExecute=$false
-  $psi.CreateNoWindow=$true
-  $psi.RedirectStandardOutput=$true
-  $psi.RedirectStandardError=$true
-  $psi.Arguments='release upload "'+$Tag+'" "'+$SourcePath+'" -R "'+$Repo+'"'
-  $p=New-Object Diagnostics.Process
-  $p.StartInfo=$psi
-  [void]$p.Start()
-  $started=Get-Date
-  while(!$p.HasExited){Start-Sleep -Milliseconds 1000}
-  $o=$p.StandardOutput.ReadToEnd();$e=$p.StandardError.ReadToEnd()
-  return @{ExitCode=$p.ExitCode;Stdout=$o;Stderr=$e;Seconds=[math]::Round(((Get-Date)-$started).TotalSeconds,1)}
+function State([string]$p,[hashtable]$s){[IO.File]::WriteAllText($p,($s|ConvertTo-Json -Depth 8 -Compress),(New-Object Text.UTF8Encoding($false)))}
+function Fail([string]$p,[string]$m){State $p @{ok=$false;state='error';phase='ERROR';message=$m;finishedAt=(Get-Date).ToString('o')}}
+function Enc([string]$p){$b=[Text.Encoding]::UTF8.GetBytes($p);return 'MF_'+([Convert]::ToBase64String($b).TrimEnd('=').Replace('+','-').Replace('/','_'))}
+function H([string]$t){@{Authorization=('Bearer '+$t);Accept='application/vnd.github+json';'X-GitHub-Api-Version'='2026-03-10'}}
+function Api([string]$m,[string]$u,[string]$t,[object]$b=$null){$h=H $t;if($null -ne $b){return Invoke-RestMethod -Method $m -Uri $u -Headers $h -Body ($b|ConvertTo-Json -Depth 8) -ContentType 'application/json'}return Invoke-RestMethod -Method $m -Uri $u -Headers $h}
+function Release([string]$tag,[string]$t){try{return Api GET ("https://api.github.com/repos/"+$Repo+"/releases/tags/"+[Uri]::EscapeDataString($tag)) $t}catch{if($_.Exception.Response -and $_.Exception.Response.StatusCode.value__ -eq 404){return $null};throw}}
+function EnsureRelease([string]$tag,[string]$t){$r=Release $tag $t;if($r){return $r};return Api POST ("https://api.github.com/repos/"+$Repo+"/releases") $t @{tag_name=$tag;name=$tag;body='Private binary storage';draft=$false;prerelease=$true}}
+function Assets([object]$r,[string]$t){$o=@();for($p=1;$p -le 20;$p++){$a=Api GET ("https://api.github.com/repos/"+$Repo+"/releases/"+$r.id+"/assets?per_page=100&page="+$p) $t;if(!$a){break};$o+=$a;if(@($a).Count -lt 100){break}}return $o}
+function FindAsset([object]$r,[string]$n,[string]$t){foreach($a in @(Assets $r $t)){if($a.name -eq $n){return $a}}return $null}
+function Upload([object]$r,[string]$file,[string]$name,[string]$t,[string]$sp,[int64]$size){
+  $u=$r.upload_url -replace '\{\?name,label\}','?name='+[Uri]::EscapeDataString($name)
+  $q=[Net.HttpWebRequest]::Create($u);$q.Method='POST';$q.ContentType='application/octet-stream';$q.ContentLength=$size;$q.Timeout=900000;$q.ReadWriteTimeout=900000
+  $q.Headers['Authorization']='Bearer '+$t;$q.Headers['Accept']='application/vnd.github+json';$q.Headers['X-GitHub-Api-Version']='2026-03-10'
+  $input=[IO.File]::OpenRead($file);$stream=$q.GetRequestStream()
+  try{$buf=New-Object byte[] 1048576;$sent=0L;$last=Get-Date;$start=Get-Date;while(($n=$input.Read($buf,0,$buf.Length)) -gt 0){$stream.Write($buf,0,$n);$sent+=$n;$now=Get-Date;if(($now-$last).TotalMilliseconds -ge 500){$sec=[math]::Max(.001,($now-$start).TotalSeconds);State $sp @{ok=$true;state='running';phase='GITHUB_UPLOAD';message='Uploading binary data';size=$size;sent=$sent;percent=[math]::Min(99,[math]::Floor($sent*100/$size));speed=[math]::Round($sent/$sec,0);startedAt=(Get-Date).ToString('o')};$last=$now}}}finally{$stream.Dispose();$input.Dispose()}
+  $resp=$q.GetResponse();try{$sr=New-Object IO.StreamReader($resp.GetResponseStream());$txt=$sr.ReadToEnd();$sr.Dispose();return ($txt|ConvertFrom-Json)}finally{$resp.Dispose()}
 }
 if($Worker){
-  if([string]::IsNullOrWhiteSpace($JobFile)){exit 2}
-  $sourcePath=$null;$tmpPath=$null;$tmpAsset=$null
+  $source=$null;$token=$null;$tmp=$null
   try{
-    $job=Get-Content -Raw -LiteralPath $JobFile|ConvertFrom-Json
-    $statePath=[IO.Path]::ChangeExtension($JobFile,'.status.json')
-    $sourcePath=$job.sourcePath;$size=[int64]$job.size;$assetName=$job.assetName
-    Write-State $statePath @{ok=$true;state='running';phase='Проверяю GitHub CLI';message='Начинаю бинарную загрузку…';size=$size;startedAt=$job.startedAt}
-    $gh=Get-Gh
-    & $gh auth status -h github.com *> $null
-    if($LASTEXITCODE -ne 0){throw 'GitHub CLI не авторизован. Выполни gh auth login.'}
-    Write-State $statePath @{ok=$true;state='running';phase='Готовлю хранилище';message='Проверяю служебный релиз…';size=$size;startedAt=$job.startedAt}
-    Ensure-Release $gh
-    $release=Get-Release $gh
-    $target=Get-AssetByName $gh ([long]$release.id) $assetName
-    $tmpName='MF_TMP_'+$job.id
-    $tmpPath=Join-Path (Split-Path -Parent $sourcePath) $tmpName
-    Rename-Item -LiteralPath $sourcePath -NewName $tmpName
-    Write-State $statePath @{ok=$true;state='running';phase='Отправка в GitHub';message='Бинарная передача идёт через GitHub CLI без Base64…';size=$size;startedAt=$job.startedAt}
-    $upload=Upload-Binary $gh $tmpPath
-    if($upload.ExitCode -ne 0){
-      $detail=$upload.Stderr.Trim();if([string]::IsNullOrWhiteSpace($detail)){$detail=$upload.Stdout.Trim()}
-      $m='GitHub upload завершился с ошибкой.';if($detail){$m+=' '+$detail};throw $m
-    }
-    Write-State $statePath @{ok=$true;state='running';phase='Проверяю сохранение';message='Проверяю загруженный бинарный asset на стороне GitHub…';size=$size;startedAt=$job.startedAt;githubSeconds=$upload.Seconds}
-    $release=Get-Release $gh
-    $tmpAsset=Get-AssetByName $gh ([long]$release.id) $tmpName
-    if(-not $tmpAsset){throw 'GitHub ответил об успешной загрузке, но временный asset не найден.'}
-    if([int64]$tmpAsset.size -ne $size){throw ('Размер сохранённого asset не совпадает: '+$tmpAsset.size+' байт вместо '+$size+'.')}
-    if($target){
-      & $gh api --method DELETE "repos/$Repo/releases/assets/$($target.id)" *> $null
-      if($LASTEXITCODE -ne 0){throw 'Новый файл загружен и проверен, но старую версию не удалось удалить.'}
-    }
-    $patchRaw=& $gh api --method PATCH "repos/$Repo/releases/assets/$($tmpAsset.id)" -f "name=$assetName" 2>&1
-    if($LASTEXITCODE -ne 0){throw (($patchRaw -join $NL).Trim())}
-    $release=Get-Release $gh
-    $newAsset=Get-AssetByName $gh ([long]$release.id) $assetName
-    if(-not $newAsset){throw 'После переименования asset не найден при повторной проверке.'}
-    if([int64]$newAsset.size -ne $size){throw ('Финальный размер не совпадает: '+$newAsset.size+' байт вместо '+$size+'.')}
-    Write-State $statePath @{ok=$true;state='done';phase='Готово';message='Файл записан и проверен в GitHub.';size=$size;githubSeconds=$upload.Seconds;assetId=[int64]$newAsset.id;downloadUrl=$newAsset.browser_download_url;finishedAt=(Get-Date).ToString('o')}
-    if($tmpPath){Remove-Item -LiteralPath $tmpPath -Force -ErrorAction SilentlyContinue}
-  }catch{
-    $statePath=[IO.Path]::ChangeExtension($JobFile,'.status.json')
-    try{if($tmpAsset){& $gh api --method DELETE "repos/$Repo/releases/assets/$($tmpAsset.id)" *> $null}}catch{}
-    Fail-Job $statePath $_.Exception.Message
-    if($sourcePath){Remove-Item -LiteralPath $sourcePath -Force -ErrorAction SilentlyContinue}
-    if($tmpPath){Remove-Item -LiteralPath $tmpPath -Force -ErrorAction SilentlyContinue}
-    exit 1
-  }
+    $job=Get-Content -Raw -LiteralPath $JobFile|ConvertFrom-Json;$sp=[IO.Path]::ChangeExtension($JobFile,'.status.json');$source=$job.sourcePath;$token=$job.token;$tag=$job.tag;$size=[int64]$job.size;$name=$job.assetName
+    State $sp @{ok=$true;state='running';phase='CHECK_RELEASE';message='Checking storage';size=$size;sent=0;percent=0;startedAt=$job.startedAt}
+    $r=EnsureRelease $tag $token;$old=FindAsset $r $name $token;$tmpName='MF_TMP_'+$job.id
+    State $sp @{ok=$true;state='running';phase='GITHUB_UPLOAD';message='Uploading binary data';size=$size;sent=0;percent=0;startedAt=$job.startedAt}
+    $tmp=Upload $r $source $tmpName $token $sp $size
+    if([int64]$tmp.size -ne $size){throw 'Uploaded size mismatch'}
+    State $sp @{ok=$true;state='running';phase='VERIFY';message='Verifying upload';size=$size;sent=$size;percent=99;startedAt=$job.startedAt}
+    $r=Release $tag $token;$tmp=FindAsset $r $tmpName $token;if(!$tmp){throw 'Temporary asset not found'}
+    if([int64]$tmp.size -ne $size){throw 'Verified size mismatch'}
+    if($old){Api DELETE ("https://api.github.com/repos/"+$Repo+"/releases/assets/"+$old.id) $token|Out-Null}
+    Api PATCH ("https://api.github.com/repos/"+$Repo+"/releases/assets/"+$tmp.id) $token @{name=$name}|Out-Null
+    $r=Release $tag $token;$final=FindAsset $r $name $token;if(!$final){throw 'Final asset not found'};if([int64]$final.size -ne $size){throw 'Final size mismatch'}
+    State $sp @{ok=$true;state='done';phase='DONE';message='File stored and verified';size=$size;sent=$size;percent=100;assetId=[int64]$final.id;downloadUrl=$final.browser_download_url;finishedAt=(Get-Date).ToString('o')}
+    Remove-Item -LiteralPath $source -Force -ErrorAction SilentlyContinue
+  }catch{$sp=[IO.Path]::ChangeExtension($JobFile,'.status.json');Fail $sp $_.Exception.Message;if($source){Remove-Item -LiteralPath $source -Force -ErrorAction SilentlyContinue};if($tmp -and $token){try{Api DELETE ("https://api.github.com/repos/"+$Repo+"/releases/assets/"+$tmp.id) $token|Out-Null}catch{}};exit 1}
   exit 0
 }
-function Send-Response {
-  param([Net.Sockets.NetworkStream]$Stream,[int]$Status,[string]$Type,[string]$Body)
-  $bytes=[Text.Encoding]::UTF8.GetBytes($Body)
-  $reason=@{200='OK';201='Created';204='No Content';400='Bad Request';404='Not Found';413='Payload Too Large';500='Internal Server Error'}[$Status]
-  $crlf=[char]13+[char]10
-  $headers='HTTP/1.1 '+$Status+' '+$reason+$crlf+'Content-Type: '+$Type+'; charset=utf-8'+$crlf+'Content-Length: '+$bytes.Length+$crlf+'Access-Control-Allow-Origin: https://mapkepp.github.io'+$crlf+'Access-Control-Allow-Methods: GET,POST,OPTIONS'+$crlf+'Access-Control-Allow-Headers: Content-Type,X-Filename,X-Rel-Path'+$crlf+'Cache-Control: no-store'+$crlf+'Connection: close'+$crlf+$crlf
-  $hb=[Text.Encoding]::ASCII.GetBytes($headers);$Stream.Write($hb,0,$hb.Length)
-  if($bytes.Length -gt 0){$Stream.Write($bytes,0,$bytes.Length)}
-}
-function Read-Request {
-  param([Net.Sockets.NetworkStream]$Stream)
-  $list=New-Object Collections.Generic.List[byte]
-  while($true){
-    $b=$Stream.ReadByte();if($b -lt 0){break};$list.Add([byte]$b);$n=$list.Count
-    if($n -ge 4 -and $list[$n-4] -eq 13 -and $list[$n-3] -eq 10 -and $list[$n-2] -eq 13 -and $list[$n-1] -eq 10){break}
-    if($n -gt 65536){throw 'Слишком большой HTTP-заголовок.'}
-  }
-  $text=[Text.Encoding]::ASCII.GetString($list.ToArray());$crlf=[char]13+[char]10;$lines=$text -split $crlf;$parts=$lines[0] -split ' ';$headers=@{}
-  if($lines.Count -gt 2){foreach($line in $lines[1..($lines.Count-2)]){$k=$line.IndexOf(':');if($k -gt 0){$headers[$line.Substring(0,$k).Trim().ToLowerInvariant()]=$line.Substring($k+1).Trim()}}}
-  return @{Method=$parts[0];Path=$parts[1];Headers=$headers}
-}
-function Decode-Header {param([string]$Value) if([string]::IsNullOrWhiteSpace($Value)){return ''} return [Uri]::UnescapeDataString($Value)}
-function Handle-Client {
-  param([Net.Sockets.TcpClient]$Client)
-  $stream=$Client.GetStream();$req=Read-Request $stream
-  if($req.Method -eq 'OPTIONS'){Send-Response $stream 204 'text/plain' '';return}
-  if($req.Method -eq 'GET'){
-    if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;repo=$Repo;tag=$Tag;port=$Port}|ConvertTo-Json -Compress);return}
-    if($req.Path -like '/status*'){
-      $qmark=$req.Path.IndexOf('?');$query=if($qmark -ge 0){$req.Path.Substring($qmark+1)}else{''};$id=($query -split '&'|Where-Object{$_ -like 'id=*'}|Select-Object -First 1);if($id){$id=$id.Substring(3)}
-      if(!$id -or $id -notmatch '^[a-f0-9]{32}$'){Send-Response $stream 400 'application/json' '{"ok":false,"message":"Неверный id"}';return}
-      $sp=Join-Path $JobsDir ($id+'.status.json');if(!(Test-Path $sp)){Send-Response $stream 404 'application/json' '{"ok":false,"message":"Задание не найдено"}';return}
-      Send-Response $stream 200 'application/json' (Get-Content -Raw -LiteralPath $sp);return
-    }
-    Send-Response $stream 404 'application/json' '{"ok":false,"message":"Not Found"}';return
-  }
-  if($req.Method -eq 'POST' -and $req.Path -eq '/upload'){
-    $cl=0;[void][int64]::TryParse($req.Headers['content-length'],[ref]$cl)
-    if($cl -le 0){Send-Response $stream 400 'application/json' '{"ok":false,"message":"Пустой файл"}';return}
-    if($cl -gt 2147483648){Send-Response $stream 413 'application/json' '{"ok":false,"message":"Файл больше 2 GiB"}';return}
-    $name=Decode-Header $req.Headers['x-filename'];$rel=Decode-Header $req.Headers['x-rel-path'];if([string]::IsNullOrWhiteSpace($name)){$name='file.bin'};if([string]::IsNullOrWhiteSpace($rel)){$rel=$name}
-    $rel=$rel.Replace('\','/').TrimStart('/');$parts=$rel -split '/'
-    if($parts.Count -gt 30 -or ($parts|Where-Object{$_ -eq '..' -or [string]::IsNullOrWhiteSpace($_)}).Count -gt 0){Send-Response $stream 400 'application/json' '{"ok":false,"message":"Недопустимый путь"}';return}
-    $id=[guid]::NewGuid().ToString('N');$jobDir=Join-Path $JobsDir $id;New-Item -ItemType Directory -Force -Path $jobDir|Out-Null
-    $assetName=Encode-AssetName $rel;$sourcePath=Join-Path $jobDir $assetName
-    $out=[IO.File]::Open($sourcePath,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
-    try{$remaining=$cl;$buffer=New-Object byte[] 1048576;while($remaining -gt 0){$read=$stream.Read($buffer,0,[int][math]::Min($buffer.Length,$remaining));if($read -le 0){throw 'Клиент оборвал передачу до конца файла.'};$out.Write($buffer,0,$read);$remaining-=$read}}finally{$out.Dispose()}
-    $jobPath=Join-Path $JobsDir ($id+'.json');$job=@{id=$id;sourcePath=$sourcePath;assetName=$assetName;relativePath=$rel;size=$cl;startedAt=(Get-Date).ToString('o')}
-    Write-State $jobPath $job;$statusPath=Join-Path $JobsDir ($id+'.status.json');Write-State $statusPath @{ok=$true;state='queued';phase='Получен от браузера';message='Файл принят локальным мостом. Передаю в GitHub…';size=$cl;startedAt=$job.startedAt}
-    $arg='-NoProfile -ExecutionPolicy Bypass -File "'+$ScriptPath+'" -Worker -JobFile "'+$jobPath+'"';Start-Process -FilePath 'powershell.exe' -ArgumentList $arg -WindowStyle Hidden|Out-Null
-    Send-Response $stream 201 'application/json' (@{ok=$true;id=$id}|ConvertTo-Json -Compress);return
-  }
-  Send-Response $stream 404 'application/json' '{"ok":false,"message":"Not Found"}'
-}
-$listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1'),$Port);$listener.Start()
-Write-Host '';Write-Host 'F Мои файлы FAST — локальный ускоритель запущен.' -ForegroundColor Cyan;Write-Host ('http://127.0.0.1:'+ $Port);Write-Host ('Репозиторий: '+$Repo);Write-Host ('Хранилище: '+$Tag);Write-Host 'Закрой это окно, чтобы остановить ускоритель.';Write-Host ''
-while($true){$client=$listener.AcceptTcpClient();try{Handle-Client $client}catch{try{Send-Response $client.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}}finally{$client.Close()}}
+function Resp([Net.Sockets.NetworkStream]$s,[int]$code,[string]$type,[string]$body){$b=[Text.Encoding]::UTF8.GetBytes($body);$reason=@{200='OK';201='Created';204='No Content';400='Bad Request';404='Not Found';413='Payload Too Large';500='Internal Server Error'}[$code];$cr=[char]13+[char]10;$h='HTTP/1.1 '+$code+' '+$reason+$cr+'Content-Type: '+$type+'; charset=utf-8'+$cr+'Content-Length: '+$b.Length+$cr+'Access-Control-Allow-Origin: https://mapkepp.github.io'+$cr+'Access-Control-Allow-Methods: GET,POST,OPTIONS'+$cr+'Access-Control-Allow-Headers: Content-Type,Authorization,X-Tag,X-Filename,X-Rel-Path'+$cr+'Cache-Control: no-store'+$cr+'Connection: close'+$cr+$cr;$hb=[Text.Encoding]::ASCII.GetBytes($h);$s.Write($hb,0,$hb.Length);if($b.Length){$s.Write($b,0,$b.Length)}}
+function Request([Net.Sockets.NetworkStream]$s){$l=New-Object Collections.Generic.List[byte];while($true){$b=$s.ReadByte();if($b-lt 0){break};$l.Add([byte]$b);$n=$l.Count;if($n-ge4-and$l[$n-4]-eq13-and$l[$n-3]-eq10-and$l[$n-2]-eq13-and$l[$n-1]-eq10){break};if($n-gt65536){throw 'Header too large'}};$cr=[char]13+[char]10;$txt=[Text.Encoding]::ASCII.GetString($l.ToArray());$lines=$txt-split$cr;$parts=$lines[0]-split' ';$hs=@{};if($lines.Count-gt2){foreach($line in $lines[1..($lines.Count-2)]){$k=$line.IndexOf(':');if($k-gt0){$hs[$line.Substring(0,$k).Trim().ToLowerInvariant()]=$line.Substring($k+1).Trim()}}};return @{Method=$parts[0];Path=$parts[1];Headers=$hs}}
+function U([string]$v){if([string]::IsNullOrWhiteSpace($v)){return ''};return[Uri]::UnescapeDataString($v)}
+function Handle([Net.Sockets.TcpClient]$c){$s=$c.GetStream();$r=Request $s;if($r.Method-eq'OPTIONS'){Resp $s 204 'text/plain' '';return};if($r.Method-eq'GET'){if($r.Path-eq'/health'){Resp $s 200 'application/json' (@{ok=$true;port=$Port}|ConvertTo-Json -Compress);return};if($r.Path-like'/status*'){$q=if($r.Path.IndexOf('?')-ge0){$r.Path.Substring($r.Path.IndexOf('?')+1)}else{''};$id=($q-split'&'|Where-Object{$_-like'id=*'}|Select-Object-First1);if($id){$id=$id.Substring(3)};$p=Join-Path $JobsDir ($id+'.status.json');if($id-and$id-match'^[a-f0-9]{32}$'-and(Test-Path $p)){Resp $s 200 'application/json' (Get-Content-Raw-LiteralPath$p);return};Resp $s 404 'application/json' '{"ok":false,"message":"not found"}';return};Resp $s 404 'application/json' '{"ok":false,"message":"not found"}';return}
+if($r.Method-eq'POST'-and$r.Path-eq'/upload'){$auth=$r.Headers['authorization'];if(!$auth){Resp $s 400 'application/json' '{"ok":false,"message":"missing authorization"}';return};$token=$auth-replace'^Bearer\s+','';$tag=U $r.Headers['x-tag'];$rel=U $r.Headers['x-rel-path'];if($tag-notin@('MY-FILES','MY-FILES-FAST')){Resp $s 400 'application/json' '{"ok":false,"message":"bad storage"}';return};$size=0L;[void][int64]::TryParse($r.Headers['content-length'],[ref]$size);if($size-le0){Resp $s 400 'application/json' '{"ok":false,"message":"empty file"}';return};if($size-gt2147483648){Resp $s 413 'application/json' '{"ok":false,"message":"file too large"}';return};if([string]::IsNullOrWhiteSpace($rel)){$rel=U $r.Headers['x-filename']};$id=[guid]::NewGuid().ToString('N');$dir=Join-Path $JobsDir $id;New-Item-ItemType Directory-Force-Path$dir|Out-Null;$src=Join-Path $dir 'source.bin';$out=[IO.File]::Open($src,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None);try{$left=$size;$buf=New-Object byte[] 1048576;while($left-gt0){$n=$s.Read($buf,0,[int][math]::Min($buf.Length,$left));if($n-le0){throw 'client disconnected'};$out.Write($buf,0,$n);$left-=$n}}finally{$out.Dispose()};$jp=Join-Path $JobsDir ($id+'.json');$job=@{id=$id;sourcePath=$src;assetName=(Enc $rel);tag=$tag;token=$token;relativePath=$rel;size=$size;startedAt=(Get-Date).ToString('o')};State $jp $job;State (Join-Path $JobsDir ($id+'.status.json')) @{ok=$true;state='queued';phase='QUEUED';message='Received from browser';size=$size;sent=$size;percent=0;startedAt=$job.startedAt};Start-Process -FilePath 'powershell.exe' -ArgumentList ('-NoProfile -ExecutionPolicy Bypass -File "'+$ScriptPath+'" -Worker -JobFile "'+$jp+'"') -WindowStyle Hidden|Out-Null;Resp $s 201 'application/json' (@{ok=$true;id=$id}|ConvertTo-Json -Compress);return};Resp $s 404 'application/json' '{"ok":false,"message":"not found"}'}
+$listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1'),$Port);$listener.Start();Write-Host 'F file bridge running on http://127.0.0.1:8765';while($true){$c=$listener.AcceptTcpClient();try{Handle $c}catch{try{Resp $c.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}}finally{$c.Close()}}
