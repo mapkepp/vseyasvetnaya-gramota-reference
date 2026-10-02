@@ -7,8 +7,9 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$BridgeVersion = '3.1'
+$BridgeVersion = '3.2'
 [Net.ServicePointManager]::Expect100Continue = $false
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $Repo = 'mapkepp/-ai-private-toolbox'
 $Base = Join-Path $env:LOCALAPPDATA 'F-Fast-Bridge'
@@ -107,6 +108,8 @@ function Upload-Binary {
   $req.ReadWriteTimeout=7200000
   $req.AllowWriteStreamBuffering=$false
   $req.SendChunked=$false
+  $req.KeepAlive=$false
+  $req.Proxy=$null
   $req.Headers['Authorization']='Bearer '+$Token
   $req.Headers['Accept']='application/vnd.github+json'
   $req.Headers['X-GitHub-Api-Version']=$ApiVersion
@@ -161,15 +164,21 @@ function Upload-Binary {
   }finally{$resp.Dispose()}
 }
 
-if($Worker){
-  if([string]::IsNullOrWhiteSpace($JobFile)){exit 2}
-  $statePath=[IO.Path]::ChangeExtension($JobFile,'.status.json')
-  $source=$null;$token=$null;$temp=$null
+function Invoke-UploadJob {
+  param([hashtable]$Job)
+  $statePath=$Job.statePath
+  $source=$Job.sourcePath
+  $token=$Job.token
+  $tag=$Job.tag
+  $size=[int64]$Job.size
+  $assetName=$Job.assetName
+  $startedAt=$Job.startedAt
   try{
-    $job=Get-Content -Raw -LiteralPath $JobFile|ConvertFrom-Json
-    $source=$job.sourcePath;$token=$job.token;$tag=$job.tag;$size=[int64]$job.size;$assetName=$job.assetName
     if([string]::IsNullOrWhiteSpace($token)){throw 'Токен не передан'}
-    Write-State $statePath @{ok=$true;state='running';phase='CHECK_RELEASE';message='Проверяю Release';size=$size;sent=0;percent=0;startedAt=$job.startedAt}
+    Write-State $statePath @{
+      ok=$true;state='running';phase='CHECK_RELEASE';message='Проверяю Release'
+      size=$size;sent=$size;percent=0;startedAt=$startedAt
+    }
     $release=Ensure-Release $tag $token
     $asset=$null
     for($attempt=1;$attempt -le 3;$attempt++){
@@ -180,7 +189,7 @@ if($Worker){
         Write-State $statePath @{
           ok=$true;state='running';phase='GITHUB_UPLOAD'
           message=('Передаю бинарные данные в GitHub · попытка '+$attempt+'/3')
-          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$job.startedAt
+          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$startedAt
         }
         $asset=Upload-Binary $release $source $assetName $token $statePath $size
         if([int64]$asset.size -ne $size){throw 'GitHub сообщил несовпадающий размер'}
@@ -190,12 +199,15 @@ if($Worker){
         Write-State $statePath @{
           ok=$true;state='running';phase='RETRY'
           message=('Ошибка передачи, повтор через 5 секунд · попытка '+$attempt+'/3')
-          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$job.startedAt
+          size=$size;sent=0;percent=0;attempt=$attempt;startedAt=$startedAt
         }
         Start-Sleep -Seconds 5
       }
     }
-    Write-State $statePath @{ok=$true;state='running';phase='VERIFY';message='Проверяю загруженный asset';size=$size;sent=$size;percent=99;startedAt=$job.startedAt}
+    Write-State $statePath @{
+      ok=$true;state='running';phase='VERIFY';message='Проверяю загруженный asset'
+      size=$size;sent=$size;percent=99;startedAt=$startedAt
+    }
     $release=Get-Release $tag $token
     $final=Find-Asset $release $assetName $token
     if(-not $final){throw 'Загруженный asset не найден'}
@@ -207,13 +219,13 @@ if($Worker){
     }
   }catch{
     Fail-Job $statePath $_.Exception.Message
-    if($temp){try{Delete-Asset $temp $token}catch{}}
-    exit 1
   }finally{
     if($source){Remove-Item -LiteralPath $source -Force -ErrorAction SilentlyContinue}
-    Remove-Item -LiteralPath $JobFile -Force -ErrorAction SilentlyContinue
   }
-  exit 0
+}
+if($Worker){
+  # Legacy mode intentionally disabled: tokens must never be read from job files.
+  exit 3
 }
 
 function Send-Response {
@@ -262,7 +274,7 @@ function Read-Request {
 }
 function Handle-Client {
   param([Net.Sockets.TcpClient]$Client)
-  $stream=$Client.GetStream();$req=Read-Request $stream
+  $stream=$Client.GetStream();$stream.ReadTimeout=120000;$stream.WriteTimeout=120000;$req=Read-Request $stream
   if($req.Method -eq 'OPTIONS'){Send-Response $stream 204 'text/plain' '';return}
   if($req.Method -eq 'GET'){
     if($req.Path -eq '/health'){Send-Response $stream 200 'application/json' (@{ok=$true;port=$Port;version=$BridgeVersion;single=$SingleJob.IsPresent}|ConvertTo-Json -Compress);return}
@@ -311,10 +323,10 @@ function Handle-Client {
     return
   }
 
-  if($req.Method -eq 'POST' -and $req.Path -eq '/upload'){
+  if($req.Method -eq 'POST' -and $req.Path -eq '/upload' -and $SingleJob){
     $auth=$req.Headers['authorization']
     if(-not $auth){Send-Response $stream 400 'application/json' '{"ok":false,"message":"missing authorization"}';return}
-    $token=$auth -replace '^Bearer\s+',''
+    $token=$auth -replace '^Bearer\\s+',''
     $tag=Decode-Header $req.Headers['x-tag']
     $rel=Decode-Header $req.Headers['x-rel-path']
     [int64]$size=0
@@ -325,33 +337,50 @@ function Handle-Client {
     if([string]::IsNullOrWhiteSpace($rel)){$rel=Decode-Header $req.Headers['x-filename']}
     $rel=$rel.Replace('\','/').TrimStart('/')
     if([string]::IsNullOrWhiteSpace($rel)){Send-Response $stream 400 'application/json' '{"ok":false,"message":"missing file name"}';return}
+
     $id=[guid]::NewGuid().ToString('N')
-    $jobDir=Join-Path $JobsDir $id;New-Item -ItemType Directory -Force -Path $jobDir|Out-Null
+    $jobDir=Join-Path $JobsDir $id
+    New-Item -ItemType Directory -Force -Path $jobDir|Out-Null
     $source=Join-Path $jobDir 'source.bin'
-    $file=[IO.File]::Open($source,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+    $statePath=Join-Path $JobsDir ($id+'.status.json')
     try{
-      $remaining=$size;$buffer=New-Object byte[] 1048576
-      while($remaining -gt 0){
-        $read=$stream.Read($buffer,0,[int][math]::Min($buffer.Length,$remaining))
-        if($read -le 0){throw 'Браузер оборвал передачу'}
-        $file.Write($buffer,0,$read);$remaining-=$read
+      $file=[IO.File]::Open($source,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+      try{
+        $remaining=$size
+        $received=[int64]0
+        $buffer=New-Object byte[] 1048576
+        while($remaining -gt 0){
+          $read=$stream.Read($buffer,0,[int][math]::Min($buffer.Length,$remaining))
+          if($read -le 0){throw 'Браузер оборвал передачу'}
+          $file.Write($buffer,0,$read)
+          $remaining-=$read
+          $received+=$read
+        }
+      }finally{$file.Dispose()}
+
+      $started=(Get-Date).ToString('o')
+      Write-State $statePath @{
+        ok=$true;state='running';phase='QUEUED'
+        message='Файл полностью принят; начинаю передачу в GitHub'
+        size=$size;sent=$size;percent=0;startedAt=$started
       }
-    }finally{$file.Dispose()}
-    $jobPath=Join-Path $JobsDir ($id+'.json')
-    $started=(Get-Date).ToString('o')
-    Write-State $jobPath @{
-      id=$id;sourcePath=$source;assetName=(Encode-AssetName $rel)
-      tag=$tag;token=$token;relativePath=$rel;size=$size;startedAt=$started
+      $script:PendingJob=@{
+        statePath=$statePath
+        sourcePath=$source
+        assetName=(Encode-AssetName $rel)
+        tag=$tag
+        token=$token
+        relativePath=$rel
+        size=$size
+        startedAt=$started
+      }
+      Send-Response $stream 201 'application/json' (@{ok=$true;id=$id}|ConvertTo-Json -Compress)
+      return
+    }catch{
+      try{Fail-Job $statePath $_.Exception.Message}catch{}
+      if(Test-Path -LiteralPath $source){Remove-Item -LiteralPath $source -Force -ErrorAction SilentlyContinue}
+      throw
     }
-    Write-State (Join-Path $JobsDir ($id+'.status.json')) @{
-      ok=$true;state='queued';phase='QUEUED';message='Файл принят локальным ускорителем'
-      size=$size;sent=$size;percent=0;startedAt=$started
-    }
-    Start-Process -FilePath 'powershell.exe' -WindowStyle Hidden -ArgumentList @(
-      '-NoProfile','-ExecutionPolicy','Bypass','-File',$ScriptPath,'-Worker','-JobFile',$jobPath,'-Port',$Port
-    )|Out-Null
-    Send-Response $stream 201 'application/json' (@{ok=$true;id=$id}|ConvertTo-Json -Compress)
-    return
   }
   Send-Response $stream 404 'application/json' '{"ok":false,"message":"not found"}'
 }
@@ -360,7 +389,8 @@ $listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1')
 $listener.Start()
 
 if($SingleJob){
-  Write-Host ('F-Fast Bridge 3.1 single upload: http://127.0.0.1:'+ $Port)
+  Write-Host ('F-Fast Bridge 3.2 single upload: http://127.0.0.1:'+ $Port)
+  $script:PendingJob=$null
   try{
     $client=$listener.AcceptTcpClient()
     try{Handle-Client $client}
@@ -368,10 +398,12 @@ if($SingleJob){
       try{Send-Response $client.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}
     }finally{$client.Close()}
   }finally{$listener.Stop()}
+  if($script:PendingJob){
+    Invoke-UploadJob $script:PendingJob
+  }
   exit
 }
-
-Write-Host ('F-Fast Bridge 3.1 manager: http://127.0.0.1:'+ $Port)
+Write-Host ('F-Fast Bridge 3.2 manager: http://127.0.0.1:'+ $Port)
 while($true){
   $client=$listener.AcceptTcpClient()
   try{Handle-Client $client}
