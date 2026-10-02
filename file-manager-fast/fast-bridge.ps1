@@ -1,4 +1,4 @@
-param(
+﻿param(
   [switch]$Worker,
   [string]$JobFile,
   [int]$Port = 8765
