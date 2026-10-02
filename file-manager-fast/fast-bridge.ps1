@@ -192,6 +192,7 @@ function Send-Response {
     'Access-Control-Allow-Origin: https://mapkepp.github.io'+$crlf+
     'Access-Control-Allow-Methods: GET,POST,OPTIONS'+$crlf+
     'Access-Control-Allow-Headers: Content-Type,Authorization,X-Tag,X-Rel-Path,X-Filename'+$crlf+
+    'Access-Control-Allow-Private-Network: true'+$crlf+
     'Access-Control-Max-Age: 600'+$crlf+
     'Cache-Control: no-store'+$crlf+
     'Connection: close'+$crlf+$crlf
