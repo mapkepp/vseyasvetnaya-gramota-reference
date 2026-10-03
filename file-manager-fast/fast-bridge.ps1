@@ -7,7 +7,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$BridgeVersion = '3.2'
+$BridgeVersion = '3.3'
 [Net.ServicePointManager]::Expect100Continue = $false
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -55,7 +55,7 @@ function Invoke-Api {
   param([string]$Method,[string]$Url,[string]$Token,[object]$Body=$null)
   $h=Api-Headers $Token
   if($null -ne $Body){
-    return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h -TimeoutSec 15 -Body ($Body|ConvertTo-Json -Depth 12) -ContentType 'application/json' -TimeoutSec 15
+    return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h -TimeoutSec 15 -TimeoutSec 15 -Body ($Body|ConvertTo-Json -Depth 12) -ContentType 'application/json'
   }
   return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h
 }
@@ -110,6 +110,7 @@ function Upload-Binary {
   $req.SendChunked=$false
   $req.KeepAlive=$false
   $req.Proxy=$null
+  $req.UserAgent='F-Fast-Bridge/3.3'
   $req.Headers['Authorization']='Bearer '+$Token
   $req.Headers['Accept']='application/vnd.github+json'
   $req.Headers['X-GitHub-Api-Version']=$ApiVersion
