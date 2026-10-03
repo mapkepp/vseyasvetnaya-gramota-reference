@@ -55,9 +55,9 @@ function Invoke-Api {
   param([string]$Method,[string]$Url,[string]$Token,[object]$Body=$null)
   $h=Api-Headers $Token
   if($null -ne $Body){
-    return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h -TimeoutSec 15 -TimeoutSec 15 -Body ($Body|ConvertTo-Json -Depth 12) -ContentType 'application/json'
+    return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h -TimeoutSec 15 -Body ($Body|ConvertTo-Json -Depth 12) -ContentType 'application/json'
   }
-  return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h
+  return Invoke-RestMethod -Method $Method -Uri $Url -Headers $h -TimeoutSec 15
 }
 function Get-Release {
   param([string]$Tag,[string]$Token)
