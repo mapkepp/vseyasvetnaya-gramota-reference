@@ -7,7 +7,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$BridgeVersion = '3.3'
+$BridgeVersion = '3.2'
 [Net.ServicePointManager]::Expect100Continue = $false
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -110,7 +110,7 @@ function Upload-Binary {
   $req.SendChunked=$false
   $req.KeepAlive=$false
   $req.Proxy=$null
-  $req.UserAgent='F-Fast-Bridge/3.3'
+  $req.UserAgent='F-Fast-Bridge/3.2'
   $req.Headers['Authorization']='Bearer '+$Token
   $req.Headers['Accept']='application/vnd.github+json'
   $req.Headers['X-GitHub-Api-Version']=$ApiVersion
