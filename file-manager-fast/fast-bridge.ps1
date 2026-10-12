@@ -1,4 +1,4 @@
-param(
+﻿param(
   [switch]$Worker,
   [string]$JobFile,
   [int]$Port = 8765,
@@ -321,7 +321,7 @@ function Handle-Client {
       }catch{}
     }
     if(-not $ready){Send-Response $stream 500 'application/json' (@{ok=$false;message='Локальный канал не запустился';port=$newPort}|ConvertTo-Json -Compress);return}
-    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version='+$BridgeVersion+'}|ConvertTo-Json -Compress)
+    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version=$BridgeVersion}|ConvertTo-Json -Compress)
     return
   }
 
