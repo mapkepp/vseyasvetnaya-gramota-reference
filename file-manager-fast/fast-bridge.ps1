@@ -1,13 +1,14 @@
-param(
+﻿param(
   [switch]$Worker,
   [string]$JobFile,
   [int]$Port = 8765,
-  [switch]$SingleJob
+  [switch]$SingleJob,
+  [ValidateRange(1,600)][int]$ReservationTimeoutSeconds = 90
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$BridgeVersion = '3.2'
+$BridgeVersion = '3.3'
 [Net.ServicePointManager]::Expect100Continue = $false
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -320,7 +321,7 @@ function Handle-Client {
       }catch{}
     }
     if(-not $ready){Send-Response $stream 500 'application/json' (@{ok=$false;message='Локальный канал не запустился';port=$newPort}|ConvertTo-Json -Compress);return}
-    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version='+$BridgeVersion+'}|ConvertTo-Json -Compress)
+    Send-Response $stream 200 'application/json' (@{ok=$true;port=$newPort;version=$BridgeVersion}|ConvertTo-Json -Compress)
     return
   }
 
@@ -390,21 +391,29 @@ $listener=New-Object Net.Sockets.TcpListener([Net.IPAddress]::Parse('127.0.0.1')
 $listener.Start()
 
 if($SingleJob){
-  Write-Host ('F-Fast Bridge 3.2 single upload: http://127.0.0.1:'+ $Port)
+  Write-Host ('F-Fast Bridge 3.3 single upload: http://127.0.0.1:'+ $Port)
   $script:PendingJob=$null
+  $reservationClock=[Diagnostics.Stopwatch]::StartNew()
   try{
-    $client=$listener.AcceptTcpClient()
-    try{Handle-Client $client}
-    catch{
-      try{Send-Response $client.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}
-    }finally{$client.Close()}
-  }finally{$listener.Stop()}
+    # The manager probes /health before the browser POSTs /upload.
+    # Do not consume the only AcceptTcpClient() on that readiness probe.
+    while((-not $script:PendingJob) -and ($reservationClock.Elapsed.TotalSeconds -lt $ReservationTimeoutSeconds)){
+      if(-not $listener.Pending()){Start-Sleep -Milliseconds 100;continue}
+      $client=$listener.AcceptTcpClient()
+      try{Handle-Client $client}
+      catch{
+        try{Send-Response $client.GetStream() 500 'application/json' (@{ok=$false;message=$_.Exception.Message}|ConvertTo-Json -Compress)}catch{}
+      }finally{$client.Close()}
+    }
+  }finally{$reservationClock.Stop();$listener.Stop()}
   if($script:PendingJob){
     Invoke-UploadJob $script:PendingJob
+  }else{
+    Write-Host ('F-Fast Bridge 3.3: reservation expired after '+$ReservationTimeoutSeconds+' seconds without /upload')
   }
   exit
 }
-Write-Host ('F-Fast Bridge 3.2 manager: http://127.0.0.1:'+ $Port)
+Write-Host ('F-Fast Bridge 3.3 manager: http://127.0.0.1:'+ $Port)
 while($true){
   $client=$listener.AcceptTcpClient()
   try{Handle-Client $client}
