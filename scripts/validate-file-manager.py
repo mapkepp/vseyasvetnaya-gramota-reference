@@ -20,7 +20,7 @@ def script(html: str) -> str:
 
 first_html = read(FIRST)
 fast_html = read(FAST)
-bridge = read(BRIDGE)
+if not BRIDGE.read_bytes().startswith(b"\xef\xbb\xbf"):\n    raise AssertionError("PowerShell 5.1 bridge source must be UTF-8 with BOM")\nbridge = BRIDGE.read_text(encoding="utf-8-sig")
 
 first = script(first_html)
 fast = script(fast_html)
@@ -72,4 +72,4 @@ print("PASS first page has no F branding")
 print("PASS FAST branding is preserved")
 print("PASS reserve timeout and long upload wait are present")
 print("PASS bridge 3.3 timeout/retry/reserve markers are present")
-print("PASS reservation survives multiple health checks and has bounded wait")
+print("PASS reservation survives multiple health checks and has bounded wait")\nprint("PASS PowerShell 5.1 UTF-8 BOM is present")
