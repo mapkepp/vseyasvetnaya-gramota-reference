@@ -20,7 +20,9 @@ def script(html: str) -> str:
 
 first_html = read(FIRST)
 fast_html = read(FAST)
-if not BRIDGE.read_bytes().startswith(b"\xef\xbb\xbf"):\n    raise AssertionError("PowerShell 5.1 bridge source must be UTF-8 with BOM")\nbridge = BRIDGE.read_text(encoding="utf-8-sig")
+if not BRIDGE.read_bytes().startswith(bytes((239, 187, 191))):
+    raise AssertionError("PowerShell 5.1 bridge source must be UTF-8 with BOM")
+bridge = BRIDGE.read_text(encoding="utf-8-sig")
 
 first = script(first_html)
 fast = script(fast_html)
