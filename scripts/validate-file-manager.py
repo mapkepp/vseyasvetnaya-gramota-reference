@@ -58,13 +58,18 @@ if "localJson('http://127.0.0.1:8765/reserve',{method:'POST'},15_000)" not in fi
 if "21600" not in first or "21600" not in fast:
     raise AssertionError("large-file wait budget missing")
 
-for needle in ("$BridgeVersion = '3.2'", "-TimeoutSec 15", "$req.Timeout=7200000", "/reserve", "/upload"):
+for needle in ("$BridgeVersion = '3.3'", "-TimeoutSec 15", "$req.Timeout=7200000", "/reserve", "/upload"):
     if needle not in bridge:
         raise AssertionError(f"bridge hardening marker missing: {needle}")
+
+for marker in ("-not $listener.Pending()", "$reservationClock.Elapsed.TotalSeconds -lt $ReservationTimeoutSeconds", "[ValidateRange(1,600)][int]$ReservationTimeoutSeconds = 90"):
+    if marker not in bridge:
+        raise AssertionError(f"multi-connection reservation guard missing: {marker}")
 
 print("PASS file-manager static contract")
 print("PASS both pages have identical normalized functional core")
 print("PASS first page has no F branding")
 print("PASS FAST branding is preserved")
 print("PASS reserve timeout and long upload wait are present")
-print("PASS bridge 3.2 timeout/retry/reserve markers are present")
+print("PASS bridge 3.3 timeout/retry/reserve markers are present")
+print("PASS reservation survives multiple health checks and has bounded wait")
