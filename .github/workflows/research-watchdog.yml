@@ -31,6 +31,7 @@ jobs:
           git fetch origin dev --prune
           queue="$(git show origin/dev:data/research/autonomous-queue.json)"
           # A queue with 0 PENDING but hundreds of failed tasks is BLOCKED, not healthy.
+          # Terminal results remain untouched until evidence-based bounded triage.
           stats="$(printf '%s' "$queue" | jq -ce 'if (.tasks|type) != "array" then error("missing tasks array") else {pending: ([.tasks[] | select(.status=="PENDING")] | length), failed: ([.tasks[] | select(.status=="FAILED")] | length), exhausted: ([.tasks[] | select(.status=="EXHAUSTED")] | length)} end')"
           pending="$(printf '%s' "$stats" | jq -r '.pending')"
           failed="$(printf '%s' "$stats" | jq -r '.failed')"
