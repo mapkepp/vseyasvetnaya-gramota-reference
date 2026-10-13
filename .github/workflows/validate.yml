@@ -32,10 +32,35 @@ jobs:
       - name: Validate canonical catalog and derived API
         run: python3 scripts/validate-bukovy.py
 
-      - name: Require generated API to be committed
+      - name: Require committed static API and verify live research snapshots
         run: |
-          if ! git diff --quiet -- api; then
-            echo "::error::Derived API is out of sync with canonical data."
-            git diff --stat -- api
+          set -euo pipefail
+          # The two research endpoints are volatile snapshots regenerated for Pages.
+          # Every other generated API file must be committed and unchanged.
+          changed="$( { git diff --name-only -- api; git ls-files --others --exclude-standard -- api; } | sort -u)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^api/v1/(research-queue|research-status)\.json
+ || true)"
+          if [ -n "$unexpected" ]; then
+            echo "::error::Canonical generated API is out of sync or has untracked output."
+            printf '%s\n' "$unexpected"
             exit 1
           fi
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path(".")
+          candidates = [
+              ("api/v1/research-queue.json", ["data/research/autonomous-queue.json"], {"tasks": []}),
+              ("api/v1/research-status.json", ["data/research/worker-status.json", "data/research/autonomous-status.json"], {"status": "NOT_INITIALIZED"}),
+          ]
+          for target, source_names, default in candidates:
+              destination = root / target
+              if not destination.is_file():
+                  raise SystemExit(f"FAIL: generated research endpoint absent: {target}")
+              source = next((root / p for p in source_names if (root / p).is_file()), None)
+              expected = json.loads(source.read_text(encoding="utf-8")) if source else default
+              actual = json.loads(destination.read_text(encoding="utf-8"))
+              if actual != expected:
+                  raise SystemExit(f"FAIL: generated endpoint differs from research source: {target}")
+              print(f"PASS: generated research snapshot matches {'source' if source else 'documented fallback'}: {target}")
+          PY
