@@ -30,7 +30,11 @@ jobs:
           set -euo pipefail
           git fetch origin dev --prune
           queue="$(git show origin/dev:data/research/autonomous-queue.json)"
-          pending="$(echo "$queue" | jq '[.tasks[] | select(.status=="PENDING")] | length')"
+          # A queue with 0 PENDING but hundreds of failed tasks is BLOCKED, not healthy.
+          stats="$(printf '%s' "$queue" | jq -ce 'if (.tasks|type) != "array" then error("missing tasks array") else {pending: ([.tasks[] | select(.status=="PENDING")] | length), failed: ([.tasks[] | select(.status=="FAILED")] | length), exhausted: ([.tasks[] | select(.status=="EXHAUSTED")] | length)} end')"
+          pending="$(printf '%s' "$stats" | jq -r '.pending')"
+          failed="$(printf '%s' "$stats" | jq -r '.failed')"
+          exhausted="$(printf '%s' "$stats" | jq -r '.exhausted')"
           worker_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/autonomous-research-worker.yml/runs?branch=dev&per_page=10")"
           repair_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/system-self-repair.yml/runs?branch=dev&per_page=10")"
           worker_active="$(echo "$worker_runs" | jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length')"
@@ -52,7 +56,16 @@ jobs:
           fi
           echo "pending=$pending worker_active=$worker_active repair_active=$repair_active heartbeat_age=$age latest_status=$status latest_conclusion=$conclusion"
           if [ "$pending" -eq 0 ]; then
-            echo "WATCHDOG_OK: queue empty."
+            if [ "$failed" -gt 0 ] || [ "$exhausted" -gt 0 ]; then
+              echo "::warning::WATCHDOG_BLOCKED: no pending research; failed=$failed exhausted=$exhausted. Requires bounded evidence triage; no blind requeue."
+              {
+                echo "### BLOCKED: research queue has no runnable tasks"
+                echo "Failed: $failed; exhausted: $exhausted; pending: 0."
+                echo "No empty workers dispatched and no old terminal jobs replayed."
+              } >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "WATCHDOG_IDLE: queue empty and no failed/exhausted research tasks."
+            fi
             exit 0
           fi
           if [ "$repair_active" -gt 0 ]; then
