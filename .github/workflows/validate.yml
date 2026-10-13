@@ -38,8 +38,7 @@ jobs:
           # The two research endpoints are volatile snapshots regenerated for Pages.
           # Every other generated API file must be committed and unchanged.
           changed="$( { git diff --name-only -- api; git ls-files --others --exclude-standard -- api; } | sort -u)"
-          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^api/v1/(research-queue|research-status)\.json
- || true)"
+          unexpected="$(printf '%s\n' "$changed" | awk 'NF && $0 != "api/v1/research-queue.json" && $0 != "api/v1/research-status.json"')"
           if [ -n "$unexpected" ]; then
             echo "::error::Canonical generated API is out of sync or has untracked output."
             printf '%s\n' "$unexpected"
