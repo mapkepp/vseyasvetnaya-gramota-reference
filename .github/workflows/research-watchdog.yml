@@ -63,6 +63,7 @@ jobs:
                 echo "### BLOCKED: research queue has no runnable tasks"
                 echo "Failed: $failed; exhausted: $exhausted; pending: 0."
                 echo "No empty workers dispatched and no old terminal jobs replayed."
+                echo "Next: evidence-based triage or a bounded retry plan; do not requeue everything."
               } >> "$GITHUB_STEP_SUMMARY"
             else
               echo "WATCHDOG_IDLE: queue empty and no failed/exhausted research tasks."
