@@ -34,8 +34,8 @@
     "base": "dev",
     "head": "main",
     "status": "diverged",
-    "main_ahead_of_dev": 853,
-    "main_behind_dev": 1616,
+    "main_ahead_of_dev": 855,
+    "main_behind_dev": 1620,
     "merge_base": "66fd0ad8b0687f32e63da193c1a566cafc963d93"
   },
   "summary": {
@@ -49,7 +49,7 @@
       "branch": "research/strict-evidence-gate",
       "class": "integration-candidate",
       "ahead_of_dev": 5,
-      "behind_dev": 1592,
+      "behind_dev": 1596,
       "commits": 5,
       "files": [
         "data/research/practitioner-review-queue.json",
@@ -79,7 +79,7 @@
       "branch": "backup",
       "class": "legacy",
       "ahead_of_dev": 3,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 3,
       "files": [
         "config/deployment-channels.json",
@@ -101,7 +101,7 @@
       "branch": "development",
       "class": "legacy",
       "ahead_of_dev": 3,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 3,
       "files": [
         "config/deployment-channels.json",
@@ -123,7 +123,7 @@
       "branch": "production",
       "class": "legacy",
       "ahead_of_dev": 4,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 4,
       "files": [
         ".github/workflows/publish.yml",
@@ -147,7 +147,7 @@
       "branch": "reserve",
       "class": "legacy",
       "ahead_of_dev": 3,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 3,
       "files": [
         "config/deployment-channels.json",
@@ -169,7 +169,7 @@
       "branch": "implementation/autonomous-loop-clean",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 3,
-      "behind_dev": 1591,
+      "behind_dev": 1595,
       "commits": 3,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -189,7 +189,7 @@
       "branch": "research/evidence-normalizer",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 4,
-      "behind_dev": 1613,
+      "behind_dev": 1617,
       "commits": 4,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -212,7 +212,7 @@
       "branch": "research/github-web-worker-clean",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 2,
-      "behind_dev": 1615,
+      "behind_dev": 1619,
       "commits": 2,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -232,7 +232,7 @@
       "branch": "research/pipeline-dedup",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 4,
-      "behind_dev": 1611,
+      "behind_dev": 1615,
       "commits": 4,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -255,7 +255,7 @@
       "branch": "research/review-queue",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 2,
-      "behind_dev": 1612,
+      "behind_dev": 1616,
       "commits": 2,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -275,7 +275,7 @@
       "branch": "research/verification-loop",
       "class": "partial-integration-candidate",
       "ahead_of_dev": 3,
-      "behind_dev": 1614,
+      "behind_dev": 1618,
       "commits": 3,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -303,15 +303,15 @@
       "files": [],
       "allowed_files": [],
       "archive_worthy_files": [],
-      "merge_base": "b205c6ebff5df4500e008193365e53466b813367",
+      "merge_base": "30d37b5adc586e2777f169849ce07426c7c43e0c",
       "status": "identical"
     },
     {
       "branch": "main",
       "class": "protected",
-      "ahead_of_dev": 853,
-      "behind_dev": 1616,
-      "commits": 853,
+      "ahead_of_dev": 855,
+      "behind_dev": 1620,
+      "commits": 855,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
         ".github/workflows/autonomous-research-worker.yml",
@@ -389,6 +389,7 @@
         "data/research/run-history/2026/11/05/main.json",
         "data/research/run-history/2026/11/06/main.json",
         "data/research/run-history/2026/11/07/main.json",
+        "data/research/run-history/2026/11/08/main.json",
         "data/research/run-history/index.json",
         "data/research/watchdog-history.json",
         "docs/DEPLOYMENT-CHANNELS.md",
@@ -411,8 +412,7 @@
         "scripts/replan_research_queue.py",
         "scripts/research_worker.py",
         "scripts/update-autonomous-research-status.py",
-        "scripts/validate-file-manager.py",
-        "scripts/verify_research_sources.py"
+        "scripts/validate-file-manager.py"
       ],
       "allowed_files": [
         "api/v1/index.json",
@@ -475,6 +475,7 @@
         "data/research/run-history/2026/11/05/main.json",
         "data/research/run-history/2026/11/06/main.json",
         "data/research/run-history/2026/11/07/main.json",
+        "data/research/run-history/2026/11/08/main.json",
         "data/research/run-history/index.json",
         "data/research/watchdog-history.json",
         "research-status.html",
@@ -571,6 +572,7 @@
         "data/research/run-history/2026/11/05/main.json",
         "data/research/run-history/2026/11/06/main.json",
         "data/research/run-history/2026/11/07/main.json",
+        "data/research/run-history/2026/11/08/main.json",
         "data/research/run-history/index.json",
         "data/research/watchdog-history.json",
         "docs/DEPLOYMENT-CHANNELS.md",
@@ -598,7 +600,7 @@
       "branch": "automation/launch-research-20260925",
       "class": "review-required",
       "ahead_of_dev": 35,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 35,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -668,7 +670,7 @@
       "branch": "automation/launch-research-20260925b",
       "class": "review-required",
       "ahead_of_dev": 34,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 34,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -738,7 +740,7 @@
       "branch": "automation/launch-research-20260925c",
       "class": "review-required",
       "ahead_of_dev": 35,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 35,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -808,7 +810,7 @@
       "branch": "automation/live-research-status-api",
       "class": "review-required",
       "ahead_of_dev": 44,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 44,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -883,7 +885,7 @@
       "branch": "implementation/autonomous-loop",
       "class": "review-required",
       "ahead_of_dev": 40,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 40,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -958,7 +960,7 @@
       "branch": "research/github-web-worker",
       "class": "review-required",
       "ahead_of_dev": 27,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 27,
       "files": [
         ".github/workflows/autonomous-research-worker.yml",
@@ -1022,7 +1024,7 @@
       "branch": "archive-dev-pre-rebuild-20260926",
       "class": "unclassified",
       "ahead_of_dev": 0,
-      "behind_dev": 1411,
+      "behind_dev": 1415,
       "commits": 0,
       "files": [],
       "allowed_files": [],
@@ -1034,7 +1036,7 @@
       "branch": "archive-main-pre-rebuild-20260926",
       "class": "unclassified",
       "ahead_of_dev": 89,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 89,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1136,7 +1138,7 @@
       "branch": "archive/dev-pre-rebuild-20260926",
       "class": "unclassified",
       "ahead_of_dev": 0,
-      "behind_dev": 1416,
+      "behind_dev": 1420,
       "commits": 0,
       "files": [],
       "allowed_files": [],
@@ -1148,7 +1150,7 @@
       "branch": "archive/main-pre-rebuild-20260926",
       "class": "unclassified",
       "ahead_of_dev": 89,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 89,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1250,7 +1252,7 @@
       "branch": "backup-main-before-rebuild-20260926",
       "class": "unclassified",
       "ahead_of_dev": 89,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 89,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1352,7 +1354,7 @@
       "branch": "fix/bukovy-queue-raw-api-20261013",
       "class": "unclassified",
       "ahead_of_dev": 587,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 587,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1559,7 +1561,7 @@
       "branch": "fix/ci-dynamic-research-endpoints-20261013",
       "class": "unclassified",
       "ahead_of_dev": 592,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 592,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1769,7 +1771,7 @@
       "branch": "fix/evolution-ancestor-direction-20261013",
       "class": "unclassified",
       "ahead_of_dev": 591,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 591,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -1979,7 +1981,7 @@
       "branch": "fix/fast-bridge-handshake-20261013",
       "class": "unclassified",
       "ahead_of_dev": 592,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 592,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -2186,7 +2188,7 @@
       "branch": "fix/research-watchdog-five-minute-20261013",
       "class": "unclassified",
       "ahead_of_dev": 589,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 589,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -2393,7 +2395,7 @@
       "branch": "fix/self-repair-large-queue-20261013",
       "class": "unclassified",
       "ahead_of_dev": 1,
-      "behind_dev": 530,
+      "behind_dev": 534,
       "commits": 1,
       "files": [
         ".github/workflows/system-self-repair.yml"
@@ -2409,7 +2411,7 @@
       "branch": "fix/watchdog-blocked-after-ci-sync-20261013",
       "class": "unclassified",
       "ahead_of_dev": 595,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 595,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -2619,7 +2621,7 @@
       "branch": "fix/watchdog-report-blocked-queue-20261013",
       "class": "unclassified",
       "ahead_of_dev": 592,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 592,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -2829,7 +2831,7 @@
       "branch": "main-backup",
       "class": "unclassified",
       "ahead_of_dev": 89,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 89,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
@@ -2931,7 +2933,7 @@
       "branch": "rebuild/main-candidate-20260926",
       "class": "unclassified",
       "ahead_of_dev": 89,
-      "behind_dev": 1616,
+      "behind_dev": 1620,
       "commits": 89,
       "files": [
         ".github/workflows/autonomous-implementation-workers.yml",
