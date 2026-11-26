@@ -1,8 +1,195 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-26T03:01:48.737074Z",
-  "count": 3885,
+  "generated_at": "2026-11-26T12:14:47.880170Z",
+  "count": 3896,
   "latest": [
+    {
+      "run_id": 45817817724,
+      "run_number": 290,
+      "process": "Publish run history",
+      "status": "in_progress",
+      "conclusion": null,
+      "branch": "main",
+      "workflow": ".github/workflows/run-history-publisher.yml",
+      "commit": "c64fc742daaeea19ab239870844b5ad168353bf8",
+      "started_at": "2026-11-26T12:14:34Z",
+      "finished_at": null,
+      "duration_seconds": null,
+      "created_at": "2026-11-26T12:14:34Z",
+      "updated_at": "2026-11-26T12:14:37Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45817817724",
+      "observed_at": "2026-11-26T12:14:43.212168Z"
+    },
+    {
+      "run_id": 45811647806,
+      "run_number": 1019,
+      "process": "Research watchdog",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/research-watchdog.yml",
+      "commit": "c64fc742daaeea19ab239870844b5ad168353bf8",
+      "started_at": "2026-11-26T11:33:21Z",
+      "finished_at": "2026-11-26T11:33:32Z",
+      "duration_seconds": 11.0,
+      "created_at": "2026-11-26T11:33:21Z",
+      "updated_at": "2026-11-26T11:33:32Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45811647806",
+      "observed_at": "2026-11-26T12:14:43.212209Z"
+    },
+    {
+      "run_id": 45799974977,
+      "run_number": 268,
+      "process": "Promote verified dev to production",
+      "status": "completed",
+      "conclusion": "failure",
+      "branch": "main",
+      "workflow": ".github/workflows/promote-dev-to-production.yml",
+      "commit": "c64fc742daaeea19ab239870844b5ad168353bf8",
+      "started_at": "2026-11-26T10:17:43Z",
+      "finished_at": "2026-11-26T10:18:02Z",
+      "duration_seconds": 19.0,
+      "created_at": "2026-11-26T10:17:43Z",
+      "updated_at": "2026-11-26T10:18:02Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45799974977",
+      "observed_at": "2026-11-26T12:14:43.212218Z"
+    },
+    {
+      "run_id": 45793697653,
+      "run_number": 258,
+      "process": "Autonomous Bukovy Research Coordinator",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/autonomous-research.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T09:37:28Z",
+      "finished_at": "2026-11-26T09:37:40Z",
+      "duration_seconds": 12.0,
+      "created_at": "2026-11-26T09:37:28Z",
+      "updated_at": "2026-11-26T09:37:40Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45793697653",
+      "observed_at": "2026-11-26T12:14:43.212224Z"
+    },
+    {
+      "run_id": 45762138944,
+      "run_number": 413,
+      "process": "Autonomous implementation workers",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/autonomous-implementation-workers.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T05:31:16Z",
+      "finished_at": "2026-11-26T05:31:33Z",
+      "duration_seconds": 17.0,
+      "created_at": "2026-11-26T05:31:16Z",
+      "updated_at": "2026-11-26T05:31:33Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45762138944",
+      "observed_at": "2026-11-26T12:14:43.212228Z"
+    },
+    {
+      "run_id": 45758903033,
+      "run_number": 1018,
+      "process": "Research watchdog",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/research-watchdog.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T05:01:48Z",
+      "finished_at": "2026-11-26T05:01:57Z",
+      "duration_seconds": 9.0,
+      "created_at": "2026-11-26T05:01:48Z",
+      "updated_at": "2026-11-26T05:01:57Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45758903033",
+      "observed_at": "2026-11-26T12:14:43.212232Z"
+    },
+    {
+      "run_id": 45758870727,
+      "run_number": 294,
+      "process": "System integrity and self-repair",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/system-self-repair.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T05:01:31Z",
+      "finished_at": "2026-11-26T05:01:45Z",
+      "duration_seconds": 14.0,
+      "created_at": "2026-11-26T05:01:31Z",
+      "updated_at": "2026-11-26T05:01:45Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45758870727",
+      "observed_at": "2026-11-26T12:14:43.212244Z"
+    },
+    {
+      "run_id": 45756534208,
+      "run_number": 283,
+      "process": "Autonomous branch intelligence",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/branch-intelligence.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T04:38:49Z",
+      "finished_at": "2026-11-26T04:39:23Z",
+      "duration_seconds": 34.0,
+      "created_at": "2026-11-26T04:38:49Z",
+      "updated_at": "2026-11-26T04:39:23Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45756534208",
+      "observed_at": "2026-11-26T12:14:43.212252Z"
+    },
+    {
+      "run_id": 45753672528,
+      "run_number": 252,
+      "process": "Toolbox evolution worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "branch": "main",
+      "workflow": ".github/workflows/toolbox-evolution.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T04:11:57Z",
+      "finished_at": "2026-11-26T04:12:12Z",
+      "duration_seconds": 15.0,
+      "created_at": "2026-11-26T04:11:57Z",
+      "updated_at": "2026-11-26T04:12:12Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45753672528",
+      "observed_at": "2026-11-26T12:14:43.212263Z"
+    },
+    {
+      "run_id": 45747531981,
+      "run_number": 301,
+      "process": "Status surface self-heal",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/status-self-heal.yml",
+      "commit": "680c8b295820163be1ae7643a6bdba237b766d33",
+      "started_at": "2026-11-26T03:13:32Z",
+      "finished_at": "2026-11-26T03:13:53Z",
+      "duration_seconds": 21.0,
+      "created_at": "2026-11-26T03:13:32Z",
+      "updated_at": "2026-11-26T03:13:53Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45747531981",
+      "observed_at": "2026-11-26T12:14:43.212271Z"
+    },
+    {
+      "run_id": 45746237680,
+      "run_number": 289,
+      "process": "Publish run history",
+      "status": "completed",
+      "conclusion": "success",
+      "branch": "main",
+      "workflow": ".github/workflows/run-history-publisher.yml",
+      "commit": "54b805c0b64a0b9e0b7103ff112852ee5e7b938f",
+      "started_at": "2026-11-26T03:01:36Z",
+      "finished_at": "2026-11-26T03:01:53Z",
+      "duration_seconds": 17.0,
+      "created_at": "2026-11-26T03:01:36Z",
+      "updated_at": "2026-11-26T03:01:53Z",
+      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45746237680",
+      "observed_at": "2026-11-26T12:14:43.212275Z"
+    },
     {
       "run_id": 45744761233,
       "run_number": 1017,
@@ -18,7 +205,7 @@
       "created_at": "2026-11-26T02:47:38Z",
       "updated_at": "2026-11-26T02:47:52Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45744761233",
-      "observed_at": "2026-11-26T03:01:44.042245Z"
+      "observed_at": "2026-11-26T12:14:43.212279Z"
     },
     {
       "run_id": 45735604847,
@@ -35,7 +222,7 @@
       "created_at": "2026-11-26T01:24:54Z",
       "updated_at": "2026-11-26T01:25:09Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45735604847",
-      "observed_at": "2026-11-26T03:01:44.042290Z"
+      "observed_at": "2026-11-26T12:14:43.212283Z"
     },
     {
       "run_id": 45728998772,
@@ -52,7 +239,7 @@
       "created_at": "2026-11-26T00:28:37Z",
       "updated_at": "2026-11-26T00:28:47Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45728998772",
-      "observed_at": "2026-11-26T03:01:44.042295Z"
+      "observed_at": "2026-11-26T12:14:43.212287Z"
     },
     {
       "run_id": 45723713125,
@@ -69,7 +256,7 @@
       "created_at": "2026-11-25T23:45:01Z",
       "updated_at": "2026-11-25T23:45:17Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45723713125",
-      "observed_at": "2026-11-26T03:01:44.042298Z"
+      "observed_at": "2026-11-26T12:14:43.212290Z"
     },
     {
       "run_id": 45716021279,
@@ -86,7 +273,7 @@
       "created_at": "2026-11-25T22:46:12Z",
       "updated_at": "2026-11-25T22:46:53Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45716021279",
-      "observed_at": "2026-11-26T03:01:44.042301Z"
+      "observed_at": "2026-11-26T12:14:43.212294Z"
     },
     {
       "run_id": 45713843613,
@@ -103,7 +290,7 @@
       "created_at": "2026-11-25T22:30:43Z",
       "updated_at": "2026-11-25T22:30:52Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45713843613",
-      "observed_at": "2026-11-26T03:01:44.042303Z"
+      "observed_at": "2026-11-26T12:14:43.212297Z"
     },
     {
       "run_id": 45713770960,
@@ -120,7 +307,7 @@
       "created_at": "2026-11-25T22:30:17Z",
       "updated_at": "2026-11-25T22:30:40Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45713770960",
-      "observed_at": "2026-11-26T03:01:44.042306Z"
+      "observed_at": "2026-11-26T12:14:43.212304Z"
     },
     {
       "run_id": 45707779699,
@@ -137,7 +324,7 @@
       "created_at": "2026-11-25T21:49:05Z",
       "updated_at": "2026-11-25T21:49:21Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45707779699",
-      "observed_at": "2026-11-26T03:01:44.042308Z"
+      "observed_at": "2026-11-26T12:14:43.212308Z"
     },
     {
       "run_id": 45697562086,
@@ -154,7 +341,7 @@
       "created_at": "2026-11-25T20:42:42Z",
       "updated_at": "2026-11-25T20:43:01Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45697562086",
-      "observed_at": "2026-11-26T03:01:44.042311Z"
+      "observed_at": "2026-11-26T12:14:43.212311Z"
     },
     {
       "run_id": 45696066329,
@@ -171,7 +358,7 @@
       "created_at": "2026-11-25T20:33:17Z",
       "updated_at": "2026-11-25T20:33:37Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45696066329",
-      "observed_at": "2026-11-26T03:01:44.042313Z"
+      "observed_at": "2026-11-26T12:14:43.212315Z"
     },
     {
       "run_id": 45691735601,
@@ -188,7 +375,7 @@
       "created_at": "2026-11-25T20:06:32Z",
       "updated_at": "2026-11-25T20:06:43Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45691735601",
-      "observed_at": "2026-11-26T03:01:44.042315Z"
+      "observed_at": "2026-11-26T12:14:43.212318Z"
     },
     {
       "run_id": 45667845050,
@@ -205,7 +392,7 @@
       "created_at": "2026-11-25T17:44:04Z",
       "updated_at": "2026-11-25T17:44:22Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45667845050",
-      "observed_at": "2026-11-26T03:01:44.042318Z"
+      "observed_at": "2026-11-26T12:14:43.212322Z"
     },
     {
       "run_id": 45648144735,
@@ -222,7 +409,7 @@
       "created_at": "2026-11-25T15:42:13Z",
       "updated_at": "2026-11-25T15:42:23Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45648144735",
-      "observed_at": "2026-11-26T03:01:44.042320Z"
+      "observed_at": "2026-11-26T12:14:43.212327Z"
     },
     {
       "run_id": 45645228860,
@@ -239,7 +426,7 @@
       "created_at": "2026-11-25T15:26:40Z",
       "updated_at": "2026-11-25T15:26:50Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45645228860",
-      "observed_at": "2026-11-26T03:01:44.042322Z"
+      "observed_at": "2026-11-26T12:14:43.212330Z"
     },
     {
       "run_id": 45624780963,
@@ -256,7 +443,7 @@
       "created_at": "2026-11-25T13:33:20Z",
       "updated_at": "2026-11-25T13:34:03Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45624780963",
-      "observed_at": "2026-11-26T03:01:44.042324Z"
+      "observed_at": "2026-11-26T12:14:43.212334Z"
     },
     {
       "run_id": 45617857911,
@@ -273,7 +460,7 @@
       "created_at": "2026-11-25T12:51:54Z",
       "updated_at": "2026-11-25T12:52:03Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45617857911",
-      "observed_at": "2026-11-26T03:01:44.042326Z"
+      "observed_at": "2026-11-26T12:14:43.212339Z"
     },
     {
       "run_id": 45617788375,
@@ -290,7 +477,7 @@
       "created_at": "2026-11-25T12:51:26Z",
       "updated_at": "2026-11-25T12:51:49Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45617788375",
-      "observed_at": "2026-11-26T03:01:44.042328Z"
+      "observed_at": "2026-11-26T12:14:43.212343Z"
     },
     {
       "run_id": 45607359506,
@@ -307,7 +494,7 @@
       "created_at": "2026-11-25T11:45:19Z",
       "updated_at": "2026-11-25T11:45:41Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45607359506",
-      "observed_at": "2026-11-26T03:01:44.042332Z"
+      "observed_at": "2026-11-26T12:14:43.212348Z"
     },
     {
       "run_id": 45604525290,
@@ -324,7 +511,7 @@
       "created_at": "2026-11-25T11:26:54Z",
       "updated_at": "2026-11-25T11:27:12Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45604525290",
-      "observed_at": "2026-11-26T03:01:44.042334Z"
+      "observed_at": "2026-11-26T12:14:43.212351Z"
     },
     {
       "run_id": 45604521801,
@@ -341,7 +528,7 @@
       "created_at": "2026-11-25T11:26:52Z",
       "updated_at": "2026-11-25T11:27:11Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45604521801",
-      "observed_at": "2026-11-26T03:01:44.042336Z"
+      "observed_at": "2026-11-26T12:14:43.212354Z"
     },
     {
       "run_id": 45595411635,
@@ -358,7 +545,7 @@
       "created_at": "2026-11-25T10:29:04Z",
       "updated_at": "2026-11-25T10:29:15Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45595411635",
-      "observed_at": "2026-11-26T03:01:44.042338Z"
+      "observed_at": "2026-11-26T12:14:43.212358Z"
     },
     {
       "run_id": 45560729866,
@@ -375,7 +562,7 @@
       "created_at": "2026-11-25T06:27:24Z",
       "updated_at": "2026-11-25T06:27:42Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45560729866",
-      "observed_at": "2026-11-26T03:01:44.042341Z"
+      "observed_at": "2026-11-26T12:14:43.212363Z"
     },
     {
       "run_id": 45550157304,
@@ -392,7 +579,7 @@
       "created_at": "2026-11-25T04:56:36Z",
       "updated_at": "2026-11-25T04:56:53Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45550157304",
-      "observed_at": "2026-11-26T03:01:44.042343Z"
+      "observed_at": "2026-11-26T12:14:43.212366Z"
     },
     {
       "run_id": 45549996310,
@@ -409,7 +596,7 @@
       "created_at": "2026-11-25T04:55:06Z",
       "updated_at": "2026-11-25T04:55:20Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45549996310",
-      "observed_at": "2026-11-26T03:01:44.042345Z"
+      "observed_at": "2026-11-26T12:14:43.212370Z"
     },
     {
       "run_id": 45542029675,
@@ -426,7 +613,7 @@
       "created_at": "2026-11-25T03:44:21Z",
       "updated_at": "2026-11-25T03:45:02Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45542029675",
-      "observed_at": "2026-11-26T03:01:44.042348Z"
+      "observed_at": "2026-11-26T12:14:43.212373Z"
     },
     {
       "run_id": 45534526152,
@@ -443,7 +630,7 @@
       "created_at": "2026-11-25T02:39:33Z",
       "updated_at": "2026-11-25T02:39:59Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45534526152",
-      "observed_at": "2026-11-26T03:01:44.042350Z"
+      "observed_at": "2026-11-26T12:14:43.212377Z"
     },
     {
       "run_id": 45532954328,
@@ -460,7 +647,7 @@
       "created_at": "2026-11-25T02:26:28Z",
       "updated_at": "2026-11-25T02:26:39Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45532954328",
-      "observed_at": "2026-11-26T03:01:44.042352Z"
+      "observed_at": "2026-11-26T12:14:43.212380Z"
     },
     {
       "run_id": 45532908618,
@@ -477,7 +664,7 @@
       "created_at": "2026-11-25T02:26:06Z",
       "updated_at": "2026-11-25T02:26:22Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45532908618",
-      "observed_at": "2026-11-26T03:01:44.042355Z"
+      "observed_at": "2026-11-26T12:14:43.212385Z"
     },
     {
       "run_id": 45531980992,
@@ -494,7 +681,7 @@
       "created_at": "2026-11-25T02:18:19Z",
       "updated_at": "2026-11-25T02:18:36Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45531980992",
-      "observed_at": "2026-11-26T03:01:44.042362Z"
+      "observed_at": "2026-11-26T12:14:43.212388Z"
     },
     {
       "run_id": 45527097942,
@@ -511,7 +698,7 @@
       "created_at": "2026-11-25T01:37:24Z",
       "updated_at": "2026-11-25T01:37:34Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45527097942",
-      "observed_at": "2026-11-26T03:01:44.042364Z"
+      "observed_at": "2026-11-26T12:14:43.212392Z"
     },
     {
       "run_id": 45521324439,
@@ -528,7 +715,7 @@
       "created_at": "2026-11-25T00:51:24Z",
       "updated_at": "2026-11-25T00:51:48Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45521324439",
-      "observed_at": "2026-11-26T03:01:44.042366Z"
+      "observed_at": "2026-11-26T12:14:43.212395Z"
     },
     {
       "run_id": 45512162408,
@@ -545,7 +732,7 @@
       "created_at": "2026-11-24T23:42:05Z",
       "updated_at": "2026-11-24T23:42:22Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45512162408",
-      "observed_at": "2026-11-26T03:01:44.042370Z"
+      "observed_at": "2026-11-26T12:14:43.212399Z"
     },
     {
       "run_id": 45499506969,
@@ -562,7 +749,7 @@
       "created_at": "2026-11-24T22:17:23Z",
       "updated_at": "2026-11-24T22:17:38Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45499506969",
-      "observed_at": "2026-11-26T03:01:44.042372Z"
+      "observed_at": "2026-11-26T12:14:43.212403Z"
     },
     {
       "run_id": 45489815512,
@@ -579,7 +766,7 @@
       "created_at": "2026-11-24T21:18:47Z",
       "updated_at": "2026-11-24T21:18:59Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45489815512",
-      "observed_at": "2026-11-26T03:01:44.042374Z"
+      "observed_at": "2026-11-26T12:14:43.212406Z"
     },
     {
       "run_id": 45483084136,
@@ -596,7 +783,7 @@
       "created_at": "2026-11-24T20:39:31Z",
       "updated_at": "2026-11-24T20:40:10Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45483084136",
-      "observed_at": "2026-11-26T03:01:44.042376Z"
+      "observed_at": "2026-11-26T12:14:43.212410Z"
     },
     {
       "run_id": 45458153785,
@@ -613,7 +800,7 @@
       "created_at": "2026-11-24T18:18:50Z",
       "updated_at": "2026-11-24T18:19:12Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45458153785",
-      "observed_at": "2026-11-26T03:01:44.042378Z"
+      "observed_at": "2026-11-26T12:14:43.212413Z"
     },
     {
       "run_id": 45455236565,
@@ -630,7 +817,7 @@
       "created_at": "2026-11-24T18:02:59Z",
       "updated_at": "2026-11-24T18:03:21Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45455236565",
-      "observed_at": "2026-11-26T03:01:44.042380Z"
+      "observed_at": "2026-11-26T12:14:43.212416Z"
     },
     {
       "run_id": 45451425884,
@@ -647,7 +834,7 @@
       "created_at": "2026-11-24T17:41:59Z",
       "updated_at": "2026-11-24T17:42:11Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45451425884",
-      "observed_at": "2026-11-26T03:01:44.042382Z"
+      "observed_at": "2026-11-26T12:14:43.212424Z"
     },
     {
       "run_id": 45451357516,
@@ -664,7 +851,7 @@
       "created_at": "2026-11-24T17:41:34Z",
       "updated_at": "2026-11-24T17:41:51Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45451357516",
-      "observed_at": "2026-11-26T03:01:44.042386Z"
+      "observed_at": "2026-11-26T12:14:43.212427Z"
     },
     {
       "run_id": 45451306049,
@@ -681,7 +868,7 @@
       "created_at": "2026-11-24T17:41:17Z",
       "updated_at": "2026-11-24T17:41:29Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45451306049",
-      "observed_at": "2026-11-26T03:01:44.042388Z"
+      "observed_at": "2026-11-26T12:14:43.212431Z"
     },
     {
       "run_id": 45419982538,
@@ -698,7 +885,7 @@
       "created_at": "2026-11-24T14:57:57Z",
       "updated_at": "2026-11-24T14:59:24Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45419982538",
-      "observed_at": "2026-11-26T03:01:44.042390Z"
+      "observed_at": "2026-11-26T12:14:43.212434Z"
     },
     {
       "run_id": 45414421429,
@@ -715,7 +902,7 @@
       "created_at": "2026-11-24T14:28:09Z",
       "updated_at": "2026-11-24T14:28:32Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45414421429",
-      "observed_at": "2026-11-26T03:01:44.042392Z"
+      "observed_at": "2026-11-26T12:14:43.212438Z"
     },
     {
       "run_id": 45388908143,
@@ -732,7 +919,7 @@
       "created_at": "2026-11-24T11:57:20Z",
       "updated_at": "2026-11-24T11:57:34Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45388908143",
-      "observed_at": "2026-11-26T03:01:44.042394Z"
+      "observed_at": "2026-11-26T12:14:43.212441Z"
     },
     {
       "run_id": 45380310429,
@@ -749,7 +936,7 @@
       "created_at": "2026-11-24T11:01:37Z",
       "updated_at": "2026-11-24T11:01:48Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45380310429",
-      "observed_at": "2026-11-26T03:01:44.042396Z"
+      "observed_at": "2026-11-26T12:14:43.212447Z"
     },
     {
       "run_id": 45372471936,
@@ -766,7 +953,7 @@
       "created_at": "2026-11-24T10:12:01Z",
       "updated_at": "2026-11-24T10:12:40Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45372471936",
-      "observed_at": "2026-11-26T03:01:44.042399Z"
+      "observed_at": "2026-11-26T12:14:43.212450Z"
     },
     {
       "run_id": 45340967858,
@@ -783,7 +970,7 @@
       "created_at": "2026-11-24T06:30:32Z",
       "updated_at": "2026-11-24T06:30:52Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45340967858",
-      "observed_at": "2026-11-26T03:01:44.042401Z"
+      "observed_at": "2026-11-26T12:14:43.212453Z"
     },
     {
       "run_id": 45340478549,
@@ -800,7 +987,7 @@
       "created_at": "2026-11-24T06:26:34Z",
       "updated_at": "2026-11-24T06:26:48Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45340478549",
-      "observed_at": "2026-11-26T03:01:44.042403Z"
+      "observed_at": "2026-11-26T12:14:43.212457Z"
     },
     {
       "run_id": 45338217513,
@@ -817,7 +1004,7 @@
       "created_at": "2026-11-24T06:08:23Z",
       "updated_at": "2026-11-24T06:08:32Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45338217513",
-      "observed_at": "2026-11-26T03:01:44.042405Z"
+      "observed_at": "2026-11-26T12:14:43.212462Z"
     },
     {
       "run_id": 45337266871,
@@ -834,7 +1021,7 @@
       "created_at": "2026-11-24T06:00:36Z",
       "updated_at": "2026-11-24T06:00:47Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45337266871",
-      "observed_at": "2026-11-26T03:01:44.042408Z"
+      "observed_at": "2026-11-26T12:14:43.212466Z"
     },
     {
       "run_id": 45337208621,
@@ -851,7 +1038,7 @@
       "created_at": "2026-11-24T06:00:10Z",
       "updated_at": "2026-11-24T06:00:33Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45337208621",
-      "observed_at": "2026-11-26T03:01:44.042410Z"
+      "observed_at": "2026-11-26T12:14:43.212469Z"
     },
     {
       "run_id": 45321222761,
@@ -868,7 +1055,7 @@
       "created_at": "2026-11-24T03:41:14Z",
       "updated_at": "2026-11-24T03:41:30Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45321222761",
-      "observed_at": "2026-11-26T03:01:44.042413Z"
+      "observed_at": "2026-11-26T12:14:43.212472Z"
     },
     {
       "run_id": 45315971397,
@@ -885,7 +1072,7 @@
       "created_at": "2026-11-24T02:56:25Z",
       "updated_at": "2026-11-24T02:56:42Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45315971397",
-      "observed_at": "2026-11-26T03:01:44.042415Z"
+      "observed_at": "2026-11-26T12:14:43.212476Z"
     },
     {
       "run_id": 45308054364,
@@ -902,7 +1089,7 @@
       "created_at": "2026-11-24T01:50:58Z",
       "updated_at": "2026-11-24T01:51:08Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45308054364",
-      "observed_at": "2026-11-26T03:01:44.042418Z"
+      "observed_at": "2026-11-26T12:14:43.212479Z"
     },
     {
       "run_id": 45301387615,
@@ -919,7 +1106,7 @@
       "created_at": "2026-11-24T00:58:05Z",
       "updated_at": "2026-11-24T00:58:15Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45301387615",
-      "observed_at": "2026-11-26T03:01:44.042420Z"
+      "observed_at": "2026-11-26T12:14:43.212483Z"
     },
     {
       "run_id": 45295637164,
@@ -936,7 +1123,7 @@
       "created_at": "2026-11-24T00:15:12Z",
       "updated_at": "2026-11-24T00:15:53Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45295637164",
-      "observed_at": "2026-11-26T03:01:44.042423Z"
+      "observed_at": "2026-11-26T12:14:43.212486Z"
     },
     {
       "run_id": 45282576852,
@@ -953,7 +1140,7 @@
       "created_at": "2026-11-23T22:44:52Z",
       "updated_at": "2026-11-23T22:45:15Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45282576852",
-      "observed_at": "2026-11-26T03:01:44.042425Z"
+      "observed_at": "2026-11-26T12:14:43.212489Z"
     },
     {
       "run_id": 45281852006,
@@ -970,7 +1157,7 @@
       "created_at": "2026-11-23T22:40:05Z",
       "updated_at": "2026-11-23T22:40:21Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45281852006",
-      "observed_at": "2026-11-26T03:01:44.042427Z"
+      "observed_at": "2026-11-26T12:14:43.212493Z"
     },
     {
       "run_id": 45277765732,
@@ -987,7 +1174,7 @@
       "created_at": "2026-11-23T22:14:33Z",
       "updated_at": "2026-11-23T22:14:44Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45277765732",
-      "observed_at": "2026-11-26T03:01:44.042429Z"
+      "observed_at": "2026-11-26T12:14:43.212498Z"
     },
     {
       "run_id": 45268857498,
@@ -1004,7 +1191,7 @@
       "created_at": "2026-11-23T21:21:42Z",
       "updated_at": "2026-11-23T21:21:53Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45268857498",
-      "observed_at": "2026-11-26T03:01:44.042433Z"
+      "observed_at": "2026-11-26T12:14:43.212501Z"
     },
     {
       "run_id": 45268785796,
@@ -1021,7 +1208,7 @@
       "created_at": "2026-11-23T21:21:16Z",
       "updated_at": "2026-11-23T21:21:38Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45268785796",
-      "observed_at": "2026-11-26T03:01:44.042435Z"
+      "observed_at": "2026-11-26T12:14:43.212504Z"
     },
     {
       "run_id": 45223114938,
@@ -1038,7 +1225,7 @@
       "created_at": "2026-11-23T17:01:53Z",
       "updated_at": "2026-11-23T17:02:08Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45223114938",
-      "observed_at": "2026-11-26T03:01:44.042437Z"
+      "observed_at": "2026-11-26T12:14:43.212509Z"
     },
     {
       "run_id": 45198968491,
@@ -1055,7 +1242,7 @@
       "created_at": "2026-11-23T14:52:56Z",
       "updated_at": "2026-11-23T14:53:21Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45198968491",
-      "observed_at": "2026-11-26T03:01:44.042439Z"
+      "observed_at": "2026-11-26T12:14:43.212513Z"
     },
     {
       "run_id": 45194145931,
@@ -1072,7 +1259,7 @@
       "created_at": "2026-11-23T14:26:02Z",
       "updated_at": "2026-11-23T14:26:13Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45194145931",
-      "observed_at": "2026-11-26T03:01:44.042441Z"
+      "observed_at": "2026-11-26T12:14:43.212516Z"
     },
     {
       "run_id": 45179491385,
@@ -1089,7 +1276,7 @@
       "created_at": "2026-11-23T12:59:29Z",
       "updated_at": "2026-11-23T12:59:39Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45179491385",
-      "observed_at": "2026-11-26T03:01:44.042444Z"
+      "observed_at": "2026-11-26T12:14:43.212520Z"
     },
     {
       "run_id": 45174812936,
@@ -1106,7 +1293,7 @@
       "created_at": "2026-11-23T12:29:35Z",
       "updated_at": "2026-11-23T12:30:26Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45174812936",
-      "observed_at": "2026-11-26T03:01:44.042446Z"
+      "observed_at": "2026-11-26T12:14:43.212523Z"
     },
     {
       "run_id": 45163599296,
@@ -1123,7 +1310,7 @@
       "created_at": "2026-11-23T11:15:54Z",
       "updated_at": "2026-11-23T11:16:14Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45163599296",
-      "observed_at": "2026-11-26T03:01:44.042448Z"
+      "observed_at": "2026-11-26T12:14:43.212527Z"
     },
     {
       "run_id": 45163245815,
@@ -1140,7 +1327,7 @@
       "created_at": "2026-11-23T11:13:39Z",
       "updated_at": "2026-11-23T11:14:02Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45163245815",
-      "observed_at": "2026-11-26T03:01:44.042450Z"
+      "observed_at": "2026-11-26T12:14:43.212530Z"
     },
     {
       "run_id": 45158108831,
@@ -1157,7 +1344,7 @@
       "created_at": "2026-11-23T10:39:33Z",
       "updated_at": "2026-11-23T10:39:43Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45158108831",
-      "observed_at": "2026-11-26T03:01:44.042452Z"
+      "observed_at": "2026-11-26T12:14:43.212535Z"
     },
     {
       "run_id": 45143461834,
@@ -1174,7 +1361,7 @@
       "created_at": "2026-11-23T09:02:11Z",
       "updated_at": "2026-11-23T09:02:24Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45143461834",
-      "observed_at": "2026-11-26T03:01:44.042456Z"
+      "observed_at": "2026-11-26T12:14:43.212539Z"
     },
     {
       "run_id": 45143406956,
@@ -1191,7 +1378,7 @@
       "created_at": "2026-11-23T09:01:48Z",
       "updated_at": "2026-11-23T09:02:08Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45143406956",
-      "observed_at": "2026-11-26T03:01:44.042457Z"
+      "observed_at": "2026-11-26T12:14:43.212542Z"
     },
     {
       "run_id": 45115823558,
@@ -1208,7 +1395,7 @@
       "created_at": "2026-11-23T05:07:37Z",
       "updated_at": "2026-11-23T05:07:52Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45115823558",
-      "observed_at": "2026-11-26T03:01:44.042460Z"
+      "observed_at": "2026-11-26T12:14:43.212546Z"
     },
     {
       "run_id": 45109047504,
@@ -1225,7 +1412,7 @@
       "created_at": "2026-11-23T03:58:27Z",
       "updated_at": "2026-11-23T03:58:37Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45109047504",
-      "observed_at": "2026-11-26T03:01:44.042463Z"
+      "observed_at": "2026-11-26T12:14:43.212549Z"
     },
     {
       "run_id": 45104091015,
@@ -1242,7 +1429,7 @@
       "created_at": "2026-11-23T03:07:33Z",
       "updated_at": "2026-11-23T03:08:07Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45104091015",
-      "observed_at": "2026-11-26T03:01:44.042465Z"
+      "observed_at": "2026-11-26T12:14:43.212552Z"
     },
     {
       "run_id": 45102762589,
@@ -1259,7 +1446,7 @@
       "created_at": "2026-11-23T02:53:38Z",
       "updated_at": "2026-11-23T02:53:55Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45102762589",
-      "observed_at": "2026-11-26T03:01:44.042467Z"
+      "observed_at": "2026-11-26T12:14:43.212558Z"
     },
     {
       "run_id": 45102615183,
@@ -1276,7 +1463,7 @@
       "created_at": "2026-11-23T02:52:02Z",
       "updated_at": "2026-11-23T02:52:11Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45102615183",
-      "observed_at": "2026-11-26T03:01:44.042469Z"
+      "observed_at": "2026-11-26T12:14:43.212561Z"
     },
     {
       "run_id": 45101350037,
@@ -1293,7 +1480,7 @@
       "created_at": "2026-11-23T02:38:15Z",
       "updated_at": "2026-11-23T02:38:30Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45101350037",
-      "observed_at": "2026-11-26T03:01:44.042472Z"
+      "observed_at": "2026-11-26T12:14:43.212567Z"
     },
     {
       "run_id": 45100602661,
@@ -1310,7 +1497,7 @@
       "created_at": "2026-11-23T02:30:28Z",
       "updated_at": "2026-11-23T02:30:45Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45100602661",
-      "observed_at": "2026-11-26T03:01:44.042474Z"
+      "observed_at": "2026-11-26T12:14:43.212571Z"
     },
     {
       "run_id": 45097866864,
@@ -1327,7 +1514,7 @@
       "created_at": "2026-11-23T02:02:07Z",
       "updated_at": "2026-11-23T02:02:16Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45097866864",
-      "observed_at": "2026-11-26T03:01:44.042476Z"
+      "observed_at": "2026-11-26T12:14:43.212600Z"
     },
     {
       "run_id": 45091238130,
@@ -1344,7 +1531,7 @@
       "created_at": "2026-11-23T00:51:49Z",
       "updated_at": "2026-11-23T00:52:06Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45091238130",
-      "observed_at": "2026-11-26T03:01:44.042479Z"
+      "observed_at": "2026-11-26T12:14:43.212605Z"
     },
     {
       "run_id": 45091202625,
@@ -1361,7 +1548,7 @@
       "created_at": "2026-11-23T00:51:27Z",
       "updated_at": "2026-11-23T00:51:46Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45091202625",
-      "observed_at": "2026-11-26T03:01:44.042482Z"
+      "observed_at": "2026-11-26T12:14:43.212608Z"
     },
     {
       "run_id": 45083676172,
@@ -1378,7 +1565,7 @@
       "created_at": "2026-11-22T23:31:07Z",
       "updated_at": "2026-11-22T23:31:19Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45083676172",
-      "observed_at": "2026-11-26T03:01:44.042484Z"
+      "observed_at": "2026-11-26T12:14:43.212612Z"
     },
     {
       "run_id": 45081152194,
@@ -1395,7 +1582,7 @@
       "created_at": "2026-11-22T23:03:52Z",
       "updated_at": "2026-11-22T23:04:06Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45081152194",
-      "observed_at": "2026-11-26T03:01:44.042486Z"
+      "observed_at": "2026-11-26T12:14:43.212617Z"
     },
     {
       "run_id": 45078936101,
@@ -1412,7 +1599,7 @@
       "created_at": "2026-11-22T22:39:24Z",
       "updated_at": "2026-11-22T22:39:57Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45078936101",
-      "observed_at": "2026-11-26T03:01:44.042488Z"
+      "observed_at": "2026-11-26T12:14:43.212622Z"
     },
     {
       "run_id": 45075895598,
@@ -1429,7 +1616,7 @@
       "created_at": "2026-11-22T22:07:15Z",
       "updated_at": "2026-11-22T22:07:30Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45075895598",
-      "observed_at": "2026-11-26T03:01:44.042491Z"
+      "observed_at": "2026-11-26T12:14:43.212625Z"
     },
     {
       "run_id": 45074963104,
@@ -1446,7 +1633,7 @@
       "created_at": "2026-11-22T21:57:36Z",
       "updated_at": "2026-11-22T21:57:53Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45074963104",
-      "observed_at": "2026-11-26T03:01:44.042493Z"
+      "observed_at": "2026-11-26T12:14:43.212629Z"
     },
     {
       "run_id": 45074465861,
@@ -1463,7 +1650,7 @@
       "created_at": "2026-11-22T21:51:56Z",
       "updated_at": "2026-11-22T21:52:10Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45074465861",
-      "observed_at": "2026-11-26T03:01:44.042496Z"
+      "observed_at": "2026-11-26T12:14:43.212632Z"
     },
     {
       "run_id": 45074268983,
@@ -1480,7 +1667,7 @@
       "created_at": "2026-11-22T21:49:48Z",
       "updated_at": "2026-11-22T21:49:58Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45074268983",
-      "observed_at": "2026-11-26T03:01:44.042500Z"
+      "observed_at": "2026-11-26T12:14:43.212641Z"
     },
     {
       "run_id": 45068201413,
@@ -1497,7 +1684,7 @@
       "created_at": "2026-11-22T20:45:10Z",
       "updated_at": "2026-11-22T20:45:29Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45068201413",
-      "observed_at": "2026-11-26T03:01:44.042502Z"
+      "observed_at": "2026-11-26T12:14:43.212652Z"
     },
     {
       "run_id": 45061859348,
@@ -1514,7 +1701,7 @@
       "created_at": "2026-11-22T19:37:58Z",
       "updated_at": "2026-11-22T19:38:08Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/45061859348",
-      "observed_at": "2026-11-26T03:01:44.042505Z"
+      "observed_at": "2026-11-26T12:14:43.212659Z"
     },
     {
       "run_id": 45061815277,
@@ -4915,193 +5102,6 @@
       "updated_at": "2026-11-16T11:34:13Z",
       "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43858876544",
       "observed_at": "2026-11-19T16:56:19.981588Z"
-    },
-    {
-      "run_id": 43844492248,
-      "run_number": 258,
-      "process": "Publish run history",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/run-history-publisher.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T09:57:48Z",
-      "finished_at": "2026-11-16T09:58:04Z",
-      "duration_seconds": 16.0,
-      "created_at": "2026-11-16T09:57:48Z",
-      "updated_at": "2026-11-16T09:58:04Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43844492248",
-      "observed_at": "2026-11-19T16:56:19.981591Z"
-    },
-    {
-      "run_id": 43841904561,
-      "run_number": 958,
-      "process": "Research watchdog",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/research-watchdog.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T09:40:46Z",
-      "finished_at": "2026-11-16T09:40:58Z",
-      "duration_seconds": 12.0,
-      "created_at": "2026-11-16T09:40:46Z",
-      "updated_at": "2026-11-16T09:40:58Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43841904561",
-      "observed_at": "2026-11-19T16:56:19.981595Z"
-    },
-    {
-      "run_id": 43841850690,
-      "run_number": 265,
-      "process": "System integrity and self-repair",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/system-self-repair.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T09:40:26Z",
-      "finished_at": "2026-11-16T09:40:44Z",
-      "duration_seconds": 18.0,
-      "created_at": "2026-11-16T09:40:26Z",
-      "updated_at": "2026-11-16T09:40:44Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43841850690",
-      "observed_at": "2026-11-19T16:56:19.981605Z"
-    },
-    {
-      "run_id": 43829599267,
-      "run_number": 252,
-      "process": "Autonomous branch intelligence",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/branch-intelligence.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T08:14:07Z",
-      "finished_at": "2026-11-16T08:14:50Z",
-      "duration_seconds": 43.0,
-      "created_at": "2026-11-16T08:14:07Z",
-      "updated_at": "2026-11-16T08:14:50Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43829599267",
-      "observed_at": "2026-11-19T16:56:19.981608Z"
-    },
-    {
-      "run_id": 43827873428,
-      "run_number": 382,
-      "process": "Autonomous implementation workers",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/autonomous-implementation-workers.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T08:00:39Z",
-      "finished_at": "2026-11-16T08:00:49Z",
-      "duration_seconds": 10.0,
-      "created_at": "2026-11-16T08:00:39Z",
-      "updated_at": "2026-11-16T08:00:49Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43827873428",
-      "observed_at": "2026-11-19T16:56:19.981614Z"
-    },
-    {
-      "run_id": 43824490364,
-      "run_number": 238,
-      "process": "Promote verified dev to production",
-      "status": "completed",
-      "conclusion": "failure",
-      "branch": "main",
-      "workflow": ".github/workflows/promote-dev-to-production.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T07:31:35Z",
-      "finished_at": "2026-11-16T07:31:49Z",
-      "duration_seconds": 14.0,
-      "created_at": "2026-11-16T07:31:35Z",
-      "updated_at": "2026-11-16T07:31:49Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43824490364",
-      "observed_at": "2026-11-19T16:56:19.981617Z"
-    },
-    {
-      "run_id": 43818884509,
-      "run_number": 226,
-      "process": "Toolbox evolution worker",
-      "status": "completed",
-      "conclusion": "failure",
-      "branch": "main",
-      "workflow": ".github/workflows/toolbox-evolution.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T06:44:52Z",
-      "finished_at": "2026-11-16T06:45:12Z",
-      "duration_seconds": 20.0,
-      "created_at": "2026-11-16T06:44:52Z",
-      "updated_at": "2026-11-16T06:45:12Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43818884509",
-      "observed_at": "2026-11-19T07:52:26.321469Z"
-    },
-    {
-      "run_id": 43815442967,
-      "run_number": 957,
-      "process": "Research watchdog",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/research-watchdog.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T06:14:51Z",
-      "finished_at": "2026-11-16T06:15:00Z",
-      "duration_seconds": 9.0,
-      "created_at": "2026-11-16T06:14:51Z",
-      "updated_at": "2026-11-16T06:15:00Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43815442967",
-      "observed_at": "2026-11-19T07:52:26.321473Z"
-    },
-    {
-      "run_id": 43814240227,
-      "run_number": 270,
-      "process": "Status surface self-heal",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/status-self-heal.yml",
-      "commit": "e44f1f3354ef2bb7a260c25cc41224400baaf9b3",
-      "started_at": "2026-11-16T06:03:48Z",
-      "finished_at": "2026-11-16T06:04:08Z",
-      "duration_seconds": 20.0,
-      "created_at": "2026-11-16T06:03:48Z",
-      "updated_at": "2026-11-16T06:04:08Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43814240227",
-      "observed_at": "2026-11-19T07:52:26.321478Z"
-    },
-    {
-      "run_id": 43794333518,
-      "run_number": 228,
-      "process": "Autonomous Bukovy Research Coordinator",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/autonomous-research.yml",
-      "commit": "29715d5543c5e372a1299becb77738278cf8f7d2",
-      "started_at": "2026-11-16T02:48:07Z",
-      "finished_at": "2026-11-16T02:48:22Z",
-      "duration_seconds": 15.0,
-      "created_at": "2026-11-16T02:48:07Z",
-      "updated_at": "2026-11-16T02:48:22Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43794333518",
-      "observed_at": "2026-11-19T07:52:26.321482Z"
-    },
-    {
-      "run_id": 43791680191,
-      "run_number": 257,
-      "process": "Publish run history",
-      "status": "completed",
-      "conclusion": "success",
-      "branch": "main",
-      "workflow": ".github/workflows/run-history-publisher.yml",
-      "commit": "057cd3dc106432374983ae55f36420f3fbd508eb",
-      "started_at": "2026-11-16T02:21:36Z",
-      "finished_at": "2026-11-16T02:21:53Z",
-      "duration_seconds": 17.0,
-      "created_at": "2026-11-16T02:21:36Z",
-      "updated_at": "2026-11-16T02:21:53Z",
-      "url": "https://github.com/mapkepp/vseyasvetnaya-gramota-reference/actions/runs/43791680191",
-      "observed_at": "2026-11-19T07:52:26.321486Z"
     }
   ]
 }
